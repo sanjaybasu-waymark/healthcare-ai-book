@@ -79,7 +79,7 @@ This resource provides physician data scientists with practical, production-read
 
 ## Contributing
 
-We welcome contributions from the healthcare AI community. This guide builds upon foundational work from leading researchers at Stanford, Harvard, UC Berkeley, and other institutions.
+We welcome contributions from the healthcare AI community.
 
 ## License
 
