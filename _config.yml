@@ -28,7 +28,7 @@ permalink: pretty
 timezone: America/Los_Angeles
 
 # Modern Jekyll Theme for Technical Books
-remote_theme: "just-the-docs/just-the-docs"
+remote_theme: "pages-themes/minimal"
 
 # Essential Plugins for Technical Books with Citations
 plugins:
@@ -112,13 +112,13 @@ nav_sort: case_insensitive
 nav_external_links:
   - title: "GitHub Repository"
     url: "https://github.com/sanjay-basu/healthcare-ai-book"
-    hide_icon: false
+    hide_icon: true
   - title: "Interactive Notebooks"
     url: "https://colab.research.google.com/github/sanjay-basu/healthcare-ai-book"
-    hide_icon: false
+    hide_icon: true
   - title: "Waymark Care"
     url: "https://www.waymarkcare.com"
-    hide_icon: false
+    hide_icon: true
 
 # Footer Configuration with Waymark Branding
 footer_content: |
