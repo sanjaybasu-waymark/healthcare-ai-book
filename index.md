@@ -71,7 +71,6 @@ This resource provides physician data scientists with practical, production-read
 
 ## Key Features
 
-✓ **Expert Content**: Written by physician data scientists with real-world experience  
 ✓ **Working Code**: Complete implementations ready for deployment  
 ✓ **Clinical Focus**: Healthcare-specific considerations throughout  
 ✓ **Regulatory Guidance**: FDA, HIPAA, and clinical validation frameworks  
