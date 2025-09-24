@@ -8,6 +8,8 @@ permalink: /
 
 # Healthcare AI Implementation Guide
 
+*By Sanjay Basu MD PhD, sanjay.basu@waymarkcare.com*
+
 **A comprehensive implementation guide for physician data scientists developing AI systems for healthcare delivery and population health.**
 
 [Get Started](#getting-started){: .btn .btn-primary } [View Chapters](#chapters){: .btn }

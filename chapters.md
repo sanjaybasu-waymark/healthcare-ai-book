@@ -5,7 +5,7 @@ layout: default
 
 # Healthcare AI Implementation Guide - All Chapters
 
-*By Sanjay Basu, MD PhD*
+*By Sanjay Basu MD PhD, sanjay.basu@waymarkcare.com*
 
 ## Part I: Foundations for Clinical AI
 
