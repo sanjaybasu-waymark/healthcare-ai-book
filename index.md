@@ -40,9 +40,8 @@ This resource provides physician data scientists with practical, production-read
 ### Quick Start
 
 1. **Explore the chapters** using the navigation menu
-2. **Download code examples** from each chapter
-3. **Try interactive notebooks** for hands-on learning
-4. **Follow deployment guides** for real-world implementation
+2. **Download code examples** from the [GitHub repository](https://github.com/sanjaybasu-waymark/healthcare-ai-book)
+3. **Follow deployment guides** for real-world implementation
 
 ## Chapters
 
@@ -90,7 +89,6 @@ This resource provides physician data scientists with practical, production-read
 ✓ **Working Code**: Complete implementations ready for deployment  
 ✓ **Clinical Focus**: Healthcare-specific considerations throughout  
 ✓ **Regulatory Guidance**: FDA, HIPAA, and clinical validation frameworks  
-✓ **Interactive Learning**: Jupyter notebooks and hands-on exercises  
 ✓ **Open Source**: Community-driven development and contributions  
 
 ## Contributing
