@@ -15,7 +15,7 @@ Build essential knowledge and tools for healthcare AI implementation. Covers cli
 ### [Chapter 2: Mathematical Foundations](/_chapters/02-mathematical-foundations-peer-reviewed.html)
 Comprehensive mathematical foundations including Bayesian inference, linear algebra, optimization theory, information theory, and causal inference for healthcare AI.
 
-### [Chapter 3: Healthcare Data Engineering](/_chapters/03-healthcare-data-engineering-comprehensive.html)
+### [Chapter 3: Healthcare Data Engineering](/_chapters/03-healthcare-data-engineering-peer-reviewed.html)
 Master healthcare data ecosystems, FHIR processing, data quality frameworks, and scalable data pipelines for clinical AI systems.
 
 ### [Chapter 4: Structured Machine Learning](/_chapters/04-structured-ml-clinical-comprehensive.html)
@@ -116,3 +116,4 @@ Implement environmentally sustainable AI systems with energy optimization and ca
 ---
 
 *This comprehensive guide provides production-ready implementations for every aspect of healthcare AI, from foundational concepts through advanced deployment strategies. Each chapter includes complete working code, clinical validation frameworks, and real-world examples.*
+
