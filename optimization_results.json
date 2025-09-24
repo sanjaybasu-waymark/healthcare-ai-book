@@ -1,0 +1,67 @@
+{
+  "01-clinical-informatics-updated": {
+    "chapter_id": "01-clinical-informatics-updated",
+    "writing_quality_score": 1.0,
+    "code_quality_score": 0.20000000000000012,
+    "citation_completeness_score": 0.9,
+    "expert_review_score": 0.9,
+    "overall_score": 0.7200000000000001,
+    "issues": [
+      "Code block 2: Function too long",
+      "Code block 2: Function too long",
+      "Code block 3: Missing error handling",
+      "Code block 3: Function too long",
+      "Code block 4: Missing error handling",
+      "Code block 4: Function too long",
+      "Code block 4: Function too long",
+      "Code block 5: Missing error handling",
+      "Code block 5: Function too long",
+      "Code block 6: Missing type hints",
+      "Code block 7: Missing type hints",
+      "Missing attribution for substantial code implementations",
+      "Missing citation types: journal_articles, conference_papers, books, software",
+      "Missing population health perspective"
+    ],
+    "recommendations": [
+      "Add attribution blocks for all substantial code examples",
+      "Include diverse citation types (journals, conferences, books)",
+      "Add population health applications"
+    ],
+    "timestamp": "2025-09-23T12:24:23.431248"
+  },
+  "01-clinical-informatics": {
+    "chapter_id": "01-clinical-informatics",
+    "writing_quality_score": 0.7000000000000001,
+    "code_quality_score": 0.20000000000000012,
+    "citation_completeness_score": 0.5,
+    "expert_review_score": 0.9,
+    "overall_score": 0.5500000000000002,
+    "issues": [
+      "Chapter too short: 2627 words (minimum: 3000)",
+      "Missing required elements: bibliography",
+      "Code block 2: Missing type hints",
+      "Code block 2: Missing error handling",
+      "Code block 3: Missing error handling",
+      "Code block 3: Function too long",
+      "Code block 4: Missing error handling",
+      "Code block 4: Function too long",
+      "Code block 5: Missing error handling",
+      "Code block 5: Function too long",
+      "Code block 6: Missing type hints",
+      "Code block 7: Missing type hints",
+      "Missing attribution for substantial code implementations",
+      "Insufficient citations: 0 (minimum: 10)",
+      "Missing citation types: journal_articles, conference_papers, books, software",
+      "Missing population health perspective"
+    ],
+    "recommendations": [
+      "Expand content with more detailed explanations and examples",
+      "Add all required chapter elements",
+      "Add attribution blocks for all substantial code examples",
+      "Add more citations to support claims and methodologies",
+      "Include diverse citation types (journals, conferences, books)",
+      "Add population health applications"
+    ],
+    "timestamp": "2025-09-23T12:24:23.431265"
+  }
+}

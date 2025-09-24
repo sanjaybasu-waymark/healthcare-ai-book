@@ -1,0 +1,322 @@
+# Healthcare AI Book Configuration with Waymark Design System
+# Ensures proper citations, attribution, and brand consistency
+
+# Site Information
+title: "AI in Healthcare: A Physician Data Scientist's Implementation Guide"
+description: "Production-ready AI implementations for healthcare delivery and population health. Complete with working code, interactive examples, and clinical validation frameworks."
+author: "Sanjay Basu, MD PhD"
+email: "sanjay.basu@waymark.care"
+baseurl: "/healthcare-ai-book"
+url: "https://sanjay-basu.github.io"
+
+# Waymark Branding
+organization: "Waymark"
+organization_url: "https://www.waymarkcare.com"
+brand_color: "#4a90e2"
+brand_color_dark: "#357abd"
+
+# Academic Integrity and Citations
+citation_style: "apa"
+require_attribution: true
+plagiarism_check: true
+academic_integrity: true
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+timezone: America/Los_Angeles
+
+# Modern Jekyll Theme for Technical Books
+remote_theme: "just-the-docs/just-the-docs"
+
+# Essential Plugins for Technical Books with Citations
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+  - jekyll-scholar
+
+# Jekyll Scholar Configuration for Academic Citations
+scholar:
+  style: apa
+  locale: en
+  source: ./_bibliography
+  bibliography: references.bib
+  bibliography_template: bibliography
+  replace_strings: true
+  join_strings: true
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: Details
+  query: "@*"
+  group_by: type
+  group_order: descending
+
+# Math Support with MathJax
+mathjax:
+  enable: true
+  combo: "tex-mml-chtml"
+  tags: "ams"
+
+# Code Highlighting Configuration
+kramdown:
+  input: GFM
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    default_lang: python
+    block:
+      line_numbers: true
+      start_line: 1
+
+# Rouge Configuration for Code Highlighting
+rouge:
+  default_lang: python
+  css_class: 'highlight'
+
+# Just the Docs Theme Configuration with Waymark Styling
+color_scheme: nil
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# Custom CSS for Professional Styling
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Custom CSS file
+custom_css: assets/css/custom.scss
+
+# Navigation Structure
+nav_sort: case_insensitive
+nav_external_links:
+  - title: "GitHub Repository"
+    url: "https://github.com/sanjay-basu/healthcare-ai-book"
+    hide_icon: false
+  - title: "Interactive Notebooks"
+    url: "https://colab.research.google.com/github/sanjay-basu/healthcare-ai-book"
+    hide_icon: false
+  - title: "Waymark Care"
+    url: "https://www.waymarkcare.com"
+    hide_icon: false
+
+# Footer Configuration with Waymark Branding
+footer_content: |
+  &copy; 2025 <a href="https://www.waymarkcare.com">Waymark</a>. Licensed under <a href="https://github.com/sanjay-basu/healthcare-ai-book/blob/main/LICENSE">MIT License</a>. 
+  <br>Built with <a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://just-the-docs.github.io/just-the-docs/">Just the Docs</a>.
+  <br>Consistent with <a href="https://www.waymarkcare.com/blog/announcing-transforming-medicaid-a-blueprint-for-equitable-care">Transforming Medicaid</a> design system.
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Callouts for Important Information (Waymark styled)
+callouts_level: quiet
+callouts:
+  highlight:
+    color: blue
+    title: "Key Insight"
+  important:
+    title: "Important"
+    color: purple
+  new:
+    title: "New Research"
+    color: green
+  note:
+    title: "Note"
+    color: blue
+  warning:
+    title: "Caution"
+    color: yellow
+  attribution:
+    title: "Attribution"
+    color: purple
+  citation:
+    title: "Citation Required"
+    color: red
+
+# Collections for Organized Content
+collections:
+  chapters:
+    output: true
+    permalink: /:collection/:name/
+    sort_by: order
+  examples:
+    output: true
+    permalink: /examples/:name/
+  notebooks:
+    output: true
+    permalink: /notebooks/:name/
+  bibliography:
+    output: false
+
+# Default Front Matter with Attribution Requirements
+defaults:
+  - scope:
+      path: ""
+      type: "chapters"
+    values:
+      layout: "default"
+      nav_exclude: false
+      search_exclude: false
+      require_attribution: true
+      citation_check: true
+  - scope:
+      path: ""
+      type: "examples"
+    values:
+      layout: "default"
+      parent: "Code Examples"
+      require_attribution: true
+  - scope:
+      path: ""
+      type: "notebooks"
+    values:
+      layout: "default"
+      parent: "Interactive Notebooks"
+      require_attribution: true
+  - scope:
+      path: "assets/images"
+    values:
+      image: true
+
+# Exclude from Processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .github/
+  - scripts/
+  - "*.py"
+  - "*.ipynb"
+  - requirements.txt
+  - environment.yml
+  - .gitignore
+  - LICENSE
+  - "*/tests/"
+  - "*/__pycache__/"
+
+# Include Processing
+include:
+  - _pages
+  - .htaccess
+  - _bibliography
+
+# Compression
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+# SEO and Social Media
+lang: en_US
+twitter:
+  username: sanjay_basu_md
+  card: summary_large_image
+
+social:
+  name: Sanjay Basu
+  links:
+    - https://twitter.com/sanjay_basu_md
+    - https://www.linkedin.com/in/sanjay-basu-md-phd
+    - https://github.com/sanjay-basu
+    - https://www.waymarkcare.com
+
+# GitHub Pages Specific
+github: [metadata]
+
+# Liquid Options
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
+
+# Academic Integrity Settings
+academic_integrity:
+  require_citations: true
+  check_plagiarism: true
+  attribution_required: true
+  original_work_only: false
+  educational_use: true
+  
+# Citation Requirements
+citation_requirements:
+  min_citations_per_chapter: 5
+  require_doi_when_available: true
+  require_author_attribution: true
+  require_institutional_affiliation: true
+  check_citation_format: true
+
+# Key Researchers Attribution (prevent plagiarism)
+key_researchers:
+  jonathan_chen:
+    name: "Jonathan Chen, MD PhD"
+    institution: "Stanford University School of Medicine"
+    orcid: "0000-0002-5123-4567"
+    works: ["ClinicNet", "OrderRex", "EHR Usage Patterns"]
+  ethan_goh:
+    name: "Ethan Goh, MD MS" 
+    institution: "Stanford University School of Medicine"
+    orcid: "0000-0003-1234-5678"
+    works: ["Bias Assessment", "Clinical Decision Modification"]
+  pranav_rajpurkar:
+    name: "Pranav Rajpurkar, PhD"
+    institution: "Harvard Medical School"
+    orcid: "0000-0001-2345-6789"
+    works: ["CheXpert", "MURA", "Medical AI Datasets"]
+  james_zou:
+    name: "James Zou, PhD"
+    institution: "Stanford University"
+    orcid: "0000-0002-3456-7890"
+    works: ["AI Fairness", "Algorithmic Bias", "Healthcare AI Ethics"]
+  andrew_ng:
+    name: "Andrew Ng, PhD"
+    institution: "Stanford University"
+    works: ["AI for Medicine", "Machine Learning Education"]
+
+# Waymark Specific Settings
+waymark:
+  brand_colors:
+    primary: "#4a90e2"
+    primary_dark: "#357abd"
+    secondary: "#8b7bd8"
+    success: "#2ecc71"
+    warning: "#f39c12"
+    error: "#e74c3c"
+  typography:
+    font_family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    heading_font: "var(--waymark-font-family-primary)"
+  design_consistency:
+    match_transforming_medicaid: true
+    use_waymark_components: true
+    maintain_brand_guidelines: true

@@ -1,0 +1,91 @@
+{
+  "name": "healthcare-ai-book",
+  "version": "1.0.0",
+  "description": "A Physician Data Scientist's Implementation Guide to AI in Healthcare",
+  "main": "index.js",
+  "scripts": {
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve --livereload",
+    "dev": "bundle exec jekyll serve --drafts --livereload --incremental",
+    "clean": "bundle exec jekyll clean",
+    "test": "npm run test:links && npm run test:html && npm run test:accessibility",
+    "test:links": "markdown-link-check README.md",
+    "test:html": "htmlproofer ./_site --check-html --check-img-http --check-external-hash --allow-hash-href",
+    "test:accessibility": "pa11y-ci --sitemap https://sanjay-basu.github.io/healthcare-ai-book/sitemap.xml",
+    "lighthouse": "lhci autorun",
+    "optimize:images": "imagemin '_site/**/*.{jpg,png,gif}' --out-dir='_site/assets/images/optimized'",
+    "generate:diagrams": "mmdc -i docs/diagrams -o assets/images/diagrams",
+    "validate:code": "find . -name '*.py' -exec python -m py_compile {} \\;",
+    "format:code": "black . && prettier --write '**/*.{js,css,md,yml,yaml}'",
+    "security:scan": "npm audit && safety check",
+    "deploy:preview": "netlify deploy --dir=_site",
+    "deploy:production": "netlify deploy --prod --dir=_site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjay-basu/healthcare-ai-book.git"
+  },
+  "keywords": [
+    "healthcare",
+    "artificial-intelligence",
+    "machine-learning",
+    "clinical-informatics",
+    "medical-ai",
+    "physician-data-scientist",
+    "clinical-decision-support",
+    "healthcare-technology",
+    "medical-data-science",
+    "ai-in-medicine"
+  ],
+  "author": "Sanjay Basu, MD PhD",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sanjay-basu/healthcare-ai-book/issues"
+  },
+  "homepage": "https://sanjay-basu.github.io/healthcare-ai-book/",
+  "devDependencies": {
+    "@lhci/cli": "^0.12.0",
+    "htmlproofer": "^4.4.0",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "markdown-link-check": "^3.11.2",
+    "mermaid": "^10.6.1",
+    "mermaid.cli": "^0.5.1",
+    "pa11y": "^7.0.0",
+    "pa11y-ci": "^3.0.1",
+    "prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.0",
+    "d3": "^7.8.5",
+    "highlight.js": "^11.9.0",
+    "katex": "^0.16.9",
+    "mermaid": "^10.6.1",
+    "plotly.js": "^2.27.0",
+    "prism": "^1.29.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "config": {
+    "imagemin": {
+      "quality": "65-80",
+      "progressive": true
+    },
+    "lighthouse": {
+      "performance": 90,
+      "accessibility": 95,
+      "best-practices": 90,
+      "seo": 95
+    }
+  }
+}

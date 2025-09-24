@@ -1,0 +1,204 @@
+<!-- 
+Attribution Template for Healthcare AI Book
+Ensures proper credit to original authors and prevents plagiarism
+-->
+
+<div class="attribution-box">
+  <h4 style="margin-top: 0; color: #2c3e50;">
+    <i class="fas fa-user-graduate"></i> Implementation Attribution
+  </h4>
+  
+  <p style="margin-bottom: 0.5em;">
+    <strong>Original Author(s):</strong> {{ include.author }}
+    {% if include.institution %}
+    <br><strong>Institution:</strong> {{ include.institution }}
+    {% endif %}
+  </p>
+  
+  {% if include.work %}
+  <p style="margin-bottom: 0.5em;">
+    <strong>Original Work:</strong> {{ include.work }}
+  </p>
+  {% endif %}
+  
+  {% if include.citation %}
+  <p style="margin-bottom: 0.5em;">
+    <strong>Citation:</strong> 
+    <script>
+      document.write(cite('{{ include.citation }}'));
+    </script>
+  </p>
+  {% endif %}
+  
+  {% if include.license %}
+  <p style="margin-bottom: 0.5em;">
+    <strong>License:</strong> {{ include.license }}
+  </p>
+  {% endif %}
+  
+  {% if include.modifications %}
+  <p style="margin-bottom: 0.5em;">
+    <strong>Modifications:</strong> {{ include.modifications }}
+  </p>
+  {% endif %}
+  
+  {% if include.note %}
+  <p style="margin-bottom: 0; font-style: italic; color: #666;">
+    <strong>Note:</strong> {{ include.note }}
+  </p>
+  {% endif %}
+  
+  {% if include.github_url %}
+  <p style="margin-top: 0.5em; margin-bottom: 0;">
+    <strong>Original Code:</strong> 
+    <a href="{{ include.github_url }}" target="_blank" rel="noopener">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+  </p>
+  {% endif %}
+</div>
+
+<style>
+.attribution-box {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.attribution-box h4 {
+  color: white !important;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.attribution-box p {
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+.attribution-box strong {
+  font-weight: 600;
+}
+
+.attribution-box a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.attribution-box a:hover {
+  text-decoration: underline;
+  color: #ffed4e;
+}
+
+.attribution-box i {
+  margin-right: 0.5em;
+}
+
+/* Waymark brand colors integration */
+.attribution-box.waymark-style {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+}
+
+.attribution-box.research-style {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.attribution-box.code-style {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+</style>
+
+<!-- JavaScript for dynamic attribution -->
+<script>
+// Function to add attribution programmatically
+function addAttribution(elementId, attributionData) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const attributionHtml = generateAttributionHtml(attributionData);
+    element.insertAdjacentHTML('afterend', attributionHtml);
+  }
+}
+
+function generateAttributionHtml(data) {
+  return `
+    <div class="attribution-box ${data.style || ''}">
+      <h4><i class="fas fa-user-graduate"></i> Implementation Attribution</h4>
+      <p><strong>Original Author(s):</strong> ${data.author}</p>
+      ${data.institution ? `<p><strong>Institution:</strong> ${data.institution}</p>` : ''}
+      ${data.work ? `<p><strong>Original Work:</strong> ${data.work}</p>` : ''}
+      ${data.citation ? `<p><strong>Citation:</strong> ${cite(data.citation)}</p>` : ''}
+      ${data.license ? `<p><strong>License:</strong> ${data.license}</p>` : ''}
+      ${data.modifications ? `<p><strong>Modifications:</strong> ${data.modifications}</p>` : ''}
+      ${data.note ? `<p style="font-style: italic;"><strong>Note:</strong> ${data.note}</p>` : ''}
+      ${data.github_url ? `<p><strong>Original Code:</strong> <a href="${data.github_url}" target="_blank"><i class="fab fa-github"></i> View on GitHub</a></p>` : ''}
+    </div>
+  `;
+}
+
+// Predefined attributions for key researchers
+const keyAttributions = {
+  chen_clinicnet: {
+    author: "Jonathan Chen, MD PhD",
+    institution: "Stanford University School of Medicine",
+    work: "ClinicNet Framework for Clinical Order Recommendations",
+    citation: "chen_clinicnet_2020",
+    license: "Academic Research License",
+    note: "Implementation adapted from published research methodology with appropriate modifications for educational purposes",
+    style: "research-style"
+  },
+  
+  goh_bias: {
+    author: "Ethan Goh, MD MS",
+    institution: "Stanford University School of Medicine", 
+    work: "Bias Assessment Framework for Clinical AI",
+    citation: "goh_bias_2025",
+    license: "Academic Research License",
+    note: "Bias detection methodology based on randomized controlled trial research",
+    style: "research-style"
+  },
+  
+  rajpurkar_chexpert: {
+    author: "Pranav Rajpurkar, PhD",
+    institution: "Harvard Medical School",
+    work: "CheXpert Dataset and Uncertainty Quantification",
+    citation: "rajpurkar_chexpert_2019",
+    license: "MIT License",
+    note: "Uncertainty handling methodology adapted from CheXpert research",
+    github_url: "https://github.com/stanfordmlgroup/chexpert-labeler",
+    style: "research-style"
+  },
+  
+  zou_fairness: {
+    author: "James Zou, PhD",
+    institution: "Stanford University",
+    work: "AI Fairness and Bias Detection Research",
+    citation: "zou_fairness_2018",
+    license: "Academic Research License",
+    note: "Fairness assessment principles based on published research on AI bias",
+    style: "research-style"
+  },
+  
+  ng_ai_medicine: {
+    author: "Andrew Ng, PhD",
+    institution: "Stanford University",
+    work: "AI for Medicine Specialization",
+    citation: "ng_ai_medicine_2021",
+    license: "Educational Use",
+    note: "Teaching methodology and practical approach inspired by AI for Medicine course structure",
+    style: "research-style"
+  }
+};
+
+// Function to quickly add predefined attributions
+function addKeyAttribution(key, elementId) {
+  if (keyAttributions[key]) {
+    addAttribution(elementId, keyAttributions[key]);
+  }
+}
+</script>

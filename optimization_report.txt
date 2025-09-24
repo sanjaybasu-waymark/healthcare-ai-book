@@ -1,0 +1,93 @@
+
+HEALTHCARE AI BOOK OPTIMIZATION REPORT
+=====================================
+Generated: 2025-09-23 12:24:23
+
+OVERALL SUMMARY
+---------------
+Total Chapters Analyzed: 2
+Average Overall Score: 0.64
+Average Writing Quality: 0.85
+Average Code Quality: 0.20
+Average Citation Score: 0.70
+Average Expert Review Score: 0.90
+
+CHAPTER-BY-CHAPTER ANALYSIS
+---------------------------
+
+01-CLINICAL-INFORMATICS
+Overall Score: 0.55
+- Writing Quality: 0.70
+- Code Quality: 0.20
+- Citation Completeness: 0.50
+- Expert Review: 0.90
+
+Issues (16):
+  - Chapter too short: 2627 words (minimum: 3000)
+  - Missing required elements: bibliography
+  - Code block 2: Missing type hints
+  - Code block 2: Missing error handling
+  - Code block 3: Missing error handling
+  - Code block 3: Function too long
+  - Code block 4: Missing error handling
+  - Code block 4: Function too long
+  - Code block 5: Missing error handling
+  - Code block 5: Function too long
+  - Code block 6: Missing type hints
+  - Code block 7: Missing type hints
+  - Missing attribution for substantial code implementations
+  - Insufficient citations: 0 (minimum: 10)
+  - Missing citation types: journal_articles, conference_papers, books, software
+  - Missing population health perspective
+
+Recommendations (6):
+  - Expand content with more detailed explanations and examples
+  - Add all required chapter elements
+  - Add attribution blocks for all substantial code examples
+  - Add more citations to support claims and methodologies
+  - Include diverse citation types (journals, conferences, books)
+  - Add population health applications
+
+01-CLINICAL-INFORMATICS-UPDATED
+Overall Score: 0.72
+- Writing Quality: 1.00
+- Code Quality: 0.20
+- Citation Completeness: 0.90
+- Expert Review: 0.90
+
+Issues (14):
+  - Code block 2: Function too long
+  - Code block 2: Function too long
+  - Code block 3: Missing error handling
+  - Code block 3: Function too long
+  - Code block 4: Missing error handling
+  - Code block 4: Function too long
+  - Code block 4: Function too long
+  - Code block 5: Missing error handling
+  - Code block 5: Function too long
+  - Code block 6: Missing type hints
+  - Code block 7: Missing type hints
+  - Missing attribution for substantial code implementations
+  - Missing citation types: journal_articles, conference_papers, books, software
+  - Missing population health perspective
+
+Recommendations (3):
+  - Add attribution blocks for all substantial code examples
+  - Include diverse citation types (journals, conferences, books)
+  - Add population health applications
+
+PRIORITY ACTIONS REQUIRED
+------------------------
+Total Issues Identified: 30
+
+High Priority Issues:
+  - Code block 3: Missing error handling
+  - Code block 4: Missing error handling
+  - Code block 5: Missing error handling
+  - Code block 6: Missing type hints
+  - Code block 7: Missing type hints
+  - Missing attribution for substantial code implementations
+  - Missing citation types: journal_articles, conference_papers, books, software
+  - Missing population health perspective
+  - Missing required elements: bibliography
+  - Code block 2: Missing type hints

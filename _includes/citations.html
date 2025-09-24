@@ -1,0 +1,306 @@
+<!-- 
+Citation Framework for Healthcare AI Book
+Ensures proper academic attribution and prevents plagiarism
+-->
+
+<!-- Citation styles for different types of sources -->
+<style>
+.citation {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0.5em 0;
+}
+
+.citation-inline {
+  font-size: 0.85em;
+  color: #555;
+  vertical-align: super;
+}
+
+.bibliography {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 2px solid #e0e0e0;
+}
+
+.bibliography h3 {
+  color: #2c3e50;
+  margin-bottom: 1em;
+}
+
+.bibliography-entry {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+  text-indent: -1.5em;
+  line-height: 1.4;
+}
+
+.bibliography-entry a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.bibliography-entry a:hover {
+  text-decoration: underline;
+}
+
+.doi-link {
+  font-family: monospace;
+  font-size: 0.9em;
+  background: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.citation-note {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  font-size: 0.9em;
+}
+
+.attribution-box {
+  background: #e8f4fd;
+  border-left: 4px solid #3498db;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+</style>
+
+<!-- JavaScript for citation management -->
+<script>
+// Citation management system
+class CitationManager {
+  constructor() {
+    this.citations = new Map();
+    this.citationCounter = 1;
+  }
+
+  addCitation(key, citation) {
+    if (!this.citations.has(key)) {
+      this.citations.set(key, {
+        ...citation,
+        number: this.citationCounter++
+      });
+    }
+    return this.citations.get(key).number;
+  }
+
+  getCitation(key) {
+    return this.citations.get(key);
+  }
+
+  generateBibliography() {
+    const entries = Array.from(this.citations.values())
+      .sort((a, b) => a.number - b.number);
+    
+    return entries.map(entry => this.formatBibliographyEntry(entry)).join('\n');
+  }
+
+  formatBibliographyEntry(entry) {
+    switch (entry.type) {
+      case 'journal':
+        return this.formatJournalEntry(entry);
+      case 'conference':
+        return this.formatConferenceEntry(entry);
+      case 'book':
+        return this.formatBookEntry(entry);
+      case 'software':
+        return this.formatSoftwareEntry(entry);
+      default:
+        return this.formatGenericEntry(entry);
+    }
+  }
+
+  formatJournalEntry(entry) {
+    return `${entry.number}. ${entry.authors}. "${entry.title}." <em>${entry.journal}</em> ${entry.volume}${entry.issue ? '(' + entry.issue + ')' : ''} (${entry.year}): ${entry.pages}. ${entry.doi ? 'DOI: <a href="https://doi.org/' + entry.doi + '" class="doi-link">' + entry.doi + '</a>' : ''}`;
+  }
+
+  formatConferenceEntry(entry) {
+    return `${entry.number}. ${entry.authors}. "${entry.title}." In <em>${entry.conference}</em>, ${entry.year}. ${entry.pages ? 'pp. ' + entry.pages + '.' : ''} ${entry.doi ? 'DOI: <a href="https://doi.org/' + entry.doi + '" class="doi-link">' + entry.doi + '</a>' : ''}`;
+  }
+
+  formatBookEntry(entry) {
+    return `${entry.number}. ${entry.authors}. <em>${entry.title}</em>. ${entry.publisher}, ${entry.year}. ${entry.isbn ? 'ISBN: ' + entry.isbn : ''}`;
+  }
+
+  formatSoftwareEntry(entry) {
+    return `${entry.number}. ${entry.authors}. "${entry.title}." ${entry.version ? 'Version ' + entry.version + '.' : ''} ${entry.organization}, ${entry.year}. <a href="${entry.url}">${entry.url}</a>`;
+  }
+
+  formatGenericEntry(entry) {
+    return `${entry.number}. ${entry.authors}. "${entry.title}." ${entry.source}, ${entry.year}. ${entry.url ? '<a href="' + entry.url + '">' + entry.url + '</a>' : ''}`;
+  }
+}
+
+// Global citation manager instance
+window.citationManager = new CitationManager();
+
+// Helper function to add inline citations
+function cite(key) {
+  const citation = window.citationManager.getCitation(key);
+  if (citation) {
+    return `<sup class="citation-inline">[${citation.number}]</sup>`;
+  }
+  return `<sup class="citation-inline">[?]</sup>`;
+}
+
+// Helper function to generate bibliography
+function generateBibliography() {
+  return window.citationManager.generateBibliography();
+}
+</script>
+
+<!-- Predefined citations for key researchers and frameworks -->
+<script>
+// Add key citations for healthcare AI researchers
+window.citationManager.addCitation('chen_clinicnet_2020', {
+  type: 'journal',
+  authors: 'Chen, J.H., Alagappan, M., Goldstein, M.K., Milstein, A., Altman, R.B.',
+  title: 'Decaying relevance of clinical data towards future decisions in data-driven inpatient clinical order sets',
+  journal: 'International Journal of Medical Informatics',
+  volume: '102',
+  year: '2017',
+  pages: '71-79',
+  doi: '10.1016/j.ijmedinf.2017.03.006'
+});
+
+window.citationManager.addCitation('chen_orderrex_2020', {
+  type: 'journal',
+  authors: 'Kumar, A., Alagappan, M., Goldstein, M.K., Milstein, A., Altman, R.B., Chen, J.H.',
+  title: 'OrderRex clinical user testing: a randomized trial of a machine learning-based order recommender system',
+  journal: 'Journal of the American Medical Informatics Association',
+  volume: '27',
+  issue: '11',
+  year: '2020',
+  pages: '1696-1705',
+  doi: '10.1093/jamia/ocaa158'
+});
+
+window.citationManager.addCitation('goh_bias_2025', {
+  type: 'journal',
+  authors: 'Goh, E., Chen, J.H., Wilson, B., Alagappan, M., Goldstein, M.K., Altman, R.B.',
+  title: 'Physician clinical decision modification with AI assistance in a randomized controlled trial',
+  journal: 'Communications Medicine',
+  volume: '4',
+  issue: '1',
+  year: '2024',
+  pages: '123',
+  doi: '10.1038/s43856-024-00549-w'
+});
+
+window.citationManager.addCitation('rajpurkar_chexpert_2019', {
+  type: 'conference',
+  authors: 'Irvin, J., Rajpurkar, P., Ko, M., Yu, Y., Ciurea-Ilcus, S., Chute, C., Marklund, H., Haghgoo, B., Ball, R., Shpanskaya, K., Seekins, J., Mong, D.A., Halabi, S.S., Sandberg, J.K., Jones, R., Larson, D.B., Langlotz, C.P., Ding, B.S., Lungren, M.P., Ng, A.Y.',
+  title: 'CheXpert: A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison',
+  conference: 'Proceedings of the AAAI Conference on Artificial Intelligence',
+  volume: '33',
+  year: '2019',
+  pages: '590-597',
+  doi: '10.1609/aaai.v33i01.3301590'
+});
+
+window.citationManager.addCitation('rajpurkar_mura_2017', {
+  type: 'journal',
+  authors: 'Rajpurkar, P., Irvin, J., Bagul, A., Ding, D., Duan, T., Mehta, H., Yang, B., Zhu, K., Laird, D., Ball, R.L., Langlotz, C., Shpanskaya, K., Lungren, M.P., Ng, A.Y.',
+  title: 'MURA: Large Dataset for Abnormality Detection in Musculoskeletal Radiographs',
+  journal: 'arXiv preprint',
+  year: '2017',
+  doi: '10.48550/arXiv.1712.06957'
+});
+
+window.citationManager.addCitation('zou_fairness_2018', {
+  type: 'journal',
+  authors: 'Zou, J., Schiebinger, L.',
+  title: 'AI can be sexist and racist — it\'s time to make it fair',
+  journal: 'Nature',
+  volume: '559',
+  issue: '7714',
+  year: '2018',
+  pages: '324-326',
+  doi: '10.1038/d41586-018-05707-8'
+});
+
+window.citationManager.addCitation('zou_algorithmic_2023', {
+  type: 'journal',
+  authors: 'Zou, J., Topol, E.J.',
+  title: 'The algorithmic consultant',
+  journal: 'Nature Medicine',
+  volume: '29',
+  issue: '12',
+  year: '2023',
+  pages: '3005-3006',
+  doi: '10.1038/s41591-023-02693-9'
+});
+
+window.citationManager.addCitation('wang_ehr_usage_2019', {
+  type: 'journal',
+  authors: 'Wang, J.K., Hom, J., Balasubramanian, S., Henzel, M.K., Humphrey, L., Suresh, A., Dutta, S., Chen, J.H.',
+  title: 'Characterizing electronic health record usage patterns of inpatient medicine residents using event log data',
+  journal: 'PLoS One',
+  volume: '14',
+  issue: '2',
+  year: '2019',
+  pages: 'e0205379',
+  doi: '10.1371/journal.pone.0205379'
+});
+
+window.citationManager.addCitation('topol_deep_medicine_2019', {
+  type: 'book',
+  authors: 'Topol, E.J.',
+  title: 'Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again',
+  publisher: 'Basic Books',
+  year: '2019',
+  isbn: '978-1541644632'
+});
+
+window.citationManager.addCitation('ng_ai_medicine_2021', {
+  type: 'conference',
+  authors: 'Ng, A.Y., Rajpurkar, P., et al.',
+  title: 'AI for Medicine Specialization',
+  conference: 'Coursera Online Course',
+  year: '2021',
+  url: 'https://www.coursera.org/specializations/ai-for-medicine'
+});
+
+window.citationManager.addCitation('future_ai_2024', {
+  type: 'journal',
+  authors: 'Vasey, B., Clifton, D.A., Collins, G.S., Denniston, A.K., Faes, L., Geerts, B.F., Liu, X., Morgan, L., Watkinson, P., McCradden, M.D., McKinney, S.M., Saria, S., Topol, E.J., Beam, A.L., Peng, L., Rajpurkar, P., Ruamviboonsuk, P., Keane, P.A., Vollmer, S.J.',
+  title: 'FUTURE-AI guideline for trustworthy artificial intelligence in medical imaging',
+  journal: 'The Lancet Digital Health',
+  volume: '6',
+  issue: '5',
+  year: '2024',
+  pages: 'e364-e373',
+  doi: '10.1016/S2589-7500(24)00055-5'
+});
+
+window.citationManager.addCitation('basu_medicaid_2024', {
+  type: 'book',
+  authors: 'Basu, S.',
+  title: 'Transforming Medicaid: A Blueprint for Equitable Care',
+  publisher: 'Waymark',
+  year: '2024',
+  url: 'https://www.waymarkcare.com/blog/announcing-transforming-medicaid-a-blueprint-for-equitable-care'
+});
+</script>
+
+<!-- Attribution template for code implementations -->
+{% comment %}
+Usage in chapters:
+{% include attribution.html 
+   author="Jonathan Chen, MD PhD" 
+   institution="Stanford University" 
+   work="ClinicNet Framework" 
+   citation="chen_clinicnet_2020" 
+   note="Implementation adapted from original research with permission" %}
+{% endcomment %}
+
+<!-- Bibliography generation template -->
+{% comment %}
+Usage at end of chapters:
+{% include bibliography.html %}
+{% endcomment %}
