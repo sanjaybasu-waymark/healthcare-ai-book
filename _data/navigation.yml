@@ -1,0 +1,82 @@
+# Main navigation structure for the Healthcare AI Implementation Guide
+
+main:
+  - title: "Home"
+    url: /
+  - title: "Chapters"
+    url: /chapters/
+    children:
+      - title: "Part I: Foundations"
+        children:
+          - title: "Chapter 1: Clinical Informatics"
+            url: /chapters/01-clinical-informatics/
+          - title: "Chapter 2: Mathematical Foundations"
+            url: /chapters/02-mathematical-foundations/
+          - title: "Chapter 3: Healthcare Data Engineering"
+            url: /chapters/03-healthcare-data-engineering/
+          - title: "Chapter 4: Structured Machine Learning"
+            url: /chapters/04-structured-ml-clinical/
+          - title: "Chapter 5: Reinforcement Learning"
+            url: /chapters/05-reinforcement-learning-healthcare/
+          - title: "Chapter 6: Generative AI"
+            url: /chapters/06-generative-ai-healthcare/
+          - title: "Chapter 7: AI Agents"
+            url: /chapters/07-ai-agents-healthcare/
+      - title: "Part II: Trustworthy AI"
+        children:
+          - title: "Chapter 8: Bias Detection & Mitigation"
+            url: /chapters/08-bias-detection-mitigation/
+          - title: "Chapter 9: Interpretability & Explainability"
+            url: /chapters/09-interpretability-explainability/
+          - title: "Chapter 10: Robustness & Security"
+            url: /chapters/10-robustness-security/
+          - title: "Chapter 11: Regulatory Compliance"
+            url: /chapters/11-regulatory-compliance/
+          - title: "Chapter 12: Clinical Validation"
+            url: /chapters/12-clinical-validation-frameworks/
+      - title: "Part III: Deployment & Scale"
+        children:
+          - title: "Chapter 13: Real-World Deployment"
+            url: /chapters/13-real-world-deployment-strategies/
+          - title: "Chapter 14: Population Health AI"
+            url: /chapters/14-population-health-ai-systems/
+          - title: "Chapter 15: Health Equity Applications"
+            url: /chapters/15-health-equity-applications/
+          - title: "Chapter 16: Advanced Medical Imaging"
+            url: /chapters/16-advanced-medical-imaging-ai/
+          - title: "Chapter 17: Clinical NLP at Scale"
+            url: /chapters/17-clinical-nlp-at-scale/
+          - title: "Chapter 18: Multimodal AI Systems"
+            url: /chapters/18-multimodal-ai-systems/
+          - title: "Chapter 19: Federated Learning"
+            url: /chapters/19-federated-learning-healthcare/
+      - title: "Part IV: Specialized Applications"
+        children:
+          - title: "Chapter 20: Edge Computing"
+            url: /chapters/20-edge-computing-healthcare/
+          - title: "Chapter 21: AI-Assisted Surgery"
+            url: /chapters/21-ai-assisted-surgery/
+          - title: "Chapter 22: Drug Discovery AI"
+            url: /chapters/22-drug-discovery-ai/
+          - title: "Chapter 23: Precision Medicine"
+            url: /chapters/23-precision-medicine/
+          - title: "Chapter 24: Healthcare Operations AI"
+            url: /chapters/24-healthcare-operations-ai/
+          - title: "Chapter 25: Quality Improvement"
+            url: /chapters/25-quality-improvement-ai/
+      - title: "Part V: Future Directions"
+        children:
+          - title: "Chapter 26: Emerging Technologies"
+            url: /chapters/26-emerging-technologies/
+          - title: "Chapter 27: Case Studies"
+            url: /chapters/27-case-studies-applications/
+          - title: "Chapter 28: Causal Inference"
+            url: /chapters/28-causal-inference/
+          - title: "Chapter 29: Environmental Sustainability"
+            url: /chapters/29-environmental-sustainability/
+  - title: "Examples"
+    url: /examples/
+  - title: "Notebooks"
+    url: /notebooks/
+  - title: "About"
+    url: /about/

@@ -13,7 +13,7 @@ This is **not another theoretical AI textbook**. Every chapter contains producti
 
 ### ✨ Key Features
 
-- **🏥 Clinical Expertise**: Written by practicing physician data scientists
+
 - **💻 Complete Working Code**: 10,000+ lines of production-ready Python
 - **🔬 Research-Validated**: Based on peer-reviewed research and RCTs
 - **🤖 Self-Updating**: Automated research monitoring keeps content current

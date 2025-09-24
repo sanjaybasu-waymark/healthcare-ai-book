@@ -44,30 +44,30 @@ This resource provides physician data scientists with practical, production-read
 
 ## Chapters
 
-### Part I: Foundations
-- **Chapter 1**: Clinical Informatics Foundations
-- **Chapter 2**: Mathematical Foundations for Healthcare AI
-- **Chapter 3**: Healthcare Data Engineering
+### Recently Updated (Peer Reviewed)
+- **[Chapter 1: Clinical Informatics Foundations](/_chapters/01-clinical-informatics-peer-reviewed.html)** - *Enhanced with expert review*
+- **[Chapter 2: Mathematical Foundations](/_chapters/02-mathematical-foundations-peer-reviewed.html)** - *Enhanced with expert review*
 
-### Part II: Machine Learning Applications
-- **Chapter 4**: Structured Machine Learning for Clinical Data
-- **Chapter 5**: Reinforcement Learning in Healthcare
-- **Chapter 6**: Generative AI for Healthcare Applications
+### Part I: Foundations
+- **[Chapter 3: Healthcare Data Engineering](/_chapters/03-healthcare-data-engineering-comprehensive.html)**
+- **[Chapter 4: Structured Machine Learning](/_chapters/04-structured-ml-clinical-comprehensive.html)**
+
+### Part II: Advanced AI Systems
+- **[Chapter 5: Reinforcement Learning](/_chapters/05-reinforcement-learning-healthcare-comprehensive.html)**
+- **[Chapter 6: Generative AI](/_chapters/06-generative-ai-healthcare-comprehensive.html)**
+- **[Chapter 7: AI Agents](/_chapters/07-ai-agents-healthcare-comprehensive.html)**
 
 ### Part III: Trustworthy AI
-- **Chapter 7**: AI Agents in Healthcare
-- **Chapter 8**: Bias Detection and Mitigation
-- **Chapter 9**: Interpretability and Explainability
+- **[Chapter 8: Bias Detection & Mitigation](/_chapters/08-bias-detection-mitigation-comprehensive.html)**
+- **[Chapter 9: Interpretability & Explainability](/_chapters/09-interpretability-explainability-comprehensive.html)**
+- **[Chapter 10: Robustness & Security](/_chapters/10-robustness-security-comprehensive.html)**
 
-### Part IV: Advanced Applications
-- **Chapter 10**: Robustness and Security
-- **Chapter 11**: Regulatory Compliance
-- **Chapter 12**: Clinical Validation Frameworks
+### Part IV: Deployment & Scale
+- **[Chapter 11: Regulatory Compliance](/_chapters/11-regulatory-compliance-comprehensive.html)**
+- **[Chapter 12: Clinical Validation](/_chapters/12-clinical-validation-frameworks-comprehensive.html)**
+- **[Chapter 13: Real-World Deployment](/_chapters/13-real-world-deployment-strategies-comprehensive.html)**
 
-### Part V: Deployment and Operations
-- **Chapter 13**: Real-world Deployment Strategies
-- **Chapter 14**: Population Health AI Systems
-- **Chapter 15**: Health Equity Applications
+### [View All 29 Chapters](/chapters/)
 
 ## Key Features
 
