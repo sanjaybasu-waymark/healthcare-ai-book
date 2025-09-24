@@ -45,27 +45,27 @@ This resource provides physician data scientists with practical, production-read
 ## Chapters
 
 ### Recently Updated (Peer Reviewed)
-- **[Chapter 1: Clinical Informatics Foundations](/_chapters/01-clinical-informatics-peer-reviewed.html)** - *Enhanced with expert review*
-- **[Chapter 2: Mathematical Foundations](/_chapters/02-mathematical-foundations-peer-reviewed.html)** - *Enhanced with expert review*
+- **[Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-peer-reviewed/)** - *Enhanced with expert review*
+- **[Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-peer-reviewed/)** - *Enhanced with expert review*
 
 ### Part I: Foundations
-- **[Chapter 3: Healthcare Data Engineering](/_chapters/03-healthcare-data-engineering-comprehensive.html)**
-- **[Chapter 4: Structured Machine Learning](/_chapters/04-structured-ml-clinical-comprehensive.html)**
+- **[Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-comprehensive/)**
+- **[Chapter 4: Structured Machine Learning](chapters/04-structured-ml-clinical-comprehensive/)**
 
 ### Part II: Advanced AI Systems
-- **[Chapter 5: Reinforcement Learning](/_chapters/05-reinforcement-learning-healthcare-comprehensive.html)**
-- **[Chapter 6: Generative AI](/_chapters/06-generative-ai-healthcare-comprehensive.html)**
-- **[Chapter 7: AI Agents](/_chapters/07-ai-agents-healthcare-comprehensive.html)**
+- **[Chapter 5: Reinforcement Learning](chapters/05-reinforcement-learning-healthcare-comprehensive/)**
+- **[Chapter 6: Generative AI](chapters/06-generative-ai-healthcare-comprehensive/)**
+- **[Chapter 7: AI Agents](chapters/07-ai-agents-healthcare-comprehensive/)**
 
 ### Part III: Trustworthy AI
-- **[Chapter 8: Bias Detection & Mitigation](/_chapters/08-bias-detection-mitigation-comprehensive.html)**
-- **[Chapter 9: Interpretability & Explainability](/_chapters/09-interpretability-explainability-comprehensive.html)**
-- **[Chapter 10: Robustness & Security](/_chapters/10-robustness-security-comprehensive.html)**
+- **[Chapter 8: Bias Detection & Mitigation](chapters/08-bias-detection-mitigation-comprehensive/)**
+- **[Chapter 9: Interpretability & Explainability](chapters/09-interpretability-explainability-comprehensive/)**
+- **[Chapter 10: Robustness & Security](chapters/10-robustness-security-comprehensive/)**
 
 ### Part IV: Deployment & Scale
-- **[Chapter 11: Regulatory Compliance](/_chapters/11-regulatory-compliance-comprehensive.html)**
-- **[Chapter 12: Clinical Validation](/_chapters/12-clinical-validation-frameworks-comprehensive.html)**
-- **[Chapter 13: Real-World Deployment](/_chapters/13-real-world-deployment-strategies-comprehensive.html)**
+- **[Chapter 11: Regulatory Compliance](chapters/11-regulatory-compliance-comprehensive/)**
+- **[Chapter 12: Clinical Validation](chapters/12-clinical-validation-frameworks-comprehensive/)**
+- **[Chapter 13: Real-World Deployment](chapters/13-real-world-deployment-strategies-comprehensive/)**
 
 ### [View All 29 Chapters](/chapters/)
 
