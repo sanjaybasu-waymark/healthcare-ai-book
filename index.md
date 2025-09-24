@@ -44,30 +44,44 @@ This resource provides physician data scientists with practical, production-read
 
 ## Chapters
 
-### Recently Updated (Peer Reviewed)
-- **[Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-peer-reviewed/)** - *Enhanced with expert review*
-- **[Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-peer-reviewed/)** - *Enhanced with expert review*
-
-### Part I: Foundations
-- **[Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-comprehensive/)**
+### Part I: Foundations for Clinical AI
+- **[Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-peer-reviewed/)**
+- **[Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-peer-reviewed/)**
+- **[Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-peer-reviewed/)**
 - **[Chapter 4: Structured Machine Learning](chapters/04-structured-ml-clinical-comprehensive/)**
+- **[Chapter 5: Reinforcement Learning in Healthcare](chapters/05-reinforcement-learning-healthcare-comprehensive/)**
+- **[Chapter 6: Generative AI in Healthcare](chapters/06-generative-ai-healthcare-comprehensive/)**
+- **[Chapter 7: AI Agents in Healthcare](chapters/07-ai-agents-healthcare-comprehensive/)**
 
-### Part II: Advanced AI Systems
-- **[Chapter 5: Reinforcement Learning](chapters/05-reinforcement-learning-healthcare-comprehensive/)**
-- **[Chapter 6: Generative AI](chapters/06-generative-ai-healthcare-comprehensive/)**
-- **[Chapter 7: AI Agents](chapters/07-ai-agents-healthcare-comprehensive/)**
-
-### Part III: Trustworthy AI
-- **[Chapter 8: Bias Detection & Mitigation](chapters/08-bias-detection-mitigation-comprehensive/)**
-- **[Chapter 9: Interpretability & Explainability](chapters/09-interpretability-explainability-comprehensive/)**
-- **[Chapter 10: Robustness & Security](chapters/10-robustness-security-comprehensive/)**
-
-### Part IV: Deployment & Scale
+### Part II: Trustworthy AI Implementation
+- **[Chapter 8: Bias Detection and Mitigation](chapters/08-bias-detection-mitigation-comprehensive/)**
+- **[Chapter 9: Interpretability and Explainability](chapters/09-interpretability-explainability-comprehensive/)**
+- **[Chapter 10: Robustness and Security](chapters/10-robustness-security-comprehensive/)**
 - **[Chapter 11: Regulatory Compliance](chapters/11-regulatory-compliance-comprehensive/)**
-- **[Chapter 12: Clinical Validation](chapters/12-clinical-validation-frameworks-comprehensive/)**
-- **[Chapter 13: Real-World Deployment](chapters/13-real-world-deployment-strategies-comprehensive/)**
+- **[Chapter 12: Clinical Validation Frameworks](chapters/12-clinical-validation-frameworks-comprehensive/)**
 
-### [View All 29 Chapters](/chapters/)
+### Part III: Deployment and Scale
+- **[Chapter 13: Real-World Deployment Strategies](chapters/13-real-world-deployment-strategies-comprehensive/)**
+- **[Chapter 14: Population Health AI Systems](chapters/14-population-health-ai-systems-comprehensive/)**
+- **[Chapter 15: Health Equity Applications](chapters/15-health-equity-applications-comprehensive/)**
+- **[Chapter 16: Advanced Medical Imaging AI](chapters/16-advanced-medical-imaging-ai-comprehensive/)**
+- **[Chapter 17: Clinical NLP at Scale](chapters/17-clinical-nlp-at-scale-comprehensive/)**
+- **[Chapter 18: Multimodal AI Systems](chapters/18-multimodal-ai-systems-comprehensive/)**
+- **[Chapter 19: Federated Learning for Healthcare](chapters/19-federated-learning-healthcare-comprehensive/)**
+
+### Part IV: Specialized Applications
+- **[Chapter 20: Edge Computing in Healthcare](chapters/20-edge-computing-healthcare-comprehensive/)**
+- **[Chapter 21: AI-Assisted Surgery](chapters/21-ai-assisted-surgery-comprehensive/)**
+- **[Chapter 22: Drug Discovery AI](chapters/22-drug-discovery-ai-comprehensive/)**
+- **[Chapter 23: Precision Medicine](chapters/23-precision-medicine-comprehensive/)**
+- **[Chapter 24: Healthcare Operations AI](chapters/24-healthcare-operations-ai-comprehensive/)**
+- **[Chapter 25: Quality Improvement with AI](chapters/25-quality-improvement-ai-comprehensive/)**
+
+### Part V: Future Directions
+- **[Chapter 26: Emerging Technologies](chapters/26-emerging-technologies-comprehensive/)**
+- **[Chapter 27: Case Studies and Applications](chapters/27-case-studies-applications-comprehensive/)**
+- **[Chapter 28: Causal Inference for Healthcare](chapters/28-causal-inference-comprehensive/)**
+- **[Chapter 29: Environmental Sustainability](chapters/29-environmental-sustainability-comprehensive/)**
 
 ## Key Features
 
