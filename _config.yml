@@ -7,7 +7,7 @@ description: "Production-ready AI implementations for healthcare delivery and po
 author: "Sanjay Basu, MD PhD"
 email: "sanjay.basu@waymark.care"
 baseurl: "/healthcare-ai-book"
-url: "https://sanjay-basu.github.io"
+url: "https://sanjaybasu-waymark.github.io"
 
 # Waymark Branding
 organization: "Waymark"
@@ -111,10 +111,10 @@ custom_css: assets/css/custom.scss
 nav_sort: case_insensitive
 nav_external_links:
   - title: "GitHub Repository"
-    url: "https://github.com/sanjay-basu/healthcare-ai-book"
+    url: "https://github.com/sanjaybasu-waymark/healthcare-ai-book"
     hide_icon: true
   - title: "Interactive Notebooks"
-    url: "https://colab.research.google.com/github/sanjay-basu/healthcare-ai-book"
+    url: "https://colab.research.google.com/github/sanjaybasu-waymark/healthcare-ai-book"
     hide_icon: true
   - title: "Waymark Care"
     url: "https://www.waymarkcare.com"
@@ -122,7 +122,7 @@ nav_external_links:
 
 # Footer Configuration with Waymark Branding
 footer_content: |
-  &copy; 2025 <a href="https://www.waymarkcare.com">Waymark</a>. Licensed under <a href="https://github.com/sanjay-basu/healthcare-ai-book/blob/main/LICENSE">MIT License</a>. 
+  &copy; 2025 <a href="https://www.waymarkcare.com">Waymark</a>. Licensed under <a href="https://github.com/sanjaybasu-waymark/healthcare-ai-book/blob/main/LICENSE">MIT License</a>. 
   <br>Built with <a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://just-the-docs.github.io/just-the-docs/">Just the Docs</a>.
   <br>Consistent with <a href="https://www.waymarkcare.com/blog/announcing-transforming-medicaid-a-blueprint-for-equitable-care">Transforming Medicaid</a> design system.
 
