@@ -11,7 +11,7 @@
     "test": "npm run test:links && npm run test:html && npm run test:accessibility",
     "test:links": "markdown-link-check README.md",
     "test:html": "htmlproofer ./_site --check-html --check-img-http --check-external-hash --allow-hash-href",
-    "test:accessibility": "pa11y-ci --sitemap https://sanjay-basu.github.io/healthcare-ai-book/sitemap.xml",
+    "test:accessibility": "pa11y-ci --sitemap https://sanjaybasu-waymark.github.io/healthcare-ai-book/sitemap.xml",
     "lighthouse": "lhci autorun",
     "optimize:images": "imagemin '_site/**/*.{jpg,png,gif}' --out-dir='_site/assets/images/optimized'",
     "generate:diagrams": "mmdc -i docs/diagrams -o assets/images/diagrams",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sanjay-basu/healthcare-ai-book.git"
+    "url": "git+https://github.com/sanjaybasu-waymark/healthcare-ai-book.git"
   },
   "keywords": [
     "healthcare",
@@ -40,9 +40,9 @@
   "author": "Sanjay Basu, MD PhD",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sanjay-basu/healthcare-ai-book/issues"
+    "url": "https://github.com/sanjaybasu-waymark/healthcare-ai-book/issues"
   },
-  "homepage": "https://sanjay-basu.github.io/healthcare-ai-book/",
+  "homepage": "https://sanjaybasu-waymark.github.io/healthcare-ai-book/",
   "devDependencies": {
     "@lhci/cli": "^0.12.0",
     "htmlproofer": "^4.4.0",
