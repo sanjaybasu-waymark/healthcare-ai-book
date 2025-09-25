@@ -9,13 +9,13 @@ layout: default
 
 ## Part I: Foundations for Clinical AI
 
-### [Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-peer-reviewed/)
+### [Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-optimized/)
 Build essential knowledge and tools for healthcare AI implementation. Covers clinical decision support frameworks, EHR integration, and foundational informatics principles.
 
-### [Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-peer-reviewed/)
+### [Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-optimized/)
 Comprehensive mathematical foundations including Bayesian inference, linear algebra, optimization theory, information theory, and causal inference for healthcare AI.
 
-### [Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-peer-reviewed/)
+### [Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-optimized/)
 Master healthcare data ecosystems, FHIR processing, data quality frameworks, and scalable data pipelines for clinical AI systems.
 
 ### [Chapter 4: Structured Machine Learning](chapters/04-structured-ml-clinical-comprehensive/)

@@ -46,9 +46,9 @@ This resource provides physician data scientists with practical, production-read
 ## Chapters
 
 ### Part I: Foundations for Clinical AI
-- **[Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-peer-reviewed/)**
-- **[Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-peer-reviewed/)**
-- **[Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-peer-reviewed/)**
+- **[Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics-optimized/)**
+- **[Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations-optimized/)**
+- **[Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering-optimized/)**
 - **[Chapter 4: Structured Machine Learning](chapters/04-structured-ml-clinical-comprehensive/)**
 - **[Chapter 5: Reinforcement Learning in Healthcare](chapters/05-reinforcement-learning-healthcare-comprehensive/)**
 - **[Chapter 6: Generative AI in Healthcare](chapters/06-generative-ai-healthcare-comprehensive/)**
