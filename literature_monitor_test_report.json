@@ -1,0 +1,123 @@
+{
+  "test_date": "2025-09-25T17:36:12.024048",
+  "total_papers_processed": 3,
+  "significant_papers": 9,
+  "chapters_affected": [
+    6,
+    7,
+    11,
+    16,
+    19,
+    10,
+    12,
+    13
+  ],
+  "chapter_updates": {
+    "6": [
+      {
+        "title": "Large Language Models for Clinical Decision Support: A Systematic Review",
+        "journal": "arXiv",
+        "significance_score": 7.5,
+        "key_findings": [
+          "15% improvement in diagnostic accuracy with LLM-based systems",
+          "20% reduction in clinical errors when using AI decision support",
+          "High physician acceptance rates (85%) for LLM recommendations"
+        ]
+      }
+    ],
+    "7": [
+      {
+        "title": "Large Language Models for Clinical Decision Support: A Systematic Review",
+        "journal": "arXiv",
+        "significance_score": 7.5,
+        "key_findings": [
+          "15% improvement in diagnostic accuracy with LLM-based systems",
+          "20% reduction in clinical errors when using AI decision support",
+          "High physician acceptance rates (85%) for LLM recommendations"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "title": "Large Language Models for Clinical Decision Support: A Systematic Review",
+        "journal": "arXiv",
+        "significance_score": 7.5,
+        "key_findings": [
+          "15% improvement in diagnostic accuracy with LLM-based systems",
+          "20% reduction in clinical errors when using AI decision support",
+          "High physician acceptance rates (85%) for LLM recommendations"
+        ]
+      },
+      {
+        "title": "AI-Powered Clinical Trial Optimization: Real-World Evidence from 50 Studies",
+        "journal": "NEJM AI",
+        "significance_score": 9.1,
+        "key_findings": [
+          "30% increase in FDA approval rates for AI-optimized trials",
+          "50% reduction in patient recruitment time",
+          "Improved protocol adherence and outcome prediction"
+        ]
+      }
+    ],
+    "16": [
+      {
+        "title": "Federated Learning for Medical Imaging: Privacy-Preserving Radiology AI",
+        "journal": "arXiv",
+        "significance_score": 8.2,
+        "key_findings": [
+          "Achieved 94% accuracy on chest X-ray classification",
+          "Zero patient data sharing while maintaining performance",
+          "Successful deployment across 10 hospital systems"
+        ]
+      }
+    ],
+    "19": [
+      {
+        "title": "Federated Learning for Medical Imaging: Privacy-Preserving Radiology AI",
+        "journal": "arXiv",
+        "significance_score": 8.2,
+        "key_findings": [
+          "Achieved 94% accuracy on chest X-ray classification",
+          "Zero patient data sharing while maintaining performance",
+          "Successful deployment across 10 hospital systems"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "title": "Federated Learning for Medical Imaging: Privacy-Preserving Radiology AI",
+        "journal": "arXiv",
+        "significance_score": 8.2,
+        "key_findings": [
+          "Achieved 94% accuracy on chest X-ray classification",
+          "Zero patient data sharing while maintaining performance",
+          "Successful deployment across 10 hospital systems"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "title": "AI-Powered Clinical Trial Optimization: Real-World Evidence from 50 Studies",
+        "journal": "NEJM AI",
+        "significance_score": 9.1,
+        "key_findings": [
+          "30% increase in FDA approval rates for AI-optimized trials",
+          "50% reduction in patient recruitment time",
+          "Improved protocol adherence and outcome prediction"
+        ]
+      }
+    ],
+    "13": [
+      {
+        "title": "AI-Powered Clinical Trial Optimization: Real-World Evidence from 50 Studies",
+        "journal": "NEJM AI",
+        "significance_score": 9.1,
+        "key_findings": [
+          "30% increase in FDA approval rates for AI-optimized trials",
+          "50% reduction in patient recruitment time",
+          "Improved protocol adherence and outcome prediction"
+        ]
+      }
+    ]
+  }
+}

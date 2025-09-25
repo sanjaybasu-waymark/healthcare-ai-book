@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-Validated-blue)](https://github.com/sanjaybasu-waymark/healthcare-ai-book)
 
-*By Sanjay Basu MD PhD, sanjay.basu@waymarkcare.com*
+**By Sanjay Basu MD PhD, sanjay.basu@waymarkcare.com**
 
 > **Production-ready AI implementations for healthcare delivery and population health. Complete with working code, interactive examples, and clinical validation frameworks.**
 
@@ -20,7 +20,6 @@ This is **not another theoretical AI textbook**. Every chapter contains producti
 - **📱 Modern Interface**: Responsive design with interactive elements
 - **🔍 Comprehensive Search**: Full-text search across all content
 - **📊 Interactive Visualizations**: Live charts and diagrams
-- **🧪 Hands-On Exercises**: Real-world clinical scenarios
 
 ## 📚 Complete Book Structure
 
@@ -108,7 +107,7 @@ conda activate healthcare-ai
 npm install
 
 # Run your first example
-cd _chapters/01-clinical-informatics-optimized/code
+cd code_examples/chapter_01
 python clinical_decision_support.py
 ```
 
@@ -126,19 +125,31 @@ bundle exec jekyll serve --livereload
 
 ### Running Code Examples
 
+All code examples are organized in the `code_examples/` directory with complete implementations from each chapter:
+
 ```bash
-# Navigate to any chapter
-cd _chapters/01-clinical-informatics-optimized
+# Navigate to any chapter's code
+cd code_examples/chapter_01
 
 # Run Python examples
-python code/clinical_decision_support.py
+python clinical_decision_support.py
 
 # Launch Jupyter notebooks
-jupyter notebook notebooks/
+jupyter notebook
 
 # Run tests
 python -m pytest tests/ -v
 ```
+
+### Download Code Examples
+
+All code examples from each chapter are available in the [GitHub repository](https://github.com/sanjaybasu-waymark/healthcare-ai-book) under the `code_examples/` directory. Each chapter includes:
+
+- Complete Python implementations
+- Jupyter notebooks for interactive learning
+- Test suites for validation
+- Sample data and configuration files
+- Deployment scripts and documentation
 
 ## 📖 Learning Paths
 
@@ -170,15 +181,13 @@ Choose your path based on your background and goals:
 ```
 healthcare-ai-book/
 ├── _chapters/                 # Book chapters with complete implementations
-│   ├── 01-clinical-informatics-optimized/
-│   │   ├── README.md         # Chapter overview and learning objectives
-│   │   ├── code/             # Production-ready Python implementations
-│   │   ├── notebooks/        # Interactive Jupyter tutorials
-│   │   ├── data/             # Sample datasets and examples
-│   │   └── tests/            # Comprehensive test suites
-│   └── [chapters 02-29]/
-├── _examples/                 # Standalone code examples
-├── _notebooks/               # Interactive tutorials and workshops
+│   ├── 01-clinical-informatics-optimized.md
+│   ├── 02-mathematical-foundations-optimized.md
+│   └── [chapters 03-29]-optimized.md
+├── code_examples/             # Standalone code examples from all chapters
+│   ├── chapter_01/           # Chapter 1 complete code implementations
+│   ├── chapter_02/           # Chapter 2 complete code implementations
+│   └── [chapters 03-29]/    # All remaining chapter implementations
 ├── assets/                   # Images, CSS, JavaScript, and other assets
 ├── scripts/                  # Automation and utility scripts
 ├── .github/workflows/        # CI/CD and automation
@@ -194,16 +203,16 @@ healthcare-ai-book/
 
 ```bash
 # Format code
-black _chapters/*/code/*.py
+black code_examples/*/
 
 # Validate Python code
-flake8 _chapters/*/code/
+flake8 code_examples/*/
 
 # Run security scan
-bandit -r _chapters/*/code/
+bandit -r code_examples/
 
 # Test all functionality
-python -m pytest _chapters/*/tests/ -v
+python -m pytest code_examples/*/tests/ -v
 ```
 
 ### Content Updates
@@ -219,12 +228,14 @@ bundle exec jekyll serve
 git push origin main
 ```
 
-### Automated Features
+### Development Workflow
+
+The book includes automated systems for maintaining current content:
 
 - **GitHub Pages Deployment**: Automatic deployment on push to main branch
 - **Code Validation**: Continuous testing of all code examples
 - **Link Checking**: Automated validation of all internal and external links
-- **Content Updates**: Regular monitoring of latest healthcare AI research
+- **Literature Monitoring**: Weekly updates with latest healthcare AI research
 
 ## 🤝 Contributing
 
@@ -232,7 +243,7 @@ We welcome contributions from the healthcare AI community! Here's how you can he
 
 ### Ways to Contribute
 
-- **🐛 Report Issues**: Found a bug or have a suggestion? Create an issue in the repository
+- **🐛 Report Issues**: Found a bug or have a suggestion? [Create an issue](https://github.com/sanjaybasu-waymark/healthcare-ai-book/issues/new)
 - **💡 Suggest Improvements**: Share ideas for new content or enhancements
 - **📝 Submit Content**: Contribute new chapters, examples, or case studies
 - **🔧 Improve Code**: Enhance existing implementations or add new features
@@ -254,7 +265,7 @@ npm install
 pip install -r requirements.txt
 
 # Make your changes and test
-python -m pytest _chapters/*/tests/ -v
+python -m pytest code_examples/*/tests/ -v
 bundle exec jekyll build
 
 # Submit a pull request
