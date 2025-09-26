@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/17-clinical-nlp-at-scale/
 ---
 
-# Chapter 17: Clinical NLP at Scale - Transformers, Entity Recognition, and Question Answering
+\# Chapter 17: Clinical NLP at Scale - Transformers, Entity Recognition, and Question Answering
 
 *By Sanjay Basu MD PhD*
 
-## Learning Objectives
+\#\# Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,7 +22,7 @@ By the end of this chapter, physician data scientists will be able to:
 - Deploy production-ready real-time clinical decision support systems integrated with electronic health records, clinical workflows, and healthcare information systems using scalable architectures, monitoring systems, and quality assurance mechanisms that ensure patient safety and clinical effectiveness
 - Develop advanced clinical text analytics capabilities including sentiment analysis, clinical outcome prediction, adverse event detection, and population health analytics using sophisticated NLP models with clinical validation and real-world evidence generation
 
-## 17.1 Introduction to Clinical NLP at Scale
+\#\# 17.1 Introduction to Clinical NLP at Scale
 
 Clinical Natural Language Processing (NLP) represents one of the most challenging and impactful applications of artificial intelligence in healthcare, addressing the critical need to extract structured information and actionable insights from the vast amounts of unstructured clinical text generated in healthcare systems. **Clinical text contains a wealth of information** that is often inaccessible to traditional structured data analysis approaches, including detailed patient histories, clinical reasoning, treatment plans, and outcomes that are documented in physician notes, radiology reports, pathology reports, nursing documentation, and discharge summaries.
 
@@ -32,7 +32,7 @@ The unique characteristics of clinical text present significant challenges for N
 
 The clinical impact of NLP extends far beyond simple text processing to enable transformative applications including **automated clinical documentation**, **real-time clinical decision support**, **adverse event detection**, **clinical trial recruitment**, **population health analytics**, and **evidence-based medicine**. These systems can extract structured information from unstructured notes, identify safety signals and quality improvement opportunities, support clinical decision-making through evidence synthesis, and enable population health analytics at unprecedented scale.
 
-### 17.1.1 Evolution of Clinical NLP Technologies
+\#\#\# 17.1.1 Evolution of Clinical NLP Technologies
 
 The evolution of clinical NLP has progressed through several distinct phases, each characterized by significant technological advances and expanding clinical applications. **Early rule-based systems** relied on manually crafted patterns and medical dictionaries to extract specific clinical concepts, requiring extensive domain expertise and manual maintenance but providing interpretable and controllable processing for well-defined tasks.
 
@@ -44,7 +44,7 @@ The evolution of clinical NLP has progressed through several distinct phases, ea
 
 **Large language models** and **foundation models** specifically trained on clinical text have emerged as powerful tools for clinical NLP, providing general-purpose representations that can be fine-tuned for specific clinical tasks with limited labeled data while achieving state-of-the-art performance across diverse clinical applications.
 
-### 17.1.2 Clinical Text Characteristics and Challenges
+\#\#\# 17.1.2 Clinical Text Characteristics and Challenges
 
 Clinical text exhibits unique characteristics that distinguish it from general-purpose text and require specialized NLP approaches. **Medical terminology complexity** includes highly specialized vocabulary, complex multi-word expressions, and domain-specific concepts that may not be present in general language models, requiring specialized medical knowledge bases and clinical training data.
 
@@ -54,7 +54,7 @@ Clinical text exhibits unique characteristics that distinguish it from general-p
 
 **Privacy and security requirements** for clinical text processing impose strict constraints on data handling, processing, and storage that must comply with HIPAA regulations, institutional policies, and ethical guidelines while maintaining the utility of NLP systems for clinical applications.
 
-### 17.1.3 Scalability and Production Considerations
+\#\#\# 17.1.3 Scalability and Production Considerations
 
 **Production-scale clinical NLP systems** must address numerous technical and operational challenges to support real-world healthcare applications. **High-throughput processing** requirements demand efficient architectures that can handle millions of clinical documents daily while maintaining low latency for real-time applications such as clinical decision support and alert generation.
 
@@ -64,9 +64,9 @@ Clinical text exhibits unique characteristics that distinguish it from general-p
 
 **Quality assurance and monitoring** systems are critical for production clinical NLP applications, requiring comprehensive performance monitoring, error detection and correction, model drift detection, and continuous validation to ensure patient safety and clinical effectiveness.
 
-## 17.2 Transformer Architectures for Clinical Text
+\#\# 17.2 Transformer Architectures for Clinical Text
 
-### 17.2.1 Mathematical Foundations of Clinical Transformers
+\#\#\# 17.2.1 Mathematical Foundations of Clinical Transformers
 
 Transformer architectures have revolutionized natural language processing and demonstrated remarkable success in clinical applications by enabling models to capture long-range dependencies and complex relationships in clinical text through self-attention mechanisms. **The self-attention mechanism** forms the core of transformer architectures, allowing models to attend to different parts of the input sequence when processing each token, which is particularly valuable for understanding complex medical narratives that may span multiple paragraphs or sections.
 
@@ -74,7 +74,7 @@ The mathematical foundation of transformers begins with the **self-attention com
 
 $$
 
-\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}
+\mathrm{\1}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \mathrm{\1}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}
 
 $$
 
@@ -84,7 +84,7 @@ where $d_k$ is the dimension of the key vectors and the scaling factor $\sqrt{d_
 
 $$
 
-\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}^O
+\mathrm{\1}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \mathrm{\1}(\mathrm{\1}_1, \ldots, \mathrm{\1}_h)\mathbf{W}^O
 
 $$
 
@@ -92,7 +92,7 @@ where each attention head is computed as:
 
 $$
 
-\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)
+\mathrm{\1}_i = \mathrm{\1}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)
 
 $$
 
@@ -102,18 +102,18 @@ and $\mathbf{W}_i^Q$, $\mathbf{W}_i^K$, $\mathbf{W}_i^V$, and $\mathbf{W}^O$ are
 
 $$
 
-\text{PE}_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+\mathrm{\1}_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 
 $$
 $$
 
-\text{PE}_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+\mathrm{\1}_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
 
 $$
 
 where $pos$ is the position, $i$ is the dimension index, and $d_{model}$ is the model dimension.
 
-### 17.2.2 Clinical Language Model Pre-training
+\#\#\# 17.2.2 Clinical Language Model Pre-training
 
 **Clinical language models** are specialized transformer architectures trained on large corpora of clinical text to learn domain-specific representations that capture the nuances of medical language. These models undergo extensive pre-training on diverse clinical text sources including electronic health records, medical literature, clinical guidelines, and medical education materials to develop comprehensive understanding of medical concepts, relationships, and reasoning patterns.
 
@@ -131,7 +131,7 @@ where $D$ is the clinical text corpus, $M$ is the set of masked positions, $x_{\
 
 $$
 
-\mathcal{L}_{NSP} = -\mathbb{E}_{(A,B) \sim D} \left[ y \log P(\text{IsNext}|A,B) + (1-y) \log P(\text{NotNext}|A,B) \right]
+\mathcal{L}_{NSP} = -\mathbb{E}_{(A,B) \sim D} \left[ y \log P(\mathrm{\1}|A,B) + (1-y) \log P(\mathrm{\1}|A,B) \right]
 
 $$
 
@@ -139,7 +139,7 @@ where $A$ and $B$ are sentence pairs, $y$ indicates whether $B$ follows $A$ in t
 
 **Domain-specific pre-training objectives** for clinical language models may include **medical concept prediction**, **clinical reasoning modeling**, **temporal relationship learning**, and **multi-modal alignment** with structured clinical data to enhance the model's understanding of medical knowledge and clinical workflows.
 
-### 17.2.3 Production-Ready Clinical Transformer Implementation
+\#\#\# 17.2.3 Production-Ready Clinical Transformer Implementation
 
 ```python
 """
@@ -211,7 +211,7 @@ from cryptography.fernet import Fernet
 
 warnings.filterwarnings('ignore')
 
-# Configure logging
+\# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -276,17 +276,17 @@ class ClinicalNLPConfig:
     weight_decay: float = 0.01
     max_grad_norm: float = 1.0
     
-    # Privacy and security
+    \# Privacy and security
     enable_de_identification: bool = True
     encryption_key: Optional[str] = None
     audit_logging: bool = True
     
-    # Scalability
+    \# Scalability
     use_caching: bool = True
     cache_backend: str = "redis"
     use_elasticsearch: bool = True
     
-    # Clinical integration
+    \# Clinical integration
     integrate_umls: bool = True
     use_clinical_context: bool = True
     enable_uncertainty_quantification: bool = True
@@ -328,7 +328,7 @@ class ClinicalTextPreprocessor:
         self.encryption_key = config.encryption_key
         self.fernet = Fernet(config.encryption_key.encode()) if config.encryption_key else None
         
-        # Load clinical NLP models
+        \# Load clinical NLP models
         try:
             self.nlp = spacy.load("en_core_sci_sm")
             self.nlp.add_pipe("scispacy_linker", config={"resolve_abbreviations": True, "linker_name": "umls"})
@@ -336,7 +336,7 @@ class ClinicalTextPreprocessor:
             logger.warning("SciSpacy models not found. Using basic spaCy model.")
             self.nlp = spacy.load("en_core_web_sm")
         
-        # Clinical context rules
+        \# Clinical context rules
         self.setup_clinical_context()
         
         logger.info("Clinical text preprocessor initialized")
@@ -345,11 +345,11 @@ class ClinicalTextPreprocessor:
         """Setup clinical context processing."""
         if self.config.use_clinical_context:
             try:
-                # Add medspacy components
+                \# Add medspacy components
                 self.nlp.add_pipe("medspacy_context")
                 self.nlp.add_pipe("medspacy_sectionizer")
                 
-                # Add custom context rules
+                \# Add custom context rules
                 context_rules = [
                     ConTextRule("no evidence of", "NEGATED_EXISTENCE", direction="forward"),
                     ConTextRule("denies", "NEGATED_EXISTENCE", direction="forward"),
@@ -371,7 +371,7 @@ class ClinicalTextPreprocessor:
             return text, []
         
         try:
-            # Analyze text for PII
+            \# Analyze text for PII
             analyzer_results = self.analyzer.analyze(
                 text=text,
                 language='en',
@@ -379,7 +379,7 @@ class ClinicalTextPreprocessor:
                          "LOCATION", "MEDICAL_LICENSE", "US_SSN"]
             )
             
-            # Anonymize text
+            \# Anonymize text
             anonymized_result = self.anonymizer.anonymize(
                 text=text,
                 analyzer_results=analyzer_results
@@ -417,10 +417,10 @@ class ClinicalTextPreprocessor:
     
     def clean_clinical_text(self, text: str) -> str:
         """Clean and normalize clinical text."""
-        # Remove excessive whitespace
+        \# Remove excessive whitespace
         text = re.sub(r'\s+', ' ', text)
         
-        # Normalize common clinical abbreviations
+        \# Normalize common clinical abbreviations
         abbreviation_map = {
             r'\bpt\b': 'patient',
             r'\bhx\b': 'history',
@@ -436,10 +436,10 @@ class ClinicalTextPreprocessor:
         for abbrev, expansion in abbreviation_map.items():
             text = re.sub(abbrev, expansion, text, flags=re.IGNORECASE)
         
-        # Remove PHI patterns (additional safety)
-        text = re.sub(r'\b\d{3}-\d{2}-\d{4}\b', '[SSN]', text)  # SSN
-        text = re.sub(r'\b\d{3}-\d{3}-\d{4}\b', '[PHONE]', text)  # Phone
-        text = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', '[EMAIL]', text)  # Email
+        \# Remove PHI patterns (additional safety)
+        text = re.sub(r'\b\d{3}-\d{2}-\d{4}\b', '[SSN]', text)  \# SSN
+        text = re.sub(r'\b\d{3}-\d{3}-\d{4}\b', '[PHONE]', text)  \# Phone
+        text = re.sub(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', '[EMAIL]', text)  \# Email
         
         return text.strip()
     
@@ -447,7 +447,7 @@ class ClinicalTextPreprocessor:
         """Extract clinical sections from text."""
         sections = {}
         
-        # Common clinical section headers
+        \# Common clinical section headers
         section_patterns = {
             'chief_complaint': r'(?:chief complaint|cc):\s*(.*?)(?=\n[A-Z]|\n\n|$)',
             'history_present_illness': r'(?:history of present illness|hpi):\s*(.*?)(?=\n[A-Z]|\n\n|$)',
@@ -469,22 +469,22 @@ class ClinicalTextPreprocessor:
         """Comprehensive text processing pipeline."""
         start_time = datetime.now()
         
-        # De-identification
+        \# De-identification
         if self.config.enable_de_identification:
             text, phi_entities = self.de_identify_text(text)
         else:
             phi_entities = []
         
-        # Clean text
+        \# Clean text
         cleaned_text = self.clean_clinical_text(text)
         
-        # Extract sections
+        \# Extract sections
         sections = self.extract_clinical_sections(cleaned_text)
         
-        # Process with spaCy
+        \# Process with spaCy
         doc = self.nlp(cleaned_text)
         
-        # Extract entities and context
+        \# Extract entities and context
         entities = []
         for ent in doc.ents:
             entity_info = {
@@ -495,7 +495,7 @@ class ClinicalTextPreprocessor:
                 'confidence': getattr(ent, 'confidence', 1.0)
             }
             
-            # Add clinical context if available
+            \# Add clinical context if available
             if hasattr(ent, '_'):
                 entity_info['is_negated'] = ent._.is_negated
                 entity_info['is_historical'] = ent._.is_historical
@@ -504,7 +504,7 @@ class ClinicalTextPreprocessor:
             
             entities.append(entity_info)
         
-        # Extract sentences and tokens
+        \# Extract sentences and tokens
         sentences = [sent.text for sent in doc.sents]
         tokens = [token.text for token in doc]
         
@@ -523,7 +523,7 @@ class ClinicalTextPreprocessor:
             'timestamp': datetime.now().isoformat()
         }
         
-        # Audit logging
+        \# Audit logging
         if self.config.audit_logging:
             self.log_processing_event(result)
         
@@ -548,7 +548,7 @@ class ClinicalNER(nn.Module):
     def __init__(
         self,
         model_name: str = "emilyalsentzer/Bio_ClinicalBERT",
-        num_labels: int = 9,  # BIO tags for 4 entity types + O
+        num_labels: int = 9,  \# BIO tags for 4 entity types + O
         dropout_rate: float = 0.1,
         use_crf: bool = True,
         use_uncertainty: bool = True
@@ -560,23 +560,23 @@ class ClinicalNER(nn.Module):
         self.use_crf = use_crf
         self.use_uncertainty = use_uncertainty
         
-        # Load pre-trained clinical BERT
+        \# Load pre-trained clinical BERT
         self.bert = AutoModel.from_pretrained(model_name)
         self.dropout = nn.Dropout(dropout_rate)
         
-        # Classification head
+        \# Classification head
         self.classifier = nn.Linear(self.bert.config.hidden_size, num_labels)
         
-        # CRF layer for sequence labeling
+        \# CRF layer for sequence labeling
         if use_crf:
             self.crf = CRF(num_labels, batch_first=True)
         
-        # Uncertainty estimation
+        \# Uncertainty estimation
         if use_uncertainty:
             self.uncertainty_head = nn.Linear(self.bert.config.hidden_size, 1)
         
-        # Clinical knowledge integration
-        self.clinical_embeddings = nn.Embedding(1000, self.bert.config.hidden_size)  # For clinical concepts
+        \# Clinical knowledge integration
+        self.clinical_embeddings = nn.Embedding(1000, self.bert.config.hidden_size)  \# For clinical concepts
         
         logger.info(f"Initialized clinical NER model with {sum(p.numel() for p in self.parameters())} parameters")
     
@@ -588,7 +588,7 @@ class ClinicalNER(nn.Module):
         clinical_concepts: Optional[torch.Tensor] = None
     ):
         """Forward pass."""
-        # BERT encoding
+        \# BERT encoding
         outputs = self.bert(
             input_ids=input_ids,
             attention_mask=attention_mask,
@@ -598,15 +598,15 @@ class ClinicalNER(nn.Module):
         sequence_output = outputs.last_hidden_state
         sequence_output = self.dropout(sequence_output)
         
-        # Integrate clinical concepts if provided
+        \# Integrate clinical concepts if provided
         if clinical_concepts is not None:
             clinical_embeds = self.clinical_embeddings(clinical_concepts)
             sequence_output = sequence_output + clinical_embeds
         
-        # Classification
+        \# Classification
         logits = self.classifier(sequence_output)
         
-        # Uncertainty estimation
+        \# Uncertainty estimation
         uncertainty = None
         if self.use_uncertainty:
             uncertainty = torch.sigmoid(self.uncertainty_head(sequence_output))
@@ -614,10 +614,10 @@ class ClinicalNER(nn.Module):
         loss = None
         if labels is not None:
             if self.use_crf:
-                # CRF loss
+                \# CRF loss
                 loss = -self.crf(logits, labels, mask=attention_mask.bool())
             else:
-                # Standard cross-entropy loss
+                \# Standard cross-entropy loss
                 loss_fct = nn.CrossEntropyLoss()
                 active_loss = attention_mask.view(-1) == 1
                 active_logits = logits.view(-1, self.num_labels)
@@ -628,7 +628,7 @@ class ClinicalNER(nn.Module):
                 )
                 loss = loss_fct(active_logits, active_labels)
         
-        # Predictions
+        \# Predictions
         if self.use_crf:
             predictions = self.crf.decode(logits, mask=attention_mask.bool())
         else:
@@ -651,10 +651,10 @@ class CRF(nn.Module):
         self.num_tags = num_tags
         self.batch_first = batch_first
         
-        # Transition parameters
+        \# Transition parameters
         self.transitions = nn.Parameter(torch.randn(num_tags, num_tags))
         
-        # Start and end transitions
+        \# Start and end transitions
         self.start_transitions = nn.Parameter(torch.randn(num_tags))
         self.end_transitions = nn.Parameter(torch.randn(num_tags))
         
@@ -677,7 +677,7 @@ class CRF(nn.Module):
         if mask is None:
             mask = torch.ones_like(tags, dtype=torch.bool)
         
-        # Compute log likelihood
+        \# Compute log likelihood
         numerator = self._compute_score(emissions, tags, mask)
         denominator = self._compute_normalizer(emissions, mask)
         
@@ -699,18 +699,18 @@ class CRF(nn.Module):
         """Compute score for given tag sequence."""
         batch_size, seq_length = tags.shape
         
-        # Start transition score
+        \# Start transition score
         score = self.start_transitions[tags[:, 0]]
         
-        # Emission scores
+        \# Emission scores
         for i in range(seq_length):
             score += emissions[:, i].gather(1, tags[:, i].unsqueeze(1)).squeeze(1) * mask[:, i]
         
-        # Transition scores
+        \# Transition scores
         for i in range(1, seq_length):
             score += self.transitions[tags[:, i-1], tags[:, i]] * mask[:, i]
         
-        # End transition score
+        \# End transition score
         last_tag_indices = mask.sum(1) - 1
         score += self.end_transitions[tags.gather(1, last_tag_indices.unsqueeze(1)).squeeze(1)]
         
@@ -720,10 +720,10 @@ class CRF(nn.Module):
         """Compute normalizer using forward algorithm."""
         batch_size, seq_length, num_tags = emissions.shape
         
-        # Initialize forward variables
+        \# Initialize forward variables
         alpha = self.start_transitions + emissions[:, 0]
         
-        # Forward pass
+        \# Forward pass
         for i in range(1, seq_length):
             alpha_t = []
             for tag in range(num_tags):
@@ -734,7 +734,7 @@ class CRF(nn.Module):
             alpha = torch.stack(alpha_t, dim=1)
             alpha = alpha * mask[:, i].unsqueeze(1) + alpha * (1 - mask[:, i].unsqueeze(1))
         
-        # Add end transitions
+        \# Add end transitions
         alpha += self.end_transitions
         
         return torch.logsumexp(alpha, dim=1)
@@ -743,11 +743,11 @@ class CRF(nn.Module):
         """Viterbi decoding algorithm."""
         batch_size, seq_length, num_tags = emissions.shape
         
-        # Initialize
+        \# Initialize
         score = self.start_transitions + emissions[:, 0]
         history = []
         
-        # Forward pass
+        \# Forward pass
         for i in range(1, seq_length):
             score_t = []
             path_t = []
@@ -761,13 +761,13 @@ class CRF(nn.Module):
             score = torch.stack(score_t, dim=1)
             history.append(torch.stack(path_t, dim=1))
         
-        # Add end transitions
+        \# Add end transitions
         score += self.end_transitions
         
-        # Backward pass
+        \# Backward pass
         best_score, best_last_tag = torch.max(score, dim=1)
         
-        # Decode best path
+        \# Decode best path
         best_path = [best_last_tag]
         for hist in reversed(history):
             best_last_tag = hist.gather(1, best_last_tag.unsqueeze(1)).squeeze(1)
@@ -792,17 +792,17 @@ class ClinicalQuestionAnswering(nn.Module):
         self.max_length = max_length
         self.use_evidence_grading = use_evidence_grading
         
-        # Load pre-trained model
+        \# Load pre-trained model
         self.bert = AutoModel.from_pretrained(model_name)
         
-        # QA heads
-        self.qa_outputs = nn.Linear(self.bert.config.hidden_size, 2)  # Start and end positions
+        \# QA heads
+        self.qa_outputs = nn.Linear(self.bert.config.hidden_size, 2)  \# Start and end positions
         
-        # Evidence grading
+        \# Evidence grading
         if use_evidence_grading:
-            self.evidence_classifier = nn.Linear(self.bert.config.hidden_size, 4)  # A, B, C, D grades
+            self.evidence_classifier = nn.Linear(self.bert.config.hidden_size, 4)  \# A, B, C, D grades
         
-        # Clinical relevance scoring
+        \# Clinical relevance scoring
         self.relevance_scorer = nn.Linear(self.bert.config.hidden_size, 1)
         
         logger.info("Initialized clinical question answering model")
@@ -825,25 +825,25 @@ class ClinicalQuestionAnswering(nn.Module):
         sequence_output = outputs.last_hidden_state
         pooled_output = outputs.pooler_output
         
-        # QA predictions
+        \# QA predictions
         logits = self.qa_outputs(sequence_output)
         start_logits, end_logits = logits.split(1, dim=-1)
         start_logits = start_logits.squeeze(-1)
         end_logits = end_logits.squeeze(-1)
         
-        # Evidence grading
+        \# Evidence grading
         evidence_logits = None
         if self.use_evidence_grading:
             evidence_logits = self.evidence_classifier(pooled_output)
         
-        # Clinical relevance
+        \# Clinical relevance
         relevance_score = torch.sigmoid(self.relevance_scorer(pooled_output))
         
-        # Compute losses
+        \# Compute losses
         total_loss = 0
         
         if start_positions is not None and end_positions is not None:
-            # QA loss
+            \# QA loss
             loss_fct = nn.CrossEntropyLoss(ignore_index=-1)
             start_loss = loss_fct(start_logits, start_positions)
             end_loss = loss_fct(end_logits, end_positions)
@@ -851,7 +851,7 @@ class ClinicalQuestionAnswering(nn.Module):
             total_loss += qa_loss
         
         if evidence_labels is not None and self.use_evidence_grading:
-            # Evidence grading loss
+            \# Evidence grading loss
             evidence_loss_fct = nn.CrossEntropyLoss()
             evidence_loss = evidence_loss_fct(evidence_logits, evidence_labels)
             total_loss += evidence_loss
@@ -904,7 +904,7 @@ class ClinicalNLPDataset(Dataset):
         text = item['text']
         entities = item.get('entities', [])
         
-        # Tokenize
+        \# Tokenize
         encoding = self.tokenizer(
             text,
             truncation=True,
@@ -913,7 +913,7 @@ class ClinicalNLPDataset(Dataset):
             return_tensors='pt'
         )
         
-        # Create labels
+        \# Create labels
         labels = ['O'] * len(encoding['input_ids']<sup>0</sup>)
         
         for entity in entities:
@@ -921,7 +921,7 @@ class ClinicalNLPDataset(Dataset):
             end_char = entity['end']
             entity_type = entity['label']
             
-            # Map character positions to token positions
+            \# Map character positions to token positions
             start_token = encoding.char_to_token(start_char)
             end_token = encoding.char_to_token(end_char - 1)
             
@@ -930,7 +930,7 @@ class ClinicalNLPDataset(Dataset):
                 for i in range(start_token + 1, end_token + 1):
                     labels[i] = f'I-{entity_type}'
         
-        # Convert labels to indices
+        \# Convert labels to indices
         label_ids = [self.label_map.get(label, 0) for label in labels]
         
         return {
@@ -945,7 +945,7 @@ class ClinicalNLPDataset(Dataset):
         context = item['context']
         answer = item.get('answer', {})
         
-        # Tokenize question and context
+        \# Tokenize question and context
         encoding = self.tokenizer(
             question,
             context,
@@ -955,7 +955,7 @@ class ClinicalNLPDataset(Dataset):
             return_tensors='pt'
         )
         
-        # Find answer positions
+        \# Find answer positions
         start_position = 0
         end_position = 0
         
@@ -963,7 +963,7 @@ class ClinicalNLPDataset(Dataset):
             answer_start = answer['answer_start']
             answer_text = answer['text']
             
-            # Map character positions to token positions
+            \# Map character positions to token positions
             start_position = encoding.char_to_token(answer_start)
             end_position = encoding.char_to_token(answer_start + len(answer_text) - 1)
             
@@ -984,7 +984,7 @@ class ClinicalNLPDataset(Dataset):
         text = item['text']
         label = item.get('label', 0)
         
-        # Tokenize
+        \# Tokenize
         encoding = self.tokenizer(
             text,
             truncation=True,
@@ -1012,13 +1012,13 @@ class ClinicalNLPTrainer:
         self.scheduler = None
         self.scaler = torch.cuda.amp.GradScaler() if config.mixed_precision else None
         
-        # Metrics tracking
+        \# Metrics tracking
         self.train_losses = []
         self.val_losses = []
         self.train_metrics = []
         self.val_metrics = []
         
-        # Best model tracking
+        \# Best model tracking
         self.best_val_metric = 0.0
         self.best_model_state = None
         
@@ -1029,7 +1029,7 @@ class ClinicalNLPTrainer:
         self.tokenizer = AutoTokenizer.from_pretrained(self.config.model_name)
         
         if self.config.task == ClinicalNLPTask.NAMED_ENTITY_RECOGNITION:
-            # Create label map
+            \# Create label map
             entity_types = ['DISEASE', 'MEDICATION', 'PROCEDURE', 'ANATOMY']
             labels = ['O'] + [f'{prefix}-{entity}' for entity in entity_types for prefix in ['B', 'I']]
             self.label_map = {label: idx for idx, label in enumerate(labels)}
@@ -1049,7 +1049,7 @@ class ClinicalNLPTrainer:
         elif self.config.task == ClinicalNLPTask.TEXT_CLASSIFICATION:
             self.model = AutoModelForSequenceClassification.from_pretrained(
                 self.config.model_name,
-                num_labels=2  # Binary classification by default
+                num_labels=2  \# Binary classification by default
             )
         
         else:
@@ -1057,18 +1057,18 @@ class ClinicalNLPTrainer:
         
         self.model = self.model.to(self.device)
         
-        # Setup optimizer
+        \# Setup optimizer
         self.optimizer = torch.optim.AdamW(
             self.model.parameters(),
             lr=self.config.learning_rate,
             weight_decay=self.config.weight_decay
         )
         
-        # Setup scheduler
+        \# Setup scheduler
         self.scheduler = get_linear_schedule_with_warmup(
             self.optimizer,
             num_warmup_steps=self.config.warmup_steps,
-            num_training_steps=self.config.num_epochs * 1000  # Approximate
+            num_training_steps=self.config.num_epochs * 1000  \# Approximate
         )
         
         logger.info(f"Built {self.config.task.value} model with {sum(p.numel() for p in self.model.parameters())} parameters")
@@ -1083,7 +1083,7 @@ class ClinicalNLPTrainer:
         all_labels = []
         
         for batch in train_loader:
-            # Move to device
+            \# Move to device
             batch = {k: v.to(self.device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}
             
             self.optimizer.zero_grad()
@@ -1111,7 +1111,7 @@ class ClinicalNLPTrainer:
             total_loss += loss.item()
             num_batches += 1
             
-            # Collect predictions for metrics
+            \# Collect predictions for metrics
             if self.config.task == ClinicalNLPTask.TEXT_CLASSIFICATION:
                 predictions = torch.argmax(outputs.logits, dim=-1)
                 all_predictions.extend(predictions.cpu().numpy())
@@ -1119,7 +1119,7 @@ class ClinicalNLPTrainer:
         
         avg_loss = total_loss / num_batches
         
-        # Calculate metrics
+        \# Calculate metrics
         metrics = {'loss': avg_loss}
         if self.config.task == ClinicalNLPTask.TEXT_CLASSIFICATION and len(all_predictions) > 0:
             accuracy = accuracy_score(all_labels, all_predictions)
@@ -1139,7 +1139,7 @@ class ClinicalNLPTrainer:
         
         with torch.no_grad():
             for batch in val_loader:
-                # Move to device
+                \# Move to device
                 batch = {k: v.to(self.device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}
                 
                 outputs = self.model(**batch)
@@ -1148,7 +1148,7 @@ class ClinicalNLPTrainer:
                 total_loss += loss.item()
                 num_batches += 1
                 
-                # Collect predictions for metrics
+                \# Collect predictions for metrics
                 if self.config.task == ClinicalNLPTask.TEXT_CLASSIFICATION:
                     predictions = torch.argmax(outputs.logits, dim=-1)
                     all_predictions.extend(predictions.cpu().numpy())
@@ -1156,7 +1156,7 @@ class ClinicalNLPTrainer:
         
         avg_loss = total_loss / num_batches
         
-        # Calculate metrics
+        \# Calculate metrics
         metrics = {'loss': avg_loss}
         if self.config.task == ClinicalNLPTask.TEXT_CLASSIFICATION and len(all_predictions) > 0:
             accuracy = accuracy_score(all_labels, all_predictions)
@@ -1170,23 +1170,23 @@ class ClinicalNLPTrainer:
         logger.info("Starting training...")
         
         for epoch in range(self.config.num_epochs):
-            # Train
+            \# Train
             train_metrics = self.train_epoch(train_loader)
             self.train_losses.append(train_metrics['loss'])
             self.train_metrics.append(train_metrics)
             
-            # Validate
+            \# Validate
             val_metrics = self.validate_epoch(val_loader)
             self.val_losses.append(val_metrics['loss'])
             self.val_metrics.append(val_metrics)
             
-            # Check for best model
+            \# Check for best model
             current_metric = val_metrics.get('f1', val_metrics.get('accuracy', -val_metrics['loss']))
             if current_metric > self.best_val_metric:
                 self.best_val_metric = current_metric
                 self.best_model_state = self.model.state_dict().copy()
             
-            # Log progress
+            \# Log progress
             if epoch % 5 == 0:
                 logger.info(
                     f"Epoch {epoch}/{self.config.num_epochs}: "
@@ -1195,7 +1195,7 @@ class ClinicalNLPTrainer:
                     f"Val Metric: {current_metric:.4f}"
                 )
         
-        # Load best model
+        \# Load best model
         if self.best_model_state:
             self.model.load_state_dict(self.best_model_state)
         
@@ -1217,7 +1217,7 @@ class ClinicalNLPTrainer:
         """Load trained model."""
         checkpoint = torch.load(path, map_location=self.device)
         
-        # Build model if not already built
+        \# Build model if not already built
         if self.model is None:
             self.build_model()
         
@@ -1237,22 +1237,22 @@ class ClinicalNLPPipeline:
         self.preprocessor = ClinicalTextPreprocessor(config)
         self.trainer = ClinicalNLPTrainer(config)
         
-        # Caching
+        \# Caching
         if config.use_caching:
             self.cache = redis.Redis(host='localhost', port=6379, db=0) if config.cache_backend == 'redis' else {}
         
-        # Elasticsearch for document search
+        \# Elasticsearch for document search
         if config.use_elasticsearch:
             self.es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
         
-        # Sentence transformer for semantic search
+        \# Sentence transformer for semantic search
         self.sentence_transformer = SentenceTransformer('all-MiniLM-L6-v2')
         
         logger.info("Initialized clinical NLP pipeline")
     
     def process_document(self, text: str, document_type: DocumentType = DocumentType.PHYSICIAN_NOTE) -> Dict[str, Any]:
         """Process a single clinical document."""
-        # Check cache
+        \# Check cache
         if self.config.use_caching:
             cache_key = hashlib.md5(text.encode()).hexdigest()
             cached_result = self.cache.get(cache_key) if isinstance(self.cache, redis.Redis) else self.cache.get(cache_key)
@@ -1260,10 +1260,10 @@ class ClinicalNLPPipeline:
             if cached_result:
                 return json.loads(cached_result) if isinstance(cached_result, str) else cached_result
         
-        # Process text
+        \# Process text
         result = self.preprocessor.process_text(text, document_type)
         
-        # Cache result
+        \# Cache result
         if self.config.use_caching:
             if isinstance(self.cache, redis.Redis):
                 self.cache.setex(cache_key, 3600, json.dumps(result, default=str))
@@ -1304,10 +1304,10 @@ class ClinicalNLPPipeline:
             return []
         
         try:
-            # Encode query
+            \# Encode query
             query_embedding = self.sentence_transformer.encode([query])
             
-            # Search using Elasticsearch
+            \# Search using Elasticsearch
             search_body = {
                 "query": {
                     "multi_match": {
@@ -1359,7 +1359,7 @@ class ClinicalNLPPipeline:
             if 'error' in doc:
                 continue
             
-            # Entity statistics
+            \# Entity statistics
             entities = doc.get('entities', [])
             total_entities += len(entities)
             
@@ -1374,28 +1374,28 @@ class ClinicalNLPPipeline:
                 elif entity_type == 'DISEASE':
                     insights['common_diagnoses'][entity['text']] += 1
             
-            # PHI statistics
+            \# PHI statistics
             phi_entities = doc.get('phi_entities', [])
             total_phi_entities += len(phi_entities)
             
-            # Processing time
+            \# Processing time
             processing_time = doc.get('processing_time', 0)
             total_processing_time += processing_time
         
-        # Calculate averages
+        \# Calculate averages
         insights['processing_stats']['total_processing_time'] = total_processing_time
         insights['processing_stats']['average_processing_time'] = total_processing_time / len(documents) if documents else 0
         insights['processing_stats']['total_entities'] = total_entities
         insights['processing_stats']['total_phi_entities'] = total_phi_entities
         
-        # Convert counters to lists for JSON serialization
+        \# Convert counters to lists for JSON serialization
         insights['common_medications'] = insights['common_medications'].most_common(10)
         insights['common_procedures'] = insights['common_procedures'].most_common(10)
         insights['common_diagnoses'] = insights['common_diagnoses'].most_common(10)
         
         return insights
 
-# Example usage and demonstration
+\# Example usage and demonstration
 def create_sample_clinical_data():
     """Create sample clinical data for demonstration."""
     sample_texts = [
@@ -1469,13 +1469,13 @@ def demonstrate_clinical_nlp():
     print("Clinical NLP System Demonstration")
     print("=" * 50)
     
-    # Create configuration
+    \# Create configuration
     config = ClinicalNLPConfig(
         task=ClinicalNLPTask.NAMED_ENTITY_RECOGNITION,
         model_name="emilyalsentzer/Bio_ClinicalBERT",
         max_length=512,
         batch_size=4,
-        num_epochs=3,  # Reduced for demo
+        num_epochs=3,  \# Reduced for demo
         enable_de_identification=True,
         use_clinical_context=True,
         enable_uncertainty_quantification=True
@@ -1485,20 +1485,20 @@ def demonstrate_clinical_nlp():
     print(f"Model: {config.model_name}")
     print(f"Privacy protection: {config.enable_de_identification}")
     
-    # Create sample data
+    \# Create sample data
     documents = create_sample_clinical_data()
     
     print(f"\nProcessing {len(documents)} clinical documents...")
     
-    # Initialize pipeline
+    \# Initialize pipeline
     pipeline = ClinicalNLPPipeline(config)
     
-    # Process documents
+    \# Process documents
     results = pipeline.batch_process_documents(documents)
     
     print(f"Processed {len(results)} documents")
     
-    # Extract insights
+    \# Extract insights
     insights = pipeline.extract_clinical_insights(results)
     
     print(f"\nClinical Insights:")
@@ -1521,9 +1521,9 @@ if __name__ == "__main__":
     demonstrate_clinical_nlp()
 ```
 
-## 17.3 Named Entity Recognition for Clinical Concepts
+\#\# 17.3 Named Entity Recognition for Clinical Concepts
 
-### 17.3.1 Clinical Entity Types and Challenges
+\#\#\# 17.3.1 Clinical Entity Types and Challenges
 
 Named Entity Recognition (NER) in clinical text involves identifying and classifying medical concepts including diseases, medications, procedures, anatomical structures, symptoms, laboratory values, and temporal expressions. **Clinical NER presents unique challenges** compared to general-domain NER due to the specialized vocabulary, complex multi-word expressions, abbreviations, and context-dependent meanings that are prevalent in medical text.
 
@@ -1541,7 +1541,7 @@ $$
 
 where $y$ is the label sequence, $x$ is the input text, $f_k$ are feature functions, $\lambda_k$ are feature weights, and $Z(x)$ is the normalization constant.
 
-### 17.3.2 Advanced Clinical NER Architectures
+\#\#\# 17.3.2 Advanced Clinical NER Architectures
 
 **Transformer-based clinical NER models** leverage pre-trained clinical language models such as ClinicalBERT, BioBERT, and PubMedBERT that have been trained on large corpora of medical text. These models provide rich contextual representations that capture medical knowledge and relationships between clinical concepts.
 
@@ -1549,7 +1549,7 @@ where $y$ is the label sequence, $x$ is the input text, $f_k$ are feature functi
 
 $$
 
-P(y|x) = \frac{\exp(\text{score}(x, y))}{\sum_{y'} \exp(\text{score}(x, y'))}
+P(y|x) = \frac{\exp(\mathrm{\1}(x, y))}{\sum_{y'} \exp(\mathrm{\1}(x, y'))}
 
 $$
 
@@ -1559,9 +1559,9 @@ where the score function incorporates both emission scores from the neural netwo
 
 **Uncertainty quantification** in clinical NER is crucial for identifying cases that require human review or additional validation. **Bayesian neural networks** and **Monte Carlo dropout** provide principled approaches for estimating prediction uncertainty and identifying ambiguous cases.
 
-## 17.4 Clinical Question Answering Systems
+\#\# 17.4 Clinical Question Answering Systems
 
-### 17.4.1 Architecture and Components
+\#\#\# 17.4.1 Architecture and Components
 
 Clinical question answering systems enable healthcare providers to query clinical knowledge bases and patient records using natural language, providing evidence-based answers with source attribution and confidence estimates. **Retrieval-augmented generation (RAG)** architectures combine information retrieval with neural text generation to provide accurate and contextually relevant answers.
 
@@ -1569,17 +1569,17 @@ The **retrieval component** identifies relevant passages from clinical knowledge
 
 $$
 
-\text{score}(q, p) = \text{sim}(f_q(q), f_p(p))
+\mathrm{\1}(q, p) = \mathrm{\1}(f_q(q), f_p(p))
 
 $$
 
-where $f_q$ and $f_p$ are encoder functions for questions and passages, and $\text{sim}$ is a similarity function such as cosine similarity or dot product.
+where $f_q$ and $f_p$ are encoder functions for questions and passages, and $\mathrm{\1}$ is a similarity function such as cosine similarity or dot product.
 
 The **reading comprehension component** extracts specific answers from retrieved passages using transformer-based models trained on clinical question-answering datasets. **Answer generation** synthesizes coherent responses that integrate information from multiple sources while providing proper attribution and evidence grading.
 
 **Evidence grading** assigns quality scores to answers based on the strength of supporting evidence, following established medical evidence hierarchies such as systematic reviews, randomized controlled trials, observational studies, and expert opinion.
 
-### 17.4.2 Clinical Knowledge Integration
+\#\#\# 17.4.2 Clinical Knowledge Integration
 
 **Medical knowledge base integration** incorporates structured clinical knowledge from sources such as UMLS (Unified Medical Language System), SNOMED CT, ICD-10, and clinical practice guidelines to enhance question answering accuracy and provide standardized terminology.
 
@@ -1587,9 +1587,9 @@ The **reading comprehension component** extracts specific answers from retrieved
 
 **Temporal reasoning** capabilities enable the system to understand and reason about time-dependent clinical information including disease progression, treatment timelines, and temporal relationships between clinical events.
 
-## Bibliography and References
+\#\# Bibliography and References
 
-### Transformer Architectures and Clinical Language Models
+\#\#\# Transformer Architectures and Clinical Language Models
 
 1. **Devlin, J., Chang, M. W., Lee, K., & Toutanova, K.** (2018). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. *arXiv preprint arXiv:1810.04805*. [BERT foundation]
 
@@ -1599,7 +1599,7 @@ The **reading comprehension component** extracts specific answers from retrieved
 
 4. **Gu, Y., Tinn, R., Cheng, H., et al.** (2021). Domain-specific language model pretraining for biomedical natural language processing. *ACM Transactions on Computing for Healthcare*, 3(1), 1-23. [PubMedBERT]
 
-### Clinical Named Entity Recognition
+\#\#\# Clinical Named Entity Recognition
 
 5. **Uzuner, Ö., South, B. R., Shen, S., & DuVall, S. L.** (2011). 2010 i2b2/VA challenge on concepts, assertions, and relations in clinical text. *Journal of the American Medical Informatics Association*, 18(5), 552-556. [i2b2 NER challenge]
 
@@ -1609,7 +1609,7 @@ The **reading comprehension component** extracts specific answers from retrieved
 
 8. **Luo, L., Yang, Z., Yang, P., et al.** (2018). An attention-based BiLSTM-CRF approach to document-level chemical named entity recognition. *Bioinformatics*, 34(8), 1381-1388. [Attention-based clinical NER]
 
-### Clinical Question Answering
+\#\#\# Clinical Question Answering
 
 9. **Pampari, A., Raghavan, P., Liang, J., & Peng, J.** (2018). emrQA: A large corpus for question answering on electronic medical records. *Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing*, 2357-2368. [Clinical QA dataset]
 
@@ -1619,7 +1619,7 @@ The **reading comprehension component** extracts specific answers from retrieved
 
 12. **Karpukhin, V., Oğuz, B., Min, S., et al.** (2020). Dense passage retrieval for open-domain question answering. *Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing*, 6769-6781. [Dense retrieval methods]
 
-### Privacy and De-identification
+\#\#\# Privacy and De-identification
 
 13. **Stubbs, A., Kotfila, C., & Uzuner, Ö.** (2015). Automated systems for the de-identification of longitudinal clinical narratives: Overview of 2014 i2b2/UTHealth shared task Track 1. *Journal of Biomedical Informatics*, 58, S11-S19. [Clinical de-identification]
 
@@ -1627,7 +1627,7 @@ The **reading comprehension component** extracts specific answers from retrieved
 
 15. **Liu, Z., Tang, B., Wang, X., & Chen, Q.** (2017). De-identification of clinical notes via recurrent neural network and conditional random field. *Journal of Biomedical Informatics*, 75, S34-S42. [RNN-CRF de-identification]
 
-### Scalability and Production Systems
+\#\#\# Scalability and Production Systems
 
 16. **Chapman, W. W., Bridewell, W., Hanbury, P., et al.** (2001). A simple algorithm for identifying negated findings and diseases in discharge summaries. *Journal of Biomedical Informatics*, 34(5), 301-310. [Negation detection]
 
@@ -1635,10 +1635,24 @@ The **reading comprehension component** extracts specific answers from retrieved
 
 18. **Eyre, H., Chapman, A. B., Peterson, K. S., et al.** (2021). Launching into clinical space with medspaCy: a new clinical text processing toolkit in Python. *AMIA Annual Symposium Proceedings*, 438-447. [medspaCy toolkit]
 
-### Clinical Applications and Validation
+\#\#\# Clinical Applications and Validation
 
 19. **Wang, Y., Wang, L., Rastegar-Mojarad, M., et al.** (2018). Clinical information extraction applications: a literature review. *Journal of Biomedical Informatics*, 77, 34-49. [Clinical IE applications]
 
 20. **Wu, S., Roberts, K., Datta, S., et al.** (2020). Deep learning in clinical natural language processing: a methodical review. *Journal of the American Medical Informatics Association*, 27(3), 457-470. [Deep learning in clinical NLP review]
 
 This chapter provides a comprehensive framework for implementing clinical NLP systems at scale using state-of-the-art transformer architectures, named entity recognition, and question answering capabilities. The implementations address the unique challenges of clinical text including privacy protection, scalability requirements, and clinical integration needs. The next chapter will explore multimodal AI systems that combine clinical NLP with medical imaging and other data modalities.
+
+
+## Code Examples
+
+All code examples from this chapter are available in the repository:
+- **Directory**: [`code_examples/chapter_17/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_17/)
+- **Direct Download**: [ZIP file](https://github.com/sanjaybasu-waymark/healthcare-ai-book/archive/refs/heads/main.zip)
+
+To use the examples:
+```bash
+git clone https://github.com/sanjaybasu-waymark/healthcare-ai-book.git
+cd healthcare-ai-book/code_examples/chapter_17
+pip install -r requirements.txt
+```

@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/14-population-health-ai-systems/
 ---
 
-# Chapter 14: Population Health AI Systems - Large-Scale Health Analytics and Intervention Strategies
+\# Chapter 14: Population Health AI Systems - Large-Scale Health Analytics and Intervention Strategies
 
 *By Sanjay Basu MD PhD*
 
-## Learning Objectives
+\#\# Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,7 +22,7 @@ By the end of this chapter, physician data scientists will be able to:
 - Apply advanced causal inference methods including instrumental variables, regression discontinuity, difference-in-differences, and synthetic control approaches to evaluate the effectiveness of population health interventions and inform evidence-based public health policy
 - Implement precision public health approaches that tailor interventions to specific population subgroups based on their unique characteristics, risk profiles, and social determinants while ensuring equitable distribution of benefits and avoiding algorithmic bias
 
-## 14.1 Introduction to Population Health AI
+\#\# 14.1 Introduction to Population Health AI
 
 Population health represents a fundamental paradigm shift from individual patient care to the health outcomes of groups of individuals, including the distribution of such outcomes within the group and the social, economic, and environmental factors that influence these distributions. **Population health AI systems** leverage artificial intelligence to analyze, predict, and improve health outcomes at the population level, addressing the complex interplay of clinical, behavioral, social, environmental, and policy factors that determine health outcomes across communities and populations.
 
@@ -30,7 +30,7 @@ The application of AI to population health presents unique opportunities and cha
 
 **Multilevel determinants** of population health require AI systems that can model interactions between individual-level factors (genetics, behavior, clinical status), interpersonal factors (social networks, family dynamics), organizational factors (healthcare systems, schools, workplaces), community factors (social cohesion, built environment), and policy factors (regulations, resource allocation) that collectively determine health outcomes. **Temporal complexity** involves understanding how exposures and interventions at different life stages influence health trajectories over time, requiring longitudinal modeling approaches that can capture both immediate and delayed effects.
 
-### 14.1.1 Scope and Applications of Population Health AI
+\#\#\# 14.1.1 Scope and Applications of Population Health AI
 
 Population health AI encompasses a broad range of applications that span from **disease surveillance and outbreak detection** to **health policy evaluation and resource allocation**, each requiring specialized methodological approaches and technical implementations. **Predictive modeling** enables identification of populations at risk for adverse health outcomes, allowing for targeted interventions and optimal resource allocation based on predicted need and intervention effectiveness.
 
@@ -44,7 +44,7 @@ Population health AI encompasses a broad range of applications that span from **
 
 **Precision public health** represents an emerging paradigm that applies precision medicine principles to population health, using AI to tailor interventions to specific population subgroups based on their unique characteristics, risk profiles, and social determinants while ensuring equitable access and avoiding algorithmic bias that could exacerbate health disparities.
 
-### 14.1.2 Data Sources and Integration Challenges
+\#\#\# 14.1.2 Data Sources and Integration Challenges
 
 Population health AI systems must integrate diverse data sources that span multiple sectors, organizational boundaries, and jurisdictions, each with unique data formats, quality characteristics, and access restrictions. **Electronic health records (EHRs)** provide detailed clinical data but may not be representative of entire populations, particularly underserved communities with limited healthcare access, and may contain systematic biases related to healthcare-seeking behavior and provider documentation practices.
 
@@ -58,7 +58,7 @@ Population health AI systems must integrate diverse data sources that span multi
 
 **Administrative data** from vital records, census data, transportation systems, and economic indicators provide important contextual information for population health analysis but may have different temporal granularity, geographic boundaries, and data quality characteristics that complicate integration and analysis.
 
-### 14.1.3 Ethical and Equity Considerations
+\#\#\# 14.1.3 Ethical and Equity Considerations
 
 Population health AI systems must be designed with explicit attention to health equity and social justice, recognizing that AI systems can either reduce or exacerbate existing health disparities depending on their design, implementation, and governance. **Algorithmic bias** can perpetuate or amplify existing health disparities if not carefully addressed through inclusive data collection, representative model development, ongoing bias monitoring, and proactive bias mitigation strategies.
 
@@ -72,9 +72,9 @@ Population health AI systems must be designed with explicit attention to health 
 
 **Transparency and accountability** mechanisms must enable communities and stakeholders to understand how AI systems make decisions that affect their health, challenge decisions when appropriate, and hold system developers and operators accountable for equitable and effective performance.
 
-## 14.2 Advanced Epidemiological Modeling with AI
+\#\# 14.2 Advanced Epidemiological Modeling with AI
 
-### 14.2.1 Intelligent Disease Surveillance Systems
+\#\#\# 14.2.1 Intelligent Disease Surveillance Systems
 
 Modern disease surveillance systems leverage artificial intelligence to provide real-time monitoring of disease patterns, early detection of outbreaks, and prediction of epidemic trajectories with unprecedented speed and accuracy. **Syndromic surveillance** uses AI to analyze patterns in clinical symptoms, emergency department visits, over-the-counter medication sales, school absenteeism, and workplace sick leave to detect disease outbreaks before laboratory confirmation is available, enabling rapid public health response.
 
@@ -84,7 +84,7 @@ Modern disease surveillance systems leverage artificial intelligence to provide 
 
 **Anomaly detection** algorithms identify unusual patterns in disease incidence that may indicate outbreaks, bioterrorism events, or emerging health threats, using sophisticated statistical methods that can distinguish true signals from noise and seasonal variations. **Time series forecasting** predicts future disease trends to support public health planning, resource allocation, and intervention timing decisions.
 
-### 14.2.2 Causal Inference for Population Health
+\#\#\# 14.2.2 Causal Inference for Population Health
 
 Understanding causal relationships is fundamental to effective population health interventions, as correlation does not imply causation and observational data can be confounded by numerous factors that influence both exposures and outcomes. **Causal inference methods** help distinguish between correlation and causation in observational population health data, enabling evidence-based policy decisions and intervention strategies.
 
@@ -96,7 +96,7 @@ Understanding causal relationships is fundamental to effective population health
 
 **Directed acyclic graphs (DAGs)** provide a formal framework for representing causal assumptions, identifying confounders and mediators, and guiding the selection of appropriate statistical methods for causal inference. **Sensitivity analysis** assesses the robustness of causal conclusions to violations of identifying assumptions and unmeasured confounding.
 
-### 14.2.3 Predictive Modeling for Health Outcomes
+\#\#\# 14.2.3 Predictive Modeling for Health Outcomes
 
 Population health predictive modeling uses AI to forecast health outcomes and identify populations at risk for adverse events, enabling proactive interventions and optimal resource allocation. **Risk stratification** models identify individuals and communities at highest risk for specific health outcomes, enabling targeted interventions that focus resources where they can have the greatest impact.
 
@@ -108,9 +108,9 @@ Population health predictive modeling uses AI to forecast health outcomes and id
 
 **Ensemble methods** combine multiple predictive models to improve accuracy and robustness of population health predictions, reducing overfitting and improving generalizability across different populations and settings. **Deep learning** approaches can capture complex non-linear relationships in high-dimensional population health data, including interactions between multiple risk factors and temporal patterns in longitudinal data.
 
-## 14.3 Comprehensive Population Health AI Framework
+\#\# 14.3 Comprehensive Population Health AI Framework
 
-### 14.3.1 Production-Ready Population Health Analytics System
+\#\#\# 14.3.1 Production-Ready Population Health Analytics System
 
 ```python
 """
@@ -140,7 +140,7 @@ from pathlib import Path
 import asyncio
 import concurrent.futures
 
-# Scientific computing and statistics
+\# Scientific computing and statistics
 from scipy import stats
 from scipy.spatial.distance import pdist, squareform
 from scipy.optimize import minimize
@@ -152,7 +152,7 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.discrete.discrete_model import Poisson
 from statsmodels.duration.hazard_regression import PHReg
 
-# Machine learning
+\# Machine learning
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, TimeSeriesSplit
 from sklearn.preprocessing import StandardScaler, LabelEncoder, MinMaxScaler
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, IsolationForest
@@ -164,14 +164,14 @@ from sklearn.manifold import TSNE
 from sklearn.impute import KNNImputer
 from sklearn.feature_selection import SelectKBest, f_regression
 
-# Deep learning
+\# Deep learning
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import torch.nn.functional as F
 
-# Geospatial analysis
+\# Geospatial analysis
 import geopandas as gpd
 from shapely.geometry import Point, Polygon, MultiPolygon
 import folium
@@ -179,7 +179,7 @@ from geopy.distance import geodesic
 import pyproj
 from sklearn.neighbors import BallTree
 
-# Causal inference
+\# Causal inference
 try:
     from econml.dml import DML
     from econml.dr import DRLearner
@@ -189,21 +189,21 @@ except ImportError:
 
 import networkx as nx
 
-# Time series
+\# Time series
 from prophet import Prophet
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-# Survival analysis
+\# Survival analysis
 from lifelines import KaplanMeierFitter, CoxPHFitter, WeibullFitter
 from lifelines.statistics import logrank_test, multivariate_logrank_test
 
-# Visualization
+\# Visualization
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.figure_factory as ff
 
-# Database and data processing
+\# Database and data processing
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Float, Boolean, Text, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -211,7 +211,7 @@ import requests
 
 warnings.filterwarnings('ignore')
 
-# Configure logging
+\# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -372,7 +372,7 @@ class DiseaseSurveillanceSystem:
         """Setup alert thresholds for different diseases and populations."""
         return {
             'influenza': {
-                'baseline_threshold': 2.0,  # Standard deviations above baseline
+                'baseline_threshold': 2.0,  \# Standard deviations above baseline
                 'epidemic_threshold': 3.0,
                 'pandemic_threshold': 5.0
             },
@@ -401,15 +401,15 @@ class DiseaseSurveillanceSystem:
     ) -> bool:
         """Ingest surveillance data from various sources."""
         try:
-            # Validate data format
+            \# Validate data format
             required_columns = ['date', 'location', 'count', 'population']
             if not all(col in data.columns for col in required_columns):
                 raise ValueError(f"Missing required columns: {required_columns}")
             
-            # Data quality checks
+            \# Data quality checks
             data = self._clean_surveillance_data(data)
             
-            # Store data
+            \# Store data
             if data_source not in self.surveillance_data:
                 self.surveillance_data[data_source] = {}
             
@@ -425,21 +425,21 @@ class DiseaseSurveillanceSystem:
     
     def _clean_surveillance_data(self, data: pd.DataFrame) -> pd.DataFrame:
         """Clean and validate surveillance data."""
-        # Convert date column
+        \# Convert date column
         data['date'] = pd.to_datetime(data['date'])
         
-        # Remove invalid counts
+        \# Remove invalid counts
         data = data[data['count'] >= 0]
         data = data[data['population'] > 0]
         
-        # Calculate rates
+        \# Calculate rates
         data['rate'] = (data['count'] / data['population']) * 100000
         
-        # Remove outliers (rates > 99th percentile)
+        \# Remove outliers (rates > 99th percentile)
         rate_threshold = data['rate'].quantile(0.99)
         data = data[data['rate'] <= rate_threshold]
         
-        # Sort by date and location
+        \# Sort by date and location
         data = data.sort_values(['location', 'date'])
         
         return data
@@ -452,7 +452,7 @@ class DiseaseSurveillanceSystem:
     ) -> Dict[str, Any]:
         """Detect disease outbreaks using various statistical methods."""
         try:
-            # Get surveillance data
+            \# Get surveillance data
             if disease not in self.surveillance_data:
                 raise ValueError(f"No surveillance data available for {disease}")
             
@@ -461,10 +461,10 @@ class DiseaseSurveillanceSystem:
             if location:
                 data = data[data['location'] == location]
             
-            if len(data) < 30:  # Need sufficient historical data
+            if len(data) < 30:  \# Need sufficient historical data
                 raise ValueError("Insufficient historical data for outbreak detection")
             
-            # Apply outbreak detection method
+            \# Apply outbreak detection method
             if method == "aberration_detection":
                 results = self._aberration_detection(data, disease)
             elif method == "cusum":
@@ -494,26 +494,26 @@ class DiseaseSurveillanceSystem:
             'detection_summary': {}
         }
         
-        # Group by location
+        \# Group by location
         locations = data['location'].unique()
         
         for location in locations:
             location_data = data[data['location'] == location].copy()
             location_data = location_data.sort_values('date')
             
-            # Calculate baseline statistics (using historical data)
-            baseline_period = location_data[:-7]  # Exclude last week
-            if len(baseline_period) < 21:  # Need at least 3 weeks of baseline
+            \# Calculate baseline statistics (using historical data)
+            baseline_period = location_data[:-7]  \# Exclude last week
+            if len(baseline_period) < 21:  \# Need at least 3 weeks of baseline
                 continue
             
             baseline_mean = baseline_period['rate'].mean()
             baseline_std = baseline_period['rate'].std()
             
-            # Get alert thresholds
+            \# Get alert thresholds
             thresholds = self.alert_thresholds.get(disease, self.alert_thresholds['respiratory'])
             
-            # Check recent data for aberrations
-            recent_data = location_data[-7:]  # Last week
+            \# Check recent data for aberrations
+            recent_data = location_data[-7:]  \# Last week
             
             for _, row in recent_data.iterrows():
                 z_score = (row['rate'] - baseline_mean) / baseline_std if baseline_std > 0 else 0
@@ -538,14 +538,14 @@ class DiseaseSurveillanceSystem:
                     }
                     results['alerts'].append(alert)
             
-            # Store baseline statistics
+            \# Store baseline statistics
             results['baseline_statistics'][location] = {
                 'mean_rate': baseline_mean,
                 'std_rate': baseline_std,
                 'baseline_period_days': len(baseline_period)
             }
         
-        # Detection summary
+        \# Detection summary
         results['detection_summary'] = {
             'total_locations_monitored': len(locations),
             'locations_with_alerts': len(set(alert['location'] for alert in results['alerts'])),
@@ -565,9 +565,9 @@ class DiseaseSurveillanceSystem:
             'cusum_statistics': {}
         }
         
-        # CUSUM parameters
-        k = 0.5  # Reference value (half of the shift to detect)
-        h = 4.0  # Decision threshold
+        \# CUSUM parameters
+        k = 0.5  \# Reference value (half of the shift to detect)
+        h = 4.0  \# Decision threshold
         
         locations = data['location'].unique()
         
@@ -575,10 +575,10 @@ class DiseaseSurveillanceSystem:
             location_data = data[data['location'] == location].copy()
             location_data = location_data.sort_values('date')
             
-            if len(location_data) < 14:  # Need at least 2 weeks of data
+            if len(location_data) < 14:  \# Need at least 2 weeks of data
                 continue
             
-            # Calculate baseline mean and std
+            \# Calculate baseline mean and std
             baseline_data = location_data[:max(14, len(location_data) // 2)]
             mu0 = baseline_data['rate'].mean()
             sigma = baseline_data['rate'].std()
@@ -586,16 +586,16 @@ class DiseaseSurveillanceSystem:
             if sigma == 0:
                 continue
             
-            # Calculate CUSUM statistics
+            \# Calculate CUSUM statistics
             cusum_pos = 0
             cusum_neg = 0
             cusum_values = []
             
             for _, row in location_data.iterrows():
-                # Standardized observation
+                \# Standardized observation
                 z = (row['rate'] - mu0) / sigma
                 
-                # Update CUSUM statistics
+                \# Update CUSUM statistics
                 cusum_pos = max(0, cusum_pos + z - k)
                 cusum_neg = max(0, cusum_neg - z - k)
                 
@@ -606,7 +606,7 @@ class DiseaseSurveillanceSystem:
                     'rate': row['rate']
                 })
                 
-                # Check for alerts
+                \# Check for alerts
                 if cusum_pos > h:
                     alert = {
                         'location': location,
@@ -617,7 +617,7 @@ class DiseaseSurveillanceSystem:
                         'confidence': min(cusum_pos / h, 2.0) / 2.0
                     }
                     results['alerts'].append(alert)
-                    cusum_pos = 0  # Reset after alert
+                    cusum_pos = 0  \# Reset after alert
                 
                 elif cusum_neg > h:
                     alert = {
@@ -629,7 +629,7 @@ class DiseaseSurveillanceSystem:
                         'confidence': min(cusum_neg / h, 2.0) / 2.0
                     }
                     results['alerts'].append(alert)
-                    cusum_neg = 0  # Reset after alert
+                    cusum_neg = 0  \# Reset after alert
             
             results['cusum_statistics'][location] = cusum_values
         
@@ -644,9 +644,9 @@ class DiseaseSurveillanceSystem:
             'ewma_statistics': {}
         }
         
-        # EWMA parameters
-        lambda_param = 0.2  # Smoothing parameter
-        L = 2.7  # Control limit multiplier
+        \# EWMA parameters
+        lambda_param = 0.2  \# Smoothing parameter
+        L = 2.7  \# Control limit multiplier
         
         locations = data['location'].unique()
         
@@ -657,7 +657,7 @@ class DiseaseSurveillanceSystem:
             if len(location_data) < 14:
                 continue
             
-            # Calculate baseline statistics
+            \# Calculate baseline statistics
             baseline_data = location_data[:max(14, len(location_data) // 2)]
             mu0 = baseline_data['rate'].mean()
             sigma = baseline_data['rate'].std()
@@ -665,18 +665,18 @@ class DiseaseSurveillanceSystem:
             if sigma == 0:
                 continue
             
-            # Initialize EWMA
+            \# Initialize EWMA
             ewma = mu0
             ewma_values = []
             
             for i, (_, row) in enumerate(location_data.iterrows()):
-                # Update EWMA
+                \# Update EWMA
                 if i == 0:
                     ewma = row['rate']
                 else:
                     ewma = lambda_param * row['rate'] + (1 - lambda_param) * ewma
                 
-                # Calculate control limits
+                \# Calculate control limits
                 variance_factor = (lambda_param / (2 - lambda_param)) * (1 - (1 - lambda_param)**(2 * (i + 1)))
                 control_limit = L * sigma * np.sqrt(variance_factor)
                 
@@ -691,7 +691,7 @@ class DiseaseSurveillanceSystem:
                     'rate': row['rate']
                 })
                 
-                # Check for alerts
+                \# Check for alerts
                 if ewma > upper_limit:
                     alert = {
                         'location': location,
@@ -729,15 +729,15 @@ class DiseaseSurveillanceSystem:
             'scan_statistics': {}
         }
         
-        # This is a simplified implementation of spatial scan statistics
-        # In practice, you would use specialized software like SaTScan
+        \# This is a simplified implementation of spatial scan statistics
+        \# In practice, you would use specialized software like SaTScan
         
-        # Get unique locations and their coordinates (assuming lat/lon available)
+        \# Get unique locations and their coordinates (assuming lat/lon available)
         if 'latitude' not in data.columns or 'longitude' not in data.columns:
             logger.warning("Spatial coordinates not available for spatial scan")
             return results
         
-        # Aggregate data by location
+        \# Aggregate data by location
         location_summary = data.groupby('location').agg({
             'count': 'sum',
             'population': 'mean',
@@ -747,37 +747,37 @@ class DiseaseSurveillanceSystem:
         
         location_summary['rate'] = (location_summary['count'] / location_summary['population']) * 100000
         
-        # Calculate distances between locations
+        \# Calculate distances between locations
         coords = location_summary[['latitude', 'longitude']].values
         distances = pdist(coords, metric='euclidean')
         distance_matrix = squareform(distances)
         
-        # Find potential clusters using a sliding window approach
-        max_radius = 0.5  # Maximum radius in degrees (approximately 50km)
-        min_cases = 5     # Minimum cases to consider a cluster
+        \# Find potential clusters using a sliding window approach
+        max_radius = 0.5  \# Maximum radius in degrees (approximately 50km)
+        min_cases = 5     \# Minimum cases to consider a cluster
         
         for i, center_location in location_summary.iterrows():
-            # Find locations within radius
+            \# Find locations within radius
             within_radius = []
             for j, other_location in location_summary.iterrows():
                 if distance_matrix[i, j] <= max_radius:
                     within_radius.append(j)
             
-            if len(within_radius) < 2:  # Need at least 2 locations
+            if len(within_radius) < 2:  \# Need at least 2 locations
                 continue
             
-            # Calculate cluster statistics
+            \# Calculate cluster statistics
             cluster_data = location_summary.iloc[within_radius]
             total_cases = cluster_data['count'].sum()
             total_population = cluster_data['population'].sum()
             cluster_rate = (total_cases / total_population) * 100000
             
-            # Calculate expected cases (using overall rate)
+            \# Calculate expected cases (using overall rate)
             overall_rate = location_summary['count'].sum() / location_summary['population'].sum()
             expected_cases = total_population * overall_rate
             
             if total_cases >= min_cases and total_cases > expected_cases * 1.5:
-                # Calculate likelihood ratio (simplified)
+                \# Calculate likelihood ratio (simplified)
                 if expected_cases > 0:
                     likelihood_ratio = (total_cases / expected_cases) if total_cases > expected_cases else 1.0
                     
@@ -791,12 +791,12 @@ class DiseaseSurveillanceSystem:
                         'expected_cases': expected_cases,
                         'relative_risk': total_cases / expected_cases,
                         'likelihood_ratio': likelihood_ratio,
-                        'p_value': 1.0 / likelihood_ratio if likelihood_ratio > 1 else 1.0  # Simplified p-value
+                        'p_value': 1.0 / likelihood_ratio if likelihood_ratio > 1 else 1.0  \# Simplified p-value
                     }
                     
                     results['clusters'].append(cluster)
         
-        # Sort clusters by likelihood ratio
+        \# Sort clusters by likelihood ratio
         results['clusters'] = sorted(results['clusters'], key=lambda x: x['likelihood_ratio'], reverse=True)
         
         return results
@@ -821,9 +821,9 @@ class DiseaseSurveillanceSystem:
             
             location_data = location_data.sort_values('date')
             
-            # Prepare time series
+            \# Prepare time series
             ts_data = location_data.set_index('date')['rate']
-            ts_data = ts_data.asfreq('D', fill_value=0)  # Daily frequency
+            ts_data = ts_data.asfreq('D', fill_value=0)  \# Daily frequency
             
             if method == "arima":
                 predictions = self._arima_forecast(ts_data, forecast_days)
@@ -845,15 +845,15 @@ class DiseaseSurveillanceSystem:
     def _arima_forecast(self, ts_data: pd.Series, forecast_days: int) -> Dict[str, Any]:
         """Generate forecasts using ARIMA model."""
         try:
-            # Fit ARIMA model (auto-select parameters)
+            \# Fit ARIMA model (auto-select parameters)
             model = ARIMA(ts_data, order=(1, 1, 1))
             fitted_model = model.fit()
             
-            # Generate forecast
+            \# Generate forecast
             forecast = fitted_model.forecast(steps=forecast_days)
             forecast_ci = fitted_model.get_forecast(steps=forecast_days).conf_int()
             
-            # Create forecast dates
+            \# Create forecast dates
             last_date = ts_data.index[-1]
             forecast_dates = pd.date_range(start=last_date + timedelta(days=1), periods=forecast_days, freq='D')
             
@@ -881,11 +881,11 @@ class DiseaseSurveillanceSystem:
     def _prophet_forecast(self, data: pd.DataFrame, forecast_days: int) -> Dict[str, Any]:
         """Generate forecasts using Prophet model."""
         try:
-            # Prepare data for Prophet
+            \# Prepare data for Prophet
             prophet_data = data[['date', 'rate']].copy()
             prophet_data.columns = ['ds', 'y']
             
-            # Fit Prophet model
+            \# Fit Prophet model
             model = Prophet(
                 daily_seasonality=True,
                 weekly_seasonality=True,
@@ -894,13 +894,13 @@ class DiseaseSurveillanceSystem:
             )
             model.fit(prophet_data)
             
-            # Create future dataframe
+            \# Create future dataframe
             future = model.make_future_dataframe(periods=forecast_days)
             
-            # Generate forecast
+            \# Generate forecast
             forecast = model.predict(future)
             
-            # Extract forecast period
+            \# Extract forecast period
             forecast_period = forecast.tail(forecast_days)
             
             results = {
@@ -927,11 +927,11 @@ class DiseaseSurveillanceSystem:
     def _lstm_forecast(self, ts_data: pd.Series, forecast_days: int) -> Dict[str, Any]:
         """Generate forecasts using LSTM neural network."""
         try:
-            # Prepare data for LSTM
+            \# Prepare data for LSTM
             scaler = MinMaxScaler()
             scaled_data = scaler.fit_transform(ts_data.values.reshape(-1, 1))
             
-            # Create sequences
+            \# Create sequences
             sequence_length = min(30, len(scaled_data) // 3)
             X, y = [], []
             
@@ -942,12 +942,12 @@ class DiseaseSurveillanceSystem:
             X, y = np.array(X), np.array(y)
             X = X.reshape((X.shape<sup>0</sup>, X.shape<sup>1</sup>, 1))
             
-            # Split data
+            \# Split data
             train_size = int(len(X) * 0.8)
             X_train, X_test = X[:train_size], X[train_size:]
             y_train, y_test = y[:train_size], y[train_size:]
             
-            # Define LSTM model
+            \# Define LSTM model
             class LSTMModel(nn.Module):
                 def __init__(self, input_size=1, hidden_size=50, num_layers=2):
                     super(LSTMModel, self).__init__()
@@ -963,16 +963,16 @@ class DiseaseSurveillanceSystem:
                     out = self.fc(out[:, -1, :])
                     return out
             
-            # Train model
+            \# Train model
             model = LSTMModel()
             criterion = nn.MSELoss()
             optimizer = optim.Adam(model.parameters(), lr=0.001)
             
-            # Convert to tensors
+            \# Convert to tensors
             X_train_tensor = torch.FloatTensor(X_train)
             y_train_tensor = torch.FloatTensor(y_train)
             
-            # Training loop
+            \# Training loop
             model.train()
             for epoch in range(100):
                 optimizer.zero_grad()
@@ -981,7 +981,7 @@ class DiseaseSurveillanceSystem:
                 loss.backward()
                 optimizer.step()
             
-            # Generate forecast
+            \# Generate forecast
             model.eval()
             last_sequence = scaled_data[-sequence_length:].reshape(1, sequence_length, 1)
             last_sequence_tensor = torch.FloatTensor(last_sequence)
@@ -994,15 +994,15 @@ class DiseaseSurveillanceSystem:
                     prediction = model(current_sequence)
                     forecasts.append(prediction.item())
                     
-                    # Update sequence for next prediction
+                    \# Update sequence for next prediction
                     new_sequence = torch.cat([current_sequence[:, 1:, :], prediction.unsqueeze(0).unsqueeze(2)], dim=1)
                     current_sequence = new_sequence
             
-            # Inverse transform forecasts
+            \# Inverse transform forecasts
             forecasts = np.array(forecasts).reshape(-1, 1)
             forecasts = scaler.inverse_transform(forecasts).flatten()
             
-            # Create forecast dates
+            \# Create forecast dates
             last_date = ts_data.index[-1]
             forecast_dates = pd.date_range(start=last_date + timedelta(days=1), periods=forecast_days, freq='D')
             
@@ -1011,7 +1011,7 @@ class DiseaseSurveillanceSystem:
                 'forecast_dates': [date.isoformat() for date in forecast_dates],
                 'forecast_values': forecasts.tolist(),
                 'confidence_intervals': {
-                    'lower': (forecasts * 0.8).tolist(),  # Simplified CI
+                    'lower': (forecasts * 0.8).tolist(),  \# Simplified CI
                     'upper': (forecasts * 1.2).tolist()
                 },
                 'model_performance': {
@@ -1039,10 +1039,10 @@ class HealthEquityAnalyzer:
     def _setup_disparity_thresholds(self) -> Dict[str, float]:
         """Setup thresholds for identifying significant disparities."""
         return {
-            'rate_ratio_threshold': 1.2,      # 20% difference
-            'rate_difference_threshold': 10,   # 10 per 100,000 difference
-            'index_of_disparity_threshold': 15, # 15% index of disparity
-            'concentration_index_threshold': 0.1 # Concentration index
+            'rate_ratio_threshold': 1.2,      \# 20% difference
+            'rate_difference_threshold': 10,   \# 10 per 100,000 difference
+            'index_of_disparity_threshold': 15, \# 15% index of disparity
+            'concentration_index_threshold': 0.1 \# Concentration index
         }
     
     def assess_health_equity(
@@ -1083,17 +1083,17 @@ class HealthEquityAnalyzer:
     ) -> HealthEquityAssessment:
         """Analyze health equity for a specific dimension."""
         
-        # Calculate rates by group
+        \# Calculate rates by group
         group_rates = self._calculate_group_rates(data, outcome, dimension)
         
-        # Determine reference group
+        \# Determine reference group
         if reference_group is None:
-            # Use group with best (lowest) rate as reference
+            \# Use group with best (lowest) rate as reference
             reference_group = min(group_rates.keys(), key=lambda x: group_rates[x]['rate'])
         
         reference_rate = group_rates[reference_group]['rate']
         
-        # Calculate disparity measures
+        \# Calculate disparity measures
         rate_ratios = {}
         rate_differences = {}
         
@@ -1102,19 +1102,19 @@ class HealthEquityAnalyzer:
                 rate_ratios[group] = stats['rate'] / reference_rate if reference_rate > 0 else float('inf')
                 rate_differences[group] = stats['rate'] - reference_rate
         
-        # Calculate overall disparity measure (Index of Disparity)
+        \# Calculate overall disparity measure (Index of Disparity)
         rates = [stats['rate'] for stats in group_rates.values()]
         mean_rate = np.mean(rates)
         index_of_disparity = (np.sum(np.abs(np.array(rates) - mean_rate)) / mean_rate) * 100 if mean_rate > 0 else 0
         
-        # Statistical significance testing
+        \# Statistical significance testing
         p_value = self._test_disparity_significance(data, outcome, dimension)
         
-        # Effect size (Cohen's d for largest disparity)
+        \# Effect size (Cohen's d for largest disparity)
         max_disparity_group = max(rate_ratios.keys(), key=lambda x: abs(rate_ratios[x] - 1)) if rate_ratios else reference_group
         effect_size = self._calculate_effect_size(data, outcome, dimension, reference_group, max_disparity_group)
         
-        # Confidence interval for disparity measure
+        \# Confidence interval for disparity measure
         ci = self._calculate_disparity_confidence_interval(group_rates, reference_group, max_disparity_group)
         
         assessment = HealthEquityAssessment(
@@ -1140,10 +1140,10 @@ class HealthEquityAnalyzer:
     ) -> Dict[str, Dict[str, float]]:
         """Calculate outcome rates by group."""
         
-        # Assume data has columns: outcome_count, population, and dimension column
+        \# Assume data has columns: outcome_count, population, and dimension column
         outcome_col = f"{outcome.value}_count"
         if outcome_col not in data.columns:
-            outcome_col = "count"  # Fallback to generic count column
+            outcome_col = "count"  \# Fallback to generic count column
         
         group_stats = {}
         
@@ -1155,9 +1155,9 @@ class HealthEquityAnalyzer:
             
             rate = (total_cases / total_population) * 100000 if total_population > 0 else 0
             
-            # Calculate confidence interval for rate
+            \# Calculate confidence interval for rate
             if total_cases > 0 and total_population > 0:
-                # Using Poisson approximation
+                \# Using Poisson approximation
                 rate_se = np.sqrt(total_cases) / total_population * 100000
                 ci_lower = max(0, rate - 1.96 * rate_se)
                 ci_upper = rate + 1.96 * rate_se
@@ -1185,7 +1185,7 @@ class HealthEquityAnalyzer:
         if outcome_col not in data.columns:
             outcome_col = "count"
         
-        # Create contingency table
+        \# Create contingency table
         contingency_data = []
         
         for group in data[dimension.value].unique():
@@ -1198,12 +1198,12 @@ class HealthEquityAnalyzer:
         
         contingency_table = np.array(contingency_data)
         
-        # Chi-square test
+        \# Chi-square test
         try:
             chi2, p_value, dof, expected = stats.chi2_contingency(contingency_table)
             return p_value
         except:
-            return 1.0  # Return non-significant p-value if test fails
+            return 1.0  \# Return non-significant p-value if test fails
     
     def _calculate_effect_size(
         self,
@@ -1219,18 +1219,18 @@ class HealthEquityAnalyzer:
         if outcome_col not in data.columns:
             outcome_col = "count"
         
-        # Get data for both groups
+        \# Get data for both groups
         ref_data = data[data[dimension.value] == reference_group]
         comp_data = data[data[dimension.value] == comparison_group]
         
-        # Calculate rates for each observation
+        \# Calculate rates for each observation
         ref_rates = (ref_data[outcome_col] / ref_data['population'] * 100000).dropna()
         comp_rates = (comp_data[outcome_col] / comp_data['population'] * 100000).dropna()
         
         if len(ref_rates) == 0 or len(comp_rates) == 0:
             return 0.0
         
-        # Calculate Cohen's d
+        \# Calculate Cohen's d
         pooled_std = np.sqrt(((len(ref_rates) - 1) * ref_rates.var() + 
                              (len(comp_rates) - 1) * comp_rates.var()) / 
                             (len(ref_rates) + len(comp_rates) - 2))
@@ -1261,8 +1261,8 @@ class HealthEquityAnalyzer:
         
         rate_ratio = comp_rate / ref_rate
         
-        # Approximate confidence interval for rate ratio
-        # Using log transformation
+        \# Approximate confidence interval for rate ratio
+        \# Using log transformation
         ref_cases = group_rates[reference_group]['cases']
         comp_cases = group_rates[comparison_group]['cases']
         
@@ -1289,32 +1289,32 @@ class HealthEquityAnalyzer:
         if outcome_col not in data.columns:
             outcome_col = "count"
         
-        # Calculate rates
+        \# Calculate rates
         data = data.copy()
         data['rate'] = (data[outcome_col] / data['population']) * 100000
         
-        # Sort by socioeconomic variable
+        \# Sort by socioeconomic variable
         data = data.sort_values(socioeconomic_variable)
         
-        # Calculate cumulative population proportions
+        \# Calculate cumulative population proportions
         data['cum_pop'] = data['population'].cumsum() / data['population'].sum()
         
-        # Calculate concentration index using trapezoidal rule
-        # CI = 2 * (covariance between health and rank) / mean health
+        \# Calculate concentration index using trapezoidal rule
+        \# CI = 2 * (covariance between health and rank) / mean health
         
         n = len(data)
         ranks = np.arange(1, n + 1) / n
         
-        # Weight by population
+        \# Weight by population
         weights = data['population'] / data['population'].sum()
         
-        # Weighted mean rate
+        \# Weighted mean rate
         mean_rate = np.average(data['rate'], weights=weights)
         
         if mean_rate == 0:
             return 0.0
         
-        # Weighted covariance
+        \# Weighted covariance
         weighted_mean_rank = np.average(ranks, weights=weights)
         
         covariance = np.average(
@@ -1344,7 +1344,7 @@ class HealthEquityAnalyzer:
             'recommendations': [] if include_recommendations else None
         }
         
-        # Process each assessment
+        \# Process each assessment
         for assessment in assessments:
             dimension_result = {
                 'dimension': assessment.equity_dimension.value,
@@ -1358,7 +1358,7 @@ class HealthEquityAnalyzer:
             
             report['dimension_results'].append(dimension_result)
         
-        # Find largest disparity
+        \# Find largest disparity
         if assessments:
             largest_disparity = max(assessments, key=lambda x: x.disparity_value)
             report['summary']['largest_disparity'] = {
@@ -1367,13 +1367,13 @@ class HealthEquityAnalyzer:
                 'significance': largest_disparity.statistical_significance
             }
         
-        # Calculate overall equity score (0-100, higher is more equitable)
+        \# Calculate overall equity score (0-100, higher is more equitable)
         if assessments:
             avg_disparity = np.mean([a.disparity_value for a in assessments])
             equity_score = max(0, 100 - avg_disparity)
             report['summary']['equity_score'] = equity_score
         
-        # Generate recommendations
+        \# Generate recommendations
         if include_recommendations:
             report['recommendations'] = self._generate_equity_recommendations(assessments)
         
@@ -1402,7 +1402,7 @@ class HealthEquityAnalyzer:
         
         recommendations = []
         
-        # Priority recommendations based on largest disparities
+        \# Priority recommendations based on largest disparities
         significant_disparities = [a for a in assessments if a.statistical_significance]
         
         if not significant_disparities:
@@ -1413,10 +1413,10 @@ class HealthEquityAnalyzer:
             })
             return recommendations
         
-        # Sort by disparity magnitude
+        \# Sort by disparity magnitude
         significant_disparities.sort(key=lambda x: x.disparity_value, reverse=True)
         
-        for i, assessment in enumerate(significant_disparities[:3]):  # Top 3 disparities
+        for i, assessment in enumerate(significant_disparities[:3]):  \# Top 3 disparities
             priority = ['high', 'medium', 'low'][i]
             
             if assessment.equity_dimension == EquityDimension.RACE_ETHNICITY:
@@ -1506,7 +1506,7 @@ class CausalInferenceEngine:
         if not instruments:
             raise ValueError("Instrumental variables must be specified")
         
-        # Prepare data
+        \# Prepare data
         analysis_data = data[[treatment, outcome] + instruments].dropna()
         
         if confounders:
@@ -1514,7 +1514,7 @@ class CausalInferenceEngine:
             if available_confounders:
                 analysis_data = data[[treatment, outcome] + instruments + available_confounders].dropna()
         
-        # First stage: regress treatment on instruments (and confounders)
+        \# First stage: regress treatment on instruments (and confounders)
         X_first = analysis_data[instruments]
         if confounders:
             available_confounders = [c for c in confounders if c in analysis_data.columns]
@@ -1524,10 +1524,10 @@ class CausalInferenceEngine:
         X_first = sm.add_constant(X_first)
         first_stage = sm.OLS(analysis_data[treatment], X_first).fit()
         
-        # Get predicted treatment values
+        \# Get predicted treatment values
         treatment_hat = first_stage.fittedvalues
         
-        # Second stage: regress outcome on predicted treatment (and confounders)
+        \# Second stage: regress outcome on predicted treatment (and confounders)
         X_second = pd.DataFrame({'treatment_hat': treatment_hat})
         if confounders:
             available_confounders = [c for c in confounders if c in analysis_data.columns]
@@ -1537,21 +1537,21 @@ class CausalInferenceEngine:
         X_second = sm.add_constant(X_second)
         second_stage = sm.OLS(analysis_data[outcome], X_second).fit()
         
-        # Extract causal effect
+        \# Extract causal effect
         causal_effect = second_stage.params['treatment_hat']
         
-        # Calculate confidence interval
+        \# Calculate confidence interval
         ci_lower = second_stage.conf_int().loc['treatment_hat', 0]
         ci_upper = second_stage.conf_int().loc['treatment_hat', 1]
         
-        # Test instrument strength (F-statistic from first stage)
+        \# Test instrument strength (F-statistic from first stage)
         f_stat = first_stage.fvalue
-        weak_instrument = f_stat < 10  # Rule of thumb
+        weak_instrument = f_stat < 10  \# Rule of thumb
         
-        # Test overidentification (if more instruments than endogenous variables)
+        \# Test overidentification (if more instruments than endogenous variables)
         overid_test_passed = True
         if len(instruments) > 1:
-            # Simplified overidentification test
+            \# Simplified overidentification test
             residuals = analysis_data[outcome] - second_stage.fittedvalues
             overid_reg = sm.OLS(residuals, X_first).fit()
             overid_test_passed = overid_reg.f_pvalue > 0.05
@@ -1567,7 +1567,7 @@ class CausalInferenceEngine:
             assumptions_met={
                 'instrument_strength': not weak_instrument,
                 'overidentification': overid_test_passed,
-                'exclusion_restriction': True  # Cannot be tested directly
+                'exclusion_restriction': True  \# Cannot be tested directly
             },
             sensitivity_analysis={
                 'first_stage_f_stat': f_stat,
@@ -1591,46 +1591,46 @@ class CausalInferenceEngine:
         if running_variable not in data.columns:
             raise ValueError(f"Running variable '{running_variable}' not found in data")
         
-        # Determine cutoff if not provided
+        \# Determine cutoff if not provided
         if cutoff is None:
-            # Assume treatment assignment changes at median of running variable
+            \# Assume treatment assignment changes at median of running variable
             cutoff = data[running_variable].median()
         
-        # Create treatment assignment based on cutoff
+        \# Create treatment assignment based on cutoff
         data = data.copy()
         data['above_cutoff'] = (data[running_variable] >= cutoff).astype(int)
         
-        # Center running variable around cutoff
+        \# Center running variable around cutoff
         data['running_centered'] = data[running_variable] - cutoff
         
-        # Prepare regression variables
+        \# Prepare regression variables
         reg_vars = ['above_cutoff', 'running_centered']
         
-        # Add interaction term
+        \# Add interaction term
         data['above_cutoff_x_running'] = data['above_cutoff'] * data['running_centered']
         reg_vars.append('above_cutoff_x_running')
         
-        # Add confounders if specified
+        \# Add confounders if specified
         if confounders:
             available_confounders = [c for c in confounders if c in data.columns]
             reg_vars.extend(available_confounders)
         
-        # Fit regression model
+        \# Fit regression model
         X = data[reg_vars].dropna()
         y = data.loc[X.index, outcome]
         
         X = sm.add_constant(X)
         model = sm.OLS(y, X).fit()
         
-        # Extract causal effect (coefficient on above_cutoff)
+        \# Extract causal effect (coefficient on above_cutoff)
         causal_effect = model.params['above_cutoff']
         
-        # Calculate confidence interval
+        \# Calculate confidence interval
         ci_lower = model.conf_int().loc['above_cutoff', 0]
         ci_upper = model.conf_int().loc['above_cutoff', 1]
         
-        # Test for manipulation of running variable (McCrary test approximation)
-        # Check for discontinuity in density of running variable
+        \# Test for manipulation of running variable (McCrary test approximation)
+        \# Check for discontinuity in density of running variable
         bandwidth = 0.1 * data['running_centered'].std()
         left_density = len(data[(data['running_centered'] >= -bandwidth) & 
                                (data['running_centered'] < 0)]) / bandwidth
@@ -1638,14 +1638,14 @@ class CausalInferenceEngine:
                                 (data['running_centered'] <= bandwidth)]) / bandwidth
         
         density_ratio = right_density / left_density if left_density > 0 else float('inf')
-        no_manipulation = 0.5 < density_ratio < 2.0  # Rough test
+        no_manipulation = 0.5 < density_ratio < 2.0  \# Rough test
         
-        # Test for balance of covariates
+        \# Test for balance of covariates
         covariate_balance = True
         if confounders:
             for confounder in available_confounders:
                 if confounder in data.columns:
-                    # Test for discontinuity in confounder
+                    \# Test for discontinuity in confounder
                     conf_model = sm.OLS(data[confounder], 
                                       sm.add_constant(data[['above_cutoff', 'running_centered']])).fit()
                     if conf_model.pvalues['above_cutoff'] < 0.05:
@@ -1663,7 +1663,7 @@ class CausalInferenceEngine:
             assumptions_met={
                 'no_manipulation': no_manipulation,
                 'covariate_balance': covariate_balance,
-                'local_randomization': True  # Assumed near cutoff
+                'local_randomization': True  \# Assumed near cutoff
             },
             sensitivity_analysis={
                 'density_ratio': density_ratio,
@@ -1689,51 +1689,51 @@ class CausalInferenceEngine:
         if not all(var in data.columns for var in required_vars):
             raise ValueError(f"Required variables not found: {required_vars}")
         
-        # Create treatment indicator (post-period × treatment group)
+        \# Create treatment indicator (post-period × treatment group)
         data = data.copy()
         
-        # Assume binary time periods (0 = pre, 1 = post)
+        \# Assume binary time periods (0 = pre, 1 = post)
         data['post'] = data[time_variable]
         
-        # Assume binary groups (0 = control, 1 = treatment)
+        \# Assume binary groups (0 = control, 1 = treatment)
         data['treated'] = data[group_variable]
         
-        # Create interaction term
+        \# Create interaction term
         data['post_x_treated'] = data['post'] * data['treated']
         
-        # Prepare regression variables
+        \# Prepare regression variables
         reg_vars = ['post', 'treated', 'post_x_treated']
         
-        # Add confounders if specified
+        \# Add confounders if specified
         if confounders:
             available_confounders = [c for c in confounders if c in data.columns]
             reg_vars.extend(available_confounders)
         
-        # Fit regression model
+        \# Fit regression model
         X = data[reg_vars].dropna()
         y = data.loc[X.index, outcome]
         
         X = sm.add_constant(X)
         model = sm.OLS(y, X).fit()
         
-        # Extract causal effect (coefficient on interaction term)
+        \# Extract causal effect (coefficient on interaction term)
         causal_effect = model.params['post_x_treated']
         
-        # Calculate confidence interval
+        \# Calculate confidence interval
         ci_lower = model.conf_int().loc['post_x_treated', 0]
         ci_upper = model.conf_int().loc['post_x_treated', 1]
         
-        # Test parallel trends assumption (simplified)
-        # Check if pre-treatment trends are similar between groups
+        \# Test parallel trends assumption (simplified)
+        \# Check if pre-treatment trends are similar between groups
         pre_data = data[data['post'] == 0]
         if len(pre_data) > 0 and time_variable in pre_data.columns:
-            # If we have multiple pre-periods, test for differential trends
-            parallel_trends = True  # Simplified assumption
+            \# If we have multiple pre-periods, test for differential trends
+            parallel_trends = True  \# Simplified assumption
         else:
-            parallel_trends = True  # Cannot test with only two periods
+            parallel_trends = True  \# Cannot test with only two periods
         
-        # Test for common shocks
-        common_shocks = True  # Assumed in DiD design
+        \# Test for common shocks
+        common_shocks = True  \# Assumed in DiD design
         
         result = CausalInferenceResult(
             method=CausalMethod.DIFFERENCE_IN_DIFFERENCES,
@@ -1746,7 +1746,7 @@ class CausalInferenceEngine:
             assumptions_met={
                 'parallel_trends': parallel_trends,
                 'common_shocks': common_shocks,
-                'no_spillovers': True  # Assumed
+                'no_spillovers': True  \# Assumed
             },
             sensitivity_analysis={
                 'pre_treatment_difference': model.params['treated'],
@@ -1768,48 +1768,48 @@ class CausalInferenceEngine:
     ) -> CausalInferenceResult:
         """Estimate causal effect using synthetic control method."""
         
-        # This is a simplified implementation of synthetic control
-        # In practice, you would use specialized packages like Synth
+        \# This is a simplified implementation of synthetic control
+        \# In practice, you would use specialized packages like Synth
         
         required_vars = [unit_variable, time_variable, outcome, treatment]
         if not all(var in data.columns for var in required_vars):
             raise ValueError(f"Required variables not found: {required_vars}")
         
-        # Identify treated unit and treatment time
+        \# Identify treated unit and treatment time
         treated_units = data[data[treatment] == 1][unit_variable].unique()
         if len(treated_units) != 1:
             raise ValueError("Synthetic control requires exactly one treated unit")
         
         treated_unit = treated_units<sup>0</sup>
         
-        # Find treatment time
+        \# Find treatment time
         treated_data = data[data[unit_variable] == treated_unit]
         treatment_time = treated_data[treated_data[treatment] == 1][time_variable].min()
         
-        # Split data into pre and post treatment periods
+        \# Split data into pre and post treatment periods
         pre_data = data[data[time_variable] < treatment_time]
         post_data = data[data[time_variable] >= treatment_time]
         
-        # Get control units
+        \# Get control units
         control_units = data[data[unit_variable] != treated_unit][unit_variable].unique()
         
-        # Create outcome matrix for pre-treatment period
+        \# Create outcome matrix for pre-treatment period
         pre_outcomes = pre_data.pivot(index=time_variable, columns=unit_variable, values=outcome)
         
-        # Treated unit outcomes
+        \# Treated unit outcomes
         treated_outcomes = pre_outcomes[treated_unit].dropna()
         
-        # Control unit outcomes
+        \# Control unit outcomes
         control_outcomes = pre_outcomes[control_units].dropna()
         
-        # Find optimal weights for synthetic control
-        # Minimize sum of squared differences in pre-treatment period
+        \# Find optimal weights for synthetic control
+        \# Minimize sum of squared differences in pre-treatment period
         def objective(weights):
-            weights = weights / weights.sum()  # Normalize weights
+            weights = weights / weights.sum()  \# Normalize weights
             synthetic = control_outcomes.dot(weights)
             return np.sum((treated_outcomes - synthetic) ** 2)
         
-        # Constraints: weights sum to 1 and are non-negative
+        \# Constraints: weights sum to 1 and are non-negative
         from scipy.optimize import minimize
         
         n_controls = len(control_units)
@@ -1822,29 +1822,29 @@ class CausalInferenceEngine:
         
         optimal_weights = result_opt.x / result_opt.x.sum()
         
-        # Calculate synthetic control outcomes for all periods
+        \# Calculate synthetic control outcomes for all periods
         all_outcomes = data.pivot(index=time_variable, columns=unit_variable, values=outcome)
         synthetic_outcomes = all_outcomes[control_units].dot(optimal_weights)
         treated_all_outcomes = all_outcomes[treated_unit]
         
-        # Calculate treatment effect in post-treatment period
+        \# Calculate treatment effect in post-treatment period
         post_synthetic = synthetic_outcomes[synthetic_outcomes.index >= treatment_time]
         post_treated = treated_all_outcomes[treated_all_outcomes.index >= treatment_time]
         
         treatment_effects = post_treated - post_synthetic
         avg_treatment_effect = treatment_effects.mean()
         
-        # Calculate confidence interval using placebo tests
-        # Run synthetic control for each control unit
+        \# Calculate confidence interval using placebo tests
+        \# Run synthetic control for each control unit
         placebo_effects = []
         
-        for control_unit in control_units[:min(10, len(control_units))]:  # Limit for computational efficiency
+        for control_unit in control_units[:min(10, len(control_units))]:  \# Limit for computational efficiency
             try:
-                # Treat this control unit as if it were treated
+                \# Treat this control unit as if it were treated
                 placebo_treated = all_outcomes[control_unit]
                 placebo_controls = all_outcomes[[u for u in control_units if u != control_unit]]
                 
-                # Find weights for this placebo
+                \# Find weights for this placebo
                 placebo_pre_treated = placebo_treated[placebo_treated.index < treatment_time]
                 placebo_pre_controls = placebo_controls.loc[placebo_pre_treated.index]
                 
@@ -1863,7 +1863,7 @@ class CausalInferenceEngine:
                 
                 placebo_weights = placebo_result.x / placebo_result.x.sum()
                 
-                # Calculate placebo effect
+                \# Calculate placebo effect
                 placebo_synthetic_all = placebo_controls.dot(placebo_weights)
                 placebo_post_synthetic = placebo_synthetic_all[placebo_synthetic_all.index >= treatment_time]
                 placebo_post_treated = placebo_treated[placebo_treated.index >= treatment_time]
@@ -1874,18 +1874,18 @@ class CausalInferenceEngine:
             except:
                 continue
         
-        # Calculate p-value as proportion of placebo effects larger than actual effect
+        \# Calculate p-value as proportion of placebo effects larger than actual effect
         if placebo_effects:
             p_value = np.mean([abs(effect) >= abs(avg_treatment_effect) for effect in placebo_effects])
         else:
-            p_value = 0.5  # Default if no placebo tests possible
+            p_value = 0.5  \# Default if no placebo tests possible
         
-        # Confidence interval from placebo distribution
+        \# Confidence interval from placebo distribution
         if len(placebo_effects) >= 5:
             ci_lower = np.percentile(placebo_effects, 2.5)
             ci_upper = np.percentile(placebo_effects, 97.5)
         else:
-            # Fallback to simple standard error
+            \# Fallback to simple standard error
             se = treatment_effects.std() / np.sqrt(len(treatment_effects))
             ci_lower = avg_treatment_effect - 1.96 * se
             ci_upper = avg_treatment_effect + 1.96 * se
@@ -1899,9 +1899,9 @@ class CausalInferenceEngine:
             p_value=p_value,
             sample_size=len(post_treated),
             assumptions_met={
-                'no_spillovers': True,  # Assumed
-                'convex_hull': True,    # Should be checked
-                'interpolation_bias': True  # Assumed minimal
+                'no_spillovers': True,  \# Assumed
+                'convex_hull': True,    \# Should be checked
+                'interpolation_bias': True  \# Assumed minimal
             },
             sensitivity_analysis={
                 'pre_treatment_fit': result_opt.fun,
@@ -1924,12 +1924,12 @@ class CausalInferenceEngine:
         if not confounders:
             raise ValueError("Confounders must be specified for propensity score matching")
         
-        # Prepare data
+        \# Prepare data
         available_confounders = [c for c in confounders if c in data.columns]
         analysis_vars = [treatment, outcome] + available_confounders
         analysis_data = data[analysis_vars].dropna()
         
-        # Estimate propensity scores
+        \# Estimate propensity scores
         X = analysis_data[available_confounders]
         y = analysis_data[treatment]
         
@@ -1940,11 +1940,11 @@ class CausalInferenceEngine:
         analysis_data = analysis_data.copy()
         analysis_data['propensity_score'] = propensity_scores
         
-        # Perform matching (1:1 nearest neighbor with caliper)
+        \# Perform matching (1:1 nearest neighbor with caliper)
         treated_data = analysis_data[analysis_data[treatment] == 1]
         control_data = analysis_data[analysis_data[treatment] == 0]
         
-        caliper = 0.1 * propensity_scores.std()  # 0.1 standard deviations
+        caliper = 0.1 * propensity_scores.std()  \# 0.1 standard deviations
         
         matched_pairs = []
         used_controls = set()
@@ -1952,7 +1952,7 @@ class CausalInferenceEngine:
         for _, treated_unit in treated_data.iterrows():
             treated_ps = treated_unit['propensity_score']
             
-            # Find closest control unit within caliper
+            \# Find closest control unit within caliper
             distances = np.abs(control_data['propensity_score'] - treated_ps)
             valid_matches = control_data[
                 (distances <= caliper) & 
@@ -1972,29 +1972,29 @@ class CausalInferenceEngine:
         if len(matched_pairs) == 0:
             raise ValueError("No valid matches found within caliper")
         
-        # Calculate average treatment effect
+        \# Calculate average treatment effect
         treatment_effects = [pair['treated_outcome'] - pair['control_outcome'] 
                            for pair in matched_pairs]
         
         avg_treatment_effect = np.mean(treatment_effects)
         se_treatment_effect = np.std(treatment_effects) / np.sqrt(len(treatment_effects))
         
-        # Calculate confidence interval
+        \# Calculate confidence interval
         ci_lower = avg_treatment_effect - 1.96 * se_treatment_effect
         ci_upper = avg_treatment_effect + 1.96 * se_treatment_effect
         
-        # Calculate p-value
+        \# Calculate p-value
         t_stat = avg_treatment_effect / se_treatment_effect if se_treatment_effect > 0 else 0
         p_value = 2 * (1 - stats.norm.cdf(abs(t_stat)))
         
-        # Check balance after matching
+        \# Check balance after matching
         matched_treated_ps = [pair['treated_ps'] for pair in matched_pairs]
         matched_control_ps = [pair['control_ps'] for pair in matched_pairs]
         
         ps_balance = abs(np.mean(matched_treated_ps) - np.mean(matched_control_ps))
-        good_balance = ps_balance < 0.05  # Arbitrary threshold
+        good_balance = ps_balance < 0.05  \# Arbitrary threshold
         
-        # Check overlap
+        \# Check overlap
         ps_overlap = (min(propensity_scores) < 0.9 and max(propensity_scores) > 0.1)
         
         result = CausalInferenceResult(
@@ -2006,7 +2006,7 @@ class CausalInferenceEngine:
             p_value=p_value,
             sample_size=len(matched_pairs),
             assumptions_met={
-                'unconfoundedness': True,  # Assumed given confounders
+                'unconfoundedness': True,  \# Assumed given confounders
                 'overlap': ps_overlap,
                 'balance_achieved': good_balance
             },
@@ -2030,16 +2030,16 @@ class PopulationHealthAISystem:
     def __init__(self, config_path: str):
         """Initialize population health AI system."""
         
-        # Load configuration
+        \# Load configuration
         with open(config_path, 'r') as f:
             self.config = yaml.safe_load(f)
         
-        # Initialize components
+        \# Initialize components
         self.surveillance_system = DiseaseSurveillanceSystem(self.config.get('surveillance', {}))
         self.equity_analyzer = HealthEquityAnalyzer(self.config.get('equity', {}))
         self.causal_engine = CausalInferenceEngine(self.config.get('causal_inference', {}))
         
-        # Initialize database
+        \# Initialize database
         self.db_engine = create_engine(self.config.get('database_url', 'sqlite:///population_health.db'))
         self._setup_database()
         
@@ -2112,25 +2112,25 @@ class PopulationHealthAISystem:
             }
             
             if analysis_type in ['comprehensive', 'surveillance']:
-                # Disease surveillance analysis
+                \# Disease surveillance analysis
                 surveillance_results = self._run_surveillance_analysis(data)
                 results['surveillance'] = surveillance_results
             
             if analysis_type in ['comprehensive', 'equity']:
-                # Health equity analysis
+                \# Health equity analysis
                 equity_results = self._run_equity_analysis(data)
                 results['equity'] = equity_results
             
             if analysis_type in ['comprehensive', 'causal']:
-                # Causal inference analysis
+                \# Causal inference analysis
                 causal_results = self._run_causal_analysis(data)
                 results['causal'] = causal_results
             
-            # Generate recommendations
+            \# Generate recommendations
             recommendations = self._generate_population_health_recommendations(results)
             results['recommendations'] = recommendations
             
-            # Save results if requested
+            \# Save results if requested
             if save_results:
                 self._save_analysis_results(results)
             
@@ -2151,14 +2151,14 @@ class PopulationHealthAISystem:
             'spatial_analysis': {}
         }
         
-        # Ingest data into surveillance system
+        \# Ingest data into surveillance system
         self.surveillance_system.ingest_surveillance_data('analysis_data', data, 'syndromic')
         
-        # Detect outbreaks for different diseases/outcomes
+        \# Detect outbreaks for different diseases/outcomes
         if 'outcome_type' in data.columns:
             outcome_types = data['outcome_type'].unique()
             
-            for outcome in outcome_types[:3]:  # Limit to first 3 for efficiency
+            for outcome in outcome_types[:3]:  \# Limit to first 3 for efficiency
                 try:
                     outbreak_results = self.surveillance_system.detect_outbreaks(
                         disease=outcome,
@@ -2168,13 +2168,13 @@ class PopulationHealthAISystem:
                 except Exception as e:
                     logger.warning(f"Failed to detect outbreaks for {outcome}: {str(e)}")
         
-        # Generate forecasts for locations with sufficient data
+        \# Generate forecasts for locations with sufficient data
         if 'location' in data.columns:
             locations = data['location'].unique()
             
-            for location in locations[:3]:  # Limit to first 3 for efficiency
+            for location in locations[:3]:  \# Limit to first 3 for efficiency
                 location_data = data[data['location'] == location]
-                if len(location_data) >= 30:  # Need sufficient data for forecasting
+                if len(location_data) >= 30:  \# Need sufficient data for forecasting
                     try:
                         forecast_results = self.surveillance_system.predict_disease_spread(
                             disease=location_data['outcome_type'].iloc<sup>0</sup> if 'outcome_type' in data.columns else 'general',
@@ -2197,7 +2197,7 @@ class PopulationHealthAISystem:
             'concentration_indices': {}
         }
         
-        # Determine available equity dimensions
+        \# Determine available equity dimensions
         available_dimensions = []
         for dimension in EquityDimension:
             if dimension.value in data.columns:
@@ -2207,14 +2207,14 @@ class PopulationHealthAISystem:
             logger.warning("No equity dimensions found in data")
             return equity_results
         
-        # Determine outcome type
+        \# Determine outcome type
         if 'outcome_type' in data.columns:
             outcome_types = data['outcome_type'].unique()
         else:
-            outcome_types = [HealthOutcome.MORBIDITY]  # Default
+            outcome_types = [HealthOutcome.MORBIDITY]  \# Default
         
-        # Run equity assessments
-        for outcome_str in outcome_types[:2]:  # Limit for efficiency
+        \# Run equity assessments
+        for outcome_str in outcome_types[:2]:  \# Limit for efficiency
             try:
                 outcome = HealthOutcome(outcome_str) if isinstance(outcome_str, str) else HealthOutcome.MORBIDITY
                 
@@ -2229,7 +2229,7 @@ class PopulationHealthAISystem:
             except Exception as e:
                 logger.warning(f"Failed to assess equity for {outcome_str}: {str(e)}")
         
-        # Generate equity report
+        \# Generate equity report
         if equity_results['assessments']:
             assessments_objects = [
                 HealthEquityAssessment(**assessment) 
@@ -2239,7 +2239,7 @@ class PopulationHealthAISystem:
             report = self.equity_analyzer.generate_equity_report(assessments_objects)
             equity_results['report'] = report
         
-        # Calculate concentration indices for socioeconomic variables
+        \# Calculate concentration indices for socioeconomic variables
         socioeconomic_vars = ['income', 'education_level', 'poverty_rate']
         for var in socioeconomic_vars:
             if var in data.columns:
@@ -2263,40 +2263,40 @@ class PopulationHealthAISystem:
             'summary': {}
         }
         
-        # Identify potential treatments and outcomes
+        \# Identify potential treatments and outcomes
         potential_treatments = []
         potential_outcomes = []
         
-        # Look for binary variables that could be treatments
+        \# Look for binary variables that could be treatments
         for col in data.columns:
             if data[col].dtype in ['int64', 'float64'] and data[col].nunique() == 2:
                 potential_treatments.append(col)
             elif col in ['mortality_rate', 'hospitalization_rate', 'outcome_rate']:
                 potential_outcomes.append(col)
         
-        # If no clear outcomes, use count-based measures
+        \# If no clear outcomes, use count-based measures
         if not potential_outcomes and 'count' in data.columns:
             potential_outcomes = ['count']
         
-        # Run causal analyses for promising treatment-outcome pairs
-        for treatment in potential_treatments[:2]:  # Limit for efficiency
+        \# Run causal analyses for promising treatment-outcome pairs
+        for treatment in potential_treatments[:2]:  \# Limit for efficiency
             for outcome in potential_outcomes[:2]:
                 
-                # Skip if treatment and outcome are the same
+                \# Skip if treatment and outcome are the same
                 if treatment == outcome:
                     continue
                 
                 try:
-                    # Try different causal methods
+                    \# Try different causal methods
                     methods_to_try = [CausalMethod.PROPENSITY_SCORE]
                     
-                    # Add other methods if appropriate data structure exists
+                    \# Add other methods if appropriate data structure exists
                     if 'time_period' in data.columns and 'group' in data.columns:
                         methods_to_try.append(CausalMethod.DIFFERENCE_IN_DIFFERENCES)
                     
                     for method in methods_to_try:
                         try:
-                            # Identify potential confounders
+                            \# Identify potential confounders
                             confounders = [col for col in data.columns 
                                          if col not in [treatment, outcome, 'date', 'location']
                                          and data[col].dtype in ['int64', 'float64']]
@@ -2306,7 +2306,7 @@ class PopulationHealthAISystem:
                                 treatment=treatment,
                                 outcome=outcome,
                                 method=method,
-                                confounders=confounders[:5]  # Limit confounders
+                                confounders=confounders[:5]  \# Limit confounders
                             )
                             
                             causal_results['analyses'].append(result.to_dict())
@@ -2317,7 +2317,7 @@ class PopulationHealthAISystem:
                 except Exception as e:
                     logger.warning(f"Failed to run causal analysis for {treatment}->{outcome}: {str(e)}")
         
-        # Generate summary
+        \# Generate summary
         if causal_results['analyses']:
             significant_effects = [a for a in causal_results['analyses'] if a['p_value'] < 0.05]
             
@@ -2335,11 +2335,11 @@ class PopulationHealthAISystem:
         
         recommendations = []
         
-        # Surveillance-based recommendations
+        \# Surveillance-based recommendations
         if 'surveillance' in results:
             surveillance = results['surveillance']
             
-            # Check for outbreak alerts
+            \# Check for outbreak alerts
             if 'outbreak_detection' in surveillance:
                 for disease, detection_results in surveillance['outbreak_detection'].items():
                     if 'alerts' in detection_results and detection_results['alerts']:
@@ -2354,7 +2354,7 @@ class PopulationHealthAISystem:
                                 'evidence': f'Detected {len(high_priority_alerts)} high-priority alerts'
                             })
         
-        # Equity-based recommendations
+        \# Equity-based recommendations
         if 'equity' in results:
             equity = results['equity']
             
@@ -2369,9 +2369,9 @@ class PopulationHealthAISystem:
                         'evidence': f'Overall equity score: {equity_score:.1f}/100'
                     })
                 
-                # Add specific equity recommendations
+                \# Add specific equity recommendations
                 if 'recommendations' in equity['report'] and equity['report']['recommendations']:
-                    for rec in equity['report']['recommendations'][:3]:  # Top 3
+                    for rec in equity['report']['recommendations'][:3]:  \# Top 3
                         recommendations.append({
                             'category': 'health_equity',
                             'priority': rec['priority'],
@@ -2379,14 +2379,14 @@ class PopulationHealthAISystem:
                             'evidence': f"Based on {rec['category']} analysis"
                         })
         
-        # Causal inference-based recommendations
+        \# Causal inference-based recommendations
         if 'causal' in results:
             causal = results['causal']
             
             if 'analyses' in causal:
                 significant_effects = [a for a in causal['analyses'] if a['p_value'] < 0.05]
                 
-                for effect in significant_effects[:3]:  # Top 3
+                for effect in significant_effects[:3]:  \# Top 3
                     if effect['causal_effect'] > 0:
                         direction = 'increase'
                         action = 'consider reducing'
@@ -2401,7 +2401,7 @@ class PopulationHealthAISystem:
                         'evidence': f'Causal effect: {effect["causal_effect"]:.3f} (p={effect["p_value"]:.3f})'
                     })
         
-        # General recommendations if no specific issues found
+        \# General recommendations if no specific issues found
         if not recommendations:
             recommendations.append({
                 'category': 'monitoring',
@@ -2419,8 +2419,8 @@ class PopulationHealthAISystem:
             Session = sessionmaker(bind=self.db_engine)
             session = Session()
             
-            # Save results as JSON for now (in practice, you'd normalize this)
-            # This is a simplified implementation
+            \# Save results as JSON for now (in practice, you'd normalize this)
+            \# This is a simplified implementation
             
             session.commit()
             session.close()
@@ -2430,9 +2430,9 @@ class PopulationHealthAISystem:
         except Exception as e:
             logger.error(f"Failed to save analysis results: {str(e)}")
 
-## Bibliography and References
+\#\# Bibliography and References
 
-### Population Health and Public Health Informatics
+\#\#\# Population Health and Public Health Informatics
 
 1. **Kindig, D., & Stoddart, G.** (2003). What is population health? *American Journal of Public Health*, 93(3), 380-383. [Population health definition]
 
@@ -2442,7 +2442,7 @@ class PopulationHealthAISystem:
 
 4. **Braveman, P., & Gottlieb, L.** (2014). The social determinants of health: it's time to consider the causes of the causes. *Public Health Reports*, 129(1_suppl2), 19-31. [Social determinants of health]
 
-### Disease Surveillance and Outbreak Detection
+\#\#\# Disease Surveillance and Outbreak Detection
 
 5. **Buckeridge, D. L.** (2007). Outbreak detection through automated surveillance: a review of the determinants of detection. *Journal of Biomedical Informatics*, 40(4), 370-379. [Automated surveillance]
 
@@ -2452,7 +2452,7 @@ class PopulationHealthAISystem:
 
 8. **Nsoesie, E. O., Brownstein, J. S., Ramakrishnan, N., & Marathe, M. V.** (2014). A systematic review of studies on forecasting the dynamics of influenza outbreaks. *Influenza and Other Respiratory Viruses*, 8(3), 309-316. [Disease forecasting]
 
-### Health Equity and Disparities
+\#\#\# Health Equity and Disparities
 
 9. **Braveman, P.** (2006). Health disparities and health equity: concepts and measurement. *Annual Review of Public Health*, 27, 167-194. [Health equity concepts]
 
@@ -2462,7 +2462,7 @@ class PopulationHealthAISystem:
 
 12. **Wagstaff, A., Paci, P., & Van Doorslaer, E.** (1991). On the measurement of inequalities in health. *Social Science & Medicine*, 33(5), 545-557. [Health inequality measurement]
 
-### Causal Inference in Population Health
+\#\#\# Causal Inference in Population Health
 
 13. **Hernán, M. A., & Robins, J. M.** (2020). *Causal inference: what if*. Chapman & Hall/CRC. [Causal inference methods]
 
@@ -2472,7 +2472,7 @@ class PopulationHealthAISystem:
 
 16. **Craig, P., Cooper, C., Gunnell, D., Haw, S., Lawson, K., Macintyre, S., ... & Thompson, S.** (2012). Using natural experiments to evaluate population health interventions: new Medical Research Council guidance. *Journal of Epidemiology and Community Health*, 66(12), 1182-1186. [Natural experiments]
 
-### Spatial and Temporal Analysis
+\#\#\# Spatial and Temporal Analysis
 
 17. **Kulldorff, M.** (1997). A spatial scan statistic. *Communications in Statistics-Theory and Methods*, 26(6), 1481-1496. [Spatial scan statistics]
 
@@ -2483,3 +2483,17 @@ class PopulationHealthAISystem:
 20. **Diggle, P. J.** (2013). *Statistical analysis of spatial and spatio-temporal point patterns*. CRC Press. [Spatio-temporal analysis]
 
 This chapter provides a comprehensive framework for population health AI systems, addressing disease surveillance, health equity assessment, and causal inference for population-level interventions. The implementations provide practical tools for public health professionals and researchers to analyze population health data, detect health disparities, and evaluate intervention effectiveness. The next chapter will explore health equity applications in greater detail, building upon these population health concepts to address specific equity challenges and intervention strategies.
+
+
+## Code Examples
+
+All code examples from this chapter are available in the repository:
+- **Directory**: [`code_examples/chapter_14/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_14/)
+- **Direct Download**: [ZIP file](https://github.com/sanjaybasu-waymark/healthcare-ai-book/archive/refs/heads/main.zip)
+
+To use the examples:
+```bash
+git clone https://github.com/sanjaybasu-waymark/healthcare-ai-book.git
+cd healthcare-ai-book/code_examples/chapter_14
+pip install -r requirements.txt
+```

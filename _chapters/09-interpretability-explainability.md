@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/09-interpretability-explainability/
 ---
 
-# Chapter 9: Interpretability and Explainability in Healthcare AI - Building Trust Through Transparent Clinical Decision Support
+\# Chapter 9: Interpretability and Explainability in Healthcare AI - Building Trust Through Transparent Clinical Decision Support
 
 *By Sanjay Basu MD PhD*
 
-## Learning Objectives
+\#\# Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,13 +22,13 @@ By the end of this chapter, physician data scientists will be able to:
 - Navigate regulatory requirements for explainable AI in medical devices, including FDA guidance, EU regulations, and institutional review board considerations for explanation-based clinical studies
 - Implement stakeholder-specific explanation systems that provide appropriate levels of detail and clinical context for physicians, nurses, patients, administrators, and regulatory bodies
 
-## 9.1 Introduction to Healthcare AI Interpretability
+\#\# 9.1 Introduction to Healthcare AI Interpretability
 
 Interpretability and explainability represent fundamental requirements for the successful deployment of artificial intelligence systems in healthcare environments. Unlike other domains where black-box models may be acceptable for certain applications, healthcare AI systems demand transparency due to the life-critical nature of medical decisions, stringent regulatory requirements, the need to maintain physician trust and clinical workflow integration, and the ethical imperative to provide patients with understandable information about their care.
 
 The distinction between interpretability and explainability, while subtle, is crucial for healthcare applications and affects both technical implementation and clinical adoption. **Interpretability** refers to the degree to which a human can understand the cause of a decision made by an AI system without requiring additional explanation of the decision-making process. **Explainability** refers to the ability to provide post-hoc explanations for decisions made by potentially opaque models, often through separate explanation systems that analyze the original model's behavior. In healthcare contexts, both concepts are essential for different stakeholders, use cases, and regulatory requirements.
 
-### 9.1.1 Theoretical Foundations of Medical AI Interpretability
+\#\#\# 9.1.1 Theoretical Foundations of Medical AI Interpretability
 
 Healthcare AI interpretability is grounded in several theoretical frameworks that address the unique requirements of medical decision-making, cognitive science principles, and clinical reasoning processes. Understanding these foundations is essential for designing explanation systems that effectively support clinical practice rather than creating additional cognitive burden for healthcare providers.
 
@@ -50,7 +50,7 @@ where $P(D|E)$ is the posterior probability of diagnosis $D$ given evidence $E$,
 
 **Trust Calibration and Appropriate Reliance**: Trust calibration represents a critical challenge in healthcare AI interpretability, as explanations must help physicians develop appropriate trust in AI systems—neither over-relying on AI recommendations nor dismissing potentially valuable insights. This requires explanations that accurately convey both the strengths and limitations of AI predictions, including uncertainty quantification and clear communication of the conditions under which the AI system is most and least reliable.
 
-### 9.1.2 Regulatory and Legal Requirements
+\#\#\# 9.1.2 Regulatory and Legal Requirements
 
 The regulatory landscape for explainable AI in healthcare is rapidly evolving, with increasing emphasis on transparency, accountability, and the ability to audit AI-driven medical decisions. Understanding these requirements is essential for developing compliant and deployable healthcare AI systems.
 
@@ -66,7 +66,7 @@ The EU AI Act further strengthens requirements for high-risk AI applications, in
 
 Malpractice liability may extend to inappropriate reliance on AI recommendations without adequate understanding of the system's limitations or failure to recognize when AI recommendations are inappropriate for a particular clinical situation. Explainable AI systems that clearly communicate their limitations and uncertainty can help protect both patients and physicians by enabling more informed clinical decision-making.
 
-### 9.1.3 Clinical Workflow Integration
+\#\#\# 9.1.3 Clinical Workflow Integration
 
 Successful healthcare AI interpretability requires deep understanding of clinical workflows, decision-making processes, and the practical constraints of healthcare delivery environments. Explanations that do not integrate well with clinical workflows are unlikely to be adopted, regardless of their technical sophistication.
 
@@ -76,11 +76,11 @@ Successful healthcare AI interpretability requires deep understanding of clinica
 
 **Stakeholder-Specific Requirements**: Different healthcare stakeholders have different explanation needs and capabilities. Physicians require detailed technical information about model performance and limitations, while patients need explanations that are accessible and help them understand their care. Nurses may need explanations that focus on care implementation and monitoring, while administrators may require explanations that address cost-effectiveness and resource utilization.
 
-## 9.2 Model-Agnostic Explanation Methods
+\#\# 9.2 Model-Agnostic Explanation Methods
 
 Model-agnostic explanation methods provide the flexibility to explain any machine learning model without requiring access to the model's internal structure or training process. This is particularly valuable in healthcare where different types of models may be used for different applications, and where explanation systems must work with both proprietary and open-source models.
 
-### 9.2.1 LIME (Local Interpretable Model-agnostic Explanations)
+\#\#\# 9.2.1 LIME (Local Interpretable Model-agnostic Explanations)
 
 LIME provides local explanations for individual predictions by learning an interpretable model in the local neighborhood of the instance being explained. For healthcare applications, LIME can provide insights into which clinical features most strongly influence a particular diagnosis, treatment recommendation, or risk assessment for a specific patient.
 
@@ -102,7 +102,7 @@ Where:
 
 For healthcare applications, the neighborhood definition $\pi_x$ must be carefully designed to respect clinical relationships between features. For example, when explaining a cardiac risk prediction, the neighborhood should consider clinically meaningful variations in cardiac risk factors rather than arbitrary perturbations that might not correspond to realistic patient presentations.
 
-### 9.2.2 SHAP (SHapley Additive exPlanations)
+\#\#\# 9.2.2 SHAP (SHapley Additive exPlanations)
 
 SHAP provides a unified framework for feature importance based on cooperative game theory, offering theoretically grounded explanations that satisfy several desirable properties including efficiency, symmetry, dummy feature, and additivity. The Shapley value represents the average marginal contribution of a feature across all possible coalitions of features.
 
@@ -124,7 +124,7 @@ $$
 
 For healthcare applications, SHAP values provide clinically interpretable feature attributions that can help physicians understand which patient characteristics most strongly influence AI predictions. Different SHAP variants are appropriate for different types of healthcare models and data.
 
-### 9.2.3 Counterfactual Explanations
+\#\#\# 9.2.3 Counterfactual Explanations
 
 Counterfactual explanations answer the question "What would need to change for the AI system to make a different prediction?" This is particularly valuable in healthcare for understanding treatment alternatives, identifying modifiable risk factors, and exploring what-if scenarios for patient care planning.
 
@@ -144,9 +144,9 @@ Where:
 
 For healthcare applications, the distance function $d(x, x')$ must incorporate clinical knowledge about which changes are realistic and actionable. For example, a counterfactual explanation for diabetes risk should focus on modifiable factors like weight, exercise, and diet rather than non-modifiable factors like age or genetic markers.
 
-## 9.3 Comprehensive Healthcare AI Explanation Framework
+\#\# 9.3 Comprehensive Healthcare AI Explanation Framework
 
-### 9.3.1 Implementation of Advanced Explanation Methods
+\#\#\# 9.3.1 Implementation of Advanced Explanation Methods
 
 ```python
 """
@@ -178,13 +178,13 @@ from typing import Dict, List, Tuple, Any, Optional, Union, Callable
 import warnings
 warnings.filterwarnings('ignore')
 
-# Advanced visualization libraries
+\# Advanced visualization libraries
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.figure_factory as ff
 
-# Counterfactual explanation libraries
+\# Counterfactual explanation libraries
 try:
     from dice_ml import Data, Model, Dice
     DICE_AVAILABLE = True
@@ -192,7 +192,7 @@ except ImportError:
     DICE_AVAILABLE = False
     print("DiCE not available. Counterfactual explanations will use simplified implementation.")
 
-# Additional interpretability libraries
+\# Additional interpretability libraries
 try:
     import eli5
     from eli5.sklearn import PermutationImportance
@@ -211,7 +211,7 @@ from collections import defaultdict
 import uuid
 from pathlib import Path
 
-# Configure logging
+\# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -247,11 +247,11 @@ class ClinicalContext:
     """Clinical context information for explanation generation."""
     patient_id: str
     condition: str
-    urgency_level: str  # "routine", "urgent", "emergent", "critical"
-    care_setting: str  # "outpatient", "inpatient", "emergency", "icu"
+    urgency_level: str  \# "routine", "urgent", "emergent", "critical"
+    care_setting: str  \# "outpatient", "inpatient", "emergency", "icu"
     physician_specialty: Optional[str] = None
-    patient_complexity: Optional[str] = None  # "simple", "moderate", "complex"
-    time_constraints: Optional[int] = None  # minutes available for decision
+    patient_complexity: Optional[str] = None  \# "simple", "moderate", "complex"
+    time_constraints: Optional[int] = None  \# minutes available for decision
     
 @dataclass
 class ExplanationRequest:
@@ -302,7 +302,7 @@ class ClinicalKnowledgeBase:
     def __init__(self):
         """Initialize clinical knowledge base."""
         
-        # Clinical feature categories
+        \# Clinical feature categories
         self.feature_categories = {
             'demographics': ['age', 'gender', 'race', 'ethnicity'],
             'vital_signs': ['heart_rate', 'blood_pressure', 'temperature', 'respiratory_rate', 'oxygen_saturation'],
@@ -312,7 +312,7 @@ class ClinicalKnowledgeBase:
             'social_determinants': ['insurance_status', 'income_level', 'education', 'housing_stability']
         }
         
-        # Clinical relationships and constraints
+        \# Clinical relationships and constraints
         self.clinical_relationships = {
             'diabetes': {
                 'related_labs': ['glucose', 'hba1c', 'creatinine'],
@@ -331,7 +331,7 @@ class ClinicalKnowledgeBase:
             }
         }
         
-        # Normal ranges and clinical significance
+        \# Normal ranges and clinical significance
         self.reference_ranges = {
             'glucose': {'normal': (70, 100), 'units': 'mg/dL', 'critical_low': 50, 'critical_high': 400},
             'creatinine': {'normal': (0.6, 1.2), 'units': 'mg/dL', 'critical_high': 3.0},
@@ -340,7 +340,7 @@ class ClinicalKnowledgeBase:
             'heart_rate': {'normal': (60, 100), 'units': 'bpm', 'critical_low': 40, 'critical_high': 150}
         }
         
-        # Clinical decision thresholds
+        \# Clinical decision thresholds
         self.decision_thresholds = {
             'diabetes_diagnosis': {'hba1c': 6.5, 'fasting_glucose': 126},
             'hypertension_diagnosis': {'systolic_bp': 140, 'diastolic_bp': 90},
@@ -433,16 +433,16 @@ class HealthcareAIExplainer:
         self.clinical_context = clinical_context or {}
         self.explanation_config = explanation_config or {}
         
-        # Initialize clinical knowledge base
+        \# Initialize clinical knowledge base
         self.clinical_kb = ClinicalKnowledgeBase()
         
-        # Initialize explanation methods
+        \# Initialize explanation methods
         self._initialize_explanation_methods()
         
-        # Explanation cache for efficiency
+        \# Explanation cache for efficiency
         self.explanation_cache = {}
         
-        # Performance tracking
+        \# Performance tracking
         self.explanation_metrics = {
             'total_explanations': 0,
             'explanation_times': [],
@@ -454,7 +454,7 @@ class HealthcareAIExplainer:
     def _initialize_explanation_methods(self):
         """Initialize various explanation methods."""
         
-        # LIME explainer
+        \# LIME explainer
         if self.training_data is not None:
             categorical_features = [i for i, name in enumerate(self.feature_names) 
                                   if self.feature_types.get(name) == 'categorical']
@@ -469,7 +469,7 @@ class HealthcareAIExplainer:
         else:
             self.lime_explainer = None
         
-        # SHAP explainer
+        \# SHAP explainer
         try:
             if hasattr(self.model, 'predict_proba'):
                 self.shap_explainer = shap.Explainer(self.model.predict_proba, self.training_data)
@@ -479,10 +479,10 @@ class HealthcareAIExplainer:
             logger.warning(f"Could not initialize SHAP explainer: {e}")
             self.shap_explainer = None
         
-        # Counterfactual explainer
+        \# Counterfactual explainer
         if DICE_AVAILABLE and self.training_data is not None:
             try:
-                # Prepare data for DiCE
+                \# Prepare data for DiCE
                 continuous_features = [name for name in self.feature_names 
                                      if self.feature_types.get(name) == 'numerical']
                 
@@ -518,13 +518,13 @@ class HealthcareAIExplainer:
         start_time = datetime.now()
         results = []
         
-        # Check cache first
+        \# Check cache first
         cache_key = self._generate_cache_key(request, instance_data)
         if cache_key in self.explanation_cache:
             logger.info(f"Using cached explanation for request {request.request_id}")
             return self.explanation_cache[cache_key]
         
-        # Generate explanations based on requested types
+        \# Generate explanations based on requested types
         for explanation_type in request.explanation_types:
             try:
                 if explanation_type == ExplanationType.LOCAL:
@@ -542,7 +542,7 @@ class HealthcareAIExplainer:
                     continue
                 
                 if result:
-                    # Adapt explanation for stakeholder
+                    \# Adapt explanation for stakeholder
                     adapted_result = self._adapt_for_stakeholder(result, request)
                     results.append(adapted_result)
                     
@@ -550,10 +550,10 @@ class HealthcareAIExplainer:
                 logger.error(f"Error generating {explanation_type} explanation: {e}")
                 continue
         
-        # Cache results
+        \# Cache results
         self.explanation_cache[cache_key] = results
         
-        # Update metrics
+        \# Update metrics
         explanation_time = (datetime.now() - start_time).total_seconds()
         self.explanation_metrics['total_explanations'] += 1
         self.explanation_metrics['explanation_times'].append(explanation_time)
@@ -572,7 +572,7 @@ class HealthcareAIExplainer:
         explanation_data = {}
         explanation_text_parts = []
         
-        # LIME explanation
+        \# LIME explanation
         if self.lime_explainer:
             try:
                 lime_exp = self.lime_explainer.explain_instance(
@@ -592,7 +592,7 @@ class HealthcareAIExplainer:
                 
                 explanation_data['lime'] = lime_features
                 
-                # Generate clinical interpretation
+                \# Generate clinical interpretation
                 top_features = sorted(lime_features, key=lambda x: abs(x['importance']), reverse=True)[:5]
                 explanation_text_parts.append("Key factors influencing this prediction:")
                 
@@ -601,7 +601,7 @@ class HealthcareAIExplainer:
                     importance = feature_info['importance']
                     value = feature_info['value']
                     
-                    # Get clinical significance
+                    \# Get clinical significance
                     if value is not None:
                         clinical_sig = self.clinical_kb.get_clinical_significance(feature_name, value)
                         direction = "increases" if importance > 0 else "decreases"
@@ -613,14 +613,14 @@ class HealthcareAIExplainer:
             except Exception as e:
                 logger.warning(f"LIME explanation failed: {e}")
         
-        # SHAP explanation
+        \# SHAP explanation
         if self.shap_explainer:
             try:
                 shap_values = self.shap_explainer(instance_data.values.reshape(1, -1))
                 
                 if hasattr(shap_values, 'values'):
                     if len(shap_values.values.shape) > 2:
-                        # Multi-class case - use positive class
+                        \# Multi-class case - use positive class
                         shap_vals = shap_values.values[0, :, 1]
                     else:
                         shap_vals = shap_values.values<sup>0</sup>
@@ -643,11 +643,11 @@ class HealthcareAIExplainer:
         if not explanation_data:
             return None
         
-        # Calculate confidence and clinical relevance
+        \# Calculate confidence and clinical relevance
         confidence_score = self._calculate_explanation_confidence(explanation_data)
         clinical_relevance_score = self._calculate_clinical_relevance(explanation_data, request.clinical_context)
         
-        # Generate actionable insights
+        \# Generate actionable insights
         actionable_insights = self._generate_actionable_insights(explanation_data, request.clinical_context)
         
         return ExplanationResult(
@@ -670,7 +670,7 @@ class HealthcareAIExplainer:
         explanation_data = {}
         explanation_text_parts = ["Global model behavior analysis:"]
         
-        # Feature importance from model
+        \# Feature importance from model
         if hasattr(self.model, 'feature_importances_'):
             feature_importance = list(zip(self.feature_names, self.model.feature_importances_))
             feature_importance.sort(key=lambda x: x<sup>1</sup>, reverse=True)
@@ -687,10 +687,10 @@ class HealthcareAIExplainer:
                     f"- {name} ({category or 'other'}): {importance:.3f}"
                 )
         
-        # Permutation importance
+        \# Permutation importance
         if self.training_data is not None:
             try:
-                # Use a subset for efficiency
+                \# Use a subset for efficiency
                 sample_size = min(1000, len(self.training_data))
                 sample_data = self.training_data.sample(n=sample_size, random_state=42)
                 
@@ -716,7 +716,7 @@ class HealthcareAIExplainer:
         if not explanation_data:
             return None
         
-        confidence_score = 0.8  # Global explanations are generally reliable
+        confidence_score = 0.8  \# Global explanations are generally reliable
         clinical_relevance_score = self._calculate_clinical_relevance(explanation_data, request.clinical_context)
         
         return ExplanationResult(
@@ -740,7 +740,7 @@ class HealthcareAIExplainer:
         
         if self.dice_explainer:
             try:
-                # Generate counterfactuals
+                \# Generate counterfactuals
                 counterfactuals = self.dice_explainer.generate_counterfactuals(
                     instance_data.to_frame().T,
                     total_CFs=3,
@@ -757,7 +757,7 @@ class HealthcareAIExplainer:
                             original_val = instance_data[feature]
                             cf_val = cf_instance[feature]
                             
-                            if abs(original_val - cf_val) > 1e-6:  # Significant change
+                            if abs(original_val - cf_val) > 1e-6:  \# Significant change
                                 changes.append({
                                     'feature': feature,
                                     'original_value': float(original_val),
@@ -772,15 +772,15 @@ class HealthcareAIExplainer:
                 
                 explanation_data['counterfactuals'] = cf_data
                 
-                # Generate clinical interpretation
+                \# Generate clinical interpretation
                 if cf_data:
                     explanation_text_parts.append("To change the prediction, consider modifying:")
                     
-                    # Focus on modifiable factors
+                    \# Focus on modifiable factors
                     condition = request.clinical_context.condition
                     modifiable_factors = self.clinical_kb.get_modifiable_factors(condition)
                     
-                    for cf in cf_data[:2]:  # Show top 2 counterfactuals
+                    for cf in cf_data[:2]:  \# Show top 2 counterfactuals
                         explanation_text_parts.append(f"\nOption {cf['counterfactual_id'] + 1}:")
                         for change in cf['changes']:
                             feature = change['feature']
@@ -793,7 +793,7 @@ class HealthcareAIExplainer:
             except Exception as e:
                 logger.warning(f"DiCE counterfactual generation failed: {e}")
         
-        # Simplified counterfactual generation if DiCE not available
+        \# Simplified counterfactual generation if DiCE not available
         if not explanation_data and self.training_data is not None:
             explanation_data = self._generate_simple_counterfactuals(instance_data, request)
             explanation_text_parts.append("Simplified counterfactual analysis:")
@@ -802,10 +802,10 @@ class HealthcareAIExplainer:
         if not explanation_data:
             return None
         
-        confidence_score = 0.7  # Counterfactuals have moderate confidence
+        confidence_score = 0.7  \# Counterfactuals have moderate confidence
         clinical_relevance_score = self._calculate_clinical_relevance(explanation_data, request.clinical_context)
         
-        # Generate actionable insights
+        \# Generate actionable insights
         actionable_insights = self._generate_counterfactual_insights(explanation_data, request.clinical_context)
         
         return ExplanationResult(
@@ -832,18 +832,18 @@ class HealthcareAIExplainer:
         explanation_text_parts = ["Similar cases analysis:"]
         
         try:
-            # Find similar cases
+            \# Find similar cases
             from sklearn.metrics.pairwise import cosine_similarity
             
-            # Prepare data
+            \# Prepare data
             X_train = self.training_data.drop('target', axis=1) if 'target' in self.training_data.columns else self.training_data
             instance_vector = instance_data.values.reshape(1, -1)
             
-            # Calculate similarities
+            \# Calculate similarities
             similarities = cosine_similarity(instance_vector, X_train.values)<sup>0</sup>
             
-            # Get top similar cases
-            top_indices = np.argsort(similarities)[-6:-1][::-1]  # Top 5 similar cases
+            \# Get top similar cases
+            top_indices = np.argsort(similarities)[-6:-1][::-1]  \# Top 5 similar cases
             
             similar_cases = []
             for idx in top_indices:
@@ -860,18 +860,18 @@ class HealthcareAIExplainer:
             
             explanation_data['similar_cases'] = similar_cases
             
-            # Generate clinical interpretation
+            \# Generate clinical interpretation
             if similar_cases:
                 explanation_text_parts.append(f"\nFound {len(similar_cases)} similar cases:")
                 
-                for i, case in enumerate(similar_cases[:3]):  # Show top 3
+                for i, case in enumerate(similar_cases[:3]):  \# Show top 3
                     similarity_pct = case['similarity'] * 100
                     outcome = case.get('outcome', 'unknown')
                     explanation_text_parts.append(
                         f"- Case {i+1}: {similarity_pct:.1f}% similar, outcome: {outcome}"
                     )
                 
-                # Analyze patterns
+                \# Analyze patterns
                 if 'target' in self.training_data.columns:
                     outcomes = [case.get('outcome') for case in similar_cases if 'outcome' in case]
                     if outcomes:
@@ -913,13 +913,13 @@ class HealthcareAIExplainer:
         explanation_text_parts = ["Rule-based analysis:"]
         
         try:
-            # Train surrogate decision tree
+            \# Train surrogate decision tree
             X_train = self.training_data.drop('target', axis=1) if 'target' in self.training_data.columns else self.training_data
             
-            # Get predictions from original model
+            \# Get predictions from original model
             y_pred = self.model.predict(X_train)
             
-            # Train decision tree surrogate
+            \# Train decision tree surrogate
             surrogate_tree = DecisionTreeClassifier(
                 max_depth=5,
                 min_samples_split=50,
@@ -928,21 +928,21 @@ class HealthcareAIExplainer:
             )
             surrogate_tree.fit(X_train, y_pred)
             
-            # Extract rules for this instance
+            \# Extract rules for this instance
             tree_rules = export_text(surrogate_tree, feature_names=self.feature_names)
             
-            # Get decision path for this instance
+            \# Get decision path for this instance
             decision_path = surrogate_tree.decision_path(instance_data.values.reshape(1, -1))
             leaf_id = surrogate_tree.apply(instance_data.values.reshape(1, -1))<sup>0</sup>
             
-            # Extract relevant rules
+            \# Extract relevant rules
             feature_names_used = []
             thresholds_used = []
             
             for node_id in decision_path.indices:
-                if node_id != leaf_id:  # Not a leaf node
+                if node_id != leaf_id:  \# Not a leaf node
                     feature_idx = surrogate_tree.tree_.feature[node_id]
-                    if feature_idx >= 0:  # Valid feature
+                    if feature_idx >= 0:  \# Valid feature
                         feature_name = self.feature_names[feature_idx]
                         threshold = surrogate_tree.tree_.threshold[node_id]
                         feature_names_used.append(feature_name)
@@ -951,10 +951,10 @@ class HealthcareAIExplainer:
             explanation_data['decision_rules'] = {
                 'features_used': feature_names_used,
                 'thresholds': thresholds_used,
-                'tree_rules': tree_rules[:1000]  # Truncate for readability
+                'tree_rules': tree_rules[:1000]  \# Truncate for readability
             }
             
-            # Generate clinical interpretation
+            \# Generate clinical interpretation
             if feature_names_used:
                 explanation_text_parts.append("\nKey decision rules applied:")
                 
@@ -994,7 +994,7 @@ class HealthcareAIExplainer:
         
         counterfactuals = []
         
-        # Focus on modifiable factors
+        \# Focus on modifiable factors
         condition = request.clinical_context.condition
         modifiable_factors = self.clinical_kb.get_modifiable_factors(condition)
         
@@ -1002,9 +1002,9 @@ class HealthcareAIExplainer:
             if feature in instance_data.index:
                 current_value = instance_data[feature]
                 
-                # Generate reasonable alternative values
+                \# Generate reasonable alternative values
                 if self.feature_types.get(feature) == 'numerical':
-                    # Try 10% and 20% changes
+                    \# Try 10% and 20% changes
                     for change_pct in [0.1, 0.2]:
                         for direction in [-1, 1]:
                             new_value = current_value * (1 + direction * change_pct)
@@ -1027,18 +1027,18 @@ class HealthcareAIExplainer:
         stakeholder = request.stakeholder_type
         complexity = request.complexity_level
         
-        # Modify explanation text based on stakeholder
+        \# Modify explanation text based on stakeholder
         if stakeholder == StakeholderType.PATIENT:
-            # Simplify language for patients
+            \# Simplify language for patients
             result.explanation_text = self._simplify_for_patient(result.explanation_text)
         elif stakeholder == StakeholderType.PHYSICIAN:
-            # Add clinical context for physicians
+            \# Add clinical context for physicians
             result.explanation_text = self._enhance_for_physician(result.explanation_text, request.clinical_context)
         elif stakeholder == StakeholderType.NURSE:
-            # Focus on care implementation for nurses
+            \# Focus on care implementation for nurses
             result.explanation_text = self._focus_for_nurse(result.explanation_text)
         
-        # Adjust complexity
+        \# Adjust complexity
         if complexity == ExplanationComplexity.SIMPLE:
             result.explanation_text = self._simplify_explanation(result.explanation_text)
         elif complexity == ExplanationComplexity.TECHNICAL:
@@ -1049,7 +1049,7 @@ class HealthcareAIExplainer:
     def _simplify_for_patient(self, explanation_text: str) -> str:
         """Simplify explanation for patient understanding."""
         
-        # Replace medical terms with simpler language
+        \# Replace medical terms with simpler language
         replacements = {
             'prediction': 'assessment',
             'algorithm': 'computer analysis',
@@ -1062,7 +1062,7 @@ class HealthcareAIExplainer:
         for medical_term, simple_term in replacements.items():
             simplified = simplified.replace(medical_term, simple_term)
         
-        # Add patient-friendly introduction
+        \# Add patient-friendly introduction
         simplified = "Based on your health information, here's what the analysis shows:\n\n" + simplified
         
         return simplified
@@ -1077,7 +1077,7 @@ class HealthcareAIExplainer:
         enhanced += f"Urgency: {clinical_context.urgency_level}\n\n"
         enhanced += explanation_text
         
-        # Add clinical recommendations
+        \# Add clinical recommendations
         enhanced += "\n\nClinical Considerations:\n"
         enhanced += "- Validate AI recommendations with clinical judgment\n"
         enhanced += "- Consider patient-specific factors not captured in the model\n"
@@ -1103,7 +1103,7 @@ class HealthcareAIExplainer:
         simplified_lines = []
         
         for line in lines:
-            # Remove lines with technical details
+            \# Remove lines with technical details
             if any(term in line.lower() for term in ['coefficient', 'p-value', 'confidence interval']):
                 continue
             simplified_lines.append(line)
@@ -1115,16 +1115,16 @@ class HealthcareAIExplainer:
         
         technical = explanation_text + "\n\nTechnical Details:\n"
         
-        # Add model performance metrics if available
+        \# Add model performance metrics if available
         technical += f"- Model type: {type(self.model).__name__}\n"
         
-        # Add feature importance details
+        \# Add feature importance details
         if 'lime' in explanation_data:
             technical += "- LIME feature importances included\n"
         if 'shap' in explanation_data:
             technical += "- SHAP values computed\n"
         
-        # Add statistical information
+        \# Add statistical information
         technical += f"- Number of features: {len(self.feature_names)}\n"
         if self.training_data is not None:
             technical += f"- Training data size: {len(self.training_data)}\n"
@@ -1136,28 +1136,28 @@ class HealthcareAIExplainer:
         
         confidence_factors = []
         
-        # LIME confidence
+        \# LIME confidence
         if 'lime' in explanation_data:
             lime_features = explanation_data['lime']
             if lime_features:
-                # Higher confidence if top features have high importance
+                \# Higher confidence if top features have high importance
                 top_importance = max(abs(f['importance']) for f in lime_features)
                 confidence_factors.append(min(1.0, top_importance * 2))
         
-        # SHAP confidence
+        \# SHAP confidence
         if 'shap' in explanation_data:
             shap_features = explanation_data['shap']
             if shap_features:
-                # Higher confidence if SHAP values are consistent
+                \# Higher confidence if SHAP values are consistent
                 shap_values = [abs(f['shap_value']) for f in shap_features]
                 if shap_values:
                     confidence_factors.append(min(1.0, max(shap_values) * 2))
         
-        # Overall confidence
+        \# Overall confidence
         if confidence_factors:
             return np.mean(confidence_factors)
         else:
-            return 0.5  # Default moderate confidence
+            return 0.5  \# Default moderate confidence
     
     def _calculate_clinical_relevance(
         self,
@@ -1168,7 +1168,7 @@ class HealthcareAIExplainer:
         
         relevance_factors = []
         
-        # Check if explanation includes clinically relevant features
+        \# Check if explanation includes clinically relevant features
         relevant_features = set()
         
         if clinical_context.condition:
@@ -1176,7 +1176,7 @@ class HealthcareAIExplainer:
             for feature_list in related_features.values():
                 relevant_features.update(feature_list)
         
-        # Analyze explanation features
+        \# Analyze explanation features
         explanation_features = set()
         
         if 'lime' in explanation_data:
@@ -1185,12 +1185,12 @@ class HealthcareAIExplainer:
         if 'shap' in explanation_data:
             explanation_features.update(f['feature'] for f in explanation_data['shap'])
         
-        # Calculate overlap with clinically relevant features
+        \# Calculate overlap with clinically relevant features
         if relevant_features and explanation_features:
             overlap = len(explanation_features.intersection(relevant_features))
             relevance_factors.append(overlap / len(explanation_features))
         
-        # Consider urgency level
+        \# Consider urgency level
         urgency_weights = {
             'routine': 0.7,
             'urgent': 0.8,
@@ -1200,11 +1200,11 @@ class HealthcareAIExplainer:
         urgency_weight = urgency_weights.get(clinical_context.urgency_level, 0.7)
         relevance_factors.append(urgency_weight)
         
-        # Overall relevance
+        \# Overall relevance
         if relevance_factors:
             return np.mean(relevance_factors)
         else:
-            return 0.6  # Default moderate relevance
+            return 0.6  \# Default moderate relevance
     
     def _generate_actionable_insights(
         self,
@@ -1215,7 +1215,7 @@ class HealthcareAIExplainer:
         
         insights = []
         
-        # Extract top influential features
+        \# Extract top influential features
         top_features = []
         
         if 'lime' in explanation_data:
@@ -1226,7 +1226,7 @@ class HealthcareAIExplainer:
             shap_features = sorted(explanation_data['shap'], key=lambda x: abs(x['shap_value']), reverse=True)
             top_features.extend(f['feature'] for f in shap_features[:3])
         
-        # Generate insights for modifiable factors
+        \# Generate insights for modifiable factors
         if clinical_context.condition:
             modifiable_factors = self.clinical_kb.get_modifiable_factors(clinical_context.condition)
             
@@ -1234,7 +1234,7 @@ class HealthcareAIExplainer:
                 if feature.lower() in [f.lower() for f in modifiable_factors]:
                     insights.append(f"Consider interventions targeting {feature}")
         
-        # Add general insights
+        \# Add general insights
         if clinical_context.urgency_level in ['urgent', 'emergent', 'critical']:
             insights.append("High urgency case - validate AI recommendations with clinical judgment")
         
@@ -1255,10 +1255,10 @@ class HealthcareAIExplainer:
         if 'counterfactuals' in explanation_data:
             counterfactuals = explanation_data['counterfactuals']
             
-            # Focus on modifiable factors
+            \# Focus on modifiable factors
             modifiable_factors = self.clinical_kb.get_modifiable_factors(clinical_context.condition)
             
-            for cf in counterfactuals[:2]:  # Top 2 counterfactuals
+            for cf in counterfactuals[:2]:  \# Top 2 counterfactuals
                 for change in cf['changes']:
                     feature = change['feature']
                     if feature.lower() in [f.lower() for f in modifiable_factors]:
@@ -1268,7 +1268,7 @@ class HealthcareAIExplainer:
         elif 'simplified_counterfactuals' in explanation_data:
             simplified_cfs = explanation_data['simplified_counterfactuals']
             
-            for cf in simplified_cfs[:3]:  # Top 3 changes
+            for cf in simplified_cfs[:3]:  \# Top 3 changes
                 feature = cf['feature']
                 change_pct = cf['change_percent']
                 direction = "increasing" if change_pct > 0 else "decreasing"
@@ -1279,7 +1279,7 @@ class HealthcareAIExplainer:
     def _generate_cache_key(self, request: ExplanationRequest, instance_data: pd.Series) -> str:
         """Generate cache key for explanation request."""
         
-        # Create hash of key request components
+        \# Create hash of key request components
         import hashlib
         
         key_components = [
@@ -1302,17 +1302,17 @@ class HealthcareAIExplainer:
         if not explanations:
             return {'error': 'No explanations provided'}
         
-        # Summary statistics
+        \# Summary statistics
         explanation_types = [exp.explanation_type.value for exp in explanations]
         avg_confidence = np.mean([exp.confidence_score for exp in explanations])
         avg_clinical_relevance = np.mean([exp.clinical_relevance_score for exp in explanations])
         
-        # Collect all actionable insights
+        \# Collect all actionable insights
         all_insights = []
         for exp in explanations:
             all_insights.extend(exp.actionable_insights)
         
-        # Remove duplicates while preserving order
+        \# Remove duplicates while preserving order
         unique_insights = []
         seen = set()
         for insight in all_insights:
@@ -1351,7 +1351,7 @@ class HealthcareAIExplainer:
             print("No explanations to visualize")
             return
         
-        # Create subplots
+        \# Create subplots
         fig = make_subplots(
             rows=2, cols=2,
             subplot_titles=['Feature Importance (LIME)', 'Feature Importance (SHAP)', 
@@ -1360,12 +1360,12 @@ class HealthcareAIExplainer:
                    [{"type": "scatter"}, {"type": "scatter"}]]
         )
         
-        # LIME feature importance
+        \# LIME feature importance
         lime_data = []
         for exp in explanations:
             if exp.explanation_type == ExplanationType.LOCAL and 'lime' in exp.explanation_data:
                 lime_features = exp.explanation_data['lime']
-                for feature_info in lime_features[:5]:  # Top 5 features
+                for feature_info in lime_features[:5]:  \# Top 5 features
                     lime_data.append({
                         'feature': feature_info['feature'],
                         'importance': abs(feature_info['importance'])
@@ -1380,12 +1380,12 @@ class HealthcareAIExplainer:
                 row=1, col=1
             )
         
-        # SHAP feature importance
+        \# SHAP feature importance
         shap_data = []
         for exp in explanations:
             if exp.explanation_type == ExplanationType.LOCAL and 'shap' in exp.explanation_data:
                 shap_features = exp.explanation_data['shap']
-                for feature_info in shap_features[:5]:  # Top 5 features
+                for feature_info in shap_features[:5]:  \# Top 5 features
                     shap_data.append({
                         'feature': feature_info['feature'],
                         'importance': abs(feature_info['shap_value'])
@@ -1400,7 +1400,7 @@ class HealthcareAIExplainer:
                 row=1, col=2
             )
         
-        # Explanation confidence
+        \# Explanation confidence
         confidence_scores = [exp.confidence_score for exp in explanations]
         explanation_types = [exp.explanation_type.value for exp in explanations]
         
@@ -1415,7 +1415,7 @@ class HealthcareAIExplainer:
             row=2, col=1
         )
         
-        # Clinical relevance
+        \# Clinical relevance
         relevance_scores = [exp.clinical_relevance_score for exp in explanations]
         
         fig.add_trace(
@@ -1429,14 +1429,14 @@ class HealthcareAIExplainer:
             row=2, col=2
         )
         
-        # Update layout
+        \# Update layout
         fig.update_layout(
             title_text="Healthcare AI Explanation Analysis",
             showlegend=False,
             height=800
         )
         
-        # Update axes
+        \# Update axes
         fig.update_xaxes(title_text="Features", row=1, col=1)
         fig.update_xaxes(title_text="Features", row=1, col=2)
         fig.update_xaxes(title_text="Explanation Index", row=2, col=1)
@@ -1452,9 +1452,9 @@ class HealthcareAIExplainer:
         
         fig.show()
 
-## Bibliography and References
+\#\# Bibliography and References
 
-### Foundational Interpretability and Explainability Literature
+\#\#\# Foundational Interpretability and Explainability Literature
 
 1. **Ribeiro, M. T., Singh, S., & Guestrin, C.** (2016). "Why should I trust you?" Explaining the predictions of any classifier. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 1135-1144. DOI: 10.1145/2939672.2939778. [Foundational LIME paper]
 
@@ -1464,7 +1464,7 @@ class HealthcareAIExplainer:
 
 4. **Rudin, C.** (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. *Nature Machine Intelligence*, 1(5), 206-215. DOI: 10.1038/s42256-019-0048-x. [Argument for inherently interpretable models]
 
-### Healthcare-Specific Interpretability Research
+\#\#\# Healthcare-Specific Interpretability Research
 
 5. **Holzinger, A., Biemann, C., Pattichis, C. S., & Kell, D. B.** (2017). What do we need to build explainable AI systems for the medical domain? *arXiv preprint arXiv:1712.09923*. [Healthcare-specific XAI requirements]
 
@@ -1474,7 +1474,7 @@ class HealthcareAIExplainer:
 
 8. **Amann, J., Blasimme, A., Vayena, E., Frey, D., & Madai, V. I.** (2020). Explainability for artificial intelligence in healthcare: a multidisciplinary perspective. *BMC Medical Informatics and Decision Making*, 20(1), 1-9. [Multidisciplinary perspective on healthcare XAI]
 
-### Counterfactual Explanations and Causal Inference
+\#\#\# Counterfactual Explanations and Causal Inference
 
 9. **Wachter, S., Mittelstadt, B., & Russell, C.** (2017). Counterfactual explanations without opening the black box: automated decisions and the GDPR. *Harvard Journal of Law & Technology*, 31, 841. [Legal and technical foundations of counterfactual explanations]
 
@@ -1482,7 +1482,7 @@ class HealthcareAIExplainer:
 
 11. **Pearl, J., & Mackenzie, D.** (2018). The book of why: the new science of cause and effect. *Basic Books*. ISBN: 978-0465097609. [Foundational work on causal reasoning]
 
-### Regulatory and Ethical Frameworks
+\#\#\# Regulatory and Ethical Frameworks
 
 12. **U.S. Food and Drug Administration.** (2021). Artificial intelligence/machine learning (AI/ML)-based software as a medical device (SaMD) action plan. *FDA Guidance Document*. [FDA requirements for AI/ML medical devices]
 
@@ -1490,7 +1490,7 @@ class HealthcareAIExplainer:
 
 14. **Floridi, L., et al.** (2018). AI4People—an ethical framework for a good AI society: opportunities, risks, principles, and recommendations. *Minds and Machines*, 28(4), 689-707. [Ethical framework for AI systems]
 
-### Clinical Decision-Making and Cognitive Science
+\#\#\# Clinical Decision-Making and Cognitive Science
 
 15. **Norman, G. R., Young, M., & Brooks, L.** (2007). Non-analytical models of clinical reasoning: the role of experience. *Medical Education*, 41(12), 1140-1145. [Clinical reasoning models]
 
@@ -1498,7 +1498,7 @@ class HealthcareAIExplainer:
 
 17. **Eva, K. W.** (2005). What every teacher needs to know about clinical reasoning. *Medical Education*, 39(1), 98-106. [Clinical reasoning for medical education]
 
-### Trust and Human-AI Interaction
+\#\#\# Trust and Human-AI Interaction
 
 18. **Lee, J. D., & See, K. A.** (2004). Trust in automation: designing for appropriate reliance. *Human Factors*, 46(1), 50-80. [Trust calibration in automated systems]
 
@@ -1507,3 +1507,17 @@ class HealthcareAIExplainer:
 20. **Miller, T.** (2019). Explanation in artificial intelligence: Insights from the social sciences. *Artificial Intelligence*, 267, 1-38. DOI: 10.1016/j.artint.2018.07.007. [Social science perspectives on explanation]
 
 This chapter provides a comprehensive framework for implementing interpretable and explainable AI systems in healthcare environments. The implementations presented address the unique challenges of clinical settings including regulatory compliance, stakeholder-specific requirements, and clinical workflow integration. The next chapter will explore robustness and security in healthcare AI, building upon these interpretability concepts to address the need for reliable and secure clinical AI systems.
+
+
+## Code Examples
+
+All code examples from this chapter are available in the repository:
+- **Directory**: [`code_examples/chapter_09/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_09/)
+- **Direct Download**: [ZIP file](https://github.com/sanjaybasu-waymark/healthcare-ai-book/archive/refs/heads/main.zip)
+
+To use the examples:
+```bash
+git clone https://github.com/sanjaybasu-waymark/healthcare-ai-book.git
+cd healthcare-ai-book/code_examples/chapter_09
+pip install -r requirements.txt
+```

@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/20-edge-computing-healthcare/
 ---
 
-# Chapter 20: Edge Computing in Healthcare - Real-Time AI at the Point of Care
+\# Chapter 20: Edge Computing in Healthcare - Real-Time AI at the Point of Care
 
 *By Sanjay Basu MD PhD*
 
-## Learning Objectives
+\#\# Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,7 +22,7 @@ By the end of this chapter, physician data scientists will be able to:
 - Ensure comprehensive regulatory compliance for edge-based medical devices and systems including FDA approval processes, IEC 62304 software lifecycle standards, cybersecurity frameworks, and quality management systems while addressing the unique challenges of distributed AI systems in regulated healthcare environments
 - Develop advanced edge computing applications including real-time clinical monitoring systems, portable diagnostic devices, telemedicine platforms, and emergency response systems that leverage the benefits of edge processing while maintaining the highest standards of clinical safety, effectiveness, and regulatory compliance
 
-## 20.1 Introduction to Edge Computing in Healthcare
+\#\# 20.1 Introduction to Edge Computing in Healthcare
 
 Edge computing represents a paradigm shift in healthcare AI, bringing computational capabilities closer to the point of care and data generation to address critical challenges in healthcare delivery including latency requirements for real-time monitoring, bandwidth limitations in remote areas, privacy concerns with sensitive patient data, and the need for continuous operation even when connectivity is limited. **This approach fundamentally changes how healthcare AI systems are designed, deployed, and operated**, moving from centralized cloud-based architectures to distributed systems that can provide immediate insights and responses at the point of care.
 
@@ -32,7 +32,7 @@ Edge computing represents a paradigm shift in healthcare AI, bringing computatio
 
 **Privacy and security concerns** intensify when sensitive patient data must be transmitted to external cloud services, raising questions about data sovereignty, regulatory compliance, and the potential for data breaches during transmission or storage in third-party systems that may not meet the stringent security requirements of healthcare organizations.
 
-### 20.1.1 Edge Computing Architecture in Healthcare
+\#\#\# 20.1.1 Edge Computing Architecture in Healthcare
 
 **Healthcare edge computing architectures** typically follow a hierarchical structure with multiple tiers of processing capabilities that can be mathematically modeled as a distributed system with heterogeneous computational resources. **The edge computing ecosystem** can be represented as:
 
@@ -61,7 +61,7 @@ subject to:
 
 where $T_{ij}$ is the execution time for clinical task $j$ on edge node $i$, $E_{ij}$ is the energy consumption, $L_{ij}$ is the communication latency, $\alpha$ and $\beta$ are weighting factors for energy and latency optimization, $R_j$ and $D_j$ are the computational and memory requirements for task $j$, and $T_{max,j}$ is the maximum acceptable latency for clinical task $j$.
 
-### 20.1.2 Benefits of Healthcare Edge Computing
+\#\#\# 20.1.2 Benefits of Healthcare Edge Computing
 
 **Reduced latency for critical applications** enables real-time monitoring and immediate response to life-threatening events such as cardiac arrest, respiratory failure, or severe hypoglycemia, where delays in detection and intervention can have serious clinical consequences. Edge processing can reduce response times from seconds or minutes to milliseconds, enabling immediate alerts and automated interventions.
 
@@ -73,7 +73,7 @@ where $T_{ij}$ is the execution time for clinical task $j$ on edge node $i$, $E_
 
 **Scalability and distributed processing** enable healthcare systems to handle increasing data volumes and computational demands by distributing processing across multiple edge nodes, providing a more scalable and resilient architecture than centralized cloud-based systems.
 
-### 20.1.3 Challenges in Healthcare Edge Computing
+\#\#\# 20.1.3 Challenges in Healthcare Edge Computing
 
 **Resource constraints and optimization** represent one of the most significant technical challenges in healthcare edge computing, as medical devices and edge systems often have limited computational power, memory, storage, and battery life that must be carefully managed to ensure reliable operation while maintaining clinical performance standards.
 
@@ -85,9 +85,9 @@ where $T_{ij}$ is the execution time for clinical task $j$ on edge node $i$, $E_
 
 **Interoperability and integration** with existing healthcare information systems require standardized interfaces and protocols that enable seamless data exchange between edge devices, clinical systems, and cloud infrastructure while maintaining data integrity and clinical workflow compatibility.
 
-## 20.2 Model Optimization for Edge Deployment
+\#\# 20.2 Model Optimization for Edge Deployment
 
-### 20.2.1 Model Compression Techniques
+\#\#\# 20.2.1 Model Compression Techniques
 
 Model compression represents a critical enabler for deploying sophisticated AI models on resource-constrained edge devices in healthcare environments. **Quantization techniques** reduce the precision of model weights and activations from 32-bit floating-point to lower precision representations such as 8-bit integers or even binary values, achieving significant reductions in model size and computational requirements.
 
@@ -95,7 +95,7 @@ Model compression represents a critical enabler for deploying sophisticated AI m
 
 $$
 
-\hat{w} = \text{round}\left(\frac{w - z}{s}\right)
+\hat{w} = \mathrm{\1}\left(\frac{w - z}{s}\right)
 
 $$
 
@@ -105,7 +105,7 @@ where $w$ is the original weight, $\hat{w}$ is the quantized weight, $s$ is the 
 
 $$
 
-\tilde{w} = s \cdot \text{round}\left(\frac{w}{s}\right)
+\tilde{w} = s \cdot \mathrm{\1}\left(\frac{w}{s}\right)
 
 $$
 
@@ -123,7 +123,7 @@ where $\mathcal{M}$ is the set of remaining connections and $\tau$ is the prunin
 
 **Structured pruning** removes entire channels, filters, or layers to achieve hardware-friendly sparsity patterns that can be efficiently executed on edge devices.
 
-### 20.2.2 Knowledge Distillation for Healthcare Models
+\#\#\# 20.2.2 Knowledge Distillation for Healthcare Models
 
 Knowledge distillation enables the transfer of knowledge from large, complex teacher models to smaller, more efficient student models suitable for edge deployment while preserving clinical accuracy and reliability. **The distillation loss function** combines the standard task loss with a knowledge transfer loss:
 
@@ -137,7 +137,7 @@ where $y$ is the ground truth, $z_s$ and $z_t$ are the student and teacher logit
 
 **Progressive knowledge distillation** gradually reduces model complexity through multiple distillation stages, enabling fine-grained control over the accuracy-efficiency trade-off for specific clinical applications.
 
-### 20.2.3 Production-Ready Edge Computing Implementation
+\#\#\# 20.2.3 Production-Ready Edge Computing Implementation
 
 ```python
 """
@@ -203,7 +203,7 @@ import subprocess
 
 warnings.filterwarnings('ignore')
 
-# Configure logging
+\# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -249,7 +249,7 @@ class EdgeDeviceSpec:
     network_bandwidth_mbps: float = 100.0
     operating_system: str = "linux"
     
-    # Clinical specifications
+    \# Clinical specifications
     clinical_environment: str = "hospital"
     regulatory_class: str = "class_ii"
     real_time_requirements: bool = True
@@ -282,26 +282,26 @@ class EdgeConfig:
     compression_method: CompressionMethod = CompressionMethod.QUANTIZATION
     processing_mode: ProcessingMode = ProcessingMode.REAL_TIME
     
-    # Model optimization
+    \# Model optimization
     target_model_size_mb: float = 10.0
     target_inference_time_ms: float = 50.0
     min_accuracy_threshold: float = 0.95
     quantization_bits: int = 8
     pruning_ratio: float = 0.5
     
-    # Real-time processing
+    \# Real-time processing
     buffer_size: int = 1000
     sampling_rate_hz: float = 100.0
     window_size_seconds: float = 10.0
     overlap_ratio: float = 0.5
     
-    # Communication
+    \# Communication
     cloud_endpoint: str = "https://api.healthcare-cloud.com"
     secure_communication: bool = True
     compression_enabled: bool = True
     encryption_key: Optional[str] = None
     
-    # Monitoring and alerts
+    \# Monitoring and alerts
     enable_monitoring: bool = True
     alert_thresholds: Dict[str, float] = field(default_factory=lambda: {
         'cpu_usage': 80.0,
@@ -310,7 +310,7 @@ class EdgeConfig:
         'inference_latency': 100.0
     })
     
-    # Clinical integration
+    \# Clinical integration
     hl7_fhir_enabled: bool = True
     clinical_decision_support: bool = True
     audit_logging: bool = True
@@ -354,32 +354,32 @@ class ModelOptimizer:
         """Quantize model for edge deployment."""
         logger.info("Starting model quantization...")
         
-        # Prepare model for quantization
+        \# Prepare model for quantization
         model.eval()
         model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
         
-        # Fuse modules if possible
+        \# Fuse modules if possible
         try:
             model = torch.quantization.fuse_modules(model, [['conv', 'bn', 'relu']])
         except:
             logger.warning("Module fusion not applicable for this model")
         
-        # Prepare for quantization
+        \# Prepare for quantization
         model_prepared = torch.quantization.prepare(model)
         
-        # Calibration
+        \# Calibration
         logger.info("Calibrating quantized model...")
         with torch.no_grad():
             for batch_idx, (data, _) in enumerate(calibration_loader):
-                if batch_idx >= 100:  # Limit calibration samples
+                if batch_idx >= 100:  \# Limit calibration samples
                     break
                 data = data.to(self.device)
                 model_prepared(data)
         
-        # Convert to quantized model
+        \# Convert to quantized model
         quantized_model = torch.quantization.convert(model_prepared)
         
-        # Measure model size
+        \# Measure model size
         original_size = self._get_model_size(model)
         quantized_size = self._get_model_size(quantized_model)
         compression_ratio = original_size / quantized_size
@@ -395,24 +395,24 @@ class ModelOptimizer:
         
         logger.info(f"Starting model pruning with ratio {pruning_ratio}...")
         
-        # Identify modules to prune
+        \# Identify modules to prune
         modules_to_prune = []
         for name, module in model.named_modules():
             if isinstance(module, (nn.Linear, nn.Conv2d)):
                 modules_to_prune.append((module, 'weight'))
         
-        # Apply global magnitude pruning
+        \# Apply global magnitude pruning
         prune.global_unstructured(
             modules_to_prune,
             pruning_method=prune.L1Unstructured,
             amount=pruning_ratio
         )
         
-        # Remove pruning reparameterization
+        \# Remove pruning reparameterization
         for module, param_name in modules_to_prune:
             prune.remove(module, param_name)
         
-        # Calculate sparsity
+        \# Calculate sparsity
         total_params = sum(p.numel() for p in model.parameters())
         zero_params = sum((p == 0).sum().item() for p in model.parameters())
         sparsity = zero_params / total_params
@@ -451,14 +451,14 @@ class ModelOptimizer:
                 
                 optimizer.zero_grad()
                 
-                # Student predictions
+                \# Student predictions
                 student_output = student_model(data)
                 
-                # Teacher predictions
+                \# Teacher predictions
                 with torch.no_grad():
                     teacher_output = teacher_model(data)
                 
-                # Compute losses
+                \# Compute losses
                 ce_loss = criterion_ce(student_output, target)
                 
                 kd_loss = criterion_kd(
@@ -472,7 +472,7 @@ class ModelOptimizer:
                 
                 total_loss += total_loss_batch.item()
             
-            # Validation
+            \# Validation
             val_acc = self._evaluate_model(student_model, val_loader)
             
             if val_acc > best_val_acc:
@@ -500,7 +500,7 @@ class ModelOptimizer:
         
         optimized_model = model
         
-        # Apply compression based on configuration
+        \# Apply compression based on configuration
         if self.config.compression_method == CompressionMethod.QUANTIZATION:
             optimized_model = self.quantize_model(optimized_model, calibration_loader)
         
@@ -508,11 +508,11 @@ class ModelOptimizer:
             optimized_model = self.prune_model(optimized_model, self.config.pruning_ratio)
         
         elif self.config.compression_method == CompressionMethod.COMBINED:
-            # First prune, then quantize
+            \# First prune, then quantize
             optimized_model = self.prune_model(optimized_model, self.config.pruning_ratio)
             optimized_model = self.quantize_model(optimized_model, calibration_loader)
         
-        # Validate optimized model
+        \# Validate optimized model
         original_acc = self._evaluate_model(model, val_loader)
         optimized_acc = self._evaluate_model(optimized_model, val_loader)
         
@@ -521,7 +521,7 @@ class ModelOptimizer:
         logger.info(f"  Optimized accuracy: {optimized_acc:.4f}")
         logger.info(f"  Accuracy retention: {optimized_acc/original_acc:.4f}")
         
-        # Check if optimization meets requirements
+        \# Check if optimization meets requirements
         if optimized_acc < self.config.min_accuracy_threshold:
             logger.warning(f"Optimized model accuracy {optimized_acc:.4f} below threshold {self.config.min_accuracy_threshold}")
         
@@ -566,21 +566,21 @@ class RealTimeProcessor:
         self.config = config
         self.device = torch.device("cuda" if torch.cuda.is_available() and config.device_spec.gpu_available else "cpu")
         
-        # Data buffers
+        \# Data buffers
         self.data_buffer = deque(maxlen=config.buffer_size)
         self.result_buffer = deque(maxlen=1000)
         
-        # Processing state
+        \# Processing state
         self.is_processing = False
         self.processing_thread = None
         self.data_queue = queue.Queue(maxsize=config.buffer_size)
         
-        # Performance monitoring
+        \# Performance monitoring
         self.processing_times = deque(maxlen=1000)
         self.throughput_counter = 0
         self.last_throughput_time = time.time()
         
-        # Model
+        \# Model
         self.model = None
         
         logger.info("Initialized real-time processor")
@@ -631,7 +631,7 @@ class RealTimeProcessor:
             if self.result_buffer:
                 results.append(self.result_buffer.pop())
         
-        return results[::-1]  # Return in chronological order
+        return results[::-1]  \# Return in chronological order
     
     def _processing_loop(self):
         """Main processing loop."""
@@ -639,22 +639,22 @@ class RealTimeProcessor:
         
         while self.is_processing:
             try:
-                # Get data from queue
+                \# Get data from queue
                 data, timestamp = self.data_queue.get(timeout=1.0)
                 
-                # Process data
+                \# Process data
                 start_time = time.time()
                 result = self._process_sample(data, timestamp)
-                processing_time = (time.time() - start_time) * 1000  # ms
+                processing_time = (time.time() - start_time) * 1000  \# ms
                 
-                # Store result
+                \# Store result
                 self.result_buffer.append(result)
                 
-                # Update performance metrics
+                \# Update performance metrics
                 self.processing_times.append(processing_time)
                 self.throughput_counter += 1
                 
-                # Log performance periodically
+                \# Log performance periodically
                 current_time = time.time()
                 if current_time - self.last_throughput_time >= 10.0:
                     throughput = self.throughput_counter / (current_time - self.last_throughput_time)
@@ -681,13 +681,13 @@ class RealTimeProcessor:
             }
         
         try:
-            # Convert to tensor
+            \# Convert to tensor
             if len(data.shape) == 1:
                 data_tensor = torch.tensor(data, dtype=torch.float32).unsqueeze(0).to(self.device)
             else:
                 data_tensor = torch.tensor(data, dtype=torch.float32).to(self.device)
             
-            # Inference
+            \# Inference
             with torch.no_grad():
                 output = self.model(data_tensor)
                 
@@ -703,7 +703,7 @@ class RealTimeProcessor:
                 'prediction': int(prediction),
                 'probabilities': probabilities.tolist(),
                 'confidence': float(np.max(probabilities)),
-                'processing_time_ms': 0  # Will be filled by caller
+                'processing_time_ms': 0  \# Will be filled by caller
             }
         
         except Exception as e:
@@ -721,7 +721,7 @@ class EdgeCommunication:
         """Initialize edge communication."""
         self.config = config
         
-        # Encryption
+        \# Encryption
         if config.secure_communication:
             if config.encryption_key:
                 self.cipher = Fernet(config.encryption_key.encode())
@@ -732,7 +732,7 @@ class EdgeCommunication:
         else:
             self.cipher = None
         
-        # Communication state
+        \# Communication state
         self.connected = False
         self.last_heartbeat = time.time()
         
@@ -761,15 +761,15 @@ class EdgeCommunication:
     def send_to_cloud(self, data: Dict[str, Any]) -> bool:
         """Send data to cloud endpoint."""
         try:
-            # Encrypt data
+            \# Encrypt data
             encrypted_data = self.encrypt_data(data)
             
-            # Compress if enabled
+            \# Compress if enabled
             if self.config.compression_enabled:
                 import gzip
                 encrypted_data = gzip.compress(encrypted_data)
             
-            # Send to cloud
+            \# Send to cloud
             headers = {
                 'Content-Type': 'application/octet-stream',
                 'X-Device-ID': self.config.device_spec.device_type.value,
@@ -823,17 +823,17 @@ class SystemMonitor:
         """Initialize system monitor."""
         self.config = config
         
-        # Monitoring state
+        \# Monitoring state
         self.monitoring_active = False
         self.monitoring_thread = None
         
-        # Metrics history
+        \# Metrics history
         self.cpu_usage_history = deque(maxlen=1000)
         self.memory_usage_history = deque(maxlen=1000)
         self.temperature_history = deque(maxlen=1000)
         self.inference_latency_history = deque(maxlen=1000)
         
-        # Communication
+        \# Communication
         self.communication = EdgeCommunication(config)
         
         logger.info("Initialized system monitor")
@@ -863,7 +863,7 @@ class SystemMonitor:
         """Add inference latency measurement."""
         self.inference_latency_history.append(latency_ms)
         
-        # Check threshold
+        \# Check threshold
         if latency_ms > self.config.alert_thresholds['inference_latency']:
             self.communication.send_alert(
                 'high_latency',
@@ -877,24 +877,24 @@ class SystemMonitor:
         
         while self.monitoring_active:
             try:
-                # Collect system metrics
+                \# Collect system metrics
                 cpu_usage = psutil.cpu_percent(interval=1)
                 memory_usage = psutil.virtual_memory().percent
                 
-                # Temperature (if available)
+                \# Temperature (if available)
                 temperature = self._get_temperature()
                 
-                # Store metrics
+                \# Store metrics
                 self.cpu_usage_history.append(cpu_usage)
                 self.memory_usage_history.append(memory_usage)
                 if temperature is not None:
                     self.temperature_history.append(temperature)
                 
-                # Check thresholds
+                \# Check thresholds
                 self._check_thresholds(cpu_usage, memory_usage, temperature)
                 
-                # Send metrics to cloud periodically
-                if len(self.cpu_usage_history) % 60 == 0:  # Every minute
+                \# Send metrics to cloud periodically
+                if len(self.cpu_usage_history) % 60 == 0:  \# Every minute
                     self._send_metrics_to_cloud()
                 
                 time.sleep(1.0)
@@ -907,7 +907,7 @@ class SystemMonitor:
         """Get system temperature."""
         try:
             if platform.system() == "Linux":
-                # Try to read from thermal zone
+                \# Try to read from thermal zone
                 thermal_files = [
                     "/sys/class/thermal/thermal_zone0/temp",
                     "/sys/class/thermal/thermal_zone1/temp"
@@ -956,7 +956,7 @@ class SystemMonitor:
             'timestamp': time.time(),
             'device_id': self.config.device_spec.device_type.value,
             'metrics': {
-                'cpu_usage': list(self.cpu_usage_history)[-10:],  # Last 10 samples
+                'cpu_usage': list(self.cpu_usage_history)[-10:],  \# Last 10 samples
                 'memory_usage': list(self.memory_usage_history)[-10:],
                 'temperature': list(self.temperature_history)[-10:] if self.temperature_history else [],
                 'inference_latency': list(self.inference_latency_history)[-10:]
@@ -972,12 +972,12 @@ class EdgeComputingSystem:
         """Initialize edge computing system."""
         self.config = config
         
-        # Components
+        \# Components
         self.optimizer = ModelOptimizer(config)
         self.processor = RealTimeProcessor(config)
         self.monitor = SystemMonitor(config)
         
-        # System state
+        \# System state
         self.is_running = False
         self.model_loaded = False
         
@@ -992,12 +992,12 @@ class EdgeComputingSystem:
         """Load and optimize model for edge deployment."""
         logger.info("Loading and optimizing model for edge deployment...")
         
-        # Optimize model
+        \# Optimize model
         optimized_model = self.optimizer.optimize_for_edge(
             model, train_loader, val_loader
         )
         
-        # Load into processor
+        \# Load into processor
         self.processor.load_model(optimized_model)
         self.model_loaded = True
         
@@ -1016,7 +1016,7 @@ class EdgeComputingSystem:
             return True
         
         try:
-            # Start components
+            \# Start components
             self.processor.start_processing()
             self.monitor.start_monitoring()
             
@@ -1036,7 +1036,7 @@ class EdgeComputingSystem:
             return
         
         try:
-            # Stop components
+            \# Stop components
             self.processor.stop_processing()
             self.monitor.stop_monitoring()
             
@@ -1051,16 +1051,16 @@ class EdgeComputingSystem:
         if not self.is_running:
             return {'error': 'System not running'}
         
-        # Add data to processor
+        \# Add data to processor
         self.processor.add_data(data)
         
-        # Get latest result
+        \# Get latest result
         results = self.processor.get_latest_results(1)
         
         if results:
             result = results<sup>0</sup>
             
-            # Update monitoring
+            \# Update monitoring
             if 'processing_time_ms' in result:
                 self.monitor.add_inference_latency(result['processing_time_ms'])
             
@@ -1079,7 +1079,7 @@ class EdgeComputingSystem:
         }
         
         if self.is_running:
-            # Add performance metrics
+            \# Add performance metrics
             if self.processor.processing_times:
                 status['avg_latency_ms'] = np.mean(self.processor.processing_times)
                 status['max_latency_ms'] = np.max(self.processor.processing_times)
@@ -1092,7 +1092,7 @@ class EdgeComputingSystem:
         
         return status
 
-# Example usage and demonstration
+\# Example usage and demonstration
 def create_sample_edge_model():
     """Create a sample model for edge deployment."""
     class SimpleEdgeModel(nn.Module):
@@ -1117,28 +1117,28 @@ def create_sample_data():
     """Create sample data for demonstration."""
     from torch.utils.data import TensorDataset
     
-    # Generate synthetic physiological data
+    \# Generate synthetic physiological data
     np.random.seed(42)
     torch.manual_seed(42)
     
     num_samples = 1000
     num_features = 10
     
-    # Normal vs abnormal patterns
+    \# Normal vs abnormal patterns
     normal_data = np.random.randn(num_samples // 2, num_features)
     abnormal_data = np.random.randn(num_samples // 2, num_features) + 2.0
     
     X = np.vstack([normal_data, abnormal_data])
     y = np.hstack([np.zeros(num_samples // 2), np.ones(num_samples // 2)])
     
-    # Convert to tensors
+    \# Convert to tensors
     X_tensor = torch.tensor(X, dtype=torch.float32)
     y_tensor = torch.tensor(y, dtype=torch.long)
     
-    # Create datasets
+    \# Create datasets
     dataset = TensorDataset(X_tensor, y_tensor)
     
-    # Split into train/val
+    \# Split into train/val
     train_size = int(0.8 * len(dataset))
     val_size = len(dataset) - train_size
     
@@ -1151,7 +1151,7 @@ def demonstrate_edge_computing():
     print("Edge Computing System Demonstration")
     print("=" * 50)
     
-    # Create device specification
+    \# Create device specification
     device_spec = EdgeDeviceSpec(
         device_type=EdgeDeviceType.BEDSIDE_MONITOR,
         cpu_cores=4,
@@ -1164,7 +1164,7 @@ def demonstrate_edge_computing():
         max_latency_ms=50.0
     )
     
-    # Create configuration
+    \# Create configuration
     config = EdgeConfig(
         device_spec=device_spec,
         compression_method=CompressionMethod.QUANTIZATION,
@@ -1182,19 +1182,19 @@ def demonstrate_edge_computing():
     print(f"  Max latency: {device_spec.max_latency_ms} ms")
     print(f"  Compression: {config.compression_method.value}")
     
-    # Create sample data
+    \# Create sample data
     train_dataset, val_dataset = create_sample_data()
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
     
     print(f"\nDataset: {len(train_dataset)} train, {len(val_dataset)} val samples")
     
-    # Create model
+    \# Create model
     model = create_sample_edge_model()
     
     print(f"Original model parameters: {sum(p.numel() for p in model.parameters()):,}")
     
-    # Initialize edge system
+    \# Initialize edge system
     edge_system = EdgeComputingSystem(config)
     
     print(f"\nEdge computing system initialized")
@@ -1210,9 +1210,9 @@ if __name__ == "__main__":
     demonstrate_edge_computing()
 ```
 
-## 20.3 Real-Time Processing and Communication
+\#\# 20.3 Real-Time Processing and Communication
 
-### 20.3.1 Streaming Data Processing
+\#\#\# 20.3.1 Streaming Data Processing
 
 Real-time streaming data processing in healthcare edge computing requires sophisticated architectures that can handle continuous data flows from multiple sensors and devices while maintaining low latency and high reliability. **Stream processing frameworks** must be designed to handle the unique characteristics of healthcare data including varying sampling rates, missing data, and the need for immediate response to critical events.
 
@@ -1236,7 +1236,7 @@ where $s = w \cdot (1-r)$ is the step size.
 
 **Event-driven processing** responds to specific patterns or thresholds in the data stream, enabling immediate alerts for critical conditions such as cardiac arrhythmias, respiratory distress, or medication adverse events.
 
-### 20.3.2 Edge-to-Cloud Communication Protocols
+\#\#\# 20.3.2 Edge-to-Cloud Communication Protocols
 
 Secure and efficient communication between edge devices and cloud infrastructure requires specialized protocols that balance security, bandwidth efficiency, and reliability requirements. **Hierarchical communication architectures** enable efficient data aggregation and processing at multiple levels.
 
@@ -1252,15 +1252,15 @@ where $Q_t$ is the message queue at time $t$, $m_t$ is the new message, and $m_{
 
 **Adaptive compression and prioritization** optimize bandwidth usage by adjusting compression levels and transmission priorities based on network conditions and clinical importance.
 
-### 20.3.3 Clinical Integration and Workflow
+\#\#\# 20.3.3 Clinical Integration and Workflow
 
 Integration with existing clinical workflows requires careful consideration of user interfaces, alert management, and decision support capabilities. **Clinical decision support integration** enables edge devices to provide immediate recommendations and alerts based on real-time analysis.
 
 **HL7 FHIR integration** ensures interoperability with existing healthcare information systems, enabling seamless data exchange and clinical workflow integration.
 
-## 20.4 Regulatory Compliance and Deployment
+\#\# 20.4 Regulatory Compliance and Deployment
 
-### 20.4.1 Medical Device Regulations
+\#\#\# 20.4.1 Medical Device Regulations
 
 Edge computing devices in healthcare must comply with medical device regulations including FDA 510(k) clearance, CE marking in Europe, and other regional requirements. **Software as Medical Device (SaMD) frameworks** provide guidance for AI-enabled edge devices.
 
@@ -1268,7 +1268,7 @@ Edge computing devices in healthcare must comply with medical device regulations
 
 **Cybersecurity requirements** for medical devices include premarket cybersecurity submissions, postmarket cybersecurity monitoring, and incident response procedures.
 
-### 20.4.2 Clinical Validation and Performance Monitoring
+\#\#\# 20.4.2 Clinical Validation and Performance Monitoring
 
 **Clinical validation frameworks** for edge devices must demonstrate safety and effectiveness in real-world clinical environments, including validation of AI algorithms, user interface design, and clinical workflow integration.
 
@@ -1276,9 +1276,9 @@ Edge computing devices in healthcare must comply with medical device regulations
 
 **Post-market surveillance** requirements include adverse event reporting, software updates, and ongoing risk assessment for edge-based medical devices.
 
-## Bibliography and References
+\#\# Bibliography and References
 
-### Edge Computing Foundations
+\#\#\# Edge Computing Foundations
 
 1. **Shi, W., Cao, J., Zhang, Q., et al.** (2016). Edge computing: Vision and challenges. *IEEE Internet of Things Journal*, 3(5), 637-646. [Edge computing overview]
 
@@ -1288,7 +1288,7 @@ Edge computing devices in healthcare must comply with medical device regulations
 
 4. **Mao, Y., You, C., Zhang, J., et al.** (2017). A survey on mobile edge computing: The communication perspective. *IEEE Communications Surveys & Tutorials*, 19(4), 2322-2358. [Communication perspective]
 
-### Model Optimization and Compression
+\#\#\# Model Optimization and Compression
 
 5. **Han, S., Mao, H., & Dally, W. J.** (2016). Deep compression: Compressing deep neural networks with pruning, trained quantization and huffman coding. *International Conference on Learning Representations*. [Deep compression]
 
@@ -1298,7 +1298,7 @@ Edge computing devices in healthcare must comply with medical device regulations
 
 8. **Gou, J., Yu, B., Maybank, S. J., & Tao, D.** (2021). Knowledge distillation: A survey. *International Journal of Computer Vision*, 129(6), 1789-1819. [Distillation survey]
 
-### Healthcare Edge Computing
+\#\#\# Healthcare Edge Computing
 
 9. **Pace, P., Aloi, G., Gravina, R., et al.** (2018). An edge-based architecture to support efficient applications for healthcare industry 4.0. *IEEE Transactions on Industrial Informatics*, 15(1), 481-489. [Healthcare edge architecture]
 
@@ -1308,7 +1308,7 @@ Edge computing devices in healthcare must comply with medical device regulations
 
 12. **Dautov, R., Distefano, S., Buyya, R.** (2019). Hierarchical data fusion for Smart Healthcare. *Journal of Big Data*, 6(1), 19. [Healthcare data fusion]
 
-### Real-Time Processing
+\#\#\# Real-Time Processing
 
 13. **Chen, J., & Ran, X.** (2019). Deep learning with edge computing: A review. *Proceedings of the IEEE*, 107(8), 1655-1674. [Deep learning edge review]
 
@@ -1318,7 +1318,7 @@ Edge computing devices in healthcare must comply with medical device regulations
 
 16. **Zhou, Z., Chen, X., Li, E., et al.** (2019). Edge intelligence: Paving the last mile of artificial intelligence with edge computing. *Proceedings of the IEEE*, 107(8), 1738-1762. [Edge intelligence]
 
-### Medical Device Regulations
+\#\#\# Medical Device Regulations
 
 17. **FDA.** (2021). Software as a Medical Device (SaMD): Clinical Evaluation. *FDA Guidance Document*. [SaMD guidance]
 
@@ -1329,3 +1329,17 @@ Edge computing devices in healthcare must comply with medical device regulations
 20. **Muehlematter, U. J., Daniore, P., & Vokinger, K. N.** (2021). Approval of artificial intelligence and machine learning-based medical devices in the USA and Europe (2015–20): a comparative analysis. *The Lancet Digital Health*, 3(3), e195-e203. [AI device approvals]
 
 This chapter provides a comprehensive framework for implementing edge computing solutions in healthcare environments with proper model optimization, real-time processing capabilities, and regulatory compliance. The implementations address the unique challenges of healthcare edge computing including resource constraints, real-time requirements, and clinical integration needs. The next chapter will explore AI-assisted surgery and robotic applications in healthcare.
+
+
+## Code Examples
+
+All code examples from this chapter are available in the repository:
+- **Directory**: [`code_examples/chapter_20/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_20/)
+- **Direct Download**: [ZIP file](https://github.com/sanjaybasu-waymark/healthcare-ai-book/archive/refs/heads/main.zip)
+
+To use the examples:
+```bash
+git clone https://github.com/sanjaybasu-waymark/healthcare-ai-book.git
+cd healthcare-ai-book/code_examples/chapter_20
+pip install -r requirements.txt
+```
