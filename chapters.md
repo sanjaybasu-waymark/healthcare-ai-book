@@ -117,3 +117,4 @@ Implement environmentally sustainable AI systems with energy optimization and ca
 
 *This comprehensive guide provides production-ready implementations for every aspect of healthcare AI, from foundational concepts through advanced deployment strategies. Each chapter includes complete working code, clinical validation frameworks, and real-world examples.*
 
+<- Standardized front matter across all chapter Force rebuild Fri Sep 26 17:20:35 EDT 2025 -->
