@@ -54,7 +54,11 @@ Probability theory forms the cornerstone of healthcare AI, providing the mathema
 
 Bayesian inference provides a principled approach to updating beliefs about patient conditions based on new evidence, making it particularly well-suited for clinical applications where prior knowledge and new observations must be systematically combined. The fundamental theorem of Bayesian inference, known as Bayes' theorem, can be expressed as:
 
-$$P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)}$$
+$$
+
+P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)}
+
+$$
 
 Where:
 - $P(H|E)$ is the posterior probability of hypothesis $H$ given evidence $E$
@@ -1011,13 +1015,25 @@ Hierarchical Bayesian models are particularly valuable in healthcare application
 The mathematical framework for hierarchical models can be expressed as:
 
 **Level 1 (Individual level):**
-$$y_{ij} | \theta_j, \sigma^2 \sim N(\theta_j, \sigma^2)$$
+$$
+
+y_{ij} | \theta_j, \sigma^2 \sim N(\theta_j, \sigma^2)
+
+$$
 
 **Level 2 (Group level):**
-$$\theta_j | \mu, \tau^2 \sim N(\mu, \tau^2)$$
+$$
+
+\theta_j | \mu, \tau^2 \sim N(\mu, \tau^2)
+
+$$
 
 **Level 3 (Population level):**
-$$\mu \sim N(\mu_0, \sigma_0^2), \quad \tau^2 \sim \text{InverseGamma}(\alpha, \beta)$$
+$$
+
+\mu \sim N(\mu_0, \sigma_0^2), \quad \tau^2 \sim \text{InverseGamma}(\alpha, \beta)
+
+$$
 
 This hierarchical structure enables the model to learn from both individual patient data and population-level patterns, leading to more robust and generalizable predictions.
 
@@ -1026,17 +1042,33 @@ This hierarchical structure enables the model to learn from both individual pati
 Survival analysis provides mathematical frameworks for analyzing time-to-event data, which is ubiquitous in healthcare applications. The fundamental concepts include the survival function, hazard function, and cumulative hazard function:
 
 **Survival Function:**
-$$S(t) = P(T > t) = 1 - F(t)$$
+$$
+
+S(t) = P(T > t) = 1 - F(t)
+
+$$
 
 **Hazard Function:**
-$$h(t) = \lim_{\Delta t \to 0} \frac{P(t \leq T < t + \Delta t | T \geq t)}{\Delta t}$$
+$$
+
+h(t) = \lim_{\Delta t \to 0} \frac{P(t \leq T < t + \Delta t | T \geq t)}{\Delta t}
+
+$$
 
 **Cumulative Hazard Function:**
-$$H(t) = \int_0^t h(u) du = -\log S(t)$$
+$$
+
+H(t) = \int_0^t h(u) du = -\log S(t)
+
+$$
 
 The Cox proportional hazards model is particularly important for healthcare AI:
 
-$$h(t|x) = h_0(t) \exp(\beta^T x)$$
+$$
+
+h(t|x) = h_0(t) \exp(\beta^T x)
+
+$$
 
 Where $h_0(t)$ is the baseline hazard and $\beta^T x$ represents the linear combination of covariates.
 
@@ -1051,17 +1083,29 @@ Healthcare data is naturally represented as matrices, where rows correspond to p
 The fundamental matrix operations in healthcare AI include:
 
 **Matrix Multiplication for Feature Transformation:**
-$$\mathbf{Y} = \mathbf{X}\mathbf{W} + \mathbf{b}$$
+$$
+
+\mathbf{Y} = \mathbf{X}\mathbf{W} + \mathbf{b}
+
+$$
 
 Where $\mathbf{X} \in \mathbb{R}^{n \times p}$ is the patient data matrix, $\mathbf{W} \in \mathbb{R}^{p \times k}$ is the weight matrix, $\mathbf{b} \in \mathbb{R}^k$ is the bias vector, and $\mathbf{Y} \in \mathbb{R}^{n \times k}$ is the transformed feature matrix.
 
 **Eigenvalue Decomposition for Principal Component Analysis:**
-$$\mathbf{C} = \mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^T$$
+$$
+
+\mathbf{C} = \mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^T
+
+$$
 
 Where $\mathbf{C}$ is the covariance matrix of clinical variables, $\mathbf{Q}$ contains the eigenvectors (principal components), and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues.
 
 **Singular Value Decomposition for Matrix Factorization:**
-$$\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T$$
+$$
+
+\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T
+
+$$
 
 This decomposition is particularly useful for handling missing data and identifying latent clinical phenotypes.
 
@@ -2093,13 +2137,21 @@ Optimization theory provides the mathematical framework for training AI models b
 
 The most commonly used optimization methods in healthcare AI are gradient-based approaches that iteratively update model parameters in the direction of steepest descent of the loss function. The fundamental update rule can be expressed as:
 
-$$\theta_{t+1} = \theta_t - \alpha \nabla_\theta L(\theta_t)$$
+$$
+
+\theta_{t+1} = \theta_t - \alpha \nabla_\theta L(\theta_t)
+
+$$
 
 Where $\theta$ represents the model parameters, $\alpha$ is the learning rate, and $L(\theta)$ is the loss function.
 
 For healthcare applications, the loss function often incorporates multiple clinical considerations:
 
-$$L(\theta) = L_{prediction}(\theta) + \lambda L_{regularization}(\theta) + \gamma L_{fairness}(\theta) + \delta L_{interpretability}(\theta)$$
+$$
+
+L(\theta) = L_{prediction}(\theta) + \lambda L_{regularization}(\theta) + \gamma L_{fairness}(\theta) + \delta L_{interpretability}(\theta)
+
+$$
 
 This multi-objective formulation ensures that models not only achieve high predictive accuracy but also maintain fairness across different patient populations, avoid overfitting to training data, and provide interpretable results that can be validated by clinical experts.
 
@@ -2107,7 +2159,11 @@ This multi-objective formulation ensures that models not only achieve high predi
 
 Healthcare AI systems often must satisfy hard constraints related to clinical safety, regulatory requirements, and operational considerations. These constraints can be incorporated into the optimization problem using Lagrangian methods:
 
-$$\mathcal{L}(\theta, \lambda, \mu) = L(\theta) + \sum_i \lambda_i g_i(\theta) + \sum_j \mu_j h_j(\theta)$$
+$$
+
+\mathcal{L}(\theta, \lambda, \mu) = L(\theta) + \sum_i \lambda_i g_i(\theta) + \sum_j \mu_j h_j(\theta)
+
+$$
 
 Where $g_i(\theta) \leq 0$ are inequality constraints and $h_j(\theta) = 0$ are equality constraints.
 
@@ -2125,7 +2181,11 @@ Information theory provides mathematical tools for quantifying uncertainty, meas
 
 The entropy of a clinical variable measures the uncertainty associated with that variable:
 
-$$H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)$$
+$$
+
+H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)
+
+$$
 
 High entropy indicates high uncertainty, while low entropy suggests more predictable outcomes. This measure is particularly useful for:
 
@@ -2137,7 +2197,11 @@ High entropy indicates high uncertainty, while low entropy suggests more predict
 
 Mutual information quantifies the amount of information that one variable provides about another:
 
-$$I(X;Y) = \sum_{x,y} p(x,y) \log_2 \frac{p(x,y)}{p(x)p(y)}$$
+$$
+
+I(X;Y) = \sum_{x,y} p(x,y) \log_2 \frac{p(x,y)}{p(x)p(y)}
+
+$$
 
 This measure is essential for understanding relationships between clinical variables and identifying redundant measurements.
 
@@ -2145,8 +2209,16 @@ This measure is essential for understanding relationships between clinical varia
 
 Information theory provides principled approaches to model selection through criteria such as the Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC):
 
-$$AIC = 2k - 2\ln(L)$$
-$$BIC = k\ln(n) - 2\ln(L)$$
+$$
+
+AIC = 2k - 2\ln(L)
+
+$$
+$$
+
+BIC = k\ln(n) - 2\ln(L)
+
+$$
 
 Where $k$ is the number of parameters, $n$ is the sample size, and $L$ is the likelihood.
 
@@ -2166,7 +2238,11 @@ Causal relationships in healthcare can be represented using directed acyclic gra
 
 The fundamental problem of causal inference is estimating the effect of an intervention on an outcome. This can be formalized using potential outcomes:
 
-$$\tau = E[Y(1) - Y(0)]$$
+$$
+
+\tau = E[Y(1) - Y(0)]
+
+$$
 
 Where $Y(1)$ is the potential outcome under treatment and $Y(0)$ is the potential outcome under control.
 
@@ -2186,10 +2262,18 @@ Healthcare data is inherently temporal, with patient conditions evolving over ti
 State space models provide a flexible framework for modeling temporal healthcare data:
 
 **State Equation:**
-$$x_t = F_t x_{t-1} + B_t u_t + w_t$$
+$$
+
+x_t = F_t x_{t-1} + B_t u_t + w_t
+
+$$
 
 **Observation Equation:**
-$$y_t = H_t x_t + v_t$$
+$$
+
+y_t = H_t x_t + v_t
+
+$$
 
 Where $x_t$ represents the hidden health state, $y_t$ represents observed measurements, $u_t$ represents interventions, and $w_t$, $v_t$ are noise terms.
 
@@ -2198,10 +2282,18 @@ Where $x_t$ represents the hidden health state, $y_t$ represents observed measur
 Survival analysis extends time series methods to handle censored data and time-to-event outcomes:
 
 **Kaplan-Meier Estimator:**
-$$\hat{S}(t) = \prod_{t_i \leq t} \left(1 - \frac{d_i}{n_i}\right)$$
+$$
+
+\hat{S}(t) = \prod_{t_i \leq t} \left(1 - \frac{d_i}{n_i}\right)
+
+$$
 
 **Cox Proportional Hazards Model:**
-$$h(t|x) = h_0(t) \exp(\beta^T x)$$
+$$
+
+h(t|x) = h_0(t) \exp(\beta^T x)
+
+$$
 
 These models are essential for analyzing patient outcomes, treatment effectiveness, and disease progression.
 
@@ -2218,10 +2310,18 @@ Missing data is ubiquitous in healthcare datasets. Multiple imputation provides 
 3. **Pooling**: Combine results using Rubin's rules
 
 The pooled estimate is:
-$$\bar{Q} = \frac{1}{m} \sum_{i=1}^m Q_i$$
+$$
+
+\bar{Q} = \frac{1}{m} \sum_{i=1}^m Q_i
+
+$$
 
 The total variance is:
-$$T = \bar{U} + \left(1 + \frac{1}{m}\right)B$$
+$$
+
+T = \bar{U} + \left(1 + \frac{1}{m}\right)B
+
+$$
 
 Where $\bar{U}$ is the within-imputation variance and $B$ is the between-imputation variance.
 
@@ -2230,12 +2330,20 @@ Where $\bar{U}$ is the within-imputation variance and $B$ is the between-imputat
 Clinical measurements often contain error, which can bias statistical analyses. Measurement error models account for this uncertainty:
 
 **Classical Measurement Error:**
-$$X^* = X + U$$
+$$
+
+X^* = X + U
+
+$$
 
 Where $X^*$ is the observed value, $X$ is the true value, and $U$ is the measurement error.
 
 **Berkson Measurement Error:**
-$$X = X^* + U$$
+$$
+
+X = X^* + U
+
+$$
 
 These models require specialized estimation techniques such as regression calibration or SIMEX (Simulation-Extrapolation).
 

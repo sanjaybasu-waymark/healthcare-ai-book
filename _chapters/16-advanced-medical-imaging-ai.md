@@ -72,26 +72,46 @@ The mathematical foundation of Vision Transformers begins with the **patch embed
 
 Each patch is linearly embedded into a $D$-dimensional space through a learnable linear projection:
 
-$$\mathbf{z}_0 = [\mathbf{x}_{class}; \mathbf{x}_p^1\mathbf{E}; \mathbf{x}_p^2\mathbf{E}; \ldots; \mathbf{x}_p^N\mathbf{E}] + \mathbf{E}_{pos}$$
+$$
+
+\mathbf{z}_0 = [\mathbf{x}_{class}; \mathbf{x}_p^1\mathbf{E}; \mathbf{x}_p^2\mathbf{E}; \ldots; \mathbf{x}_p^N\mathbf{E}] + \mathbf{E}_{pos}
+
+$$
 
 where $\mathbf{E} \in \mathbb{R}^{(P^2 \cdot C) \times D}$ is the patch embedding matrix, $\mathbf{x}_{class}$ is a learnable class token that aggregates global information, and $\mathbf{E}_{pos} \in \mathbb{R}^{(N+1) \times D}$ contains positional embeddings that preserve spatial relationships between patches.
 
 The **multi-head self-attention mechanism** forms the core of the transformer architecture, enabling each patch to attend to all other patches in the image:
 
-$$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$$
+$$
+
+\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}
+
+$$
 
 where $\mathbf{Q} = \mathbf{z}\mathbf{W}_Q$, $\mathbf{K} = \mathbf{z}\mathbf{W}_K$, and $\mathbf{V} = \mathbf{z}\mathbf{W}_V$ are the query, key, and value matrices derived from the input embeddings $\mathbf{z}$ through learnable weight matrices $\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V \in \mathbb{R}^{D \times d_k}$.
 
 **Multi-head attention** applies multiple attention heads in parallel to capture different types of relationships:
 
-$$\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}_O$$
+$$
+
+\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}_O
+
+$$
 
 where $\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_Q^i, \mathbf{K}\mathbf{W}_K^i, \mathbf{V}\mathbf{W}_V^i)$ and $\mathbf{W}_O \in \mathbb{R}^{hd_v \times D}$ is the output projection matrix.
 
 The **transformer encoder** applies multi-head self-attention and feed-forward networks with residual connections and layer normalization:
 
-$$\mathbf{z}'_l = \text{MSA}(\text{LN}(\mathbf{z}_{l-1})) + \mathbf{z}_{l-1}$$
-$$\mathbf{z}_l = \text{MLP}(\text{LN}(\mathbf{z}'_l)) + \mathbf{z}'_l$$
+$$
+
+\mathbf{z}'_l = \text{MSA}(\text{LN}(\mathbf{z}_{l-1})) + \mathbf{z}_{l-1}
+
+$$
+$$
+
+\mathbf{z}_l = \text{MLP}(\text{LN}(\mathbf{z}'_l)) + \mathbf{z}'_l
+
+$$
 
 where $\text{MSA}$ denotes multi-head self-attention, $\text{LN}$ is layer normalization, and $\text{MLP}$ is a multi-layer perceptron with GELU activation.
 
@@ -1211,7 +1231,11 @@ Medical imaging frequently involves volumetric data such as CT scans, MRI sequen
 
 The fundamental **3D convolution operation** is mathematically defined as:
 
-$$y_{i,j,k} = \sum_{m=0}^{M-1} \sum_{n=0}^{N-1} \sum_{p=0}^{P-1} w_{m,n,p} \cdot x_{i+m,j+n,k+p} + b$$
+$$
+
+y_{i,j,k} = \sum_{m=0}^{M-1} \sum_{n=0}^{N-1} \sum_{p=0}^{P-1} w_{m,n,p} \cdot x_{i+m,j+n,k+p} + b
+
+$$
 
 where $w$ represents the 3D kernel weights, $x$ is the input volume, $b$ is the bias term, and the summation occurs over the kernel dimensions $(M, N, P)$. This operation captures spatial relationships across all three dimensions simultaneously, enabling the network to learn complex 3D patterns that are essential for understanding anatomical structures and pathological changes in volumetric medical data.
 
@@ -1239,7 +1263,11 @@ Foundation models represent a paradigm shift in medical imaging AI, providing la
 
 The **mathematical framework for transfer learning** involves adapting a pre-trained model $f_{\theta_0}$ with parameters $\theta_0$ to a new target task. The pre-trained parameters provide a strong initialization for fine-tuning on the target dataset:
 
-$$\theta^* = \arg\min_\theta \mathcal{L}_{target}(f_\theta(x), y) + \lambda \|\theta - \theta_0\|_2^2$$
+$$
+
+\theta^* = \arg\min_\theta \mathcal{L}_{target}(f_\theta(x), y) + \lambda \|\theta - \theta_0\|_2^2
+
+$$
 
 where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$ controls the strength of regularization toward the pre-trained weights, and the L2 penalty encourages the fine-tuned parameters to remain close to the pre-trained initialization.
 

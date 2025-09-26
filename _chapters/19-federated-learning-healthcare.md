@@ -72,7 +72,11 @@ Federated learning can be mathematically formulated as a distributed optimizatio
 
 **The global objective function** is defined as:
 
-$$\min_{\theta} F(\theta) = \sum_{k=1}^K \frac{n_k}{n} F_k(\theta)$$
+$$
+
+\min_{\theta} F(\theta) = \sum_{k=1}^K \frac{n_k}{n} F_k(\theta)
+
+$$
 
 where $F_k(\theta) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(f(\theta; x_i), y_i)$ is the local objective function for institution $k$, $n = \sum_{k=1}^K n_k$ is the total number of samples across all institutions, $\ell$ is the loss function appropriate for the clinical task, and $f(\theta; x_i)$ is the model prediction for input $x_i$ with parameters $\theta$.
 
@@ -86,9 +90,21 @@ where $F_k(\theta) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(f(\theta; x_i
    - **Client selection**: Select subset $\mathcal{S}_t \subseteq \mathcal{P}$ of participating institutions based on availability and data quality
    - **Secure broadcast**: Send current global model $\theta_t$ to selected institutions using encrypted communication channels
    - **Local training**: Each institution $k \in \mathcal{S}_t$ performs local training for $E$ epochs:
-     $$\theta_t^{(k)} = \text{LocalUpdate}(\theta_t, \mathcal{D}_k, E)$$
+     
+
+$$
+
+\theta_t^{(k)} = \text{LocalUpdate}(\theta_t, \mathcal{D}_k, E)
+
+$$
    - **Secure aggregation**: Server aggregates local updates using weighted averaging:
-     $$\theta_{t+1} = \sum_{k \in \mathcal{S}_t} \frac{n_k}{\sum_{j \in \mathcal{S}_t} n_j} \theta_t^{(k)}$$
+     
+
+$$
+
+\theta_{t+1} = \sum_{k \in \mathcal{S}_t} \frac{n_k}{\sum_{j \in \mathcal{S}_t} n_j} \theta_t^{(k)}
+
+$$
    - **Privacy protection**: Apply differential privacy mechanisms if required
    - **Convergence check**: Evaluate global model performance and convergence criteria
 
@@ -96,19 +112,31 @@ where $F_k(\theta) = \frac{1}{n_k} \sum_{i \in \mathcal{D}_k} \ell(f(\theta; x_i
 
 **FedProx (Federated Proximal)** addresses the challenges of data heterogeneity by adding a proximal term to the local objective function that prevents local models from deviating too far from the global model:
 
-$$\min_{\theta} F_k(\theta) + \frac{\mu}{2} \|\theta - \theta_t\|^2$$
+$$
+
+\min_{\theta} F_k(\theta) + \frac{\mu}{2} \|\theta - \theta_t\|^2
+
+$$
 
 where $\mu > 0$ is a proximal parameter that controls the strength of the regularization and $\theta_t$ is the current global model.
 
 **FedNova (Federated Normalized Averaging)** addresses the objective inconsistency problem in federated learning by normalizing local updates based on the number of local training steps:
 
-$$\theta_{t+1} = \theta_t - \eta_g \frac{\sum_{k \in \mathcal{S}_t} n_k \tau_k \Delta_k}{\sum_{k \in \mathcal{S}_t} n_k \tau_k}$$
+$$
+
+\theta_{t+1} = \theta_t - \eta_g \frac{\sum_{k \in \mathcal{S}_t} n_k \tau_k \Delta_k}{\sum_{k \in \mathcal{S}_t} n_k \tau_k}
+
+$$
 
 where $\tau_k$ is the number of local steps performed by client $k$, $\Delta_k$ is the local update, and $\eta_g$ is the global learning rate.
 
 **SCAFFOLD (Stochastic Controlled Averaging for Federated Learning)** uses control variates to reduce client drift and improve convergence in heterogeneous settings:
 
-$$\theta_{t+1}^{(k)} = \theta_t - \eta_l (g_k - c_k + c)$$
+$$
+
+\theta_{t+1}^{(k)} = \theta_t - \eta_l (g_k - c_k + c)
+
+$$
 
 where $c_k$ is the local control variate, $c$ is the global control variate, and $g_k$ is the local gradient.
 
@@ -1352,19 +1380,31 @@ if __name__ == "__main__":
 
 Differential privacy provides formal privacy guarantees for federated learning systems by adding carefully calibrated noise to model updates, ensuring that the participation of any individual patient cannot be inferred from the shared information. **The differential privacy guarantee** states that for any two datasets $D$ and $D'$ differing by at most one record, and for any subset $S$ of possible outputs:
 
-$$\Pr[\mathcal{M}(D) \in S] \leq e^{\epsilon} \cdot \Pr[\mathcal{M}(D') \in S] + \delta$$
+$$
+
+\Pr[\mathcal{M}(D) \in S] \leq e^{\epsilon} \cdot \Pr[\mathcal{M}(D') \in S] + \delta
+
+$$
 
 where $\mathcal{M}$ is the privacy mechanism, $\epsilon$ is the privacy budget, and $\delta$ is the failure probability.
 
 **Gradient clipping and noise addition** form the core of differential privacy implementation in federated learning. The sensitivity of the gradient function must be bounded through clipping:
 
-$$\tilde{g}_k = g_k \cdot \min\left(1, \frac{C}{\|g_k\|_2}\right)$$
+$$
+
+\tilde{g}_k = g_k \cdot \min\left(1, \frac{C}{\|g_k\|_2}\right)
+
+$$
 
 where $g_k$ is the original gradient, $\tilde{g}_k$ is the clipped gradient, and $C$ is the clipping threshold.
 
 **Gaussian noise** is then added to the clipped gradients:
 
-$$\hat{g}_k = \tilde{g}_k + \mathcal{N}(0, \sigma^2 C^2 I)$$
+$$
+
+\hat{g}_k = \tilde{g}_k + \mathcal{N}(0, \sigma^2 C^2 I)
+
+$$
 
 where $\sigma = \frac{C \sqrt{2 \ln(1.25/\delta)}}{\epsilon}$ is the noise scale.
 
@@ -1382,7 +1422,11 @@ Byzantine robustness addresses the challenge of malicious or compromised clients
 
 **Krum aggregation** selects the client update that is closest to the majority of other updates, effectively filtering out outliers and malicious updates. The Krum score for client $i$ is computed as:
 
-$$\text{Krum}_i = \sum_{j \in \mathcal{N}_i} \|x_i - x_j\|^2$$
+$$
+
+\text{Krum}_i = \sum_{j \in \mathcal{N}_i} \|x_i - x_j\|^2
+
+$$
 
 where $\mathcal{N}_i$ is the set of $n - f - 2$ nearest neighbors to client $i$, and $f$ is the maximum number of Byzantine clients.
 

@@ -40,7 +40,11 @@ The **pattern recognition model** describes how experienced physicians often mak
 
 **Bayesian Reasoning in Clinical Practice**: Clinical decision-making inherently involves Bayesian reasoning, where physicians update their diagnostic probabilities based on new evidence. AI explanations that explicitly show how different pieces of evidence contribute to diagnostic probability updates align well with this natural clinical reasoning process. The mathematical foundation can be expressed as:
 
-$$P(D|E) = \frac{P(E|D) \cdot P(D)}{P(E)}$$
+$$
+
+P(D|E) = \frac{P(E|D) \cdot P(D)}{P(E)}
+
+$$
 
 where $P(D|E)$ is the posterior probability of diagnosis $D$ given evidence $E$, $P(E|D)$ is the likelihood of observing evidence $E$ given diagnosis $D$, $P(D)$ is the prior probability of diagnosis $D$, and $P(E)$ is the marginal probability of evidence $E$.
 
@@ -82,7 +86,11 @@ LIME provides local explanations for individual predictions by learning an inter
 
 The mathematical foundation of LIME involves solving the following optimization problem:
 
-$$\xi(x) = \arg\min_{g \in G} L(f, g, \pi_x) + \Omega(g)$$
+$$
+
+\xi(x) = \arg\min_{g \in G} L(f, g, \pi_x) + \Omega(g)
+
+$$
 
 Where:
 - $f$ is the original complex model being explained
@@ -100,11 +108,19 @@ SHAP provides a unified framework for feature importance based on cooperative ga
 
 The SHAP value for feature $i$ is defined as:
 
-$$\phi_i = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} [f(S \cup \{i\}) - f(S)]$$
+$$
+
+\phi_i = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} [f(S \cup \{i\}) - f(S)]
+
+$$
 
 Where $F$ is the set of all features and $S$ is a subset of features not including feature $i$. The SHAP framework guarantees that the sum of all feature contributions equals the difference between the model's prediction and the expected model output:
 
-$$f(x) - E[f(X)] = \sum_{i=1}^{|F|} \phi_i$$
+$$
+
+f(x) - E[f(X)] = \sum_{i=1}^{|F|} \phi_i
+
+$$
 
 For healthcare applications, SHAP values provide clinically interpretable feature attributions that can help physicians understand which patient characteristics most strongly influence AI predictions. Different SHAP variants are appropriate for different types of healthcare models and data.
 
@@ -114,7 +130,11 @@ Counterfactual explanations answer the question "What would need to change for t
 
 The mathematical formulation of counterfactual explanation generation can be expressed as an optimization problem:
 
-$$x' = \arg\min_{x'} d(x, x') + \lambda \cdot L(f(x'), y')$$
+$$
+
+x' = \arg\min_{x'} d(x, x') + \lambda \cdot L(f(x'), y')
+
+$$
 
 Where:
 - $x'$ is the counterfactual instance

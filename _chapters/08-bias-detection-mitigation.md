@@ -44,20 +44,40 @@ Healthcare AI bias emerges from multiple sources throughout the AI development l
 
 The formal representation of bias in healthcare AI can be expressed through multiple mathematical frameworks. Statistical parity requires that the probability of a positive prediction is equal across protected groups:
 
-$$P(\hat{Y} = 1 | A = 0) = P(\hat{Y} = 1 | A = 1)$$
+$$
+
+P(\hat{Y} = 1 | A = 0) = P(\hat{Y} = 1 | A = 1)
+
+$$
 
 However, statistical parity may not be appropriate for healthcare applications where base rates of conditions differ across populations due to biological, social, or environmental factors. Equalized odds provides a more nuanced approach that accounts for true outcome rates:
 
-$$P(\hat{Y} = 1 | Y = 1, A = 0) = P(\hat{Y} = 1 | Y = 1, A = 1)$$
-$$P(\hat{Y} = 1 | Y = 0, A = 0) = P(\hat{Y} = 1 | Y = 0, A = 1)$$
+$$
+
+P(\hat{Y} = 1 | Y = 1, A = 0) = P(\hat{Y} = 1 | Y = 1, A = 1)
+
+$$
+$$
+
+P(\hat{Y} = 1 | Y = 0, A = 0) = P(\hat{Y} = 1 | Y = 0, A = 1)
+
+$$
 
 Calibration fairness ensures that predicted probabilities reflect true outcome rates across groups:
 
-$$P(Y = 1 | \hat{Y} = p, A = 0) = P(Y = 1 | \hat{Y} = p, A = 1) = p$$
+$$
+
+P(Y = 1 | \hat{Y} = p, A = 0) = P(Y = 1 | \hat{Y} = p, A = 1) = p
+
+$$
 
 Individual fairness requires that similar individuals receive similar predictions, formalized as:
 
-$$d(\hat{Y}(x_1), \hat{Y}(x_2)) \leq L \cdot d(x_1, x_2)$$
+$$
+
+d(\hat{Y}(x_1), \hat{Y}(x_2)) \leq L \cdot d(x_1, x_2)
+
+$$
 
 where $d$ represents appropriate distance metrics and $L$ is a Lipschitz constant.
 

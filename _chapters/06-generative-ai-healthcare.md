@@ -46,11 +46,19 @@ Generative AI models in healthcare are built upon several key theoretical framew
 
 The information content of a medical text sequence can be quantified using Shannon's entropy formula:
 
-$$I(x) = -\log_2 P(x)$$
+$$
+
+I(x) = -\log_2 P(x)
+
+$$
 
 where $P(x)$ is the probability of sequence $x$ under the model. Effective medical language models minimize the cross-entropy loss between the predicted and actual token distributions:
 
-$$\mathcal{L} = -\sum_{i=1}^{N} \log P(x_i | x_{<i}, \theta)$$
+$$
+
+\mathcal{L} = -\sum_{i=1}^{N} \log P(x_i | x_{<i}, \theta)
+
+$$
 
 where $x_i$ represents the $i$-th token in the sequence, $x_{<i}$ represents all previous tokens, and $\theta$ represents the model parameters.
 
@@ -58,7 +66,11 @@ where $x_i$ represents the $i$-th token in the sequence, $x_{<i}$ represents all
 
 The fundamental Bayesian relationship for medical diagnosis can be expressed as:
 
-$$P(\text{diagnosis} | \text{symptoms}, \text{history}) = \frac{P(\text{symptoms} | \text{diagnosis}) \cdot P(\text{diagnosis} | \text{history})}{P(\text{symptoms} | \text{history})}$$
+$$
+
+P(\text{diagnosis} | \text{symptoms}, \text{history}) = \frac{P(\text{symptoms} | \text{diagnosis}) \cdot P(\text{diagnosis} | \text{history})}{P(\text{symptoms} | \text{history})}
+
+$$
 
 Modern transformer models approximate these distributions through attention mechanisms that weight different pieces of evidence according to their relevance and reliability. The attention weights can be interpreted as a form of evidence weighting that reflects the model's confidence in different aspects of the input data.
 
@@ -66,7 +78,11 @@ Modern transformer models approximate these distributions through attention mech
 
 The causal effect of a treatment $T$ on an outcome $Y$ can be estimated using the do-calculus framework:
 
-$$P(Y = y | \text{do}(T = t)) = \sum_z P(Y = y | T = t, Z = z) \cdot P(Z = z)$$
+$$
+
+P(Y = y | \text{do}(T = t)) = \sum_z P(Y = y | T = t, Z = z) \cdot P(Z = z)
+
+$$
 
 where $Z$ represents confounding variables that must be adjusted for to obtain unbiased causal estimates.
 
@@ -94,7 +110,11 @@ Modern clinical language models are typically based on the transformer architect
 
 The transformer architecture consists of multiple layers of self-attention and feed-forward networks. For clinical applications, the attention mechanism can be mathematically expressed as:
 
-$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+$$
+
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+
+$$
 
 where $Q$, $K$, and $V$ represent query, key, and value matrices derived from the input clinical text, and $d_k$ is the dimension of the key vectors. In clinical contexts, this mechanism allows the model to focus on relevant medical concepts, symptoms, and treatments when generating responses or making predictions.
 

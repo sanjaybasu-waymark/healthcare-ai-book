@@ -36,7 +36,11 @@ Healthcare AI agents are grounded in several key theoretical frameworks that dis
 
 The formal representation of a healthcare AI agent can be expressed as:
 
-$$Agent = \langle B, D, I, \pi, \rho, \sigma \rangle$$
+$$
+
+Agent = \langle B, D, I, \pi, \rho, \sigma \rangle
+
+$$
 
 where:
 - $B$ is the set of beliefs about patient state and clinical environment
@@ -50,7 +54,11 @@ where:
 
 The utility function for a healthcare agent can be expressed as:
 
-$$U(a, s) = \sum_{i} w_i \cdot u_i(a, s)$$
+$$
+
+U(a, s) = \sum_{i} w_i \cdot u_i(a, s)
+
+$$
 
 where $a$ represents an action, $s$ represents the current state, $w_i$ are weights for different objectives, and $u_i$ are utility functions for:
 - Patient clinical outcomes and quality of life
@@ -75,7 +83,11 @@ Healthcare AI agents must possess unique characteristics that distinguish them f
 
 The safety framework for healthcare agents can be formalized as a constraint satisfaction problem where actions must satisfy:
 
-$$\forall a \in A: \text{Safety}(a, s) \geq \theta_{safety} \land \text{Confidence}(a, s) \geq \theta_{confidence}$$
+$$
+
+\forall a \in A: \text{Safety}(a, s) \geq \theta_{safety} \land \text{Confidence}(a, s) \geq \theta_{confidence}
+
+$$
 
 where $A$ is the set of possible actions, $s$ is the current state, and $\theta_{safety}$ and $\theta_{confidence}$ are minimum thresholds for safety and confidence respectively.
 

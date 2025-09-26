@@ -46,7 +46,11 @@ The FDA's concept of **predetermined change control plans (PCCPs)** attempts to 
 
 The mathematical framework for change control can be expressed through performance bounds and statistical monitoring:
 
-$$P_{new}(m) \geq P_{baseline}(m) - \delta_m \text{ with probability } \geq 1-\alpha$$
+$$
+
+P_{new}(m) \geq P_{baseline}(m) - \delta_m \text{ with probability } \geq 1-\alpha
+
+$$
 
 Where $P_{new}(m)$ represents the performance of the modified system on metric $m$, $P_{baseline}(m)$ is the baseline performance established during initial validation, $\delta_m$ is the maximum allowable degradation for that metric, and $\alpha$ is the acceptable probability of exceeding the degradation threshold.
 
@@ -166,7 +170,11 @@ The scope of SaMD regulation includes:
 
 **Mathematical Risk Assessment Framework**: The risk assessment process can be formalized through a quantitative framework that considers multiple factors:
 
-$$R = f(P_{failure}, S_{consequence}, D_{detectability}, C_{clinical\_context})$$
+$$
+
+R = f(P_{failure}, S_{consequence}, D_{detectability}, C_{clinical\_context})
+
+$$
 
 Where:
 - $P_{failure}$ represents the probability of AI system failure or incorrect output
@@ -214,12 +222,24 @@ One of the most significant innovations in AI regulation is the FDA's Predetermi
 
 **Mathematical Framework for Change Control**: The PCCP framework can be formalized through statistical monitoring and control theory principles:
 
-$$H_0: P_{new}(m) \geq P_{baseline}(m) - \delta_m$$
-$$H_1: P_{new}(m) < P_{baseline}(m) - \delta_m$$
+$$
+
+H_0: P_{new}(m) \geq P_{baseline}(m) - \delta_m
+
+$$
+$$
+
+H_1: P_{new}(m) < P_{baseline}(m) - \delta_m
+
+$$
 
 Where statistical tests are used to monitor whether the performance of the modified system remains within acceptable bounds. Sequential monitoring procedures can be implemented using control charts or sequential probability ratio tests:
 
-$$\Lambda_n = \prod_{i=1}^n \frac{f(x_i|\theta_1)}{f(x_i|\theta_0)}$$
+$$
+
+\Lambda_n = \prod_{i=1}^n \frac{f(x_i|\theta_1)}{f(x_i|\theta_0)}
+
+$$
 
 Where $\Lambda_n$ is the likelihood ratio after $n$ observations, and decisions about system performance are made based on predefined thresholds.
 
@@ -250,12 +270,24 @@ The FDA requires clinical evidence to demonstrate the safety and effectiveness o
 
 The mathematical framework for analytical validation typically involves statistical hypothesis testing:
 
-$$H_0: \text{Performance} \geq \text{Threshold}$$
-$$H_1: \text{Performance} < \text{Threshold}$$
+$$
+
+H_0: \text{Performance} \geq \text{Threshold}
+
+$$
+$$
+
+H_1: \text{Performance} < \text{Threshold}
+
+$$
 
 With appropriate sample size calculations to ensure adequate power:
 
-$$n = \frac{(z_{\alpha} + z_{\beta})^2 \sigma^2}{(\mu_1 - \mu_0)^2}$$
+$$
+
+n = \frac{(z_{\alpha} + z_{\beta})^2 \sigma^2}{(\mu_1 - \mu_0)^2}
+
+$$
 
 Where $n$ is the required sample size, $z_{\alpha}$ and $z_{\beta}$ are critical values for Type I and Type II errors, $\sigma^2$ is the variance, and $\mu_1 - \mu_0$ is the effect size.
 

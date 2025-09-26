@@ -38,7 +38,11 @@ Healthcare AI robustness is grounded in several theoretical frameworks that addr
 
 The mathematical foundation of distributional robustness can be expressed through the framework of distributionally robust optimization (DRO):
 
-$$\min_{\theta} \max_{P \in \mathcal{U}} \mathbb{E}_{(x,y) \sim P}[\ell(f_\theta(x), y)]$$
+$$
+
+\min_{\theta} \max_{P \in \mathcal{U}} \mathbb{E}_{(x,y) \sim P}[\ell(f_\theta(x), y)]
+
+$$
 
 Where $\theta$ represents model parameters, $\mathcal{U}$ is an uncertainty set of distributions representing possible variations in the data distribution, $f_\theta$ is the model function, and $\ell$ is the loss function. This formulation ensures that the model performs well across a range of possible data distributions, providing robustness to distribution shift.
 
@@ -48,7 +52,11 @@ For healthcare applications, the uncertainty set $\mathcal{U}$ can be designed t
 
 The adversarial robustness problem can be formulated as a minimax optimization:
 
-$$\min_{\theta} \mathbb{E}_{(x,y) \sim D} \left[ \max_{\|\delta\| \leq \epsilon} \ell(f_\theta(x + \delta), y) \right]$$
+$$
+
+\min_{\theta} \mathbb{E}_{(x,y) \sim D} \left[ \max_{\|\delta\| \leq \epsilon} \ell(f_\theta(x + \delta), y) \right]
+
+$$
 
 Where $\delta$ represents the adversarial perturbation bounded by $\epsilon$, $D$ is the data distribution, and the inner maximization finds the worst-case perturbation within the allowed budget. This formulation captures the goal of training models that perform well even under adversarial manipulation.
 
@@ -56,7 +64,11 @@ Where $\delta$ represents the adversarial perturbation bounded by $\epsilon$, $D
 
 The temporal robustness challenge can be modeled as:
 
-$$\min_{\theta} \sum_{t=1}^{T} w_t \mathbb{E}_{(x,y) \sim D_t}[\ell(f_\theta(x), y)]$$
+$$
+
+\min_{\theta} \sum_{t=1}^{T} w_t \mathbb{E}_{(x,y) \sim D_t}[\ell(f_\theta(x), y)]
+
+$$
 
 Where $D_t$ represents the data distribution at time $t$, $w_t$ are temporal weights, and $T$ is the time horizon. This formulation allows models to adapt to temporal changes while maintaining performance across different time periods.
 
@@ -64,7 +76,11 @@ Where $D_t$ represents the data distribution at time $t$, $w_t$ are temporal wei
 
 Bayesian approaches to uncertainty quantification can be combined with robustness techniques:
 
-$$p(\theta|D) \propto p(D|\theta) p(\theta)$$
+$$
+
+p(\theta|D) \propto p(D|\theta) p(\theta)
+
+$$
 
 Where the posterior distribution $p(\theta|D)$ captures uncertainty in model parameters, and robust training procedures ensure that this uncertainty remains well-calibrated under various conditions.
 
@@ -76,7 +92,11 @@ Healthcare AI systems face a diverse range of security threats that require comp
 
 Data poisoning can be modeled as an optimization problem where an attacker seeks to maximize model error by corrupting a fraction of the training data:
 
-$$\max_{\{(x_i', y_i')\}} \mathbb{E}_{(x,y) \sim D_{test}}[\ell(f_{\theta^*}(x), y)]$$
+$$
+
+\max_{\{(x_i', y_i')\}} \mathbb{E}_{(x,y) \sim D_{test}}[\ell(f_{\theta^*}(x), y)]
+
+$$
 
 Subject to constraints on the number and magnitude of corrupted samples, where $\theta^*$ represents the parameters learned from the poisoned dataset.
 
@@ -84,7 +104,11 @@ Subject to constraints on the number and magnitude of corrupted samples, where $
 
 Model extraction can be formalized as an approximation problem where an attacker seeks to learn a surrogate model $g$ that mimics the behavior of the target model $f$:
 
-$$\min_g \mathbb{E}_{x \sim D_{query}}[d(f(x), g(x))]$$
+$$
+
+\min_g \mathbb{E}_{x \sim D_{query}}[d(f(x), g(x))]
+
+$$
 
 Where $d$ is a distance function and $D_{query}$ represents the distribution of queries the attacker can make.
 
@@ -92,7 +116,11 @@ Where $d$ is a distance function and $D_{query}$ represents the distribution of 
 
 Membership inference attacks can be modeled as a binary classification problem where an attacker tries to determine if a specific sample was used in training:
 
-$$P(\text{member}|x, f(x), \theta)$$
+$$
+
+P(\text{member}|x, f(x), \theta)
+
+$$
 
 Where the attacker uses the input $x$, model output $f(x)$, and potentially model parameters $\theta$ to infer membership.
 
@@ -100,7 +128,11 @@ Where the attacker uses the input $x$, model output $f(x)$, and potentially mode
 
 Byzantine robustness in federated learning can be addressed through robust aggregation methods:
 
-$$\theta_{t+1} = \text{RobustAgg}(\{\theta_t^{(i)} + \Delta_t^{(i)}\}_{i=1}^n)$$
+$$
+
+\theta_{t+1} = \text{RobustAgg}(\{\theta_t^{(i)} + \Delta_t^{(i)}\}_{i=1}^n)
+
+$$
 
 Where $\text{RobustAgg}$ is a robust aggregation function that can handle malicious updates from a subset of participants.
 
@@ -155,13 +187,21 @@ Healthcare AI systems face several categories of adversarial attacks, each requi
 
 The **Fast Gradient Sign Method (FGSM)** generates adversarial examples by taking a single step in the direction of the gradient:
 
-$$x_{adv} = x + \epsilon \cdot \text{sign}(\nabla_x J(\theta, x, y))$$
+$$
+
+x_{adv} = x + \epsilon \cdot \text{sign}(\nabla_x J(\theta, x, y))
+
+$$
 
 Where $x$ is the original input, $\epsilon$ is the perturbation magnitude, $J$ is the loss function, and $\theta$ represents model parameters.
 
 **Projected Gradient Descent (PGD)** extends FGSM by taking multiple smaller steps and projecting back to the allowed perturbation set:
 
-$$x_{adv}^{(t+1)} = \Pi_{S}(x_{adv}^{(t)} + \alpha \cdot \text{sign}(\nabla_x J(\theta, x_{adv}^{(t)}, y)))$$
+$$
+
+x_{adv}^{(t+1)} = \Pi_{S}(x_{adv}^{(t)} + \alpha \cdot \text{sign}(\nabla_x J(\theta, x_{adv}^{(t)}, y)))
+
+$$
 
 Where $\Pi_S$ is the projection operator onto the allowed perturbation set $S$, and $\alpha$ is the step size.
 
@@ -169,7 +209,11 @@ Where $\Pi_S$ is the projection operator onto the allowed perturbation set $S$, 
 
 The **Carlini & Wagner (C&W) attack** formulates adversarial example generation as an optimization problem:
 
-$$\min_{\delta} \|\delta\|_p + c \cdot f(x + \delta)$$
+$$
+
+\min_{\delta} \|\delta\|_p + c \cdot f(x + \delta)
+
+$$
 
 Where $f$ is an objective function that encourages misclassification, $c$ is a regularization parameter, and $\|\delta\|_p$ measures the perturbation magnitude.
 
@@ -177,13 +221,21 @@ Where $f$ is an objective function that encourages misclassification, $c$ is a r
 
 **Transfer-based attacks** exploit the transferability of adversarial examples across different models:
 
-$$x_{adv} = \arg\min_{\delta} \mathbb{E}_{f \sim \mathcal{F}}[\ell(f(x + \delta), y)]$$
+$$
+
+x_{adv} = \arg\min_{\delta} \mathbb{E}_{f \sim \mathcal{F}}[\ell(f(x + \delta), y)]
+
+$$
 
 Where $\mathcal{F}$ represents a family of surrogate models used to generate transferable adversarial examples.
 
 **Query-based attacks** iteratively refine adversarial examples based on model outputs:
 
-$$x_{adv}^{(t+1)} = x_{adv}^{(t)} + \alpha \cdot \text{EstimateGradient}(f, x_{adv}^{(t)})$$
+$$
+
+x_{adv}^{(t+1)} = x_{adv}^{(t)} + \alpha \cdot \text{EstimateGradient}(f, x_{adv}^{(t)})
+
+$$
 
 Where $\text{EstimateGradient}$ estimates the gradient using finite differences or other query-based methods.
 
@@ -202,7 +254,11 @@ Effective defense against adversarial attacks requires multiple layers of protec
 
 The adversarial training objective can be formulated as:
 
-$$\min_{\theta} \mathbb{E}_{(x,y) \sim D} \left[ \max_{\|\delta\| \leq \epsilon} \ell(f_\theta(x + \delta), y) \right]$$
+$$
+
+\min_{\theta} \mathbb{E}_{(x,y) \sim D} \left[ \max_{\|\delta\| \leq \epsilon} \ell(f_\theta(x + \delta), y) \right]
+
+$$
 
 Where the inner maximization finds the worst-case perturbation within the allowed budget $\epsilon$, and the outer minimization trains the model to be robust against these perturbations.
 
@@ -210,18 +266,34 @@ Where the inner maximization finds the worst-case perturbation within the allowe
 
 **Randomized Smoothing** provides certified robustness by adding random noise to inputs and averaging predictions:
 
-$$g(x) = \mathbb{E}_{\epsilon \sim \mathcal{N}(0, \sigma^2 I)}[f(x + \epsilon)]$$
+$$
+
+g(x) = \mathbb{E}_{\epsilon \sim \mathcal{N}(0, \sigma^2 I)}[f(x + \epsilon)]
+
+$$
 
 The certified radius for randomized smoothing can be computed as:
 
-$$R = \sigma \cdot \Phi^{-1}(p_A)$$
+$$
+
+R = \sigma \cdot \Phi^{-1}(p_A)
+
+$$
 
 Where $\Phi^{-1}$ is the inverse normal CDF and $p_A$ is the probability of predicting the correct class.
 
 **Interval Bound Propagation (IBP)** provides certified bounds on model outputs by propagating input perturbation bounds through the network:
 
-$$\underline{z}^{(l+1)} = W^{(l)} \underline{z}^{(l)} + b^{(l)}$$
-$$\overline{z}^{(l+1)} = W^{(l)} \overline{z}^{(l)} + b^{(l)}$$
+$$
+
+\underline{z}^{(l+1)} = W^{(l)} \underline{z}^{(l)} + b^{(l)}
+
+$$
+$$
+
+\overline{z}^{(l+1)} = W^{(l)} \overline{z}^{(l)} + b^{(l)}
+
+$$
 
 Where $\underline{z}^{(l)}$ and $\overline{z}^{(l)}$ represent lower and upper bounds at layer $l$.
 
@@ -229,13 +301,21 @@ Where $\underline{z}^{(l)}$ and $\overline{z}^{(l)}$ represent lower and upper b
 
 **Statistical Detection Methods** analyze the statistical properties of inputs to identify anomalies:
 
-$$\text{score}(x) = \|x - \mathbb{E}[x]\|_{\Sigma^{-1}}$$
+$$
+
+\text{score}(x) = \|x - \mathbb{E}[x]\|_{\Sigma^{-1}}
+
+$$
 
 Where $\Sigma$ is the covariance matrix of the training data distribution.
 
 **Neural Network-Based Detectors** train separate models to classify inputs as benign or adversarial:
 
-$$p(\text{adversarial}|x) = \sigma(g_\phi(x))$$
+$$
+
+p(\text{adversarial}|x) = \sigma(g_\phi(x))
+
+$$
 
 Where $g_\phi$ is a detector network and $\sigma$ is the sigmoid function.
 

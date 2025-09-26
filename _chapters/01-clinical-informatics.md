@@ -2158,7 +2158,7 @@ class HIPAAComplianceEngine:
             ],
             PHIDataType.PHONE_NUMBER: [
                 re.compile(r'\b\d{3}-\d{3}-\d{4}\b'),
-                re.compile(r'\(\d{3}\)\s*\d{3}-\d{4}'),
+                re.compile(r'$\d{3}$\s*\d{3}-\d{4}'),
                 re.compile(r'\b\d{10}\b')
             ],
             PHIDataType.EMAIL: [

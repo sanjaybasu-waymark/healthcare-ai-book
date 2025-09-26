@@ -74,25 +74,41 @@ Multimodal fusion represents the core technical challenge in multimodal AI syste
 
 **Early Fusion (Feature-Level Fusion)** combines raw features or low-level representations from different modalities before joint processing, enabling maximum interaction between modalities but requiring careful handling of dimensionality differences and data heterogeneity:
 
-$$f_{early}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = g([\mathbf{x}_1; \mathbf{x}_2; \ldots; \mathbf{x}_n])$$
+$$
+
+f_{early}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = g([\mathbf{x}_1; \mathbf{x}_2; \ldots; \mathbf{x}_n])
+
+$$
 
 where $[\cdot; \cdot]$ denotes concatenation, $\mathbf{x}_i$ represents features from modality $i$, and $g$ is a joint processing function such as a neural network that learns to integrate the concatenated features.
 
 **Late Fusion (Decision-Level Fusion)** processes each modality independently through modality-specific networks and combines the resulting predictions or high-level representations, providing robustness to missing modalities but potentially missing important cross-modal interactions:
 
-$$f_{late}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = h(g_1(\mathbf{x}_1), g_2(\mathbf{x}_2), \ldots, g_n(\mathbf{x}_n))$$
+$$
+
+f_{late}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = h(g_1(\mathbf{x}_1), g_2(\mathbf{x}_2), \ldots, g_n(\mathbf{x}_n))
+
+$$
 
 where $g_i$ are modality-specific processing functions and $h$ is a fusion function that combines the modality-specific outputs.
 
 **Intermediate Fusion (Hybrid Fusion)** combines features at multiple levels of abstraction, balancing the advantages of early and late fusion while enabling complex cross-modal interactions at different representational levels:
 
-$$f_{hybrid}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = h(g_1(\mathbf{x}_1), g_2(\mathbf{x}_2), g_{12}([\mathbf{x}_1; \mathbf{x}_2]), \ldots)$$
+$$
+
+f_{hybrid}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = h(g_1(\mathbf{x}_1), g_2(\mathbf{x}_2), g_{12}([\mathbf{x}_1; \mathbf{x}_2]), \ldots)
+
+$$
 
 where $g_{ij}$ represents joint processing of modalities $i$ and $j$ at intermediate levels.
 
 **Attention-Based Fusion** uses attention mechanisms to dynamically weight the contribution of different modalities based on their relevance to the current prediction task:
 
-$$f_{attention}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = \sum_{i=1}^n \alpha_i(\mathbf{x}_1, \ldots, \mathbf{x}_n) \cdot g_i(\mathbf{x}_i)$$
+$$
+
+f_{attention}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n) = \sum_{i=1}^n \alpha_i(\mathbf{x}_1, \ldots, \mathbf{x}_n) \cdot g_i(\mathbf{x}_i)
+
+$$
 
 where $\alpha_i$ are attention weights computed based on all modalities and $g_i$ are modality-specific feature extractors.
 
@@ -102,20 +118,36 @@ Cross-modal attention mechanisms enable different modalities to attend to releva
 
 **Cross-modal attention** between modalities $A$ and $B$ is computed as:
 
-$$\text{CrossAttention}(\mathbf{Q}_A, \mathbf{K}_B, \mathbf{V}_B) = \text{softmax}\left(\frac{\mathbf{Q}_A \mathbf{K}_B^T}{\sqrt{d_k}}\right) \mathbf{V}_B$$
+$$
+
+\text{CrossAttention}(\mathbf{Q}_A, \mathbf{K}_B, \mathbf{V}_B) = \text{softmax}\left(\frac{\mathbf{Q}_A \mathbf{K}_B^T}{\sqrt{d_k}}\right) \mathbf{V}_B
+
+$$
 
 where $\mathbf{Q}_A$ are queries from modality $A$, $\mathbf{K}_B$ and $\mathbf{V}_B$ are keys and values from modality $B$, and $d_k$ is the key dimension.
 
 **Bidirectional cross-modal attention** enables mutual information exchange between modalities:
 
-$$\mathbf{H}_A^{new} = \mathbf{H}_A + \text{CrossAttention}(\mathbf{H}_A, \mathbf{H}_B, \mathbf{H}_B)$$
-$$\mathbf{H}_B^{new} = \mathbf{H}_B + \text{CrossAttention}(\mathbf{H}_B, \mathbf{H}_A, \mathbf{H}_A)$$
+$$
+
+\mathbf{H}_A^{new} = \mathbf{H}_A + \text{CrossAttention}(\mathbf{H}_A, \mathbf{H}_B, \mathbf{H}_B)
+
+$$
+$$
+
+\mathbf{H}_B^{new} = \mathbf{H}_B + \text{CrossAttention}(\mathbf{H}_B, \mathbf{H}_A, \mathbf{H}_A)
+
+$$
 
 where $\mathbf{H}_A$ and $\mathbf{H}_B$ are hidden representations from modalities $A$ and $B$.
 
 **Multi-head cross-modal attention** applies multiple attention heads to capture different types of cross-modal relationships:
 
-$$\text{MultiHeadCrossAttention}(\mathbf{Q}_A, \mathbf{K}_B, \mathbf{V}_B) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O$$
+$$
+
+\text{MultiHeadCrossAttention}(\mathbf{Q}_A, \mathbf{K}_B, \mathbf{V}_B) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) \mathbf{W}^O
+
+$$
 
 where each head focuses on different aspects of cross-modal relationships.
 
@@ -1528,9 +1560,21 @@ Hierarchical fusion networks process multimodal data at multiple levels of abstr
 
 **Bottom-up hierarchical fusion** starts with low-level feature fusion and progressively combines higher-level representations:
 
-$$\mathbf{h}_1 = f_1([\mathbf{x}_1; \mathbf{x}_2])$$
-$$\mathbf{h}_2 = f_2([\mathbf{h}_1; g_1(\mathbf{x}_1); g_2(\mathbf{x}_2)])$$
-$$\mathbf{h}_3 = f_3([\mathbf{h}_2; g_3(\mathbf{x}_1); g_4(\mathbf{x}_2)])$$
+$$
+
+\mathbf{h}_1 = f_1([\mathbf{x}_1; \mathbf{x}_2])
+
+$$
+$$
+
+\mathbf{h}_2 = f_2([\mathbf{h}_1; g_1(\mathbf{x}_1); g_2(\mathbf{x}_2)])
+
+$$
+$$
+
+\mathbf{h}_3 = f_3([\mathbf{h}_2; g_3(\mathbf{x}_1); g_4(\mathbf{x}_2)])
+
+$$
 
 where $f_i$ are fusion functions at different levels and $g_i$ are modality-specific processing functions.
 
@@ -1544,7 +1588,11 @@ Graph-based approaches model multimodal data as nodes in a graph with edges repr
 
 **Message passing** between nodes enables information propagation across modalities:
 
-$$\mathbf{h}_i^{(l+1)} = \text{UPDATE}\left(\mathbf{h}_i^{(l)}, \text{AGGREGATE}\left(\{\mathbf{h}_j^{(l)} : j \in \mathcal{N}(i)\}\right)\right)$$
+$$
+
+\mathbf{h}_i^{(l+1)} = \text{UPDATE}\left(\mathbf{h}_i^{(l)}, \text{AGGREGATE}\left(\{\mathbf{h}_j^{(l)} : j \in \mathcal{N}(i)\}\right)\right)
+
+$$
 
 where $\mathbf{h}_i^{(l)}$ is the representation of node $i$ at layer $l$, $\mathcal{N}(i)$ are the neighbors of node $i$, and UPDATE and AGGREGATE are learnable functions.
 

@@ -72,24 +72,44 @@ Transformer architectures have revolutionized natural language processing and de
 
 The mathematical foundation of transformers begins with the **self-attention computation**. Given input sequences represented as queries $\mathbf{Q}$, keys $\mathbf{K}$, and values $\mathbf{V}$, the attention function is computed as:
 
-$$\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$$
+$$
+
+\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}
+
+$$
 
 where $d_k$ is the dimension of the key vectors and the scaling factor $\sqrt{d_k}$ prevents the softmax function from saturating in regions with extremely small gradients. This mechanism allows the model to attend to different parts of the input sequence when processing each token, enabling the capture of long-range dependencies that are crucial for understanding clinical narratives.
 
 **Multi-head attention** provides additional modeling capacity by allowing the model to attend to different types of relationships simultaneously, which is particularly valuable in clinical text where multiple types of medical relationships may exist between distant concepts:
 
-$$\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}^O$$
+$$
+
+\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}^O
+
+$$
 
 where each attention head is computed as:
 
-$$\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)$$
+$$
+
+\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)
+
+$$
 
 and $\mathbf{W}_i^Q$, $\mathbf{W}_i^K$, $\mathbf{W}_i^V$, and $\mathbf{W}^O$ are learned projection matrices that enable each head to focus on different aspects of the input relationships.
 
 **Positional encoding** is crucial for transformer architectures as they lack inherent sequential processing capabilities. For clinical text, positional information is essential for understanding temporal relationships and document structure:
 
-$$\text{PE}_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
-$$\text{PE}_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
+$$
+
+\text{PE}_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+
+$$
+$$
+
+\text{PE}_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)
+
+$$
 
 where $pos$ is the position, $i$ is the dimension index, and $d_{model}$ is the model dimension.
 
@@ -99,13 +119,21 @@ where $pos$ is the position, $i$ is the dimension index, and $d_{model}$ is the 
 
 **Masked Language Modeling (MLM)** serves as the primary pre-training objective for clinical language models, where random tokens in the input sequence are masked and the model learns to predict the original tokens based on the surrounding context:
 
-$$\mathcal{L}_{MLM} = -\mathbb{E}_{x \sim D} \left[ \sum_{i \in M} \log P(x_i | x_{\setminus M}; \theta) \right]$$
+$$
+
+\mathcal{L}_{MLM} = -\mathbb{E}_{x \sim D} \left[ \sum_{i \in M} \log P(x_i | x_{\setminus M}; \theta) \right]
+
+$$
 
 where $D$ is the clinical text corpus, $M$ is the set of masked positions, $x_{\setminus M}$ represents the unmasked tokens, and $\theta$ are the model parameters. This objective enables the model to learn rich contextual representations of medical concepts and their relationships.
 
 **Next Sentence Prediction (NSP)** or **Sentence Order Prediction (SOP)** objectives help clinical language models understand document-level structure and coherence, which is particularly important for clinical notes that often follow specific organizational patterns and logical flows:
 
-$$\mathcal{L}_{NSP} = -\mathbb{E}_{(A,B) \sim D} \left[ y \log P(\text{IsNext}|A,B) + (1-y) \log P(\text{NotNext}|A,B) \right]$$
+$$
+
+\mathcal{L}_{NSP} = -\mathbb{E}_{(A,B) \sim D} \left[ y \log P(\text{IsNext}|A,B) + (1-y) \log P(\text{NotNext}|A,B) \right]
+
+$$
 
 where $A$ and $B$ are sentence pairs, $y$ indicates whether $B$ follows $A$ in the original document, and the model learns to predict sentence relationships.
 
@@ -1505,7 +1533,11 @@ Named Entity Recognition (NER) in clinical text involves identifying and classif
 
 The mathematical formulation of clinical NER as a sequence labeling problem uses the **BIO (Begin-Inside-Outside) tagging scheme**:
 
-$$P(y|x) = \frac{1}{Z(x)} \exp\left(\sum_{i=1}^n \sum_{k} \lambda_k f_k(y_{i-1}, y_i, x, i)\right)$$
+$$
+
+P(y|x) = \frac{1}{Z(x)} \exp\left(\sum_{i=1}^n \sum_{k} \lambda_k f_k(y_{i-1}, y_i, x, i)\right)
+
+$$
 
 where $y$ is the label sequence, $x$ is the input text, $f_k$ are feature functions, $\lambda_k$ are feature weights, and $Z(x)$ is the normalization constant.
 
@@ -1515,7 +1547,11 @@ where $y$ is the label sequence, $x$ is the input text, $f_k$ are feature functi
 
 **Conditional Random Fields (CRFs)** are commonly used as the final layer in clinical NER models to ensure valid label sequences and capture dependencies between adjacent labels. The CRF layer models the conditional probability of the entire label sequence given the input:
 
-$$P(y|x) = \frac{\exp(\text{score}(x, y))}{\sum_{y'} \exp(\text{score}(x, y'))}$$
+$$
+
+P(y|x) = \frac{\exp(\text{score}(x, y))}{\sum_{y'} \exp(\text{score}(x, y'))}
+
+$$
 
 where the score function incorporates both emission scores from the neural network and transition scores between labels.
 
@@ -1531,7 +1567,11 @@ Clinical question answering systems enable healthcare providers to query clinica
 
 The **retrieval component** identifies relevant passages from clinical knowledge bases, medical literature, and patient records using dense vector representations and semantic similarity matching:
 
-$$\text{score}(q, p) = \text{sim}(f_q(q), f_p(p))$$
+$$
+
+\text{score}(q, p) = \text{sim}(f_q(q), f_p(p))
+
+$$
 
 where $f_q$ and $f_p$ are encoder functions for questions and passages, and $\text{sim}$ is a similarity function such as cosine similarity or dot product.
 

@@ -36,13 +36,21 @@ Edge computing represents a paradigm shift in healthcare AI, bringing computatio
 
 **Healthcare edge computing architectures** typically follow a hierarchical structure with multiple tiers of processing capabilities that can be mathematically modeled as a distributed system with heterogeneous computational resources. **The edge computing ecosystem** can be represented as:
 
-$$\mathcal{E} = \{E_1, E_2, \ldots, E_n\}$$
+$$
+
+\mathcal{E} = \{E_1, E_2, \ldots, E_n\}
+
+$$
 
 where each edge node $E_i$ is characterized by its computational capacity $C_i$, memory capacity $M_i$, power consumption $P_i$, communication bandwidth $B_i$, and clinical context $\mathcal{C}_i$ that defines the specific healthcare applications and requirements for that node.
 
 **The optimization problem for task allocation** across edge nodes in healthcare environments can be formulated as:
 
-$$\min \sum_{i=1}^n \sum_{j=1}^m x_{ij} \cdot (T_{ij} + \alpha \cdot E_{ij} + \beta \cdot L_{ij})$$
+$$
+
+\min \sum_{i=1}^n \sum_{j=1}^m x_{ij} \cdot (T_{ij} + \alpha \cdot E_{ij} + \beta \cdot L_{ij})
+
+$$
 
 subject to:
 - $\sum_{i=1}^n x_{ij} = 1$ (each clinical task assigned to exactly one node)
@@ -85,19 +93,31 @@ Model compression represents a critical enabler for deploying sophisticated AI m
 
 **Post-training quantization** can be applied to pre-trained models without requiring retraining:
 
-$$\hat{w} = \text{round}\left(\frac{w - z}{s}\right)$$
+$$
+
+\hat{w} = \text{round}\left(\frac{w - z}{s}\right)
+
+$$
 
 where $w$ is the original weight, $\hat{w}$ is the quantized weight, $s$ is the scale factor, and $z$ is the zero-point offset.
 
 **Quantization-aware training** incorporates quantization effects during the training process to maintain model accuracy:
 
-$$\tilde{w} = s \cdot \text{round}\left(\frac{w}{s}\right)$$
+$$
+
+\tilde{w} = s \cdot \text{round}\left(\frac{w}{s}\right)
+
+$$
 
 where the quantization operation is approximated during forward pass and gradients are computed using straight-through estimators.
 
 **Pruning techniques** remove redundant or less important connections and neurons from neural networks, reducing model complexity while maintaining performance. **Magnitude-based pruning** removes weights below a threshold:
 
-$$\mathcal{M} = \{(i,j) : |w_{ij}| > \tau\}$$
+$$
+
+\mathcal{M} = \{(i,j) : |w_{ij}| > \tau\}
+
+$$
 
 where $\mathcal{M}$ is the set of remaining connections and $\tau$ is the pruning threshold.
 
@@ -107,7 +127,11 @@ where $\mathcal{M}$ is the set of remaining connections and $\tau$ is the prunin
 
 Knowledge distillation enables the transfer of knowledge from large, complex teacher models to smaller, more efficient student models suitable for edge deployment while preserving clinical accuracy and reliability. **The distillation loss function** combines the standard task loss with a knowledge transfer loss:
 
-$$\mathcal{L} = \alpha \mathcal{L}_{task}(y, \sigma(z_s)) + (1-\alpha) \mathcal{L}_{KD}(\sigma(z_t/T), \sigma(z_s/T))$$
+$$
+
+\mathcal{L} = \alpha \mathcal{L}_{task}(y, \sigma(z_s)) + (1-\alpha) \mathcal{L}_{KD}(\sigma(z_t/T), \sigma(z_s/T))
+
+$$
 
 where $y$ is the ground truth, $z_s$ and $z_t$ are the student and teacher logits, $\sigma$ is the softmax function, $T$ is the temperature parameter, and $\alpha$ balances the two loss components.
 
@@ -1194,11 +1218,19 @@ Real-time streaming data processing in healthcare edge computing requires sophis
 
 **Sliding window processing** enables continuous analysis of temporal data streams:
 
-$$W_t = \{x_{t-w+1}, x_{t-w+2}, \ldots, x_t\}$$
+$$
+
+W_t = \{x_{t-w+1}, x_{t-w+2}, \ldots, x_t\}
+
+$$
 
 where $W_t$ is the window at time $t$ and $w$ is the window size. **Overlapping windows** with overlap ratio $r$ provide smoother temporal analysis:
 
-$$W_{t+s} = \{x_{t+s-w+1}, \ldots, x_{t+s}\}$$
+$$
+
+W_{t+s} = \{x_{t+s-w+1}, \ldots, x_{t+s}\}
+
+$$
 
 where $s = w \cdot (1-r)$ is the step size.
 
@@ -1210,7 +1242,11 @@ Secure and efficient communication between edge devices and cloud infrastructure
 
 **Message queuing and buffering** ensure reliable data transmission even during network interruptions:
 
-$$Q_t = Q_{t-1} \cup \{m_t\} \setminus \{m_{sent}\}$$
+$$
+
+Q_t = Q_{t-1} \cup \{m_t\} \setminus \{m_{sent}\}
+
+$$
 
 where $Q_t$ is the message queue at time $t$, $m_t$ is the new message, and $m_{sent}$ are successfully transmitted messages.
 

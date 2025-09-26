@@ -310,11 +310,19 @@ Let $Y_i(1)$ be the potential outcome for individual $i$ if treated, and $Y_i(0)
 
 The ATE is defined as:
 
-$$ATE = E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]$$
+$$
+
+ATE = E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]
+
+$$
 
 In observational studies, direct estimation of $E[Y(1)]$ and $E[Y(0)]$ is biased due to confounding. Under the ignorability assumption (no unmeasured confounding), $Y(a) \perp A | X$, where $A$ is the treatment assignment and $X$ are observed covariates, and positivity $P(A=a|X) > 0$ for all $a, X$, the ATE can be identified as:
 
-$$ATE = E_X[E[Y|A=1, X] - E[Y|A=0, X]]$$
+$$
+
+ATE = E_X[E[Y|A=1, X] - E[Y|A=0, X]]
+
+$$
 
 This formula forms the basis for many adjustment methods, including regression adjustment and standardization.
 
@@ -322,7 +330,11 @@ This formula forms the basis for many adjustment methods, including regression a
 
 The propensity score, $e(X) = P(A=1|X)$, is the probability of receiving treatment given observed covariates $X$. Rosenbaum and Rubin (1983) demonstrated that if treatment assignment is ignorable given $X$, then it is also ignorable given the propensity score $e(X)$ <sup>1</sup>. This means:
 
-$$Y(a) \perp A | e(X)$$
+$$
+
+Y(a) \perp A | e(X)
+
+$$
 
 This property allows for balancing covariates by matching or weighting on the propensity score, simplifying the confounding adjustment problem from high-dimensional $X$ to a single scalar $e(X)$.
 
@@ -330,11 +342,19 @@ This property allows for balancing covariates by matching or weighting on the pr
 
 IPW uses propensity scores to create a pseudo-population where treatment assignment is unconfounded. The weights are defined as:
 
-$$W_i = \frac{A_i}{e(X_i)} + \frac{1-A_i}{1-e(X_i)}$$
+$$
+
+W_i = \frac{A_i}{e(X_i)} + \frac{1-A_i}{1-e(X_i)}
+
+$$
 
 The IPW estimator for the ATE is then:
 
-$$ATE_{IPW} = \frac{1}{n} \sum_{i=1}^n W_i Y_i$$
+$$
+
+ATE_{IPW} = \frac{1}{n} \sum_{i=1}^n W_i Y_i
+
+$$
 
 Where $A_i$ is the treatment status for individual $i$ (1 if treated, 0 if control), $e(X_i)$ is the propensity score, and $Y_i$ is the observed outcome. This method effectively reweights the observed data to create a balanced sample where the treated and control groups are comparable on observed covariates.
 
@@ -347,7 +367,11 @@ DML addresses the challenge of high-dimensional confounders by debiasing the cau
 
 The DML estimator for the ATE is based on the orthogonal score function, which is robust to errors in the nuisance function estimation. For a linear treatment effect model, the ATE can be estimated by regressing the residualized outcome on the residualized treatment:
 
-$$ATE_{DML} = \frac{E[(Y - m(X)) (T - e(X))]}{E[(T - e(X))^2]}$$
+$$
+
+ATE_{DML} = \frac{E[(Y - m(X)) (T - e(X))]}{E[(T - e(X))^2]}
+
+$$
 
 This approach ensures that the causal effect estimate is asymptotically normal and robust, even if the ML models for $m(X)$ and $e(X)$ are not perfectly specified, as long as they are sufficiently accurate <sup>15</sup>.
 

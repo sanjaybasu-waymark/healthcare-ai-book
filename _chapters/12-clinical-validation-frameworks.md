@@ -148,7 +148,11 @@ For diagnostic accuracy studies, sample size calculations must account for: **Di
 
 The mathematical framework for sample size calculation in diagnostic accuracy studies follows:
 
-$$n = \frac{Z_{\alpha/2}^2 \cdot Se \cdot (1-Se)}{d^2}$$
+$$
+
+n = \frac{Z_{\alpha/2}^2 \cdot Se \cdot (1-Se)}{d^2}
+
+$$
 
 Where $n$ is the required number of positive cases, $Z_{\alpha/2}$ is the critical value for the desired confidence level, $Se$ is the expected sensitivity, and $d$ is the desired precision (half-width of confidence interval).
 
@@ -188,8 +192,16 @@ Comparative effectiveness research (CER) evaluates AI system performance relativ
 
 The mathematical framework for non-inferiority testing follows:
 
-$$H_0: \mu_{AI} - \mu_{control} \leq -\Delta$$
-$$H_1: \mu_{AI} - \mu_{control} > -\Delta$$
+$$
+
+H_0: \mu_{AI} - \mu_{control} \leq -\Delta
+
+$$
+$$
+
+H_1: \mu_{AI} - \mu_{control} > -\Delta
+
+$$
 
 Where $\Delta$ is the non-inferiority margin and the null hypothesis is rejected if the lower bound of the confidence interval for the treatment difference exceeds $-\Delta$.
 

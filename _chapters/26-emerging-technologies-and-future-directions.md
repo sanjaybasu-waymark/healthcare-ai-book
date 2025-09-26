@@ -32,13 +32,21 @@ Understanding the mathematical underpinnings of advanced AI/ML algorithms is cru
 
 Mathematically, a single neuron's output $y$ can be expressed as:
 
-$$ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) $$
+$$
+
+ y = f\left(\sum_{i=1}^{n} w_i x_i + b\right) 
+
+$$
 
 where $x_i$ are the inputs, $w_i$ are the corresponding weights, $b$ is the bias, and $f$ is the activation function (e.g., ReLU, sigmoid, tanh). In a deep neural network, these neurons are organized into multiple layers, allowing for the learning of increasingly abstract representations. The process of learning involves adjusting the weights ($w_i$) and biases ($b$) to minimize a **loss function** $L$, which quantities the discrepancy between the model's predictions and the true labels. This minimization is typically achieved through an iterative optimization algorithm called **gradient descent** <sup><sup>5</sup></sup>.
 
 **Gradient Descent**: The objective is to find the parameters (weights and biases) that minimize the loss function. Gradient descent achieves this by iteratively moving in the direction opposite to the gradient of the loss function with respect to the parameters. The update rule for a parameter $\theta$ is:
 
-$$ \theta_{new} = \theta_{old} - \alpha \nabla L(\theta_{old}) $$
+$$
+
+ \theta_{new} = \theta_{old} - \alpha \nabla L(\theta_{old}) 
+
+$$
 
 where $\alpha$ is the learning rate, controlling the step size, and $\nabla L(\theta_{old})$ is the gradient of the loss function at the current parameter values. Variants like **Stochastic Gradient Descent (SGD)** and **Adam** optimizer are commonly used to improve convergence speed and stability <sup><sup>6</sup></sup>.
 
@@ -98,7 +106,13 @@ The most common federated learning algorithm is **Federated Averaging (FedAvg)**
 2.  **Local Training**: Each client $k$ trains the model on its local data $D_k$ for $E$ epochs, minimizing its local loss function $L_k(w)$ to obtain updated local model parameters $w_{t+1}^k$. This is typically done using stochastic gradient descent (SGD).
 3.  **Update Aggregation**: Each client sends its updated model parameters $w_{t+1}^k$ back to the server. The server then aggregates these updates to produce a new global model $w_{t+1}$ by taking a weighted average:
 
-    $$ w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_{t+1}^k $$
+    
+
+$$
+
+ w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_{t+1}^k 
+
+$$
 
     where $n_k$ is the number of data points on client $k$, and $n = \sum_{k=1}^{K} n_k$ is the total number of data points across all clients.
 4.  **Iteration**: The server sends the new global model $w_{t+1}$ back to the clients, and the process repeats for the next round.
@@ -167,13 +181,21 @@ Various mathematical and algorithmic approaches have been developed to provide e
 
 **1. Local Interpretable Model-agnostic Explanations (LIME)**: LIME explains the predictions of any classifier or regressor by approximating it locally with an interpretable model <sup><sup>35</sup></sup>. For a given prediction, LIME perturbs the input data, generates new samples, and then trains a simple, interpretable model (e.g., linear regression or decision tree) on these perturbed samples, weighted by their proximity to the original instance. The explanation is the interpretable model's coefficients or rules. Mathematically, LIME aims to minimize a loss function $L(f, g, \pi_x)$ where $f$ is the complex model, $g$ is the interpretable model, and $\pi_x$ is the proximity measure around instance $x$. The explanation is given by:
 
-$$ \xi(x) = \arg\min_{g \in G} L(f, g, \pi_x) + \Omega(g) $$
+$$
+
+ \xi(x) = \arg\min_{g \in G} L(f, g, \pi_x) + \Omega(g) 
+
+$$
 
 where $G$ is the class of interpretable models and $\Omega(g)$ is a measure of complexity of $g$.
 
 **2. SHapley Additive exPlanations (SHAP)**: SHAP is a game-theoretic approach that assigns an importance value to each feature for a particular prediction <sup><sup>36</sup></sup>. It connects optimal credit allocation with local explanations using Shapley values from cooperative game theory. The Shapley value for a feature represents the average marginal contribution of that feature across all possible coalitions (subsets) of features. For a model $f$ and an instance $x$, the SHAP value $\phi_i$ for feature $i$ is:
 
-$$ \phi_i(f, x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} [f_x(S \cup \{i\}) - f_x(S)] $$
+$$
+
+ \phi_i(f, x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} [f_x(S \cup \{i\}) - f_x(S)] 
+
+$$
 
 where $F$ is the set of all features, $S$ is a subset of features, and $f_x(S)$ is the prediction of the model using only features in $S$. SHAP provides a unified measure of feature importance that is consistent and locally accurate.
 
@@ -181,7 +203,11 @@ where $F$ is the set of all features, $S$ is a subset of features, and $f_x(S)$ 
 
 **3. Gradient-weighted Class Activation Mapping (Grad-CAM)**: Grad-CAM is a technique used to produce visual explanations for decisions made by convolutional neural networks <sup><sup>37</sup></sup>. It uses the gradients of a target class with respect to the feature maps of the last convolutional layer to produce a coarse localization map highlighting the important regions in the input image for predicting that class. This is particularly useful in medical image analysis, where it can visually indicate which parts of an X-ray or MRI scan contributed most to an AI's diagnosis. The Grad-CAM heatmap $L_{Grad-CAM}^c$ for a class $c$ is computed as:
 
-$$ L_{Grad-CAM}^c = \text{ReLU}\left(\sum_k \alpha_k^c A^k\right) $$
+$$
+
+ L_{Grad-CAM}^c = \text{ReLU}\left(\sum_k \alpha_k^c A^k\right) 
+
+$$
 
 where $A^k$ are the feature maps of a convolutional layer, and $\alpha_k^c$ are the neuron importance weights, calculated as the global average pooling of the gradients of the score for class $c$ with respect to feature map $A^k$.
 
@@ -277,7 +303,11 @@ The mathematical rigor behind digital twins involves the sophisticated integrati
 
 **3. Real-time Monitoring and Data Assimilation**: Continuously updating the digital twin with real-time data from wearable sensors, continuous glucose monitors, or ICU monitors. This involves **data assimilation techniques** (e.g., Kalman filters, particle filters) to merge observational data with model predictions, thereby refining the state of the virtual twin and improving the accuracy of future predictions <sup><sup>45</sup></sup>. For a simple linear system, a Kalman filter update for the state estimate $\hat{x}_k$ at time $k$ is:
 
-$$ \hat{x}_k = \hat{x}_{k|k-1} + K_k (z_k - H_k \hat{x}_{k|k-1}) $$
+$$
+
+ \hat{x}_k = \hat{x}_{k|k-1} + K_k (z_k - H_k \hat{x}_{k|k-1}) 
+
+$$
 
 where $\hat{x}_{k|k-1}$ is the predicted state, $z_k$ is the measurement, $H_k$ is the observation model, and $K_k$ is the Kalman gain, which balances the confidence in the prediction versus the measurement.
 
