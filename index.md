@@ -46,43 +46,43 @@ This resource provides physician data scientists with practical, production-read
 ## Chapters
 
 ### Part I: Foundations for Clinical AI
-- **[Chapter 1: Clinical Informatics Foundations](chapters/01-clinical-informatics/)**
-- **[Chapter 2: Mathematical Foundations](chapters/02-mathematical-foundations/)**
-- **[Chapter 3: Healthcare Data Engineering](chapters/03-healthcare-data-engineering/)**
-- **[Chapter 4: Structured Machine Learning](chapters/04-structured-ml-clinical/)**
-- **[Chapter 5: Reinforcement Learning in Healthcare](chapters/05-reinforcement-learning-healthcare/)**
-- **[Chapter 6: Generative AI in Healthcare](chapters/06-generative-ai-healthcare/)**
-- **[Chapter 7: AI Agents in Healthcare](chapters/07-ai-agents-healthcare/)**
+- **[Chapter 1: Clinical Informatics Foundations](/healthcare-ai-book/chapters/01-clinical-informatics/)**
+- **[Chapter 2: Mathematical Foundations](/healthcare-ai-book/chapters/02-mathematical-foundations/)**
+- **[Chapter 3: Healthcare Data Engineering](/healthcare-ai-book/chapters/03-healthcare-data-engineering/)**
+- **[Chapter 4: Structured Machine Learning](/healthcare-ai-book/chapters/04-structured-ml-clinical/)**
+- **[Chapter 5: Reinforcement Learning in Healthcare](/healthcare-ai-book/chapters/05-reinforcement-learning-healthcare/)**
+- **[Chapter 6: Generative AI in Healthcare](/healthcare-ai-book/chapters/06-generative-ai-healthcare/)**
+- **[Chapter 7: AI Agents in Healthcare](/healthcare-ai-book/chapters/07-ai-agents-healthcare/)**
 
 ### Part II: Trustworthy AI Implementation
-- **[Chapter 8: Bias Detection and Mitigation](chapters/08-bias-detection-mitigation/)**
-- **[Chapter 9: Interpretability and Explainability](chapters/09-interpretability-explainability/)**
-- **[Chapter 10: Robustness and Security](chapters/10-robustness-security/)**
-- **[Chapter 11: Regulatory Compliance](chapters/11-regulatory-compliance/)**
-- **[Chapter 12: Clinical Validation Frameworks](chapters/12-clinical-validation-frameworks/)**
+- **[Chapter 8: Bias Detection and Mitigation](/healthcare-ai-book/chapters/08-bias-detection-mitigation/)**
+- **[Chapter 9: Interpretability and Explainability](/healthcare-ai-book/chapters/09-interpretability-explainability/)**
+- **[Chapter 10: Robustness and Security](/healthcare-ai-book/chapters/10-robustness-security/)**
+- **[Chapter 11: Regulatory Compliance](/healthcare-ai-book/chapters/11-regulatory-compliance/)**
+- **[Chapter 12: Clinical Validation Frameworks](/healthcare-ai-book/chapters/12-clinical-validation-frameworks/)**
 
 ### Part III: Deployment and Scale
-- **[Chapter 13: Real-World Deployment Strategies](chapters/13-real-world-deployment-strategies/)**
-- **[Chapter 14: Population Health AI Systems](chapters/14-population-health-ai-systems/)**
-- **[Chapter 15: Health Equity Applications](chapters/15-health-equity-applications/)**
-- **[Chapter 16: Advanced Medical Imaging AI](chapters/16-advanced-medical-imaging-ai/)**
-- **[Chapter 17: Clinical NLP at Scale](chapters/17-clinical-nlp-at-scale/)**
-- **[Chapter 18: Multimodal AI Systems](chapters/18-multimodal-ai-systems/)**
-- **[Chapter 19: Federated Learning for Healthcare](chapters/19-federated-learning-healthcare/)**
+- **[Chapter 13: Real-World Deployment Strategies](/healthcare-ai-book/chapters/13-real-world-deployment-strategies/)**
+- **[Chapter 14: Population Health AI Systems](/healthcare-ai-book/chapters/14-population-health-ai-systems/)**
+- **[Chapter 15: Health Equity Applications](/healthcare-ai-book/chapters/15-health-equity-applications/)**
+- **[Chapter 16: Advanced Medical Imaging AI](/healthcare-ai-book/chapters/16-advanced-medical-imaging-ai/)**
+- **[Chapter 17: Clinical NLP at Scale](/healthcare-ai-book/chapters/17-clinical-nlp-at-scale/)**
+- **[Chapter 18: Multimodal AI Systems](/healthcare-ai-book/chapters/18-multimodal-ai-systems/)**
+- **[Chapter 19: Federated Learning for Healthcare](/healthcare-ai-book/chapters/19-federated-learning-healthcare/)**
 
 ### Part IV: Specialized Applications
-- **[Chapter 20: Edge Computing in Healthcare](chapters/20-edge-computing-healthcare/)**
-- **[Chapter 21: AI-Assisted Surgery](chapters/21-ai-assisted-surgery-and-robotic-applications/)**
-- **[Chapter 22: Drug Discovery AI](chapters/22-drug-discovery-and-development-with-ai/)**
-- **[Chapter 23: Precision Medicine](chapters/23-precision-medicine-and-personalized-healthcare/)**
-- **[Chapter 24: Healthcare Operations AI](chapters/24-healthcare-operations-and-resource-optimization/)**
-- **[Chapter 25: Quality Improvement with AI](chapters/25-quality-improvement-and-patient-safety/)**
+- **[Chapter 20: Edge Computing in Healthcare](/healthcare-ai-book/chapters/20-edge-computing-healthcare/)**
+- **[Chapter 21: AI-Assisted Surgery](/healthcare-ai-book/chapters/21-ai-assisted-surgery-and-robotic-applications/)**
+- **[Chapter 22: Drug Discovery AI](/healthcare-ai-book/chapters/22-drug-discovery-and-development-with-ai/)**
+- **[Chapter 23: Precision Medicine](/healthcare-ai-book/chapters/23-precision-medicine-and-personalized-healthcare/)**
+- **[Chapter 24: Healthcare Operations AI](/healthcare-ai-book/chapters/24-healthcare-operations-and-resource-optimization/)**
+- **[Chapter 25: Quality Improvement with AI](/healthcare-ai-book/chapters/25-quality-improvement-and-patient-safety/)**
 
 ### Part V: Future Directions
-- **[Chapter 26: Emerging Technologies](chapters/26-emerging-technologies-and-future-directions/)**
-- **[Chapter 27: Case Studies and Applications](chapters/27-case-studies-and-real-world-applications/)**
-- **[Chapter 28: Causal Inference for Healthcare](chapters/28-causal-inference-in-healthcare-ai/)**
-- **[Chapter 29: Environmental Sustainability](chapters/29-environmental-sustainability-in-healthcare-ai/)**
+- **[Chapter 26: Emerging Technologies](/healthcare-ai-book/chapters/26-emerging-technologies-and-future-directions/)**
+- **[Chapter 27: Case Studies and Applications](/healthcare-ai-book/chapters/27-case-studies-and-real-world-applications/)**
+- **[Chapter 28: Causal Inference for Healthcare](/healthcare-ai-book/chapters/28-causal-inference-in-healthcare-ai/)**
+- **[Chapter 29: Environmental Sustainability](/healthcare-ai-book/chapters/29-environmental-sustainability-in-healthcare-ai/)**
 
 ## Key Features
 
