@@ -72,17 +72,17 @@ This resource provides physician data scientists with practical, production-read
 
 ### Part IV: Specialized Applications
 - **[Chapter 20: Edge Computing in Healthcare](chapters/20-edge-computing-healthcare-optimized/)**
-- **[Chapter 21: AI-Assisted Surgery](chapters/21-ai-assisted-surgery-optimized/)**
-- **[Chapter 22: Drug Discovery AI](chapters/22-drug-discovery-ai-optimized/)**
-- **[Chapter 23: Precision Medicine](chapters/23-precision-medicine-optimized/)**
-- **[Chapter 24: Healthcare Operations AI](chapters/24-healthcare-operations-ai-optimized/)**
-- **[Chapter 25: Quality Improvement with AI](chapters/25-quality-improvement-ai-optimized/)**
+- **[Chapter 21: AI-Assisted Surgery](chapters/21-ai-assisted-surgery-and-robotic-applications-optimized/)**
+- **[Chapter 22: Drug Discovery AI](chapters/22-drug-discovery-and-development-with-ai-optimized/)**
+- **[Chapter 23: Precision Medicine](chapters/23-precision-medicine-and-personalized-healthcare-optimized/)**
+- **[Chapter 24: Healthcare Operations AI](chapters/24-healthcare-operations-and-resource-optimization-optimized/)**
+- **[Chapter 25: Quality Improvement with AI](chapters/25-quality-improvement-and-patient-safety-optimized/)**
 
 ### Part V: Future Directions
-- **[Chapter 26: Emerging Technologies](chapters/26-emerging-technologies-optimized/)**
-- **[Chapter 27: Case Studies and Applications](chapters/27-case-studies-applications-optimized/)**
-- **[Chapter 28: Causal Inference for Healthcare](chapters/28-causal-inference-optimized/)**
-- **[Chapter 29: Environmental Sustainability](chapters/29-environmental-sustainability-optimized/)**
+- **[Chapter 26: Emerging Technologies](chapters/26-emerging-technologies-and-future-directions-optimized/)**
+- **[Chapter 27: Case Studies and Applications](chapters/27-case-studies-and-real-world-applications-optimized/)**
+- **[Chapter 28: Causal Inference for Healthcare](chapters/28-causal-inference-in-healthcare-ai-optimized/)**
+- **[Chapter 29: Environmental Sustainability](chapters/29-environmental-sustainability-in-healthcare-ai-optimized/)**
 
 ## Key Features
 
