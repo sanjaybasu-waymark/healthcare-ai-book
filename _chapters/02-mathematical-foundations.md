@@ -189,7 +189,7 @@ class DiagnosticTest:
     def validate_performance(self) -> bool:
         """Validate test performance parameters."""
         return (0 <= self.sensitivity <= 1 and 
-                0 <= self.specificity <= 1 and
+<= self.specificity <= 1 and
                 self.cost >= 0 and
                 self.turnaround_time_hours >= 0)
     
@@ -258,10 +258,10 @@ class ClinicalCondition:
     def validate_parameters(self) -> bool:
         """Validate condition parameters."""
         return (0 <= self.prevalence <= 1 and
-                1 <= self.severity_score <= 5 and
-                0 <= self.mortality_risk <= 1 and
-                0 <= self.morbidity_risk <= 1 and
-                0 <= self.treatment_effectiveness <= 1)
+<= self.severity_score <= 5 and
+<= self.mortality_risk <= 1 and
+<= self.morbidity_risk <= 1 and
+<= self.treatment_effectiveness <= 1)
     
     def get_adjusted_prevalence(self, 
                                age: Optional[int] = None,

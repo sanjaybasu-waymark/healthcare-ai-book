@@ -1,21 +1,23 @@
-# Chapter 15 Code Examples
+# Chapter 15 - No Code Examples
 
-This directory contains all code examples from Chapter 15 of the Healthcare AI Implementation Guide.
+This chapter focuses on theoretical concepts, frameworks, and methodologies that don't require executable code examples.
 
-## Files
+## Chapter Content
 
-- `example_01.py` - Primary implementation example
-- `utils.py` - Utility functions and helpers
-- `requirements.txt` - Python dependencies for this chapter
+Chapter 15 covers conceptual material including:
+- Theoretical frameworks
+- Methodological approaches  
+- Best practices and guidelines
+- Regulatory and compliance considerations
 
-## Usage
+## Related Chapters with Code
 
-```bash
-cd code_examples/chapter_15
-pip install -r requirements.txt
-python example_01.py
-```
+For practical implementations related to this chapter's concepts, see:
+- Chapter 1: Clinical Informatics Foundations
+- Chapter 2: Mathematical Foundations  
+- Chapter 3: Healthcare Data Engineering
+- Chapter 4: Structured Machine Learning
 
-## Documentation
+## Implementation Guidance
 
-For detailed explanations of these code examples, see Chapter 15 in the main book.
+While this chapter doesn't include executable code, the concepts discussed are implemented in other chapters' examples. Refer to the main chapter content for detailed explanations and references to applicable code examples.
