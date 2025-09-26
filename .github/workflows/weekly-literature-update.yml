@@ -1,0 +1,54 @@
+name: Weekly Healthcare AI Literature Update
+
+on:
+  schedule:
+    - cron: '0 6 * * 0'  # Every Sunday at 6 AM UTC
+  workflow_dispatch:
+    inputs:
+      significance_threshold:
+        description: 'Minimum significance score (1-10 )'
+        required: false
+        default: '3.0'
+
+jobs:
+  literature-monitoring:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install openai requests beautifulsoup4 feedparser arxiv biopython
+
+    - name: Run literature monitoring
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        PUBMED_API_KEY: ${{ secrets.PUBMED_API_KEY }}
+        SIGNIFICANCE_THRESHOLD: ${{ github.event.inputs.significance_threshold || '3.0' }}
+      run: |
+        python scripts/test_literature_monitor.py
+
+    - name: Commit and push updates
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Literature Monitor Bot"
+        
+        if [[ -n $(git status --porcelain) ]]; then
+          git add .
+          git commit -m "📚 Weekly literature update: Automated research monitoring"
+          git push origin main
+          echo "✅ Successfully updated chapters with latest research"
+        else
+          echo "ℹ️ No significant literature updates found"
+        fi
