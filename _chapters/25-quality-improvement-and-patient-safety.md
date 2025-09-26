@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 25: Quality Improvement And Patient Safety"
 nav_order: 25
 parent: Chapters
+permalink: /chapters/25-quality-improvement-and-patient-safety/
 ---
 
 ## Chapter 25: Quality Improvement and Patient Safety
@@ -13,7 +14,7 @@ The pursuit of excellence in healthcare is not a new endeavor. For centuries, cl
 
 ### 2.1. Key QI Models and Frameworks
 
-Several models and frameworks have been developed to guide Quality Improvement (QI) efforts in healthcare, each offering a structured approach to identifying problems, testing interventions, and sustaining improvements. The **Donabedian Model**, developed by Avedis Donabedian, evaluates the quality of care by examining three key components: **structure, process, and outcome** [2]. Structure refers to the context of care delivery, including facilities, equipment, and personnel. Process encompasses the technical and interpersonal transactions of care, while outcome represents the effects of care on patient health status. This model provides a comprehensive lens for assessing quality and identifying areas for improvement.
+Several models and frameworks have been developed to guide Quality Improvement (QI) efforts in healthcare, each offering a structured approach to identifying problems, testing interventions, and sustaining improvements. The **Donabedian Model**, developed by Avedis Donabedian, evaluates the quality of care by examining three key components: **structure, process, and outcome** <sup>2</sup>. Structure refers to the context of care delivery, including facilities, equipment, and personnel. Process encompasses the technical and interpersonal transactions of care, while outcome represents the effects of care on patient health status. This model provides a comprehensive lens for assessing quality and identifying areas for improvement.
 
 Another influential framework is **The Model for Improvement**, widely promoted by the Institute for Healthcare Improvement (IHI). This model is driven by three fundamental questions: What are we trying to accomplish? How will we know that a change is an improvement? What change can we make that will result in improvement? Its core mechanism is the **Plan-Do-Study-Act (PDSA)** cycle, an iterative four-stage process for testing changes on a small scale, allowing for continuous learning and refinement to minimize risk and maximize successful implementation.
 
@@ -208,26 +209,26 @@ To illustrate the practical impact of data science in quality improvement and pa
 
 ## Bibliography
 
-[1] BMJ Quality & Safety. (n.d.). *Using data science to improve patient care*. Retrieved from [https://qualitysafety.bmj.com/content/34/5/288](https://qualitysafety.bmj.com/content/34/5/288)
+<sup>1</sup> BMJ Quality & Safety. (n.d.). *Using data science to improve patient care*. Retrieved from [https://qualitysafety.bmj.com/content/34/5/288](https://qualitysafety.bmj.com/content/34/5/288)
 
-[2] NCBI. (n.d.). *Data quality-driven improvement in healthcare*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC11377907/](https://pmc.ncbi.nlm.nih.gov/articles/PMC113777907/)
+<sup>2</sup> NCBI. (n.d.). *Data quality-driven improvement in healthcare*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC11377907/](https://pmc.ncbi.nlm.nih.gov/articles/PMC113777907/)
 
-[3] NCBI. (n.d.). *The role of data science in healthcare advancements*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC9308575/](https://pmc.ncbi.nlm.nih.gov/articles/PMC9308575/)
+<sup>3</sup> NCBI. (n.d.). *The role of data science in healthcare advancements*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC9308575/](https://pmc.ncbi.nlm.nih.gov/articles/PMC9308575/)
 
-[4] ScienceDirect. (n.d.). *Data and measurement in quality improvement*. Retrieved from [https://www.sciencedirect.com/science/article/pii/S2949912723000053](https://www.sciencedirect.com/science/article/pii/S2949912723000053)
+<sup>4</sup> ScienceDirect. (n.d.). *Data and measurement in quality improvement*. Retrieved from [https://www.sciencedirect.com/science/article/pii/S2949912723000053](https://www.sciencedirect.com/science/article/pii/S2949912723000053)
 
-[5] APU. (n.d.). *Quality Improvement in Healthcare: Tools That Drive Change*. Retrieved from [https://www.apu.apus.edu/area-of-study/nursing-and-health-sciences/resources/quality-improvement-in-healthcare/](https://www.apu.apus.edu/area-of-study/nursing-and-health-sciences/resources/quality-improvement-in-healthcare/)
+<sup>5</sup> APU. (n.d.). *Quality Improvement in Healthcare: Tools That Drive Change*. Retrieved from [https://www.apu.apus.edu/area-of-study/nursing-and-health-sciences/resources/quality-improvement-in-healthcare/](https://www.apu.apus.edu/area-of-study/nursing-and-health-sciences/resources/quality-improvement-in-healthcare/)
 
-[6] AHRQ. (n.d.). *Collect and use data for quality improvement*. Retrieved from [https://integrationacademy.ahrq.gov/products/playbooks/behavioral-health-and-primary-care/implementing-plan/collect-and-use-data-quality-improvement](https://integrationacademy.ahrq.gov/products/playbooks/behavioral-health-and-primary-care/implementing-plan/collect-and-use-data-quality-improvement)
+<sup>6</sup> AHRQ. (n.d.). *Collect and use data for quality improvement*. Retrieved from [https://integrationacademy.ahrq.gov/products/playbooks/behavioral-health-and-primary-care/implementing-plan/collect-and-use-data-quality-improvement](https://integrationacademy.ahrq.gov/products/playbooks/behavioral-health-and-primary-care/implementing-plan/collect-and-use-data-quality-improvement)
 
-[7] NCBI. (n.d.). *Developing a data-driven approach to improve patient safety*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC8175645/](https://pmc.ncbi.nlm.nih.gov/articles/PMC8175645/)
+<sup>7</sup> NCBI. (n.d.). *Developing a data-driven approach to improve patient safety*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC8175645/](https://pmc.ncbi.nlm.nih.gov/articles/PMC8175645/)
 
-[8] Health Catalyst. (n.d.). *How to use data to improve quality and patient safety*. Retrieved from [https://www.healthcatalyst.com/learn/insights/use-data-improve-patient-safety](https://www.healthcatalyst.com/learn/insights/use-data-improve-patient-safety)
+<sup>8</sup> Health Catalyst. (n.d.). *How to use data to improve quality and patient safety*. Retrieved from [https://www.healthcatalyst.com/learn/insights/use-data-improve-patient-safety](https://www.healthcatalyst.com/learn/insights/use-data-improve-patient-safety)
 
-[9] NCBI. (n.d.). *Artificial intelligence in healthcare: transforming patient care*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC11750995/](https://pmc.ncbi.nlm.nih.gov/articles/PMC11750995/)
+<sup>9</sup> NCBI. (n.d.). *Artificial intelligence in healthcare: transforming patient care*. Retrieved from [https://pmc.ncbi.nlm.nih.gov/articles/PMC11750995/](https://pmc.ncbi.nlm.nih.gov/articles/PMC11750995/)
 
-[10] ObservSMART. (n.d.). *How healthcare analytics is improving patient safety*. Retrieved from [https://www.observsmart.com/how-healthcare-analytics-is-improving-patient-safety/](https://www.observsmart.com/how-healthcare-analytics-is-improving-patient-safety/)
+<sup>10</sup> ObservSMART. (n.d.). *How healthcare analytics is improving patient safety*. Retrieved from [https://www.observsmart.com/how-healthcare-analytics-is-improving-patient-safety/](https://www.observsmart.com/how-healthcare-analytics-is-improving-patient-safety/)
 
-[11] Mathematica. (n.d.). *Using machine learning to explore patient safety event trends and characteristics*. Retrieved from [https://www.mathematica.org/projects/using-machine-learning-to-explore-patient-safety-event-trends-and-characteristics](https://www.mathematica.org/projects/using-machine-learning-to-explore-patient-safety-event-trends-and-characteristics)
+<sup>11</sup> Mathematica. (n.d.). *Using machine learning to explore patient safety event trends and characteristics*. Retrieved from [https://www.mathematica.org/projects/using-machine-learning-to-explore-patient-safety-event-trends-and-characteristics](https://www.mathematica.org/projects/using-machine-learning-to-explore-patient-safety-event-trends-and-characteristics)
 
 [WHO Patient Safety Fact Sheet] World Health Organization. (n.d.). *Patient Safety Fact Sheet*. Retrieved from [https://www.who.int/news-room/fact-sheets/detail/patient-safety](https://www.who.int/news-room/fact-sheets/detail/patient-safety)

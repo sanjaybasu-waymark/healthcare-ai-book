@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 2: Mathematical Foundations"
 nav_order: 2
 parent: Chapters
+permalink: /chapters/02-mathematical-foundations/
 ---
 
 # Chapter 2: Mathematical Foundations for Healthcare AI
@@ -489,14 +490,14 @@ class BayesianDiagnosticSystem:
             # Build hierarchical model
             with pm.Model() as hierarchical_model:
                 # Hyperpriors for test performance
-                alpha_sens = pm.Beta('alpha_sens', alpha=2, beta=2, shape=X.shape[1])
-                beta_spec = pm.Beta('beta_spec', alpha=2, beta=2, shape=X.shape[1])
+                alpha_sens = pm.Beta('alpha_sens', alpha=2, beta=2, shape=X.shape<sup>1</sup>)
+                beta_spec = pm.Beta('beta_spec', alpha=2, beta=2, shape=X.shape<sup>1</sup>)
                 
                 # Individual test sensitivities and specificities
                 sensitivity = pm.Beta('sensitivity', alpha=alpha_sens * 100, 
-                                    beta=(1 - alpha_sens) * 100, shape=X.shape[1])
+                                    beta=(1 - alpha_sens) * 100, shape=X.shape<sup>1</sup>)
                 specificity = pm.Beta('specificity', alpha=beta_spec * 100,
-                                    beta=(1 - beta_spec) * 100, shape=X.shape[1])
+                                    beta=(1 - beta_spec) * 100, shape=X.shape<sup>1</sup>)
                 
                 # Prior probability (prevalence)
                 prevalence = pm.Beta('prevalence', alpha=1, beta=1)
@@ -801,7 +802,7 @@ class BayesianDiagnosticSystem:
         calibration_model = LinearRegression()
         calibration_model.fit(y_pred_logit.reshape(-1, 1), y_true)
         
-        slope = calibration_model.coef_[0]
+        slope = calibration_model.coef_<sup>0</sup>
         intercept = calibration_model.intercept_
         
         return slope, intercept
@@ -1181,7 +1182,7 @@ class ClinicalDataMatrix:
                     'variable': var_name,
                     'type': var_type,
                     'unique_values': len(unique_values),
-                    'most_common': unique_values[0] if len(unique_values) > 0 else None,
+                    'most_common': unique_values<sup>0</sup> if len(unique_values) > 0 else None,
                     'missing_pct': np.mean(np.isnan(var_data)) * 100
                 }
             
@@ -1259,7 +1260,7 @@ class AdvancedLinearAlgebra:
             )
             
             # Calculate component stability (using bootstrap if data is large enough)
-            if X.shape[0] > 100:
+            if X.shape<sup>0</sup> > 100:
                 stability_scores = self._calculate_component_stability(
                     X_scaled, n_components, n_bootstrap=100
                 )
@@ -1318,7 +1319,7 @@ class AdvancedLinearAlgebra:
             
             # Initialize missing values with column means
             col_means = np.nanmean(X, axis=0)
-            for j in range(X.shape[1]):
+            for j in range(X.shape<sup>1</sup>):
                 X[missing_mask[:, j], j] = col_means[j]
             
             # Determine rank
@@ -1503,19 +1504,19 @@ class AdvancedLinearAlgebra:
                 for i in range(n_patients):
                     X_i = tensor_data[i, :, :]  # variables × contexts
                     khatri_rao_BC = self._khatri_rao_product(B, C)
-                    A[i, :] = la.lstsq(khatri_rao_BC, X_i.flatten())[0]
+                    A[i, :] = la.lstsq(khatri_rao_BC, X_i.flatten())<sup>0</sup>
                 
                 # Update B (variables)
                 for j in range(n_variables):
                     X_j = tensor_data[:, j, :]  # patients × contexts
                     khatri_rao_AC = self._khatri_rao_product(A, C)
-                    B[j, :] = la.lstsq(khatri_rao_AC, X_j.flatten())[0]
+                    B[j, :] = la.lstsq(khatri_rao_AC, X_j.flatten())<sup>0</sup>
                 
                 # Update C (contexts)
                 for k in range(n_contexts):
                     X_k = tensor_data[:, :, k]  # patients × variables
                     khatri_rao_AB = self._khatri_rao_product(A, B)
-                    C[k, :] = la.lstsq(khatri_rao_AB, X_k.flatten())[0]
+                    C[k, :] = la.lstsq(khatri_rao_AB, X_k.flatten())<sup>0</sup>
                 
                 # Check convergence (simplified)
                 if iteration > 0 and iteration % 10 == 0:
@@ -1627,7 +1628,7 @@ class AdvancedLinearAlgebra:
                                      n_components: int,
                                      n_bootstrap: int = 100) -> np.ndarray:
         """Calculate stability of PCA components using bootstrap."""
-        n_samples = X.shape[0]
+        n_samples = X.shape<sup>0</sup>
         component_similarities = []
         
         # Original PCA
@@ -1670,7 +1671,7 @@ class AdvancedLinearAlgebra:
         from sklearn.cluster import KMeans
         
         # Determine optimal number of clusters using elbow method
-        max_clusters = min(10, X_transformed.shape[0] // 10)
+        max_clusters = min(10, X_transformed.shape<sup>0</sup> // 10)
         inertias = []
         
         for k in range(1, max_clusters + 1):
@@ -1691,7 +1692,7 @@ class AdvancedLinearAlgebra:
             cluster_mask = cluster_labels == k
             phenotypes[f'phenotype_{k+1}'] = {
                 'patient_count': np.sum(cluster_mask),
-                'patient_ids': [patient_ids[i] for i in np.where(cluster_mask)[0]],
+                'patient_ids': [patient_ids[i] for i in np.where(cluster_mask)<sup>0</sup>],
                 'centroid': kmeans_final.cluster_centers_[k],
                 'prevalence': np.mean(cluster_mask)
             }
@@ -1748,7 +1749,7 @@ class AdvancedLinearAlgebra:
                               patient_ids: List[str],
                               variable_names: List[str]) -> Dict[str, Any]:
         """Interpret SVD factors in clinical context."""
-        n_factors = U.shape[1]
+        n_factors = U.shape<sup>1</sup>
         
         factor_interpretations = []
         for i in range(n_factors):
@@ -1780,7 +1781,7 @@ class AdvancedLinearAlgebra:
         """Interpret NMF phenotypes based on feature loadings."""
         phenotype_interpretations = []
         
-        for i in range(H.shape[0]):
+        for i in range(H.shape<sup>0</sup>):
             feature_loadings = H[i, :]
             
             # Find top contributing features
@@ -1852,8 +1853,8 @@ class AdvancedLinearAlgebra:
     def _calculate_phenotype_prevalence(self, W: np.ndarray) -> Dict[str, float]:
         """Calculate prevalence of each phenotype."""
         dominant_phenotypes = np.argmax(W, axis=1)
-        n_patients = W.shape[0]
-        n_phenotypes = W.shape[1]
+        n_patients = W.shape<sup>0</sup>
+        n_phenotypes = W.shape<sup>1</sup>
         
         prevalence = {}
         for i in range(n_phenotypes):
@@ -1864,12 +1865,12 @@ class AdvancedLinearAlgebra:
     
     def _khatri_rao_product(self, A: np.ndarray, B: np.ndarray) -> np.ndarray:
         """Compute Khatri-Rao product of two matrices."""
-        return np.kron(A, np.ones((1, B.shape[1]))) * np.kron(np.ones((1, A.shape[1])), B)
+        return np.kron(A, np.ones((1, B.shape<sup>1</sup>))) * np.kron(np.ones((1, A.shape<sup>1</sup>)), B)
     
     def _reconstruct_tensor(self, A: np.ndarray, B: np.ndarray, C: np.ndarray) -> np.ndarray:
         """Reconstruct tensor from factor matrices."""
-        rank = A.shape[1]
-        tensor_shape = (A.shape[0], B.shape[0], C.shape[0])
+        rank = A.shape<sup>1</sup>
+        tensor_shape = (A.shape<sup>0</sup>, B.shape<sup>0</sup>, C.shape<sup>0</sup>)
         reconstructed = np.zeros(tensor_shape)
         
         for r in range(rank):
@@ -1973,8 +1974,8 @@ def demonstrate_advanced_linear_algebra():
     clinical_data = create_example_clinical_data()
     
     print(f"Clinical Data Matrix:")
-    print(f"  Patients: {clinical_data.shape[0]}")
-    print(f"  Variables: {clinical_data.shape[1]}")
+    print(f"  Patients: {clinical_data.shape<sup>0</sup>}")
+    print(f"  Variables: {clinical_data.shape<sup>1</sup>}")
     print(f"  Missing data: {clinical_data.missing_percentage:.1f}%")
     print(f"  Data quality score: {clinical_data.data_quality_score:.3f}")
     
@@ -1993,7 +1994,7 @@ def demonstrate_advanced_linear_algebra():
     
     print(f"PCA Results:")
     print(f"  Components extracted: {len(pca_results['explained_variance_ratio'])}")
-    print(f"  Variance explained by first 5 components: {pca_results['cumulative_variance_ratio'][4]:.1%}")
+    print(f"  Variance explained by first 5 components: {pca_results['cumulative_variance_ratio']<sup>4</sup>:.1%}")
     print(f"  Components needed for 95% variance: {pca_results['n_components_95_variance']}")
     
     # Show component interpretations

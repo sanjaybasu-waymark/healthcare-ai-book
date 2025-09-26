@@ -3,13 +3,14 @@ layout: default
 title: "Chapter 27: Case Studies And Real World Applications"
 nav_order: 27
 parent: Chapters
+permalink: /chapters/27-case-studies-and-real-world-applications/
 ---
 
 # Chapter 27: Case Studies and Real-World Applications
 
 ## 1. Introduction to AI/ML in Clinical Practice for Physician Data Scientists
 
-The convergence of artificial intelligence (AI) and machine learning (ML) with clinical medicine has ushered in a new era of healthcare innovation, fundamentally transforming diagnostics, prognostics, and therapeutic strategies. At the forefront of this transformation are **physician data scientists**, a unique cadre of professionals who possess both deep clinical acumen and advanced computational skills. Their evolving role is critical in bridging the inherent gap between complex medical realities and sophisticated AI/ML methodologies, ensuring that technological advancements are not only scientifically sound but also clinically relevant, ethically robust, and safely implementable in patient care [1]. This chapter delves into the practical applications of AI/ML in healthcare, presenting a series of real-world case studies designed to equip physician data scientists with the knowledge and tools necessary to navigate this rapidly evolving landscape. We emphasize the importance of understanding not just the 
+The convergence of artificial intelligence (AI) and machine learning (ML) with clinical medicine has ushered in a new era of healthcare innovation, fundamentally transforming diagnostics, prognostics, and therapeutic strategies. At the forefront of this transformation are **physician data scientists**, a unique cadre of professionals who possess both deep clinical acumen and advanced computational skills. Their evolving role is critical in bridging the inherent gap between complex medical realities and sophisticated AI/ML methodologies, ensuring that technological advancements are not only scientifically sound but also clinically relevant, ethically robust, and safely implementable in patient care <sup>1</sup>. This chapter delves into the practical applications of AI/ML in healthcare, presenting a series of real-world case studies designed to equip physician data scientists with the knowledge and tools necessary to navigate this rapidly evolving landscape. We emphasize the importance of understanding not just the 
 
 algorithms themselves, but also their clinical context, safety frameworks, regulatory compliance, and the mathematical rigor underpinning their development and validation.
 
@@ -229,7 +230,7 @@ model.summary()
 # Example of making a prediction
 # sample_image = X_test[0:1] # Take one image for prediction
 # prediction = model.predict(sample_image)
-# print(f"Prediction for sample image: {prediction[0][0]:.4f}")
+# print(f"Prediction for sample image: {prediction<sup>0</sup><sup>0</sup>:.4f}")
 
 # For interpretability (e.g., Grad-CAM), you would integrate a library like tf-keras-vis
 # or implement it manually. This requires access to intermediate layers and gradients.
@@ -251,7 +252,7 @@ def predict_with_error_handling(model, image_data):
 # Example usage of error handling
 # result = predict_with_error_handling(model, X_test[0:1])
 # if result is not None:
-#     print(f"Prediction with error handling: {result[0][0]:.4f}")
+#     print(f"Prediction with error handling: {result<sup>0</sup><sup>0</sup>:.4f}")
 
 ```
 
@@ -539,7 +540,7 @@ def safe_predict_readmission(model, structured_data, text_data, structured_scale
 
 # pred, prob = safe_predict_readmission(model_lr, sample_patient_structured, sample_patient_text, structured_pipeline.named_steps['scaler'], text_pipeline.named_steps['tfidf'])
 # if pred is not None:
-#     print(f"\nSample Patient Prediction: {pred[0]}, Probability: {prob[0]:.4f}")
+#     print(f"\nSample Patient Prediction: {pred<sup>0</sup>}, Probability: {prob<sup>0</sup>:.4f}")
 
 ```
 
@@ -646,7 +647,7 @@ def safe_predict_activity(model, smiles_string):
         # Ensure features are in the correct order and format for the model
         features_df = pd.DataFrame([features])
         prediction = model.predict(features_df)
-        return prediction[0]
+        return prediction<sup>0</sup>
     except Exception as e:
         print(f"Error during activity prediction: {e}")
         return None
@@ -717,23 +718,23 @@ The future role of physician data scientists will continue to evolve, demanding 
 
 ## 8. Bibliography
 
-[1] Johnson, K. B., et al. (2021). Artificial intelligence in medicine: applications, implications, and limitations. *Journal of General Internal Medicine*, 36(1), 267-273.
-[2] Esteva, A., et al. (2017). Dermatologist-level classification of skin cancer with deep neural networks. *Nature*, 542(7639), 115-118.
-[3] Gulshan, V., et al. (2016). Development and validation of a deep learning algorithm for detection of diabetic retinopathy in retinal fundus photographs. *JAMA*, 316(22), 2402-2410.
-[4] FDA. (2023). *Artificial Intelligence and Machine Learning (AI/ML) in Medical Devices*. Available at: [https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-aiml-medical-devices](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-aiml-medical-devices)
-[5] Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). "Why Should I Trust You?": Explaining the Predictions of Any Classifier. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 1135-1144.
-[6] Lundberg, S. M., & Lee, S. I. (2017). A Unified Approach to Interpreting Model Predictions. *Advances in Neural Information Processing Systems*, 30.
-[7] Selvaraju, R. R., et al. (2017). Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization. *Proceedings of the IEEE International Conference on Computer Vision*, 618-626.
-[8] Finlayson, S. G., et al. (2019). Adversarial attacks on medical machine learning. *Science*, 363(6433), 1287-1289.
-[9] Dwork, C., et al. (2006). Our data, ourselves: Privacy via distributed noise generation. *Proceedings of the 22nd Annual Conference on Neural Information Processing Systems*, 486-494.
-[10] Acar, A., et al. (2021). A survey on homomorphic encryption schemes: Theory and applications. *ACM Computing Surveys (CSUR)*, 54(4), 1-35.
-[11] Bonawitz, K., et al. (2019). Towards federated learning at scale: System design. *Proceedings of Machine Learning and Systems*, 1, 371-382.
-[12] Ranzato, M., et al. (2020). Privacy-preserving machine learning: A survey. *arXiv preprint arXiv:2009.07001*.
-[13] Beam, A. L., & Kohane, I. S. (2018). Big data and machine learning in health care. *JAMA*, 319(13), 1317-1318.
-[14] Topol, E. J. (2019). *Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again*. Basic Books.
-[15] Vamathevan, J., et al. (2019). Applications of machine learning in drug discovery and development. *Nature Reviews Drug Discovery*, 18(6), 463-477.
-[16] Chen, H., et al. (2018). The rise of deep learning in drug discovery. *Drug Discovery Today*, 23(6), 1241-1250.
-[17] TRIPOD+AI Statement: Collins, G. S., et al. (2021). Transparent reporting of a multivariable prediction model for individual prognosis or diagnosis (TRIPOD): The TRIPOD Statement. *Annals of Internal Medicine*, 174(1), 107-113. (Note: TRIPOD+AI is an extension, specific guidelines are still evolving but build upon TRIPOD).
-[18] McDermott, M. B., et al. (2019). The future of healthcare: AI and digital twins. *npj Digital Medicine*, 2(1), 1-3.
-[19] Rajkomar, A., et al. (2018). Scalable and accurate deep learning with electronic health records. *npj Digital Medicine*, 1(1), 1-10.
-[20] Shickel, B., et al. (2017). Deep learning for health care: review, opportunities, and challenges. *IEEE Journal of Biomedical and Health Informatics*, 22(5), 1260-1278.
+<sup>1</sup> Johnson, K. B., et al. (2021). Artificial intelligence in medicine: applications, implications, and limitations. *Journal of General Internal Medicine*, 36(1), 267-273.
+<sup>2</sup> Esteva, A., et al. (2017). Dermatologist-level classification of skin cancer with deep neural networks. *Nature*, 542(7639), 115-118.
+<sup>3</sup> Gulshan, V., et al. (2016). Development and validation of a deep learning algorithm for detection of diabetic retinopathy in retinal fundus photographs. *JAMA*, 316(22), 2402-2410.
+<sup>4</sup> FDA. (2023). *Artificial Intelligence and Machine Learning (AI/ML) in Medical Devices*. Available at: [https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-aiml-medical-devices](https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-aiml-medical-devices)
+<sup>5</sup> Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). "Why Should I Trust You?": Explaining the Predictions of Any Classifier. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 1135-1144.
+<sup>6</sup> Lundberg, S. M., & Lee, S. I. (2017). A Unified Approach to Interpreting Model Predictions. *Advances in Neural Information Processing Systems*, 30.
+<sup>7</sup> Selvaraju, R. R., et al. (2017). Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization. *Proceedings of the IEEE International Conference on Computer Vision*, 618-626.
+<sup>8</sup> Finlayson, S. G., et al. (2019). Adversarial attacks on medical machine learning. *Science*, 363(6433), 1287-1289.
+<sup>9</sup> Dwork, C., et al. (2006). Our data, ourselves: Privacy via distributed noise generation. *Proceedings of the 22nd Annual Conference on Neural Information Processing Systems*, 486-494.
+<sup>10</sup> Acar, A., et al. (2021). A survey on homomorphic encryption schemes: Theory and applications. *ACM Computing Surveys (CSUR)*, 54(4), 1-35.
+<sup>11</sup> Bonawitz, K., et al. (2019). Towards federated learning at scale: System design. *Proceedings of Machine Learning and Systems*, 1, 371-382.
+<sup>12</sup> Ranzato, M., et al. (2020). Privacy-preserving machine learning: A survey. *arXiv preprint arXiv:2009.07001*.
+<sup>13</sup> Beam, A. L., & Kohane, I. S. (2018). Big data and machine learning in health care. *JAMA*, 319(13), 1317-1318.
+<sup>14</sup> Topol, E. J. (2019). *Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again*. Basic Books.
+<sup>15</sup> Vamathevan, J., et al. (2019). Applications of machine learning in drug discovery and development. *Nature Reviews Drug Discovery*, 18(6), 463-477.
+<sup>16</sup> Chen, H., et al. (2018). The rise of deep learning in drug discovery. *Drug Discovery Today*, 23(6), 1241-1250.
+<sup>17</sup> TRIPOD+AI Statement: Collins, G. S., et al. (2021). Transparent reporting of a multivariable prediction model for individual prognosis or diagnosis (TRIPOD): The TRIPOD Statement. *Annals of Internal Medicine*, 174(1), 107-113. (Note: TRIPOD+AI is an extension, specific guidelines are still evolving but build upon TRIPOD).
+<sup>18</sup> McDermott, M. B., et al. (2019). The future of healthcare: AI and digital twins. *npj Digital Medicine*, 2(1), 1-3.
+<sup>19</sup> Rajkomar, A., et al. (2018). Scalable and accurate deep learning with electronic health records. *npj Digital Medicine*, 1(1), 1-10.
+<sup>20</sup> Shickel, B., et al. (2017). Deep learning for health care: review, opportunities, and challenges. *IEEE Journal of Biomedical and Health Informatics*, 22(5), 1260-1278.

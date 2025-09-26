@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 7: Ai Agents Healthcare"
 nav_order: 7
 parent: Chapters
+permalink: /chapters/07-ai-agents-healthcare/
 ---
 
 # Chapter 7: AI Agents in Healthcare - Autonomous Systems for Clinical Decision Support and Care Coordination
@@ -1028,12 +1029,12 @@ class HealthcareAIAgent(ABC):
                 # Remove oldest beliefs
                 sorted_beliefs = sorted(
                     self.beliefs.items(),
-                    key=lambda x: x[1].timestamp
+                    key=lambda x: x<sup>1</sup>.timestamp
                 )
                 
                 beliefs_to_remove = len(self.beliefs) - self.max_beliefs
                 for i in range(beliefs_to_remove):
-                    del self.beliefs[sorted_beliefs[i][0]]
+                    del self.beliefs[sorted_beliefs[i]<sup>0</sup>]
     
     def send_message(self, receiver_id: str, message_type: str, content: Dict, priority: Priority = Priority.MEDIUM):
         """Send a message to another agent."""

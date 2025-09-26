@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 16: Advanced Medical Imaging Ai"
 nav_order: 16
 parent: Chapters
+permalink: /chapters/16-advanced-medical-imaging-ai/
 ---
 
 # Chapter 16: Advanced Medical Imaging AI - Vision Transformers, 3D CNNs, and Foundation Models
@@ -339,7 +340,7 @@ class MedicalViT(nn.Module):
     
     def forward_features(self, x: torch.Tensor, clinical_features: Optional[torch.Tensor] = None):
         """Extract features using transformer encoder."""
-        B = x.shape[0]
+        B = x.shape<sup>0</sup>
         
         # Patch embedding
         x = self.patch_embed(x)  # (B, embed_dim, H//patch_size, W//patch_size)
@@ -453,7 +454,7 @@ class MultiHeadAttention(nn.Module):
         B, N, C = x.shape
         
         qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
-        q, k, v = qkv[0], qkv[1], qkv[2]
+        q, k, v = qkv<sup>0</sup>, qkv<sup>1</sup>, qkv<sup>2</sup>
         
         attn = (q @ k.transpose(-2, -1)) * self.scale
         attn = attn.softmax(dim=-1)
@@ -512,7 +513,7 @@ class DropPath(nn.Module):
             return x
         
         keep_prob = 1 - self.drop_prob
-        shape = (x.shape[0],) + (1,) * (x.ndim - 1)
+        shape = (x.shape<sup>0</sup>,) + (1,) * (x.ndim - 1)
         random_tensor = keep_prob + torch.rand(shape, dtype=x.dtype, device=x.device)
         random_tensor.floor_()
         output = x.div(keep_prob) * random_tensor
@@ -748,9 +749,9 @@ class MedicalImagingTrainer:
         """Build model based on configuration."""
         if self.config.architecture == ModelArchitecture.VIT:
             self.model = MedicalViT(
-                img_size=self.config.input_size[0],
+                img_size=self.config.input_size<sup>0</sup>,
                 patch_size=16,
-                in_chans=self.config.input_size[2] if len(self.config.input_size) > 2 else 1,
+                in_chans=self.config.input_size<sup>2</sup> if len(self.config.input_size) > 2 else 1,
                 num_classes=self.config.num_classes,
                 uncertainty_estimation=self.config.uncertainty_estimation
             )
@@ -1003,7 +1004,7 @@ class MedicalImagingPipeline:
         """Setup data transforms based on modality."""
         if self.config.modality in [ImagingModality.XRAY, ImagingModality.MAMMOGRAPHY]:
             train_transform = A.Compose([
-                A.Resize(self.config.input_size[0], self.config.input_size[1]),
+                A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.HorizontalFlip(p=0.5),
                 A.RandomBrightnessContrast(p=0.3),
                 A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.1, rotate_limit=15, p=0.3),
@@ -1013,14 +1014,14 @@ class MedicalImagingPipeline:
             ])
             
             val_transform = A.Compose([
-                A.Resize(self.config.input_size[0], self.config.input_size[1]),
+                A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.Normalize(mean=[0.485], std=[0.229]),
                 ToTensorV2()
             ])
         
         elif self.config.modality == ImagingModality.FUNDUS:
             train_transform = A.Compose([
-                A.Resize(self.config.input_size[0], self.config.input_size[1]),
+                A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.HorizontalFlip(p=0.5),
                 A.VerticalFlip(p=0.5),
                 A.RandomRotate90(p=0.5),
@@ -1032,7 +1033,7 @@ class MedicalImagingPipeline:
             ])
             
             val_transform = A.Compose([
-                A.Resize(self.config.input_size[0], self.config.input_size[1]),
+                A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
                 ToTensorV2()
             ])
@@ -1040,7 +1041,7 @@ class MedicalImagingPipeline:
         else:
             # Default transforms
             train_transform = A.Compose([
-                A.Resize(self.config.input_size[0], self.config.input_size[1]),
+                A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.HorizontalFlip(p=0.5),
                 A.RandomBrightnessContrast(p=0.3),
                 A.Normalize(mean=[0.485], std=[0.229]),
@@ -1048,7 +1049,7 @@ class MedicalImagingPipeline:
             ])
             
             val_transform = A.Compose([
-                A.Resize(self.config.input_size[0], self.config.input_size[1]),
+                A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.Normalize(mean=[0.485], std=[0.229]),
                 ToTensorV2()
             ])

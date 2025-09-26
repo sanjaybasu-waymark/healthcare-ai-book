@@ -3,17 +3,18 @@ layout: default
 title: "Chapter 28: Causal Inference In Healthcare Ai"
 nav_order: 28
 parent: Chapters
+permalink: /chapters/28-causal-inference-in-healthcare-ai/
 ---
 
 # Chapter 28: Causal Inference in Healthcare AI
 
 ## 1. Introduction to Causal Inference in Healthcare AI
 
-Artificial intelligence (AI) is rapidly transforming the landscape of healthcare, offering unprecedented capabilities in disease prediction, diagnosis, and patient management. However, the effective deployment of AI in clinical settings necessitates a clear distinction between **prediction** and **causal inference** [1]. While predictive models excel at identifying patterns and forecasting future outcomes based on historical data, they often fall short in explaining the underlying mechanisms or the 
+Artificial intelligence (AI) is rapidly transforming the landscape of healthcare, offering unprecedented capabilities in disease prediction, diagnosis, and patient management. However, the effective deployment of AI in clinical settings necessitates a clear distinction between **prediction** and **causal inference** <sup>1</sup>. While predictive models excel at identifying patterns and forecasting future outcomes based on historical data, they often fall short in explaining the underlying mechanisms or the 
 
-impact of specific interventions [15]. In healthcare, understanding *why* an outcome occurs and *what* interventions can alter it is paramount for effective clinical decision-making and personalized patient care [2]. This chapter delves into the critical role of causal inference in healthcare AI, exploring its theoretical underpinnings, practical applications, and the challenges associated with its implementation.
+impact of specific interventions <sup>15</sup>. In healthcare, understanding *why* an outcome occurs and *what* interventions can alter it is paramount for effective clinical decision-making and personalized patient care <sup>2</sup>. This chapter delves into the critical role of causal inference in healthcare AI, exploring its theoretical underpinnings, practical applications, and the challenges associated with its implementation.
 
-The importance of causal inference in medical decision-making cannot be overstated. Clinicians constantly grapple with questions of cause and effect: Does a new drug improve patient outcomes? What is the true impact of a lifestyle intervention on disease progression? How do different treatment pathways influence long-term health? Traditional predictive models, while useful for identifying high-risk patients or forecasting disease trajectories, do not inherently provide answers to these causal questions. Conflating prediction with causation can lead to suboptimal or even harmful interventions, as actions based solely on correlations may not address the root causes of health issues [18]. Causal inference, by contrast, provides a robust framework for understanding these cause-and-effect relationships, enabling the development of targeted and effective interventions.
+The importance of causal inference in medical decision-making cannot be overstated. Clinicians constantly grapple with questions of cause and effect: Does a new drug improve patient outcomes? What is the true impact of a lifestyle intervention on disease progression? How do different treatment pathways influence long-term health? Traditional predictive models, while useful for identifying high-risk patients or forecasting disease trajectories, do not inherently provide answers to these causal questions. Conflating prediction with causation can lead to suboptimal or even harmful interventions, as actions based solely on correlations may not address the root causes of health issues <sup>18</sup>. Causal inference, by contrast, provides a robust framework for understanding these cause-and-effect relationships, enabling the development of targeted and effective interventions.
 
 ## 2. Theoretical Foundations of Causal Inference
 
@@ -21,26 +22,26 @@ Causal inference is a multidisciplinary field that seeks to establish cause-and-
 
 ### 2.1. Potential Outcomes Framework (Rubin Causal Model)
 
-The **Potential Outcomes Framework**, also known as the Rubin Causal Model (RCM), provides a formal language for defining causal effects [1]. At its core, the RCM posits that for each individual, there exist multiple potential outcomes, one for each possible treatment or intervention they could receive. For example, if a patient can either receive a new drug (treatment T=1) or a placebo (treatment T=0), they have two potential outcomes: Y(1) (outcome if treated) and Y(0) (outcome if not treated). The causal effect for that individual is defined as the difference between these two potential outcomes: Y(1) - Y(0).
+The **Potential Outcomes Framework**, also known as the Rubin Causal Model (RCM), provides a formal language for defining causal effects <sup>1</sup>. At its core, the RCM posits that for each individual, there exist multiple potential outcomes, one for each possible treatment or intervention they could receive. For example, if a patient can either receive a new drug (treatment T=1) or a placebo (treatment T=0), they have two potential outcomes: Y(1) (outcome if treated) and Y(0) (outcome if not treated). The causal effect for that individual is defined as the difference between these two potential outcomes: Y(1) - Y(0).
 
 The fundamental problem of causal inference is that we can only observe one of these potential outcomes for any given individual; we cannot simultaneously observe a patient both receiving and not receiving a treatment. This unobservable counterfactual outcome necessitates methods for estimating causal effects from observed data. The RCM addresses this through key assumptions:
 
-*   **Stable Unit Treatment Value Assumption (SUTVA)**: This assumption states that the potential outcomes for any unit do not vary with the treatments assigned to other units, and there are no different forms of treatment that lead to different potential outcomes [19].
-*   **Ignorability (No Unmeasured Confounding)**: This is a crucial assumption, stating that treatment assignment is independent of potential outcomes, conditional on a set of observed covariates. In simpler terms, all common causes of both the treatment and the outcome must be measured and accounted for [1].
-*   **Positivity (Overlap)**: This assumption requires that for every combination of observed covariates, there is a non-zero probability of receiving any treatment. This ensures that we can find comparable individuals in both the treated and untreated groups [1].
+*   **Stable Unit Treatment Value Assumption (SUTVA)**: This assumption states that the potential outcomes for any unit do not vary with the treatments assigned to other units, and there are no different forms of treatment that lead to different potential outcomes <sup>19</sup>.
+*   **Ignorability (No Unmeasured Confounding)**: This is a crucial assumption, stating that treatment assignment is independent of potential outcomes, conditional on a set of observed covariates. In simpler terms, all common causes of both the treatment and the outcome must be measured and accounted for <sup>1</sup>.
+*   **Positivity (Overlap)**: This assumption requires that for every combination of observed covariates, there is a non-zero probability of receiving any treatment. This ensures that we can find comparable individuals in both the treated and untreated groups <sup>1</sup>.
 
 When these assumptions hold, various statistical methods, such as propensity score matching or inverse probability weighting, can be employed to estimate average treatment effects or conditional average treatment effects.
 
 ### 2.2. Directed Acyclic Graphs (DAGs) for Causal Modeling
 
-**Directed Acyclic Graphs (DAGs)** offer a powerful non-parametric framework for representing causal relationships between variables and identifying potential sources of bias [1]. A DAG consists of nodes (representing variables) and directed edges (arrows representing causal influences). The term "acyclic" means there are no feedback loops, implying that a variable cannot cause itself.
+**Directed Acyclic Graphs (DAGs)** offer a powerful non-parametric framework for representing causal relationships between variables and identifying potential sources of bias <sup>1</sup>. A DAG consists of nodes (representing variables) and directed edges (arrows representing causal influences). The term "acyclic" means there are no feedback loops, implying that a variable cannot cause itself.
 
 DAGs are invaluable for:
 
 *   **Visualizing Causal Hypotheses**: They provide a clear visual representation of assumed causal structures, making complex relationships more understandable.
 *   **Identifying Confounders**: A confounder is a variable that causes both the treatment and the outcome, leading to a spurious association. DAGs help identify such variables that need to be adjusted for to obtain an unbiased causal effect.
-*   **Detecting Mediators and Colliders**: A mediator is a variable through which a treatment affects an outcome. A collider is a variable that is caused by two or more other variables. Conditioning on a collider can introduce bias, a phenomenon known as collider bias [1].
-*   **Determining Adjustment Sets**: DAGs provide rules (e.g., the back-door criterion) for identifying minimal sets of variables that need to be controlled for to block all spurious paths between a treatment and an outcome, thus enabling unbiased causal effect estimation [2].
+*   **Detecting Mediators and Colliders**: A mediator is a variable through which a treatment affects an outcome. A collider is a variable that is caused by two or more other variables. Conditioning on a collider can introduce bias, a phenomenon known as collider bias <sup>1</sup>.
+*   **Determining Adjustment Sets**: DAGs provide rules (e.g., the back-door criterion) for identifying minimal sets of variables that need to be controlled for to block all spurious paths between a treatment and an outcome, thus enabling unbiased causal effect estimation <sup>2</sup>.
 
 For instance, in a study examining the effect of a new medication on blood pressure, a DAG might illustrate that age influences both the likelihood of receiving the medication and the baseline blood pressure. In this scenario, age would be a confounder that needs to be adjusted for. DAGs help physician data scientists systematically reason about causal assumptions and potential biases before applying statistical or machine learning methods.
 
@@ -61,19 +62,19 @@ Causal inference in healthcare AI leverages a diverse array of methodologies, ra
 
 ### 3.1. Traditional Statistical Methods
 
-Traditional statistical methods for causal inference are primarily designed to address confounding in observational studies, aiming to emulate randomized controlled trials (RCTs) as closely as possible [3]. These methods are foundational for physician data scientists seeking to draw robust causal conclusions from real-world data.
+Traditional statistical methods for causal inference are primarily designed to address confounding in observational studies, aiming to emulate randomized controlled trials (RCTs) as closely as possible <sup>3</sup>. These methods are foundational for physician data scientists seeking to draw robust causal conclusions from real-world data.
 
 #### 3.1.1. Regression-based Approaches
 
-**Propensity Score Matching (PSM)** and **Inverse Probability Weighting (IPW)** are widely used regression-based techniques that attempt to balance covariates between treated and untreated groups. PSM involves creating a propensity score for each individual, which is the probability of receiving treatment given their observed covariates. Individuals with similar propensity scores but different treatment assignments are then matched, effectively creating comparable groups. IPW, on the other hand, assigns weights to each individual based on the inverse of their propensity score, thereby creating a synthetic population where covariates are balanced across treatment groups [3]. These methods are particularly useful when dealing with a large number of covariates, as they reduce the dimensionality of the confounding problem to a single scalar (the propensity score).
+**Propensity Score Matching (PSM)** and **Inverse Probability Weighting (IPW)** are widely used regression-based techniques that attempt to balance covariates between treated and untreated groups. PSM involves creating a propensity score for each individual, which is the probability of receiving treatment given their observed covariates. Individuals with similar propensity scores but different treatment assignments are then matched, effectively creating comparable groups. IPW, on the other hand, assigns weights to each individual based on the inverse of their propensity score, thereby creating a synthetic population where covariates are balanced across treatment groups <sup>3</sup>. These methods are particularly useful when dealing with a large number of covariates, as they reduce the dimensionality of the confounding problem to a single scalar (the propensity score).
 
 #### 3.1.2. Difference-in-Differences (DiD) and Interrupted Time Series (ITS)
 
-**Difference-in-Differences (DiD)** is a quasi-experimental design used to estimate the effect of a specific intervention or policy by comparing the changes in outcomes over time between a group that received the intervention (treatment group) and a group that did not (control group) [19]. The core assumption of DiD is the 
+**Difference-in-Differences (DiD)** is a quasi-experimental design used to estimate the effect of a specific intervention or policy by comparing the changes in outcomes over time between a group that received the intervention (treatment group) and a group that did not (control group) <sup>19</sup>. The core assumption of DiD is the 
 
 parallel trends assumption, meaning that in the absence of the intervention, the treatment and control groups would have followed similar trends in the outcome variable. DiD is particularly useful in healthcare for evaluating the impact of new policies or programs.
 
-**Interrupted Time Series (ITS)** analysis is another powerful quasi-experimental design used to evaluate the impact of an intervention that occurs at a specific point in time [18]. It involves collecting data at multiple time points before and after the intervention, allowing for the assessment of changes in level and trend of the outcome variable. ITS is frequently employed to evaluate the effectiveness of public health interventions or clinical guidelines.
+**Interrupted Time Series (ITS)** analysis is another powerful quasi-experimental design used to evaluate the impact of an intervention that occurs at a specific point in time <sup>18</sup>. It involves collecting data at multiple time points before and after the intervention, allowing for the assessment of changes in level and trend of the outcome variable. ITS is frequently employed to evaluate the effectiveness of public health interventions or clinical guidelines.
 
 ### 3.2. Machine Learning-based Causal Inference
 
@@ -81,19 +82,19 @@ The integration of machine learning (ML) with causal inference has led to the de
 
 #### 3.2.1. Causal Forests
 
-**Causal Forests** are an extension of random forests designed to estimate heterogeneous treatment effects (HTEs) [3]. Unlike traditional random forests that predict outcomes, causal forests are trained to predict the *conditional average treatment effect* (CATE) for each individual. They achieve this by recursively partitioning the data into subgroups where treatment effects are more homogeneous, effectively building a forest of causal trees. This allows for personalized treatment recommendations, as the estimated effect of an intervention can vary significantly across different patient subgroups. The `EconML` library in Python provides robust implementations of Causal Forests, enabling their application in real-world healthcare scenarios.
+**Causal Forests** are an extension of random forests designed to estimate heterogeneous treatment effects (HTEs) <sup>3</sup>. Unlike traditional random forests that predict outcomes, causal forests are trained to predict the *conditional average treatment effect* (CATE) for each individual. They achieve this by recursively partitioning the data into subgroups where treatment effects are more homogeneous, effectively building a forest of causal trees. This allows for personalized treatment recommendations, as the estimated effect of an intervention can vary significantly across different patient subgroups. The `EconML` library in Python provides robust implementations of Causal Forests, enabling their application in real-world healthcare scenarios.
 
 #### 3.2.2. Double Machine Learning (DML)
 
-**Double Machine Learning (DML)** is a robust approach for estimating causal effects in the presence of high-dimensional confounders [15]. DML leverages two separate machine learning models: one to predict the outcome based on covariates and another to predict the treatment assignment based on covariates. By using these "nuisance" models, DML effectively debiases the estimation of the causal effect, making it less sensitive to the choice of the underlying machine learning algorithms. This method is particularly valuable when dealing with complex observational data in healthcare, where numerous potential confounders need to be accounted for.
+**Double Machine Learning (DML)** is a robust approach for estimating causal effects in the presence of high-dimensional confounders <sup>15</sup>. DML leverages two separate machine learning models: one to predict the outcome based on covariates and another to predict the treatment assignment based on covariates. By using these "nuisance" models, DML effectively debiases the estimation of the causal effect, making it less sensitive to the choice of the underlying machine learning algorithms. This method is particularly valuable when dealing with complex observational data in healthcare, where numerous potential confounders need to be accounted for.
 
 #### 3.2.3. Uplift Modeling
 
-**Uplift Modeling**, also known as *net lift modeling* or *true lift modeling*, focuses on identifying individuals who are most likely to respond positively to a specific intervention [4]. Instead of predicting the outcome directly, uplift models predict the *difference* in outcomes between treated and control groups for each individual. This is crucial in healthcare for optimizing resource allocation and targeting interventions to patients who will benefit most, thereby maximizing clinical utility and minimizing unnecessary treatments. Techniques like causal forests and meta-learners can be adapted for uplift modeling.
+**Uplift Modeling**, also known as *net lift modeling* or *true lift modeling*, focuses on identifying individuals who are most likely to respond positively to a specific intervention <sup>4</sup>. Instead of predicting the outcome directly, uplift models predict the *difference* in outcomes between treated and control groups for each individual. This is crucial in healthcare for optimizing resource allocation and targeting interventions to patients who will benefit most, thereby maximizing clinical utility and minimizing unnecessary treatments. Techniques like causal forests and meta-learners can be adapted for uplift modeling.
 
 #### 3.2.4. Counterfactual Inference with Deep Learning
 
-Recent advancements in deep learning have opened new avenues for **counterfactual inference**, particularly in scenarios involving complex data types such as images, time series, or unstructured text [19]. Deep learning models, including Generative Adversarial Networks (GANs) and Variational Autoencoders (VAEs), can be used to generate counterfactuals—what would have happened if a patient had received a different treatment or had a different characteristic. This allows for the exploration of "what-if" scenarios, providing insights into individual treatment responses and supporting personalized medicine. For example, a deep learning model could generate a counterfactual medical image showing how a tumor might have progressed if a different chemotherapy regimen had been administered.
+Recent advancements in deep learning have opened new avenues for **counterfactual inference**, particularly in scenarios involving complex data types such as images, time series, or unstructured text <sup>19</sup>. Deep learning models, including Generative Adversarial Networks (GANs) and Variational Autoencoders (VAEs), can be used to generate counterfactuals—what would have happened if a patient had received a different treatment or had a different characteristic. This allows for the exploration of "what-if" scenarios, providing insights into individual treatment responses and supporting personalized medicine. For example, a deep learning model could generate a counterfactual medical image showing how a tumor might have progressed if a different chemotherapy regimen had been administered.
 
 These machine learning-based causal inference methods represent a significant leap forward in healthcare AI, enabling more nuanced and personalized insights from complex clinical data. Their ability to handle high dimensionality and non-linearities makes them powerful tools for physician data scientists.
 
@@ -165,7 +166,7 @@ dml.fit(Y=data['recovery_time'],
 # 3. Estimate Causal Effect
 # The ATE is the average of the treatment effects for all individuals
 ate_estimate = dml.ate(X=data[['age', 'severity_score']])
-print(f"Estimated Average Treatment Effect (ATE): {ate_estimate[0]:.2f} (95% CI: {ate_estimate[1][0]:.2f}, {ate_estimate[1][1]:.2f})")
+print(f"Estimated Average Treatment Effect (ATE): {ate_estimate<sup>0</sup>:.2f} (95% CI: {ate_estimate<sup>1</sup><sup>0</sup>:.2f}, {ate_estimate<sup>1</sup><sup>1</sup>:.2f})")
 
 # Estimate Conditional Average Treatment Effect (CATE) for specific individuals
 # For example, for a younger patient with low severity vs. an older patient with high severity
@@ -177,8 +178,8 @@ X_test = pd.DataFrame([
 cate_estimates = dml.effect(X_test)
 cate_intervals = dml.effect_interval(X_test)
 
-print(f"\nCATE for younger, less severe patient: {cate_estimates[0]:.2f} (95% CI: {cate_intervals[0][0]:.2f}, {cate_intervals[0][1]:.2f})")
-print(f"CATE for older, more severe patient: {cate_estimates[1]:.2f} (95% CI: {cate_intervals[1][0]:.2f}, {cate_intervals[1][1]:.2f})")
+print(f"\nCATE for younger, less severe patient: {cate_estimates<sup>0</sup>:.2f} (95% CI: {cate_intervals<sup>0</sup><sup>0</sup>:.2f}, {cate_intervals<sup>0</sup><sup>1</sup>:.2f})")
+print(f"CATE for older, more severe patient: {cate_estimates<sup>1</sup>:.2f} (95% CI: {cate_intervals<sup>1</sup><sup>0</sup>:.2f}, {cate_intervals<sup>1</sup><sup>1</sup>:.2f})")
 
 # Interpretation:
 # The ATE represents the average causal effect of the new drug on recovery time across the entire population.
@@ -205,13 +206,13 @@ Causal inference in healthcare AI transcends theoretical discussions by offering
 
 ### 5.1. Personalized Treatment Effect (PTE) Estimation
 
-One of the most significant promises of Causal AI in healthcare is the ability to estimate **Personalized Treatment Effects (PTEs)**, also known as Conditional Average Treatment Effects (CATEs). Unlike Average Treatment Effects (ATEs), which provide a single estimate for an entire population, PTEs quantify the causal effect of an intervention for a specific individual or subgroup, given their unique characteristics [4]. This allows clinicians to move beyond population-level averages and tailor treatment decisions to individual patients, aligning perfectly with the goals of precision medicine.
+One of the most significant promises of Causal AI in healthcare is the ability to estimate **Personalized Treatment Effects (PTEs)**, also known as Conditional Average Treatment Effects (CATEs). Unlike Average Treatment Effects (ATEs), which provide a single estimate for an entire population, PTEs quantify the causal effect of an intervention for a specific individual or subgroup, given their unique characteristics <sup>4</sup>. This allows clinicians to move beyond population-level averages and tailor treatment decisions to individual patients, aligning perfectly with the goals of precision medicine.
 
 For example, in oncology, causal models can help predict which chemotherapy regimen will be most effective for a particular patient, minimizing adverse effects and maximizing therapeutic response. In chronic disease management, PTEs can guide the selection of optimal drug dosages or lifestyle interventions tailored to an individual's risk profile and predicted response. This shift from 'one-size-fits-all' medicine to highly personalized care is a cornerstone of precision medicine.
 
 ### 5.2. Real-World Evidence Generation from Observational Data
 
-Randomized Controlled Trials (RCTs) are the gold standard for establishing causality, but they are often expensive, time-consuming, and may not always reflect real-world patient populations or clinical practices. Causal inference methods enable the generation of **real-world evidence (RWE)** from observational data sources, such as electronic health records (EHRs), claims data, and patient registries [6].
+Randomized Controlled Trials (RCTs) are the gold standard for establishing causality, but they are often expensive, time-consuming, and may not always reflect real-world patient populations or clinical practices. Causal inference methods enable the generation of **real-world evidence (RWE)** from observational data sources, such as electronic health records (EHRs), claims data, and patient registries <sup>6</sup>.
 
 By carefully applying techniques like propensity score matching, inverse probability weighting, or Double Machine Learning, researchers can emulate RCTs using observational data, allowing for the evaluation of treatment effectiveness, safety, and comparative effectiveness in diverse patient cohorts. This is particularly valuable for studying rare diseases, long-term outcomes, or interventions that are difficult to randomize ethically or practically.
 
@@ -225,7 +226,7 @@ For instance, in diabetes management, causal models could identify specific life
 
 #### 5.4.1. Optimizing Treatment for Chronic Kidney Disease
 
-Chronic Kidney Disease (CKD) is a progressive condition requiring careful management. Causal inference can play a pivotal role in optimizing treatment strategies. For example, a study by Oh et al. (2024) [18] highlighted how integrating predictive modeling and causal inference can transform nephrology by advancing personalized healthcare. While their work primarily focused on the methodologies, the principles can be extended to specific clinical questions in CKD.
+Chronic Kidney Disease (CKD) is a progressive condition requiring careful management. Causal inference can play a pivotal role in optimizing treatment strategies. For example, a study by Oh et al. (2024) <sup>18</sup> highlighted how integrating predictive modeling and causal inference can transform nephrology by advancing personalized healthcare. While their work primarily focused on the methodologies, the principles can be extended to specific clinical questions in CKD.
 
 Consider a scenario where physician data scientists want to determine the causal effect of a new dietary intervention on the progression of CKD in patients with a specific genetic marker. Using observational data, they could:
 
@@ -259,11 +260,11 @@ Ensuring the safety of Causal AI models in healthcare involves multiple layers o
 
 #### 6.1.1. Ensuring Robustness and Reliability of Causal AI Models
 
-Robustness refers to the ability of a model to maintain its performance and causal estimates even when faced with variations or noise in input data, or when deployed in slightly different environments (distribution shift) [3]. Reliability implies consistent performance over time and across different patient populations. To achieve this, models must be rigorously tested on diverse datasets, including those from different institutions or demographic groups. Techniques such as adversarial testing, stress testing, and continuous monitoring in real-world settings are essential. Furthermore, sensitivity analyses, as discussed in Section 7, are crucial to understand how causal estimates might change under different assumptions or data perturbations.
+Robustness refers to the ability of a model to maintain its performance and causal estimates even when faced with variations or noise in input data, or when deployed in slightly different environments (distribution shift) <sup>3</sup>. Reliability implies consistent performance over time and across different patient populations. To achieve this, models must be rigorously tested on diverse datasets, including those from different institutions or demographic groups. Techniques such as adversarial testing, stress testing, and continuous monitoring in real-world settings are essential. Furthermore, sensitivity analyses, as discussed in Section 7, are crucial to understand how causal estimates might change under different assumptions or data perturbations.
 
 #### 6.1.2. Bias Detection and Mitigation in Causal Inference
 
-Bias in AI models can lead to inequitable or harmful outcomes, particularly in healthcare. In causal inference, bias can arise from various sources, including confounding, selection bias, and measurement error. Beyond these, algorithmic bias can be introduced during model training if the data reflects historical inequities or if the model disproportionately misestimates causal effects for certain subgroups [3].
+Bias in AI models can lead to inequitable or harmful outcomes, particularly in healthcare. In causal inference, bias can arise from various sources, including confounding, selection bias, and measurement error. Beyond these, algorithmic bias can be introduced during model training if the data reflects historical inequities or if the model disproportionately misestimates causal effects for certain subgroups <sup>3</sup>.
 
 Mitigation strategies include:
 *   **Fairness-aware causal inference**: Developing methods that explicitly account for fairness criteria during causal effect estimation, ensuring that treatment effects are not systematically overestimated or underestimated for protected groups.
@@ -273,14 +274,14 @@ Mitigation strategies include:
 
 #### 6.1.3. Explainability and Interpretability of Causal AI Models
 
-For Causal AI to be adopted in clinical settings, its decisions and recommendations must be understandable and interpretable by healthcare professionals. Explainable AI (XAI) techniques provide insights into *why* a model made a particular prediction or estimated a specific causal effect [8].
+For Causal AI to be adopted in clinical settings, its decisions and recommendations must be understandable and interpretable by healthcare professionals. Explainable AI (XAI) techniques provide insights into *why* a model made a particular prediction or estimated a specific causal effect <sup>8</sup>.
 
 *   **Local Interpretable Model-agnostic Explanations (LIME)** and **SHapley Additive exPlanations (SHAP)** are popular model-agnostic methods that can explain individual predictions by approximating the complex model locally or by attributing the contribution of each feature to the prediction, respectively [9, 10]. While these methods primarily explain predictive models, their principles can be extended to understand which features drive causal effect estimates.
 *   **Causal explanations**: Beyond explaining predictions, true causal explainability aims to articulate the causal pathways and mechanisms identified by the model, answering questions like "Why did treatment X cause outcome Y for this patient?" This often involves leveraging DAGs and structural causal models to trace causal chains.
 
 ### 6.2. Ethical Considerations
 
-The ethical deployment of Causal AI in healthcare requires careful consideration of principles such as fairness, autonomy, beneficence, non-maleficence, justice, transparency, and accountability [11].
+The ethical deployment of Causal AI in healthcare requires careful consideration of principles such as fairness, autonomy, beneficence, non-maleficence, justice, transparency, and accountability <sup>11</sup>.
 
 *   **Fairness and Equity**: Ensuring that causal AI models do not perpetuate or exacerbate health disparities. This involves proactive bias detection and mitigation, and ensuring equitable access to the benefits of AI-driven personalized medicine.
 *   **Patient Privacy and Data Governance**: Handling sensitive patient data for causal inference requires strict adherence to privacy regulations. Robust data governance frameworks, including secure data storage, access controls, and de-identification techniques, are essential. The use of federated learning or differential privacy can also help protect patient information while enabling collaborative model development.
@@ -290,7 +291,7 @@ The ethical deployment of Causal AI in healthcare requires careful consideration
 
 The regulatory landscape for AI in healthcare is rapidly evolving, with agencies worldwide developing guidelines to ensure the safety, effectiveness, and ethical use of these technologies. Compliance with these regulations is critical for market access and clinical adoption.
 
-*   **FDA Guidelines for AI/ML in Medical Devices**: In the United States, the Food and Drug Administration (FDA) is actively developing a regulatory framework for AI/ML-based medical devices, particularly those that are adaptive and continuously learning. Key considerations include pre-market review, real-world performance monitoring, and ensuring transparency and control over model changes [3]. Causal AI models used for diagnostic or treatment recommendations would likely fall under this purview.
+*   **FDA Guidelines for AI/ML in Medical Devices**: In the United States, the Food and Drug Administration (FDA) is actively developing a regulatory framework for AI/ML-based medical devices, particularly those that are adaptive and continuously learning. Key considerations include pre-market review, real-world performance monitoring, and ensuring transparency and control over model changes <sup>3</sup>. Causal AI models used for diagnostic or treatment recommendations would likely fall under this purview.
 *   **GDPR and HIPAA Implications**: The General Data Protection Regulation (GDPR) in Europe and the Health Insurance Portability and Accountability Act (HIPAA) in the US impose stringent requirements on the processing and protection of personal health information. Causal AI applications must be designed with privacy-by-design principles, ensuring data minimization, purpose limitation, and robust security measures.
 *   **Best Practices for Documentation and Validation**: Regulatory bodies emphasize comprehensive documentation of AI models, including their development, validation, and deployment processes. This includes detailed records of data sources, model architecture, training parameters, performance metrics, and any bias mitigation strategies. Independent validation and external audits are often required to demonstrate the reliability and safety of AI systems.
 
@@ -319,7 +320,7 @@ This formula forms the basis for many adjustment methods, including regression a
 
 #### 7.1.2. Propensity Scores
 
-The propensity score, $e(X) = P(A=1|X)$, is the probability of receiving treatment given observed covariates $X$. Rosenbaum and Rubin (1983) demonstrated that if treatment assignment is ignorable given $X$, then it is also ignorable given the propensity score $e(X)$ [1]. This means:
+The propensity score, $e(X) = P(A=1|X)$, is the probability of receiving treatment given observed covariates $X$. Rosenbaum and Rubin (1983) demonstrated that if treatment assignment is ignorable given $X$, then it is also ignorable given the propensity score $e(X)$ <sup>1</sup>. This means:
 
 $$Y(a) \perp A | e(X)$$
 
@@ -348,7 +349,7 @@ The DML estimator for the ATE is based on the orthogonal score function, which i
 
 $$ATE_{DML} = \frac{E[(Y - m(X)) (T - e(X))]}{E[(T - e(X))^2]}$$
 
-This approach ensures that the causal effect estimate is asymptotically normal and robust, even if the ML models for $m(X)$ and $e(X)$ are not perfectly specified, as long as they are sufficiently accurate [15].
+This approach ensures that the causal effect estimate is asymptotically normal and robust, even if the ML models for $m(X)$ and $e(X)$ are not perfectly specified, as long as they are sufficiently accurate <sup>15</sup>.
 
 ### 7.2. Practical Considerations for Model Validation and Sensitivity Analysis
 

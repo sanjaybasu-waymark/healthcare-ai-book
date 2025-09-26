@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 17: Clinical Nlp At Scale"
 nav_order: 17
 parent: Chapters
+permalink: /chapters/17-clinical-nlp-at-scale/
 ---
 
 # Chapter 17: Clinical NLP at Scale - Transformers, Entity Recognition, and Question Answering
@@ -885,7 +886,7 @@ class ClinicalNLPDataset(Dataset):
         )
         
         # Create labels
-        labels = ['O'] * len(encoding['input_ids'][0])
+        labels = ['O'] * len(encoding['input_ids']<sup>0</sup>)
         
         for entity in entities:
             start_char = entity['start']

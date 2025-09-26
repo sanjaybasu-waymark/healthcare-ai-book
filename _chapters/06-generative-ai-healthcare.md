@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 6: Generative Ai Healthcare"
 nav_order: 6
 parent: Chapters
+permalink: /chapters/06-generative-ai-healthcare/
 ---
 
 # Chapter 6: Generative AI in Healthcare - Large Language Models and Multimodal Applications
@@ -840,7 +841,7 @@ class ClinicalLanguageModel:
         
         # Decode generated text
         generated_text = self.tokenizer.decode(
-            outputs[0][inputs.shape[1]:], 
+            outputs<sup>0</sup>[inputs.shape<sup>1</sup>:], 
             skip_special_tokens=True
         )
         

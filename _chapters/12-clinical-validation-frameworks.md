@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 12: Clinical Validation Frameworks"
 nav_order: 12
 parent: Chapters
+permalink: /chapters/12-clinical-validation-frameworks/
 ---
 
 # Chapter 12: Clinical Validation Frameworks - Evidence Generation for Healthcare AI Systems
@@ -749,7 +750,7 @@ class StatisticalAnalyzer:
                 'f1_weighted': f1_score(y_true, y_pred, average='weighted')
             }
             
-            if y_prob is not None and y_prob.shape[1] > 2:
+            if y_prob is not None and y_prob.shape<sup>1</sup> > 2:
                 results['auc_ovr'] = roc_auc_score(y_true, y_prob, multi_class='ovr')
                 results['auc_ovo'] = roc_auc_score(y_true, y_prob, multi_class='ovo')
         
@@ -939,8 +940,8 @@ class StatisticalAnalyzer:
         if groups is not None:
             unique_groups = np.unique(groups)
             if len(unique_groups) == 2:
-                group_0_mask = groups == unique_groups[0]
-                group_1_mask = groups == unique_groups[1]
+                group_0_mask = groups == unique_groups<sup>0</sup>
+                group_1_mask = groups == unique_groups<sup>1</sup>
                 
                 # Kaplan-Meier for each group
                 kmf_0 = KaplanMeierFitter()
@@ -1040,7 +1041,7 @@ class StatisticalAnalyzer:
                 for i, subject_ratings in enumerate(ratings):
                     valid_ratings = subject_ratings[~np.isnan(subject_ratings)]
                     for rating in valid_ratings:
-                        rating_idx = np.where(unique_ratings == rating)[0][0]
+                        rating_idx = np.where(unique_ratings == rating)<sup>0</sup><sup>0</sup>
                         rating_counts[i, rating_idx] += 1
                 
                 try:

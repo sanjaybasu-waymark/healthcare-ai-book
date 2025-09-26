@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 11: Regulatory Compliance"
 nav_order: 11
 parent: Chapters
+permalink: /chapters/11-regulatory-compliance/
 ---
 
 # Chapter 11: Regulatory Compliance and Validation Frameworks - Navigating Healthcare AI Approval and Deployment
@@ -961,7 +962,7 @@ class ClinicalEvidenceManager:
         else:
             # Multi-class specificity (average)
             specificities = []
-            for i in range(cm.shape[0]):
+            for i in range(cm.shape<sup>0</sup>):
                 tn = np.sum(cm) - np.sum(cm[i, :]) - np.sum(cm[:, i]) + cm[i, i]
                 fp = np.sum(cm[:, i]) - cm[i, i]
                 specificities.append(tn / (tn + fp) if (tn + fp) > 0 else 0.0)
@@ -976,7 +977,7 @@ class ClinicalEvidenceManager:
         else:
             # Multi-class NPV (average)
             npvs = []
-            for i in range(cm.shape[0]):
+            for i in range(cm.shape<sup>0</sup>):
                 tn = np.sum(cm) - np.sum(cm[i, :]) - np.sum(cm[:, i]) + cm[i, i]
                 fn = np.sum(cm[i, :]) - cm[i, i]
                 npvs.append(tn / (tn + fn) if (tn + fn) > 0 else 0.0)
@@ -1190,7 +1191,7 @@ class ClinicalEvidenceManager:
                 outputs = model(batch_data)
                 probs = torch.softmax(outputs, dim=1)
                 preds = torch.argmax(outputs, dim=1)
-                confs = torch.max(probs, dim=1)[0]
+                confs = torch.max(probs, dim=1)<sup>0</sup>
                 
                 predictions.extend(preds.cpu().numpy())
                 confidences.extend(confs.cpu().numpy())

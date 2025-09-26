@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 19: Federated Learning Healthcare"
 nav_order: 19
 parent: Chapters
+permalink: /chapters/19-federated-learning-healthcare/
 ---
 
 # Chapter 19: Federated Learning in Healthcare - Collaborative AI Across Institutions
@@ -561,7 +562,7 @@ class ByzantineRobustness:
         aggregated_update = {}
         
         # Get parameter names from first update
-        param_names = list(client_updates[0].keys())
+        param_names = list(client_updates<sup>0</sup>.keys())
         
         for param_name in param_names:
             # Collect parameter values from all clients
@@ -588,7 +589,7 @@ class ByzantineRobustness:
             return {}
         
         aggregated_update = {}
-        param_names = list(client_updates[0].keys())
+        param_names = list(client_updates<sup>0</sup>.keys())
         
         for param_name in param_names:
             param_values = [update[param_name] for update in client_updates]
@@ -951,10 +952,10 @@ class FederatedServer:
         total_weight = sum(weights)
         aggregated_update = {}
         
-        param_names = list(updates[0].keys())
+        param_names = list(updates<sup>0</sup>.keys())
         
         for param_name in param_names:
-            weighted_sum = torch.zeros_like(updates[0][param_name])
+            weighted_sum = torch.zeros_like(updates<sup>0</sup>[param_name])
             
             for update, weight in zip(updates, weights):
                 weighted_sum += update[param_name] * (weight / total_weight)
@@ -972,10 +973,10 @@ class FederatedServer:
             return {}
         
         aggregated_update = {}
-        param_names = list(updates[0].keys())
+        param_names = list(updates<sup>0</sup>.keys())
         
         for param_name in param_names:
-            param_sum = torch.zeros_like(updates[0][param_name])
+            param_sum = torch.zeros_like(updates<sup>0</sup>[param_name])
             
             for update in updates:
                 param_sum += update[param_name]

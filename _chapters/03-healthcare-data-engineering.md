@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 3: Healthcare Data Engineering"
 nav_order: 3
 parent: Chapters
+permalink: /chapters/03-healthcare-data-engineering/
 ---
 
 # Chapter 3: Healthcare Data Engineering - Building Robust Clinical Data Infrastructure
@@ -731,7 +732,7 @@ class HealthcareDataPipeline:
             
             # Determine trend direction
             recent_disparity = period_disparities[-1]
-            earlier_disparity = period_disparities[0]
+            earlier_disparity = period_disparities<sup>0</sup>
             
             if recent_disparity < earlier_disparity * 0.95:
                 trend_direction = 'improving'
@@ -854,7 +855,7 @@ class FHIRServer:
                 return web.json_response({'error': 'Authentication required'}, status=401)
             
             # Validate token (simplified)
-            token = auth_header.split(' ')[1]
+            token = auth_header.split(' ')<sup>1</sup>
             if not self._validate_token(token):
                 return web.json_response({'error': 'Invalid token'}, status=401)
             
@@ -2365,13 +2366,13 @@ class HealthcareETLPipeline:
                         pid_segment = msg.segment('PID')
                         if pid_segment:
                             patient_data = {
-                                'patient_id': str(pid_segment[3]),
-                                'name': str(pid_segment[5]),
-                                'birth_date': str(pid_segment[7]),
-                                'gender': str(pid_segment[8]),
-                                'address': str(pid_segment[11]),
-                                'message_type': str(msg.segment('MSH')[9]),
-                                'timestamp': str(msg.segment('MSH')[7])
+                                'patient_id': str(pid_segment<sup>3</sup>),
+                                'name': str(pid_segment<sup>5</sup>),
+                                'birth_date': str(pid_segment<sup>7</sup>),
+                                'gender': str(pid_segment<sup>8</sup>),
+                                'address': str(pid_segment<sup>11</sup>),
+                                'message_type': str(msg.segment('MSH')<sup>9</sup>),
+                                'timestamp': str(msg.segment('MSH')<sup>7</sup>)
                             }
                             extracted_data.append(patient_data)
                     

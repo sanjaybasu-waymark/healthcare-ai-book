@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 14: Population Health Ai Systems"
 nav_order: 14
 parent: Chapters
+permalink: /chapters/14-population-health-ai-systems/
 ---
 
 # Chapter 14: Population Health AI Systems - Large-Scale Health Analytics and Intervention Strategies
@@ -939,7 +940,7 @@ class DiseaseSurveillanceSystem:
                 y.append(scaled_data[i, 0])
             
             X, y = np.array(X), np.array(y)
-            X = X.reshape((X.shape[0], X.shape[1], 1))
+            X = X.reshape((X.shape<sup>0</sup>, X.shape<sup>1</sup>, 1))
             
             # Split data
             train_size = int(len(X) * 0.8)
@@ -1779,7 +1780,7 @@ class CausalInferenceEngine:
         if len(treated_units) != 1:
             raise ValueError("Synthetic control requires exactly one treated unit")
         
-        treated_unit = treated_units[0]
+        treated_unit = treated_units<sup>0</sup>
         
         # Find treatment time
         treated_data = data[data[unit_variable] == treated_unit]
@@ -2176,7 +2177,7 @@ class PopulationHealthAISystem:
                 if len(location_data) >= 30:  # Need sufficient data for forecasting
                     try:
                         forecast_results = self.surveillance_system.predict_disease_spread(
-                            disease=location_data['outcome_type'].iloc[0] if 'outcome_type' in data.columns else 'general',
+                            disease=location_data['outcome_type'].iloc<sup>0</sup> if 'outcome_type' in data.columns else 'general',
                             location=location,
                             forecast_days=30,
                             method='arima'

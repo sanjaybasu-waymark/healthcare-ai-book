@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 4: Structured Ml Clinical"
 nav_order: 4
 parent: Chapters
+permalink: /chapters/04-structured-ml-clinical/
 ---
 
 # Chapter 4: Structured Machine Learning for Clinical Applications - Advanced Predictive Analytics for Clinical Decision Support
@@ -122,9 +123,9 @@ class ClinicalNormalRanges:
         if normal_range is None:
             return None
         
-        if value < normal_range[0]:
+        if value < normal_range<sup>0</sup>:
             return 'low'
-        elif value > normal_range[1]:
+        elif value > normal_range<sup>1</sup>:
             return 'high'
         else:
             return 'normal'
@@ -284,7 +285,7 @@ class ClinicalTemporalFeatureEngineer:
         # Central tendency
         features[f'{variable}_mean'] = np.mean(values)
         features[f'{variable}_median'] = np.median(values)
-        features[f'{variable}_mode'] = stats.mode(values, keepdims=True)[0][0] if len(values) > 1 else values[0]
+        features[f'{variable}_mode'] = stats.mode(values, keepdims=True)<sup>0</sup><sup>0</sup> if len(values) > 1 else values<sup>0</sup>
         
         # Dispersion
         features[f'{variable}_std'] = np.std(values)
@@ -320,7 +321,7 @@ class ClinicalTemporalFeatureEngineer:
             return features
         
         # Convert timestamps to numeric (hours from first measurement)
-        time_numeric = np.array([(t - timestamps[0]).total_seconds() / 3600 for t in timestamps])
+        time_numeric = np.array([(t - timestamps<sup>0</sup>).total_seconds() / 3600 for t in timestamps])
         
         # Linear trend analysis
         try:
@@ -361,12 +362,12 @@ class ClinicalTemporalFeatureEngineer:
         if len(values) >= 4:
             try:
                 poly_coeffs = np.polyfit(time_numeric, values, 2)
-                features[f'{variable}_quadratic_a'] = poly_coeffs[0]
-                features[f'{variable}_quadratic_b'] = poly_coeffs[1]
-                features[f'{variable}_quadratic_c'] = poly_coeffs[2]
+                features[f'{variable}_quadratic_a'] = poly_coeffs<sup>0</sup>
+                features[f'{variable}_quadratic_b'] = poly_coeffs<sup>1</sup>
+                features[f'{variable}_quadratic_c'] = poly_coeffs<sup>2</sup>
                 
                 # Curvature indicator
-                features[f'{variable}_curvature'] = 2 * poly_coeffs[0]
+                features[f'{variable}_curvature'] = 2 * poly_coeffs<sup>0</sup>
                 
             except Exception as e:
                 logger.warning(f"Error calculating polynomial trend for {variable}: {e}")
@@ -417,7 +418,7 @@ class ClinicalTemporalFeatureEngineer:
         if len(values) >= 3:
             # Consecutive abnormal values
             if normal_range:
-                abnormal_mask = (values < normal_range[0]) | (values > normal_range[1])
+                abnormal_mask = (values < normal_range<sup>0</sup>) | (values > normal_range<sup>1</sup>)
                 consecutive_abnormal = self._find_consecutive_runs(abnormal_mask)
                 features[f'{variable}_max_consecutive_abnormal'] = max(consecutive_abnormal) if consecutive_abnormal else 0
                 features[f'{variable}_total_abnormal_runs'] = len(consecutive_abnormal)
@@ -455,7 +456,7 @@ class ClinicalTemporalFeatureEngineer:
         if len(values) >= 6:
             # Simple oscillation detection using zero crossings of detrended signal
             detrended = values - np.mean(values)
-            zero_crossings = np.where(np.diff(np.signbit(detrended)))[0]
+            zero_crossings = np.where(np.diff(np.signbit(detrended)))<sup>0</sup>
             features[f'{variable}_oscillation_frequency'] = len(zero_crossings) / len(values)
         
         # Stability patterns
@@ -497,7 +498,7 @@ class ClinicalTemporalFeatureEngineer:
         features[f'{variable}_interval_cv'] = np.std(time_diffs_hours) / np.mean(time_diffs_hours) if np.mean(time_diffs_hours) > 0 else 0
         
         # Time span features
-        total_time_hours = (timestamps[-1] - timestamps[0]).total_seconds() / 3600
+        total_time_hours = (timestamps[-1] - timestamps<sup>0</sup>).total_seconds() / 3600
         features[f'{variable}_total_time_span'] = total_time_hours
         features[f'{variable}_measurement_density'] = len(timestamps) / total_time_hours if total_time_hours > 0 else 0
         
@@ -640,13 +641,13 @@ class ClinicalMissingDataHandler:
                 if clinical_ranges and col in clinical_ranges:
                     # Use clinical normal range midpoint
                     normal_range = clinical_ranges[col]
-                    impute_value = (normal_range[0] + normal_range[1]) / 2
+                    impute_value = (normal_range<sup>0</sup> + normal_range<sup>1</sup>) / 2
                     
                 elif hasattr(self.clinical_ranges, col.lower().replace(' ', '_')):
                     # Use built-in clinical ranges
                     normal_range = self.clinical_ranges.get_normal_range(col)
                     if normal_range:
-                        impute_value = (normal_range[0] + normal_range[1]) / 2
+                        impute_value = (normal_range<sup>0</sup> + normal_range<sup>1</sup>) / 2
                     else:
                         impute_value = X[col].median()
                 else:
@@ -707,8 +708,8 @@ class ClinicalMissingDataHandler:
                     # Add noise to clinical-aware imputation
                     if clinical_ranges and col in clinical_ranges:
                         normal_range = clinical_ranges[col]
-                        base_value = (normal_range[0] + normal_range[1]) / 2
-                        noise_std = (normal_range[1] - normal_range[0]) / 6  # Assume 99.7% within range
+                        base_value = (normal_range<sup>0</sup> + normal_range<sup>1</sup>) / 2
+                        noise_std = (normal_range<sup>1</sup> - normal_range<sup>0</sup>) / 6  # Assume 99.7% within range
                     else:
                         base_value = X[col].median()
                         noise_std = X[col].std() * 0.1  # 10% of standard deviation
@@ -875,7 +876,7 @@ class ClinicalFeatureSelector:
         
         # Univariate statistical tests (F-test)
         try:
-            f_selector = SelectKBest(f_classif, k=min(self.max_features * 2, X.shape[1]))
+            f_selector = SelectKBest(f_classif, k=min(self.max_features * 2, X.shape<sup>1</sup>))
             f_selector.fit(X, y)
             f_scores = f_selector.scores_
             f_selected_features = X.columns[f_selector.get_support()].tolist()
@@ -929,8 +930,8 @@ class ClinicalFeatureSelector:
             logger.warning(f"Random Forest selection failed: {e}")
         
         # Rank features by combined scores
-        sorted_features = sorted(feature_scores.items(), key=lambda x: x[1], reverse=True)
-        selected_features = [f[0] for f in sorted_features[:self.max_features]]
+        sorted_features = sorted(feature_scores.items(), key=lambda x: x<sup>1</sup>, reverse=True)
+        selected_features = [f<sup>0</sup> for f in sorted_features[:self.max_features]]
         
         return selected_features, feature_scores
     
@@ -960,8 +961,8 @@ class ClinicalFeatureSelector:
                     clinical_scores[feature] = clinical_scores.get(feature, 0) + 0.8
         
         # Sort by clinical relevance
-        sorted_features = sorted(clinical_scores.items(), key=lambda x: x[1], reverse=True)
-        selected_features = [f[0] for f in sorted_features[:self.max_features]]
+        sorted_features = sorted(clinical_scores.items(), key=lambda x: x<sup>1</sup>, reverse=True)
+        selected_features = [f<sup>0</sup> for f in sorted_features[:self.max_features]]
         
         return selected_features, clinical_scores
     
@@ -980,7 +981,7 @@ class ClinicalFeatureSelector:
             
             # Perform feature selection on this fold
             try:
-                selector = SelectKBest(f_classif, k=min(self.max_features, X_train.shape[1]))
+                selector = SelectKBest(f_classif, k=min(self.max_features, X_train.shape<sup>1</sup>))
                 selector.fit(X_train, y_train)
                 selected_features = X_train.columns[selector.get_support()].tolist()
                 
@@ -1414,7 +1415,7 @@ class ClinicalEnsembleFramework:
             if hasattr(model, 'feature_importances_'):
                 importances = model.feature_importances_
             elif hasattr(model, 'coef_'):
-                importances = np.abs(model.coef_[0])
+                importances = np.abs(model.coef_<sup>0</sup>)
             else:
                 continue
             
@@ -1463,13 +1464,13 @@ class ClinicalEnsembleFramework:
         
         # High-risk alerts
         high_risk_threshold = 0.8
-        high_risk_indices = np.where(probabilities > high_risk_threshold)[0]
+        high_risk_indices = np.where(probabilities > high_risk_threshold)<sup>0</sup>
         if len(high_risk_indices) > 0:
             alerts.append(f"HIGH RISK: {len(high_risk_indices)} patients with >80% risk probability")
         
         # High uncertainty alerts
         high_uncertainty_threshold = 0.2
-        high_uncertainty_indices = np.where(uncertainty_scores > high_uncertainty_threshold)[0]
+        high_uncertainty_indices = np.where(uncertainty_scores > high_uncertainty_threshold)<sup>0</sup>
         if len(high_uncertainty_indices) > 0:
             alerts.append(f"HIGH UNCERTAINTY: {len(high_uncertainty_indices)} predictions with high uncertainty")
         
@@ -1493,7 +1494,7 @@ class ClinicalEnsembleFramework:
         # Get top contributing features
         sorted_features = sorted(
             self.feature_importance.items(), 
-            key=lambda x: x[1], 
+            key=lambda x: x<sup>1</sup>, 
             reverse=True
         )
         explanation['top_features'] = sorted_features[:10]
@@ -2004,7 +2005,7 @@ class ClinicalModelValidator:
         # Calculate temporal stability metrics
         if len(period_aucs) >= 2:
             temporal_stability = 1 - (np.std(period_aucs) / np.mean(period_aucs))
-            temporal_degradation = period_aucs[0] - period_aucs[-1] if len(period_aucs) >= 2 else 0
+            temporal_degradation = period_aucs<sup>0</sup> - period_aucs[-1] if len(period_aucs) >= 2 else 0
         else:
             temporal_stability = None
             temporal_degradation = None
@@ -2026,10 +2027,10 @@ Prevalence: {results.prevalence:.3f}
 
 PERFORMANCE METRICS
 ==================
-AUC-ROC: {results.auc_roc:.4f} (95% CI: {results.auc_roc_ci[0]:.4f}-{results.auc_roc_ci[1]:.4f})
+AUC-ROC: {results.auc_roc:.4f} (95% CI: {results.auc_roc_ci<sup>0</sup>:.4f}-{results.auc_roc_ci<sup>1</sup>:.4f})
 AUC-PR: {results.auc_pr:.4f}
-Sensitivity: {results.sensitivity:.4f} (95% CI: {results.sensitivity_ci[0]:.4f}-{results.sensitivity_ci[1]:.4f})
-Specificity: {results.specificity:.4f} (95% CI: {results.specificity_ci[0]:.4f}-{results.specificity_ci[1]:.4f})
+Sensitivity: {results.sensitivity:.4f} (95% CI: {results.sensitivity_ci<sup>0</sup>:.4f}-{results.sensitivity_ci<sup>1</sup>:.4f})
+Specificity: {results.specificity:.4f} (95% CI: {results.specificity_ci<sup>0</sup>:.4f}-{results.specificity_ci<sup>1</sup>:.4f})
 PPV: {results.ppv:.4f}
 NPV: {results.npv:.4f}
 F1-Score: {results.f1_score:.4f}

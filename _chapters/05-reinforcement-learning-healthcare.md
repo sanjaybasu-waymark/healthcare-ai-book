@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 5: Reinforcement Learning Healthcare"
 nav_order: 5
 parent: Chapters
+permalink: /chapters/05-reinforcement-learning-healthcare/
 ---
 
 # Chapter 5: Reinforcement Learning in Healthcare - Dynamic Treatment Optimization and Clinical Decision Support
@@ -184,33 +185,33 @@ class ClinicalState:
         """Create clinical state from numerical vector"""
         
         return cls(
-            age=vector[0] * 100.0,
-            gender='M' if vector[1] > 0.5 else 'F',
-            weight=vector[2] * 100.0,
-            height=vector[3] * 200.0,
-            heart_rate=vector[4] * 200.0,
-            systolic_bp=vector[5] * 200.0,
-            diastolic_bp=vector[6] * 150.0,
-            respiratory_rate=vector[7] * 50.0,
-            temperature=vector[8] * 15.0 + 95.0,
-            oxygen_saturation=vector[9] * 100.0,
-            hemoglobin=vector[10] * 20.0,
-            white_blood_cells=vector[11] * 50.0,
-            platelets=vector[12] * 1000.0,
-            sodium=vector[13] * 40.0 + 120.0,
-            potassium=vector[14] * 6.0 + 2.0,
-            creatinine=vector[15] * 10.0,
-            bun=vector[16] * 100.0,
-            lactate=vector[17] * 20.0,
-            sofa_score=int(vector[18] * 24.0),
-            apache_score=int(vector[19] * 71.0),
-            glasgow_coma_scale=int(vector[20] * 12.0 + 3.0),
-            mechanical_ventilation=vector[21] > 0.5,
-            vasopressor_dose=vector[22],
-            fluid_balance=vector[23] * 5000.0,
-            sedation_level=int(vector[24] * 4.0),
-            icu_day=int(vector[25] * 30.0),
-            time_since_admission=vector[26] * 24.0
+            age=vector<sup>0</sup> * 100.0,
+            gender='M' if vector<sup>1</sup> > 0.5 else 'F',
+            weight=vector<sup>2</sup> * 100.0,
+            height=vector<sup>3</sup> * 200.0,
+            heart_rate=vector<sup>4</sup> * 200.0,
+            systolic_bp=vector<sup>5</sup> * 200.0,
+            diastolic_bp=vector<sup>6</sup> * 150.0,
+            respiratory_rate=vector<sup>7</sup> * 50.0,
+            temperature=vector<sup>8</sup> * 15.0 + 95.0,
+            oxygen_saturation=vector<sup>9</sup> * 100.0,
+            hemoglobin=vector<sup>10</sup> * 20.0,
+            white_blood_cells=vector<sup>11</sup> * 50.0,
+            platelets=vector<sup>12</sup> * 1000.0,
+            sodium=vector<sup>13</sup> * 40.0 + 120.0,
+            potassium=vector<sup>14</sup> * 6.0 + 2.0,
+            creatinine=vector<sup>15</sup> * 10.0,
+            bun=vector<sup>16</sup> * 100.0,
+            lactate=vector<sup>17</sup> * 20.0,
+            sofa_score=int(vector<sup>18</sup> * 24.0),
+            apache_score=int(vector<sup>19</sup> * 71.0),
+            glasgow_coma_scale=int(vector<sup>20</sup> * 12.0 + 3.0),
+            mechanical_ventilation=vector<sup>21</sup> > 0.5,
+            vasopressor_dose=vector<sup>22</sup>,
+            fluid_balance=vector<sup>23</sup> * 5000.0,
+            sedation_level=int(vector<sup>24</sup> * 4.0),
+            icu_day=int(vector<sup>25</sup> * 30.0),
+            time_since_admission=vector<sup>26</sup> * 24.0
         )
 
 @dataclass
@@ -254,13 +255,13 @@ class ClinicalAction:
         """Create clinical action from numerical vector"""
         
         return cls(
-            fluid_change=np.arctanh(np.clip(vector[0], -0.99, 0.99)) * 2000.0,
-            vasopressor_change=np.arctanh(np.clip(vector[1], -0.99, 0.99)) * 0.5,
-            peep_change=np.arctanh(np.clip(vector[2], -0.99, 0.99)) * 10.0,
-            fio2_change=np.arctanh(np.clip(vector[3], -0.99, 0.99)) * 0.5,
-            sedation_change=int(vector[4] * 2.0),
-            antibiotic_escalation=vector[5] > 0.5,
-            lab_frequency_hours=int(vector[6] * 18.0 + 6.0)
+            fluid_change=np.arctanh(np.clip(vector<sup>0</sup>, -0.99, 0.99)) * 2000.0,
+            vasopressor_change=np.arctanh(np.clip(vector<sup>1</sup>, -0.99, 0.99)) * 0.5,
+            peep_change=np.arctanh(np.clip(vector<sup>2</sup>, -0.99, 0.99)) * 10.0,
+            fio2_change=np.arctanh(np.clip(vector<sup>3</sup>, -0.99, 0.99)) * 0.5,
+            sedation_change=int(vector<sup>4</sup> * 2.0),
+            antibiotic_escalation=vector<sup>5</sup> > 0.5,
+            lab_frequency_hours=int(vector<sup>6</sup> * 18.0 + 6.0)
         )
 
 class ClinicalMDP:

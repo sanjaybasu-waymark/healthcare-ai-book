@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 13: Real World Deployment Strategies"
 nav_order: 13
 parent: Chapters
+permalink: /chapters/13-real-world-deployment-strategies/
 ---
 
 # Chapter 13: Real-World Deployment Strategies - Production Implementation of Healthcare AI Systems
@@ -1145,7 +1146,7 @@ class DeploymentOrchestrator:
         
         # Update deployment spec
         current_deployment.spec.replicas = config.replicas
-        current_deployment.spec.template.spec.containers[0].resources = client.V1ResourceRequirements(
+        current_deployment.spec.template.spec.containers<sup>0</sup>.resources = client.V1ResourceRequirements(
             limits=config.resource_limits,
             requests={
                 'cpu': str(float(config.resource_limits.get('cpu', '1')) * 0.5),
@@ -1329,7 +1330,7 @@ class HealthcareAIDeploymentFramework:
             if not auth_header or not auth_header.startswith('Bearer '):
                 return jsonify({'error': 'Missing or invalid authorization header'}), 401
             
-            token = auth_header.split(' ')[1]
+            token = auth_header.split(' ')<sup>1</sup>
             try:
                 payload = self.security_manager.validate_access_token(token)
                 g.user_id = payload['user_id']

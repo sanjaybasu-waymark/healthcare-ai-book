@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 9: Interpretability Explainability"
 nav_order: 9
 parent: Chapters
+permalink: /chapters/09-interpretability-explainability/
 ---
 
 # Chapter 9: Interpretability and Explainability in Healthcare AI - Building Trust Through Transparent Clinical Decision Support
@@ -602,9 +603,9 @@ class HealthcareAIExplainer:
                         # Multi-class case - use positive class
                         shap_vals = shap_values.values[0, :, 1]
                     else:
-                        shap_vals = shap_values.values[0]
+                        shap_vals = shap_values.values<sup>0</sup>
                 else:
-                    shap_vals = shap_values[0]
+                    shap_vals = shap_values<sup>0</sup>
                 
                 shap_features = []
                 for i, (feature_name, shap_val) in enumerate(zip(self.feature_names, shap_vals)):
@@ -652,7 +653,7 @@ class HealthcareAIExplainer:
         # Feature importance from model
         if hasattr(self.model, 'feature_importances_'):
             feature_importance = list(zip(self.feature_names, self.model.feature_importances_))
-            feature_importance.sort(key=lambda x: x[1], reverse=True)
+            feature_importance.sort(key=lambda x: x<sup>1</sup>, reverse=True)
             
             explanation_data['feature_importance'] = [
                 {'feature': name, 'importance': float(importance)}
@@ -682,7 +683,7 @@ class HealthcareAIExplainer:
                     )
                     
                     perm_features = list(zip(self.feature_names, perm_importance.importances_mean))
-                    perm_features.sort(key=lambda x: x[1], reverse=True)
+                    perm_features.sort(key=lambda x: x<sup>1</sup>, reverse=True)
                     
                     explanation_data['permutation_importance'] = [
                         {'feature': name, 'importance': float(importance)}
@@ -727,8 +728,8 @@ class HealthcareAIExplainer:
                 )
                 
                 cf_data = []
-                for i, cf in enumerate(counterfactuals.cf_examples_list[0].final_cfs_df.iterrows()):
-                    cf_instance = cf[1]
+                for i, cf in enumerate(counterfactuals.cf_examples_list<sup>0</sup>.final_cfs_df.iterrows()):
+                    cf_instance = cf<sup>1</sup>
                     changes = []
                     
                     for feature in self.feature_names:
@@ -819,7 +820,7 @@ class HealthcareAIExplainer:
             instance_vector = instance_data.values.reshape(1, -1)
             
             # Calculate similarities
-            similarities = cosine_similarity(instance_vector, X_train.values)[0]
+            similarities = cosine_similarity(instance_vector, X_train.values)<sup>0</sup>
             
             # Get top similar cases
             top_indices = np.argsort(similarities)[-6:-1][::-1]  # Top 5 similar cases
@@ -912,7 +913,7 @@ class HealthcareAIExplainer:
             
             # Get decision path for this instance
             decision_path = surrogate_tree.decision_path(instance_data.values.reshape(1, -1))
-            leaf_id = surrogate_tree.apply(instance_data.values.reshape(1, -1))[0]
+            leaf_id = surrogate_tree.apply(instance_data.values.reshape(1, -1))<sup>0</sup>
             
             # Extract relevant rules
             feature_names_used = []

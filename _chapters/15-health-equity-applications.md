@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 15: Health Equity Applications"
 nav_order: 15
 parent: Chapters
+permalink: /chapters/15-health-equity-applications/
 ---
 
 # Chapter 15: Health Equity Applications - AI for Social Justice and Community Health
@@ -999,7 +1000,7 @@ class BiasMitigationEngine:
         try:
             if AIF360_AVAILABLE and len(protected_attributes) > 0:
                 # Use AIF360 reweighing if available
-                protected_attr = protected_attributes[0].value
+                protected_attr = protected_attributes<sup>0</sup>.value
                 
                 if protected_attr in data.columns:
                     # Create AIF360 dataset
@@ -1187,7 +1188,7 @@ class BiasMitigationEngine:
         try:
             # Technique 1: Adversarial debiasing
             if AIF360_AVAILABLE and len(protected_attributes) > 0:
-                protected_attr = protected_attributes[0].value
+                protected_attr = protected_attributes<sup>0</sup>.value
                 
                 if protected_attr in data.columns:
                     # Prepare data for adversarial debiasing
@@ -1287,7 +1288,7 @@ class BiasMitigationEngine:
         try:
             # Technique 2: Calibration adjustment
             if AIF360_AVAILABLE and len(protected_attributes) > 0:
-                protected_attr = protected_attributes[0].value
+                protected_attr = protected_attributes<sup>0</sup>.value
                 
                 if protected_attr in data.columns:
                     # Apply calibrated equalized odds

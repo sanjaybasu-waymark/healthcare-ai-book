@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 1: Clinical Informatics"
 nav_order: 1
 parent: Chapters
+permalink: /chapters/01-clinical-informatics/
 ---
 
 # Chapter 1: Clinical Informatics Foundations for AI Implementation
@@ -479,7 +480,7 @@ class FHIRClinicalDataProcessor:
                         condition.get('verificationStatus', {}).get('coding', [])
                     ),
                     'category': self._extract_coding_display(
-                        condition.get('category', [{}])[0].get('coding', [])
+                        condition.get('category', [{}])<sup>0</sup>.get('coding', [])
                     ),
                     'code': self._extract_condition_code(condition.get('code', {})),
                     'onset_date': condition.get('onsetDateTime'),
@@ -524,14 +525,14 @@ class FHIRClinicalDataProcessor:
                     'id': observation.get('id'),
                     'status': observation.get('status'),
                     'category': self._extract_coding_display(
-                        observation.get('category', [{}])[0].get('coding', [])
+                        observation.get('category', [{}])<sup>0</sup>.get('coding', [])
                     ),
                     'code': self._extract_observation_code(observation.get('code', {})),
                     'effective_date': observation.get('effectiveDateTime'),
                     'value': self._extract_observation_value(observation),
                     'reference_range': self._extract_reference_range(observation.get('referenceRange', [])),
                     'interpretation': self._extract_coding_display(
-                        observation.get('interpretation', [{}])[0].get('coding', [])
+                        observation.get('interpretation', [{}])<sup>0</sup>.get('coding', [])
                     )
                 }
                 
@@ -617,13 +618,13 @@ class FHIRClinicalDataProcessor:
                         [encounter.get('class', {})]
                     ),
                     'type': self._extract_coding_display(
-                        encounter.get('type', [{}])[0].get('coding', [])
+                        encounter.get('type', [{}])<sup>0</sup>.get('coding', [])
                     ),
                     'period': encounter.get('period', {}),
                     'reason_code': self._extract_coding_display(
-                        encounter.get('reasonCode', [{}])[0].get('coding', [])
+                        encounter.get('reasonCode', [{}])<sup>0</sup>.get('coding', [])
                     ),
-                    'location': encounter.get('location', [{}])[0].get('location', {}).get('display'),
+                    'location': encounter.get('location', [{}])<sup>0</sup>.get('location', {}).get('display'),
                     'participant': [p.get('individual', {}).get('display') 
                                   for p in encounter.get('participant', [])]
                 }
@@ -718,7 +719,7 @@ class FHIRClinicalDataProcessor:
         
         # Prefer official name, fall back to usual
         official_name = next((name for name in names if name.get('use') == 'official'), None)
-        name_to_use = official_name or names[0]
+        name_to_use = official_name or names<sup>0</sup>
         
         given_names = ' '.join(name_to_use.get('given', []))
         family_name = name_to_use.get('family', '')
@@ -753,7 +754,7 @@ class FHIRClinicalDataProcessor:
         
         # Prefer home address
         home_address = next((addr for addr in addresses if addr.get('use') == 'home'), None)
-        address_to_use = home_address or addresses[0]
+        address_to_use = home_address or addresses<sup>0</sup>
         
         return {
             'line': ' '.join(address_to_use.get('line', [])),
@@ -773,7 +774,7 @@ class FHIRClinicalDataProcessor:
             if coding.get('display'):
                 return coding['display']
         
-        return codings[0].get('code') if codings else None
+        return codings<sup>0</sup>.get('code') if codings else None
     
     def _extract_condition_code(self, code: Dict[str, Any]) -> Dict[str, Any]:
         """Extract condition code information."""
@@ -853,7 +854,7 @@ class FHIRClinicalDataProcessor:
                 'route': self._extract_coding_display(
                     instruction.get('route', {}).get('coding', [])
                 ),
-                'dose_quantity': instruction.get('doseAndRate', [{}])[0].get('doseQuantity', {})
+                'dose_quantity': instruction.get('doseAndRate', [{}])<sup>0</sup>.get('doseQuantity', {})
             }
             instructions.append(instruction_data)
         return instructions
@@ -1195,7 +1196,7 @@ class ICD10Processor:
         # For ICD-10-CM, parents are less specific versions of the code
         if '.' in code:
             # Remove the most specific part
-            parent = code.rsplit('.', 1)[0]
+            parent = code.rsplit('.', 1)<sup>0</sup>
             parents.append(parent)
             
             # Continue up the hierarchy
@@ -1470,7 +1471,7 @@ class LOINCProcessor:
         # Simplified categorization based on code ranges
         # In production, would use official LOINC database
         
-        code_num = int(code.split('-')[0])
+        code_num = int(code.split('-')<sup>0</sup>)
         
         if 1000 <= code_num <= 9999:
             return {

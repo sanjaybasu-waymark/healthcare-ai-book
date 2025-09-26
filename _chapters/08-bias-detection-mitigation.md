@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 8: Bias Detection Mitigation"
 nav_order: 8
 parent: Chapters
+permalink: /chapters/08-bias-detection-mitigation/
 ---
 
 # Chapter 8: Bias Detection and Mitigation in Healthcare AI - Ensuring Fairness and Equity in Clinical Decision Support
@@ -480,8 +481,8 @@ class HealthcareAIBiasDetector:
         group_data = [y_pred[X[attr] == group] for group in groups]
         if len(groups) == 2:
             stat, p_value = stats.chi2_contingency([
-                [np.sum(group_data[0]), len(group_data[0]) - np.sum(group_data[0])],
-                [np.sum(group_data[1]), len(group_data[1]) - np.sum(group_data[1])]
+                [np.sum(group_data<sup>0</sup>), len(group_data<sup>0</sup>) - np.sum(group_data<sup>0</sup>)],
+                [np.sum(group_data<sup>1</sup>), len(group_data<sup>1</sup>) - np.sum(group_data<sup>1</sup>)]
             ])[:2]
         else:
             # Use chi-square test for multiple groups

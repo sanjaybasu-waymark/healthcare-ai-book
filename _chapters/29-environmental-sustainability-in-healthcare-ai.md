@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 29: Environmental Sustainability In Healthcare Ai"
 nav_order: 29
 parent: Chapters
+permalink: /chapters/29-environmental-sustainability-in-healthcare-ai/
 ---
 
 # Chapter 29: Environmental Sustainability in Healthcare AI
@@ -17,9 +18,9 @@ The healthcare sector, paradoxically dedicated to human well-being, is a substan
 
 ### 1.2. The Growing Environmental Footprint of Healthcare and AI
 
-The environmental footprint of healthcare is multifaceted, encompassing energy consumption from facilities, waste generation (including pharmaceuticals and single-use plastics), supply chain emissions, and transportation. The advent of digital health technologies, including AI, introduces new dimensions to this footprint. While AI offers pathways to optimize resource use and reduce waste in certain healthcare operations, its own operational demands can counteract these benefits if not managed sustainably [3].
+The environmental footprint of healthcare is multifaceted, encompassing energy consumption from facilities, waste generation (including pharmaceuticals and single-use plastics), supply chain emissions, and transportation. The advent of digital health technologies, including AI, introduces new dimensions to this footprint. While AI offers pathways to optimize resource use and reduce waste in certain healthcare operations, its own operational demands can counteract these benefits if not managed sustainably <sup>3</sup>.
 
-AI's environmental impact primarily stems from the energy-intensive processes of model training and inference. Large language models and complex deep learning architectures require immense computational power, often relying on data centers that consume vast amounts of electricity, much of which is still generated from fossil fuels. Beyond energy, the manufacturing of specialized hardware (e.g., GPUs, TPUs) contributes to resource extraction and electronic waste. The lifecycle of an AI model, from data acquisition and preprocessing to training, deployment, and maintenance, involves a continuous energy expenditure that demands critical examination [4].
+AI's environmental impact primarily stems from the energy-intensive processes of model training and inference. Large language models and complex deep learning architectures require immense computational power, often relying on data centers that consume vast amounts of electricity, much of which is still generated from fossil fuels. Beyond energy, the manufacturing of specialized hardware (e.g., GPUs, TPUs) contributes to resource extraction and electronic waste. The lifecycle of an AI model, from data acquisition and preprocessing to training, deployment, and maintenance, involves a continuous energy expenditure that demands critical examination <sup>4</sup>.
 
 ### 1.3. Chapter Objectives and Scope
 
@@ -39,42 +40,42 @@ This chapter will maintain the academic rigor and practical orientation characte
 
 ### 2.1. Energy Consumption and Carbon Emissions of AI Models
 
-The energy consumption of AI models is a primary driver of their environmental footprint. The computational intensity required for modern AI, particularly deep learning, translates directly into significant electricity demand. This demand is largely met by data centers, which are themselves major energy consumers. The carbon emissions associated with AI are thus a direct consequence of the energy sources powering these computational infrastructures [5].
+The energy consumption of AI models is a primary driver of their environmental footprint. The computational intensity required for modern AI, particularly deep learning, translates directly into significant electricity demand. This demand is largely met by data centers, which are themselves major energy consumers. The carbon emissions associated with AI are thus a direct consequence of the energy sources powering these computational infrastructures <sup>5</sup>.
 
 #### 2.1.1. Training vs. Inference Costs
 
-A crucial distinction in AI's energy profile lies between the **training phase** and the **inference phase**. The training of large, complex AI models, such as large language models (LLMs) or sophisticated image recognition networks, is extraordinarily energy-intensive. This phase involves iterative adjustments of model parameters across massive datasets, often requiring weeks or months of continuous computation on specialized hardware like GPUs or TPUs. For instance, the training of a single large transformer model has been estimated to produce emissions equivalent to several cars over their lifetime [6]. These training costs are typically a one-time, upfront investment in computational resources.
+A crucial distinction in AI's energy profile lies between the **training phase** and the **inference phase**. The training of large, complex AI models, such as large language models (LLMs) or sophisticated image recognition networks, is extraordinarily energy-intensive. This phase involves iterative adjustments of model parameters across massive datasets, often requiring weeks or months of continuous computation on specialized hardware like GPUs or TPUs. For instance, the training of a single large transformer model has been estimated to produce emissions equivalent to several cars over their lifetime <sup>6</sup>. These training costs are typically a one-time, upfront investment in computational resources.
 
-In contrast, the **inference phase**, where a trained model is used to make predictions or decisions on new data, generally consumes less energy per operation. However, inference operations occur far more frequently and at scale in real-world applications. In healthcare, this could involve millions of daily inferences for diagnostic support, personalized treatment recommendations, or operational optimizations. While individual inference operations are less energy-intensive than training, their cumulative effect, especially across a vast and growing number of deployed AI systems, can still lead to substantial energy consumption and associated carbon emissions [7]. The balance between these two phases is critical for understanding the overall environmental impact of a deployed AI system.
+In contrast, the **inference phase**, where a trained model is used to make predictions or decisions on new data, generally consumes less energy per operation. However, inference operations occur far more frequently and at scale in real-world applications. In healthcare, this could involve millions of daily inferences for diagnostic support, personalized treatment recommendations, or operational optimizations. While individual inference operations are less energy-intensive than training, their cumulative effect, especially across a vast and growing number of deployed AI systems, can still lead to substantial energy consumption and associated carbon emissions <sup>7</sup>. The balance between these two phases is critical for understanding the overall environmental impact of a deployed AI system.
 
 #### 2.1.2. Data Centers and Infrastructure
 
-Data centers form the backbone of modern AI operations, housing the servers, storage systems, and networking equipment necessary for computation. These facilities are prodigious consumers of electricity, not only for powering the IT equipment but also for cooling systems that prevent overheating. A typical data center can consume as much electricity as a small town. The environmental impact of data centers is therefore directly tied to the energy mix of the regions in which they operate. Data centers powered by renewable energy sources have a significantly lower carbon footprint than those reliant on fossil fuels [8].
+Data centers form the backbone of modern AI operations, housing the servers, storage systems, and networking equipment necessary for computation. These facilities are prodigious consumers of electricity, not only for powering the IT equipment but also for cooling systems that prevent overheating. A typical data center can consume as much electricity as a small town. The environmental impact of data centers is therefore directly tied to the energy mix of the regions in which they operate. Data centers powered by renewable energy sources have a significantly lower carbon footprint than those reliant on fossil fuels <sup>8</sup>.
 
 Beyond energy consumption, the construction and maintenance of data centers involve significant resource extraction and manufacturing. The physical infrastructure, including buildings, power distribution units, and cooling towers, all contribute to an embodied carbon footprint. Furthermore, the rapid technological advancements in AI hardware necessitate frequent upgrades, leading to a continuous cycle of manufacturing and disposal, which exacerbates the problem of electronic waste.
 
 ### 2.2. Water Usage and Resource Depletion
 
-Less commonly discussed but equally significant is the **water footprint** of AI and data centers. Water is essential for cooling data centers, particularly in regions where evaporative cooling systems are employed. As AI workloads increase, so does the demand for cooling, placing additional strain on local water resources, especially in drought-prone areas [9]. The manufacturing of microchips and other electronic components also requires substantial amounts of purified water, contributing to overall resource depletion.
+Less commonly discussed but equally significant is the **water footprint** of AI and data centers. Water is essential for cooling data centers, particularly in regions where evaporative cooling systems are employed. As AI workloads increase, so does the demand for cooling, placing additional strain on local water resources, especially in drought-prone areas <sup>9</sup>. The manufacturing of microchips and other electronic components also requires substantial amounts of purified water, contributing to overall resource depletion.
 
 Resource depletion extends beyond water to include rare earth minerals and other raw materials necessary for producing advanced AI hardware. The extraction of these materials often involves environmentally destructive mining practices, habitat destruction, and significant energy consumption. The finite nature of these resources underscores the need for more sustainable hardware lifecycles, including improved recycling and circular economy approaches.
 
 ### 2.3. Electronic Waste (E-waste) from Hardware Lifecycles
 
-The rapid pace of innovation in AI hardware leads to a short lifespan for many components, contributing to a growing global problem of **electronic waste (e-waste)**. GPUs, specialized AI accelerators, and servers are frequently upgraded to meet increasing computational demands, rendering older equipment obsolete. E-waste contains hazardous materials such as lead, mercury, and cadmium, which can leach into soil and water, posing severe environmental and health risks if not properly managed [10].
+The rapid pace of innovation in AI hardware leads to a short lifespan for many components, contributing to a growing global problem of **electronic waste (e-waste)**. GPUs, specialized AI accelerators, and servers are frequently upgraded to meet increasing computational demands, rendering older equipment obsolete. E-waste contains hazardous materials such as lead, mercury, and cadmium, which can leach into soil and water, posing severe environmental and health risks if not properly managed <sup>10</sup>.
 
 The healthcare sector's adoption of AI exacerbates this issue by increasing the demand for such hardware. While efforts are being made to improve e-waste recycling, a significant portion still ends up in landfills, particularly in developing countries, where informal recycling practices can expose workers to toxic substances. A sustainable approach to healthcare AI must therefore consider the entire lifecycle of hardware, from responsible sourcing of materials to end-of-life management and recycling.
 
 ### 2.4. Ethical Considerations of Environmental Impact
 
-The environmental impact of AI in healthcare also raises profound **ethical considerations**. The pursuit of advanced AI capabilities for health improvement, while laudable, must be balanced against the potential harm to planetary health. This involves questions of intergenerational equity (how current technological choices affect future generations) and environmental justice (how the burdens of environmental degradation are disproportionately borne by vulnerable communities) [11].
+The environmental impact of AI in healthcare also raises profound **ethical considerations**. The pursuit of advanced AI capabilities for health improvement, while laudable, must be balanced against the potential harm to planetary health. This involves questions of intergenerational equity (how current technological choices affect future generations) and environmental justice (how the burdens of environmental degradation are disproportionately borne by vulnerable communities) <sup>11</sup>.
 
 Physician data scientists have an ethical obligation to consider the broader societal and environmental consequences of the AI systems they develop and deploy. This includes advocating for more energy-efficient algorithms, promoting the use of renewable energy in data centers, and designing AI solutions that minimize hardware obsolescence. The ethical imperative extends to ensuring that the benefits of AI in healthcare are not achieved at an unacceptable cost to the environment, thereby undermining the very foundation of public health.
 
 
 ## 3. Foundations of Green AI and Sustainable Computing
 
-To mitigate the environmental impact of AI in healthcare, it is imperative to adopt the principles of **Green AI** and sustainable computing. Green AI is an emerging paradigm that focuses on developing AI systems with reduced environmental impact throughout their lifecycle, from design and training to deployment and disposal. This approach emphasizes efficiency, resource optimization, and the use of renewable energy sources [12].
+To mitigate the environmental impact of AI in healthcare, it is imperative to adopt the principles of **Green AI** and sustainable computing. Green AI is an emerging paradigm that focuses on developing AI systems with reduced environmental impact throughout their lifecycle, from design and training to deployment and disposal. This approach emphasizes efficiency, resource optimization, and the use of renewable energy sources <sup>12</sup>.
 
 ### 3.1. Principles of Green AI
 
@@ -82,7 +83,7 @@ To mitigate the environmental impact of AI in healthcare, it is imperative to ad
 
 At the core of Green AI is the pursuit of **energy-efficient algorithms and architectures**. This involves designing AI models that achieve desired performance with minimal computational resources. Key strategies include:
 
-*   **Model Compression Techniques:** Methods like quantization, pruning, and knowledge distillation reduce the size and complexity of models, thereby lowering their computational and memory requirements during inference. Quantization, for instance, reduces the precision of numerical representations (e.g., from 32-bit floating-point to 8-bit integers), significantly decreasing memory footprint and accelerating computations without substantial loss in accuracy [13]. Pruning involves removing redundant or less important connections (weights) in neural networks, leading to sparser, more efficient models [14].
+*   **Model Compression Techniques:** Methods like quantization, pruning, and knowledge distillation reduce the size and complexity of models, thereby lowering their computational and memory requirements during inference. Quantization, for instance, reduces the precision of numerical representations (e.g., from 32-bit floating-point to 8-bit integers), significantly decreasing memory footprint and accelerating computations without substantial loss in accuracy <sup>13</sup>. Pruning involves removing redundant or less important connections (weights) in neural networks, leading to sparser, more efficient models <sup>14</sup>.
 *   **Efficient Neural Network Architectures:** Developing and utilizing neural network architectures specifically designed for efficiency, such as MobileNets, EfficientNets, or vision transformers optimized for edge devices, can drastically reduce energy consumption compared to larger, more complex models. These architectures often employ techniques like depthwise separable convolutions or neural architecture search to find optimal trade-offs between performance and efficiency.
 *   **Algorithm Optimization:** Beyond model architecture, optimizing the underlying algorithms for training and inference can yield significant energy savings. This includes using more efficient optimizers, reducing the number of training epochs, and employing techniques like early stopping.
 
@@ -100,7 +101,7 @@ Accurately measuring the environmental impact of AI systems is a prerequisite fo
 
 #### 3.2.1. Carbon Footprint Calculation (e.g., CO2e)
 
-The **carbon footprint** is typically expressed in terms of carbon dioxide equivalent (CO2e), which accounts for all greenhouse gases. Calculating the CO2e of an AI model involves estimating the energy consumed during its training and inference phases and then multiplying this by the carbon intensity of the electricity source. Tools and frameworks like CodeCarbon or MLCO2 can help automate these calculations by monitoring GPU/CPU usage and querying regional electricity grid carbon intensity [15].
+The **carbon footprint** is typically expressed in terms of carbon dioxide equivalent (CO2e), which accounts for all greenhouse gases. Calculating the CO2e of an AI model involves estimating the energy consumed during its training and inference phases and then multiplying this by the carbon intensity of the electricity source. Tools and frameworks like CodeCarbon or MLCO2 can help automate these calculations by monitoring GPU/CPU usage and querying regional electricity grid carbon intensity <sup>15</sup>.
 
 #### 3.2.2. Energy Consumption (kWh)
 
@@ -128,7 +129,7 @@ Hospitals are complex, resource-intensive environments. AI can play a pivotal ro
 
 #### 4.1.1. Energy Management (HVAC, lighting)
 
-AI-powered **energy management systems** can analyze vast amounts of data from building sensors (temperature, occupancy, light levels) and external sources (weather forecasts, energy prices) to optimize heating, ventilation, and air conditioning (HVAC) systems and lighting. Predictive models can anticipate energy demand, adjust setpoints, and control equipment to minimize consumption without compromising patient comfort or safety. For example, AI can learn occupancy patterns in different hospital zones and automatically adjust HVAC and lighting schedules, leading to substantial energy savings [16].
+AI-powered **energy management systems** can analyze vast amounts of data from building sensors (temperature, occupancy, light levels) and external sources (weather forecasts, energy prices) to optimize heating, ventilation, and air conditioning (HVAC) systems and lighting. Predictive models can anticipate energy demand, adjust setpoints, and control equipment to minimize consumption without compromising patient comfort or safety. For example, AI can learn occupancy patterns in different hospital zones and automatically adjust HVAC and lighting schedules, leading to substantial energy savings <sup>16</sup>.
 
 #### 4.1.2. Waste Reduction and Recycling Programs
 
@@ -151,7 +152,7 @@ AI can also be used to address the health impacts of environmental degradation, 
 
 #### 4.2.1. Climate Change and Disease Burden
 
-Climate change is increasingly recognized as a critical determinant of health, influencing the prevalence and distribution of infectious diseases, respiratory illnesses, and heat-related conditions. AI models can analyze climate data, epidemiological patterns, and demographic information to predict the **impact of climate change on disease burden**. This allows healthcare systems to proactively prepare for and mitigate health crises, such as anticipating vector-borne disease outbreaks in new regions or forecasting heatwave-related hospital admissions [17].
+Climate change is increasingly recognized as a critical determinant of health, influencing the prevalence and distribution of infectious diseases, respiratory illnesses, and heat-related conditions. AI models can analyze climate data, epidemiological patterns, and demographic information to predict the **impact of climate change on disease burden**. This allows healthcare systems to proactively prepare for and mitigate health crises, such as anticipating vector-borne disease outbreaks in new regions or forecasting heatwave-related hospital admissions <sup>17</sup>.
 
 #### 4.2.2. Air Quality Monitoring and Health Outcomes
 
@@ -499,42 +500,42 @@ The path forward demands a conscious and concerted effort. Physician data scient
 
 ## 11. Bibliography (15-20 key references)
 
-[1] Karliner, J., Slotterback, S., Boyd, R., Macfarlane, A., & Riggs, E. (2019). Health Care’s Climate Footprint: How the Health Sector Contributes to the Global Climate Crisis and Opportunities for Action. Health Care Without Harm. [https://noharm-uscanada.org/sites/default/files/documents-files/5968/HealthCaresClimateFootprint_092319.pdf](https://noharm-uscanada.org/sites/default/files/documents-files/5968/HealthCaresClimateFootprint_092319.pdf)
+<sup>1</sup> Karliner, J., Slotterback, S., Boyd, R., Macfarlane, A., & Riggs, E. (2019). Health Care’s Climate Footprint: How the Health Sector Contributes to the Global Climate Crisis and Opportunities for Action. Health Care Without Harm. [https://noharm-uscanada.org/sites/default/files/documents-files/5968/HealthCaresClimateFootprint_092319.pdf](https://noharm-uscanada.org/sites/default/files/documents-files/5968/HealthCaresClimateFootprint_092319.pdf)
 
-[2] The Lancet Countdown. (2022). *The Lancet Countdown on health and climate change: health at the mercy of fossil fuels*. The Lancet, 400(10363), 1619-1654. [https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01540-9/fulltext](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01540-9/fulltext)
+<sup>2</sup> The Lancet Countdown. (2022). *The Lancet Countdown on health and climate change: health at the mercy of fossil fuels*. The Lancet, 400(10363), 1619-1654. [https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01540-9/fulltext](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)01540-9/fulltext)
 
-[3] Ueda, D., et al. (2024). Climate change and artificial intelligence in healthcare. *The Lancet Digital Health*, 6(5), e300-e308. [https://www.sciencedirect.com/science/article/pii/S2589750024000384](https://www.sciencedirect.com/science/article/pii/S2589750024000384)
+<sup>3</sup> Ueda, D., et al. (2024). Climate change and artificial intelligence in healthcare. *The Lancet Digital Health*, 6(5), e300-e308. [https://www.sciencedirect.com/science/article/pii/S2589750024000384](https://www.sciencedirect.com/science/article/pii/S2589750024000384)
 
-[4] Strubell, E., Ganesh, A., & McCallum, A. (2019). Energy and Policy Considerations for Deep Learning in NLP. *Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics*, 3645-3650. [https://arxiv.org/pdf/1906.02243](https://arxiv.org/pdf/1906.02243)
+<sup>4</sup> Strubell, E., Ganesh, A., & McCallum, A. (2019). Energy and Policy Considerations for Deep Learning in NLP. *Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics*, 3645-3650. [https://arxiv.org/pdf/1906.02243](https://arxiv.org/pdf/1906.02243)
 
-[5] Henderson, P., et al. (2020). Towards the Sustainable Development of AI: A Framework for Measuring and Mitigating AI’s Environmental Impact. *arXiv preprint arXiv:2002.05665*. [https://arxiv.org/pdf/2002.05665](https://arxiv.org/pdf/2002.05665)
+<sup>5</sup> Henderson, P., et al. (2020). Towards the Sustainable Development of AI: A Framework for Measuring and Mitigating AI’s Environmental Impact. *arXiv preprint arXiv:2002.05665*. [https://arxiv.org/pdf/2002.05665](https://arxiv.org/pdf/2002.05665)
 
-[6] Schwartz, R., et al. (2020). Green AI. *Communications of the ACM*, 63(12), 54-63. [https://cacm.acm.org/magazines/2020/12/248701-green-ai/fulltext](https://cacm.acm.org/magazines/2020/12/248701-green-ai/fulltext)
+<sup>6</sup> Schwartz, R., et al. (2020). Green AI. *Communications of the ACM*, 63(12), 54-63. [https://cacm.acm.org/magazines/2020/12/248701-green-ai/fulltext](https://cacm.acm.org/magazines/2020/12/248701-green-ai/fulltext)
 
-[7] Lannelongue, L., Grealey, J., & Hanley, Q. (2021). The carbon footprint of AI in healthcare. *The Lancet Digital Health*, 3(11), e683-e684. [https://www.thelancet.com/journals/landig/article/PIIS2589-7500(21)00192-3/fulltext](https://www.thelancet.com/journals/landig/article/PIIS2589-7500(21)00192-3/fulltext)
+<sup>7</sup> Lannelongue, L., Grealey, J., & Hanley, Q. (2021). The carbon footprint of AI in healthcare. *The Lancet Digital Health*, 3(11), e683-e684. [https://www.thelancet.com/journals/landig/article/PIIS2589-7500(21)00192-3/fulltext](https://www.thelancet.com/journals/landig/article/PIIS2589-7500(21)00192-3/fulltext)
 
-[8] Masanet, E., et al. (2020). Recalibrating global data center energy-use estimates. *Science*, 367(6481), 984-986. [https://www.science.org/doi/10.1126/science.aba3759](https://www.science.org/doi/10.1126/science.aba3759)
+<sup>8</sup> Masanet, E., et al. (2020). Recalibrating global data center energy-use estimates. *Science*, 367(6481), 984-986. [https://www.science.org/doi/10.1126/science.aba3759](https://www.science.org/doi/10.1126/science.aba3759)
 
-[9] The New York Times. (2023). The AI Boom’s Dark Side: It’s a Water Guzzler. [https://www.nytimes.com/2023/08/23/technology/ai-water-consumption.html](https://www.nytimes.com/2023/08/23/technology/ai-water-consumption.html)
+<sup>9</sup> The New York Times. (2023). The AI Boom’s Dark Side: It’s a Water Guzzler. [https://www.nytimes.com/2023/08/23/technology/ai-water-consumption.html](https://www.nytimes.com/2023/08/23/technology/ai-water-consumption.html)
 
-[10] United Nations Environment Programme. (2020). *A New Circular Vision for Electronics: Time for a Global Reboot*. [https://www.unep.org/resources/report/new-circular-vision-electronics-time-global-reboot](https://www.unep.org/resources/report/new-circular-vision-electronics-time-global-reboot)
+<sup>10</sup> United Nations Environment Programme. (2020). *A New Circular Vision for Electronics: Time for a Global Reboot*. [https://www.unep.org/resources/report/new-circular-vision-electronics-time-global-reboot](https://www.unep.org/resources/report/new-circular-vision-electronics-time-global-reboot)
 
-[11] Morley, J., et al. (2021). The ethics of AI in healthcare: A systematic review of the literature. *Journal of Medical Ethics*, 47(10), e1-e12. [https://jme.bmj.com/content/47/10/e1](https://jme.bmj.com/content/47/10/e1)
+<sup>11</sup> Morley, J., et al. (2021). The ethics of AI in healthcare: A systematic review of the literature. *Journal of Medical Ethics*, 47(10), e1-e12. [https://jme.bmj.com/content/47/10/e1](https://jme.bmj.com/content/47/10/e1)
 
-[12] Pihkala, P. (2020). Environmental aspects of artificial intelligence: a systematic review. *AI & Society*, 35(4), 817-832. [https://link.springer.com/article/10.1007/s00146-019-00923-9](https://link.springer.com/article/10.1007/s00146-019-00923-9)
+<sup>12</sup> Pihkala, P. (2020). Environmental aspects of artificial intelligence: a systematic review. *AI & Society*, 35(4), 817-832. [https://link.springer.com/article/10.1007/s00146-019-00923-9](https://link.springer.com/article/10.1007/s00146-019-00923-9)
 
-[13] Jacob, B., et al. (2018). Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 2704-2713. [https://arxiv.org/pdf/1712.05877](https://arxiv.org/pdf/1712.05877)
+<sup>13</sup> Jacob, B., et al. (2018). Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 2704-2713. [https://arxiv.org/pdf/1712.05877](https://arxiv.org/pdf/1712.05877)
 
-[14] Blalock, D., et al. (2020). What is the State of Neural Network Pruning? *arXiv preprint arXiv:2003.03033*. [https://arxiv.org/pdf/2003.03033](https://arxiv.org/pdf/2003.03033)
+<sup>14</sup> Blalock, D., et al. (2020). What is the State of Neural Network Pruning? *arXiv preprint arXiv:2003.03033*. [https://arxiv.org/pdf/2003.03033](https://arxiv.org/pdf/2003.03033)
 
-[15] Lacoste, A., et al. (2019). Quantifying the Carbon Emissions of Machine Learning. *arXiv preprint arXiv:1910.09700*. [https://arxiv.org/pdf/1910.09700](https://arxiv.org/pdf/1910.09700)
+<sup>15</sup> Lacoste, A., et al. (2019). Quantifying the Carbon Emissions of Machine Learning. *arXiv preprint arXiv:1910.09700*. [https://arxiv.org/pdf/1910.09700](https://arxiv.org/pdf/1910.09700)
 
-[16] Al-Ali, M., et al. (2017). A smart energy management system for hospitals using a multi-agent system. *Energy and Buildings*, 140, 188-200. [https://www.sciencedirect.com/science/article/pii/S037877881730046X](https://www.sciencedirect.com/science/article/pii/S037877881730046X)
+<sup>16</sup> Al-Ali, M., et al. (2017). A smart energy management system for hospitals using a multi-agent system. *Energy and Buildings*, 140, 188-200. [https://www.sciencedirect.com/science/article/pii/S037877881730046X](https://www.sciencedirect.com/science/article/pii/S037877881730046X)
 
-[17] Hajat, S., & Kosatky, T. (2010). Heat-related mortality: a review and systematic search. *Environmental Health Perspectives*, 118(7), 1005-1013. [https://ehp.niehs.nih.gov/doi/full/10.1289/ehp.0901874](https://ehp.niehs.nih.gov/doi/full/10.1289/ehp.0901874)
+<sup>17</sup> Hajat, S., & Kosatky, T. (2010). Heat-related mortality: a review and systematic search. *Environmental Health Perspectives*, 118(7), 1005-1013. [https://ehp.niehs.nih.gov/doi/full/10.1289/ehp.0901874](https://ehp.niehs.nih.gov/doi/full/10.1289/ehp.0901874)
 
-[18] Richie, C., et al. (2022). Environmentally sustainable development and use of artificial intelligence in health care. *npj Digital Medicine*, 5(1), 1-8. [https://www.nature.com/articles/s41746-022-00650-6](https://www.nature.com/articles/s41746-022-00650-6)
+<sup>18</sup> Richie, C., et al. (2022). Environmentally sustainable development and use of artificial intelligence in health care. *npj Digital Medicine*, 5(1), 1-8. [https://www.nature.com/articles/s41746-022-00650-6](https://www.nature.com/articles/s41746-022-00650-6)
 
-[19] Bratan, T. (2024). Hypotheses on environmental impacts of AI use in healthcare. *The Lancet Digital Health*, 6(1), e2-e3. [https://www.sciencedirect.com/science/article/pii/S2589750023002297](https://www.sciencedirect.com/science/article/pii/S2589750023002297)
+<sup>19</sup> Bratan, T. (2024). Hypotheses on environmental impacts of AI use in healthcare. *The Lancet Digital Health*, 6(1), e2-e3. [https://www.sciencedirect.com/science/article/pii/S2589750023002297](https://www.sciencedirect.com/science/article/pii/S2589750023002297)
 
-[20] Katirai, A., et al. (2024). The Environmental Costs of Artificial Intelligence for Healthcare. *Journal of Medical Internet Research*, 26, e53070. [https://www.jmir.org/2024/1/e53070](https://www.jmir.org/2024/1/e53070)
+<sup>20</sup> Katirai, A., et al. (2024). The Environmental Costs of Artificial Intelligence for Healthcare. *Journal of Medical Internet Research*, 26, e53070. [https://www.jmir.org/2024/1/e53070](https://www.jmir.org/2024/1/e53070)

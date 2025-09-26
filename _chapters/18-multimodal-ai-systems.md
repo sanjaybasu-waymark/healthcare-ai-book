@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 18: Multimodal Ai Systems"
 nav_order: 18
 parent: Chapters
+permalink: /chapters/18-multimodal-ai-systems/
 ---
 
 # Chapter 18: Multimodal AI Systems - Integrating Imaging, Text, and Clinical Data
@@ -813,7 +814,7 @@ class MultimodalFusionModule(nn.Module):
         attention_probs = F.softmax(attention_logits, dim=-1)
         
         # Weighted combination
-        fused = torch.zeros_like(list(features.values())[0])
+        fused = torch.zeros_like(list(features.values())<sup>0</sup>)
         for i, (modality, feat) in enumerate(features.items()):
             weight = attention_probs[:, i:i+1]
             fused += weight * feat
@@ -996,7 +997,7 @@ class MultimodalAI(nn.Module):
             for modality in self.encoders.keys():
                 if modality not in modality_features:
                     # Use learned missing modality representation
-                    batch_size = list(modality_features.values())[0].size(0)
+                    batch_size = list(modality_features.values())<sup>0</sup>.size(0)
                     missing_repr = self.modality_presence[modality].unsqueeze(0).expand(
                         batch_size, -1
                     )
@@ -1353,13 +1354,13 @@ class MultimodalTrainer:
         metrics = {}
         
         if self.config.task_type == TaskType.CLASSIFICATION:
-            if predictions.ndim > 1 and predictions.shape[1] > 1:
+            if predictions.ndim > 1 and predictions.shape<sup>1</sup> > 1:
                 # Multi-class classification
                 predicted_classes = np.argmax(predictions, axis=1)
                 accuracy = (predicted_classes == labels).mean()
                 metrics['accuracy'] = accuracy
                 
-                if predictions.shape[1] == 2:
+                if predictions.shape<sup>1</sup> == 2:
                     # Binary classification
                     auc = roc_auc_score(labels, predictions[:, 1])
                     metrics['auc'] = auc

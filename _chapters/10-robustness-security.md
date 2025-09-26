@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 10: Robustness Security"
 nav_order: 10
 parent: Chapters
+permalink: /chapters/10-robustness-security/
 ---
 
 # Chapter 10: Robustness and Security in Healthcare AI - Building Resilient and Secure Clinical Systems
@@ -1070,8 +1071,8 @@ class InputValidator:
         """Fit validator on training data."""
         self.expected_shape = X.shape[1:]
         X_flat = X.view(X.size(0), -1)
-        self.min_values = torch.min(X_flat, dim=0)[0]
-        self.max_values = torch.max(X_flat, dim=0)[0]
+        self.min_values = torch.min(X_flat, dim=0)<sup>0</sup>
+        self.max_values = torch.max(X_flat, dim=0)<sup>0</sup>
     
     def validate(self, x: torch.Tensor) -> bool:
         """Validate input against expected ranges and shape."""

@@ -3,6 +3,7 @@ layout: default
 title: "Chapter 20: Edge Computing Healthcare"
 nav_order: 20
 parent: Chapters
+permalink: /chapters/20-edge-computing-healthcare/
 ---
 
 # Chapter 20: Edge Computing in Healthcare - Real-Time AI at the Point of Care
@@ -667,11 +668,11 @@ class RealTimeProcessor:
                 output = self.model(data_tensor)
                 
                 if output.dim() > 1:
-                    probabilities = F.softmax(output, dim=1).cpu().numpy()[0]
-                    prediction = output.argmax(dim=1).cpu().numpy()[0]
+                    probabilities = F.softmax(output, dim=1).cpu().numpy()<sup>0</sup>
+                    prediction = output.argmax(dim=1).cpu().numpy()<sup>0</sup>
                 else:
                     probabilities = output.cpu().numpy()
-                    prediction = (output > 0.5).cpu().numpy()[0]
+                    prediction = (output > 0.5).cpu().numpy()<sup>0</sup>
             
             return {
                 'timestamp': timestamp,
@@ -1033,7 +1034,7 @@ class EdgeComputingSystem:
         results = self.processor.get_latest_results(1)
         
         if results:
-            result = results[0]
+            result = results<sup>0</sup>
             
             # Update monitoring
             if 'processing_time_ms' in result:
