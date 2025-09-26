@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 15: Health Equity Applications - AI for Social Justice and Community Health"
+title: "Chapter 15: Health Equity Applications"
 nav_order: 15
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 15: Health Equity Applications - AI for Social Justice and Community Health

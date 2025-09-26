@@ -1,0 +1,172 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Custom styles for healthcare AI book */
+
+/* Code block styling */
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 16px;
+  overflow-x: auto;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 16px 0;
+}
+
+code {
+  background-color: #f1f3f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 85%;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* Syntax highlighting improvements */
+.highlight {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+.highlight pre {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Math equation styling */
+.MathJax {
+  font-size: 1.1em !important;
+}
+
+.MathJax_Display {
+  margin: 1em 0 !important;
+}
+
+/* Chapter navigation */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+nav ul li {
+  margin: 5px 0;
+}
+
+nav ul li a {
+  display: block;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #495057;
+  transition: background-color 0.2s;
+}
+
+nav ul li a:hover {
+  background-color: #e9ecef;
+  color: #212529;
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+table th,
+table td {
+  border: 1px solid #dee2e6;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Blockquote styling */
+blockquote {
+  border-left: 4px solid #007bff;
+  padding-left: 16px;
+  margin: 16px 0;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Alert boxes */
+.alert {
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-color: #17a2b8;
+  color: #0c5460;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  pre {
+    font-size: 12px;
+    padding: 12px;
+  }
+  
+  table {
+    font-size: 14px;
+  }
+  
+  .MathJax {
+    font-size: 1em !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  pre {
+    background-color: #f8f9fa !important;
+    border: 1px solid #000 !important;
+    page-break-inside: avoid;
+  }
+  
+  .MathJax {
+    color: #000 !important;
+  }
+}

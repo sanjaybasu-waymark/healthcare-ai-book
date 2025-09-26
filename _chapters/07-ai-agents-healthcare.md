@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 7: AI Agents in Healthcare - Autonomous Systems for Clinical Decision Support and Care Coordination"
+title: "Chapter 7: Ai Agents Healthcare"
 nav_order: 7
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 7: AI Agents in Healthcare - Autonomous Systems for Clinical Decision Support and Care Coordination

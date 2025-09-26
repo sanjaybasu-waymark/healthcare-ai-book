@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 20: Edge Computing in Healthcare - Real-Time AI at the Point of Care"
+title: "Chapter 20: Edge Computing Healthcare"
 nav_order: 20
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 20: Edge Computing in Healthcare - Real-Time AI at the Point of Care

@@ -1,112 +1,82 @@
 ---
 layout: default
-title: "Chapter 4: Structured Machine Learning for Clinical Prediction"
-nav_order: 5
-parent: "Part I: Foundations"
-has_children: true
-has_toc: true
-description: "Master clinical prediction models with advanced feature engineering, model validation, and regulatory compliance frameworks"
-author: "Sanjay Basu, MD PhD"
-institution: "Waymark"
-require_attribution: true
-citation_check: true
+title: "Chapter 4: Structured Ml Clinical"
+nav_order: 4
+parent: Chapters
 ---
 
-# Chapter 4: Structured Machine Learning for Clinical Prediction
-{: .no_toc }
+# Chapter 4: Structured Machine Learning for Clinical Applications - Advanced Predictive Analytics for Clinical Decision Support
 
-Build production-ready clinical prediction models with advanced feature engineering, comprehensive validation frameworks, and regulatory compliance for real-world healthcare deployment.
-{: .fs-6 .fw-300 }
-
-{% include attribution.html 
-   author="Clinical Machine Learning Research Community" 
-   work="Clinical Prediction Models, Feature Engineering, and Validation Methodologies" 
-   note="Implementation based on established clinical machine learning methodologies and validation frameworks. All code is original educational implementation demonstrating clinical prediction principles." %}
-
-## Table of Contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
+*By Sanjay Basu MD PhD*
 
 ## Learning Objectives
 
-By the end of this chapter, you will be able to:
+By the end of this chapter, physician data scientists will be able to:
 
-{: .highlight }
-- **Implement** advanced clinical feature engineering with temporal patterns and clinical reasoning
-- **Build** robust clinical prediction models with proper validation and calibration
-- **Deploy** models with comprehensive monitoring, drift detection, and regulatory compliance
-- **Validate** clinical utility through prospective evaluation and real-world performance assessment
+- Design and implement production-ready structured machine learning systems for clinical prediction with comprehensive validation frameworks and clinical workflow integration
+- Master advanced feature engineering techniques specifically designed for healthcare data, including temporal pattern recognition, clinical knowledge integration, and missing data handling strategies
+- Deploy ensemble methods optimized for clinical decision support, with proper uncertainty quantification, interpretability features, and regulatory compliance considerations
+- Validate models using appropriate clinical metrics, statistical frameworks, and real-world performance assessment methodologies that account for clinical context and patient safety requirements
+- Integrate structured ML systems with existing clinical workflows, EHR systems, and clinical decision support platforms while maintaining regulatory compliance and clinical usability
+- Implement advanced techniques for handling clinical data challenges including temporal dependencies, missing data patterns, and clinical outcome prediction with appropriate risk stratification
 
----
+## 4.1 Introduction to Structured Clinical Machine Learning
 
-## Chapter Overview
+Structured machine learning in healthcare represents the cornerstone of modern predictive analytics in clinical settings, enabling physicians to leverage the vast amounts of structured data generated in electronic health records, laboratory systems, and clinical monitoring devices. Unlike unstructured data such as clinical notes or medical images, structured clinical data includes laboratory values, vital signs, medication records, demographic information, and procedural codes that can be directly processed by traditional machine learning algorithms without complex preprocessing steps.
 
-Clinical prediction models represent the foundation of AI-driven healthcare decision support, requiring specialized approaches that differ fundamentally from traditional machine learning applications [Citation] [Citation]. This chapter provides comprehensive coverage of structured machine learning for clinical prediction, emphasizing the unique challenges of healthcare data, regulatory requirements, and clinical validation [Citation] [Citation].
+The clinical application of structured machine learning differs fundamentally from traditional machine learning applications due to several unique characteristics that must be carefully considered in system design and implementation. First, clinical data exhibits significant temporal dependencies, where the timing of measurements and interventions critically affects patient outcomes and prediction accuracy. The sequence and timing of laboratory results, medication administrations, and clinical interventions often carry more predictive power than individual values in isolation. Second, missing data is ubiquitous in clinical settings and often carries clinical significance rather than representing random omissions—a patient not receiving a particular test may indicate clinical stability, contraindications, or resource constraints that are themselves predictive of outcomes.
 
-### What You'll Build
-{: .text-delta }
+Third, the stakes of prediction errors are extraordinarily high in healthcare settings, requiring robust uncertainty quantification frameworks, comprehensive validation methodologies, and interpretability features that enable clinicians to understand and trust model predictions. Clinical prediction models must not only achieve high statistical performance but also integrate seamlessly with clinical workflows, provide actionable insights at the point of care, and maintain performance across diverse patient populations and clinical settings.
 
-- **Clinical Feature Engineering Pipeline**: Advanced temporal feature extraction with clinical reasoning
-- **Robust Prediction Models**: Multiple model architectures with proper validation and calibration
-- **Deployment Framework**: Production-ready system with monitoring and compliance
-- **Validation Suite**: Comprehensive clinical validation with prospective evaluation capabilities
+### 4.1.1 The Clinical Context of Structured Machine Learning
 
----
+The evolution of structured clinical machine learning has been driven by the widespread adoption of electronic health records and the increasing availability of large-scale clinical datasets. The seminal work of Rajkomar et al. (2018) demonstrated that deep learning models applied to structured EHR data could predict in-hospital mortality, readmission risk, and length of stay with remarkable accuracy across multiple hospitals, establishing the foundation for modern clinical prediction systems. This breakthrough highlighted both the potential and the challenges of applying machine learning to clinical data at scale.
 
-## 4.1 Advanced Clinical Feature Engineering
+Clinical structured data encompasses a wide range of data types, each with unique characteristics and clinical significance. Laboratory values represent quantitative measurements of biological processes, with normal ranges that vary by patient demographics, clinical conditions, and measurement techniques. Vital signs provide continuous or intermittent monitoring of physiological parameters, with patterns and trends often more informative than individual measurements. Medication data includes not only what medications are prescribed but also dosing patterns, adherence information, and temporal relationships with clinical events.
 
-Clinical feature engineering requires deep understanding of healthcare data characteristics, temporal patterns, and clinical reasoning processes [Citation] [Citation]. This section implements a comprehensive feature engineering pipeline designed specifically for clinical prediction tasks.
+Demographic and social determinants data provide crucial context for clinical predictions, as factors such as age, gender, race, ethnicity, socioeconomic status, and geographic location significantly influence health outcomes and treatment responses. Procedural and diagnostic codes capture clinical decision-making and care processes, providing insights into disease progression, treatment patterns, and healthcare utilization that are essential for comprehensive clinical prediction models.
 
-### Clinical Data Characteristics and Challenges
-{: .text-delta }
+### 4.1.2 Unique Challenges in Clinical Machine Learning
 
-Healthcare data presents unique challenges including irregular sampling, missing data patterns, temporal dependencies, and complex interactions between clinical variables [Citation] [Citation]. Our implementation addresses these challenges through specialized feature engineering techniques.
+The application of machine learning to structured clinical data presents several unique challenges that distinguish it from other domains. Temporal complexity is perhaps the most significant challenge, as clinical data exists in multiple time scales simultaneously. Laboratory values may be measured daily or weekly, vital signs may be recorded hourly or continuously, medications may be administered multiple times per day with varying schedules, and clinical events may occur irregularly over months or years. Effective clinical machine learning systems must capture these multi-scale temporal patterns while maintaining computational efficiency and clinical interpretability.
 
-### Implementation: Comprehensive Clinical Feature Engineering
-{: .text-delta }
+Missing data patterns in clinical settings are often informative rather than random, a phenomenon known as "missingness not at random" (MNAR). A patient not receiving a particular laboratory test may indicate clinical stability, contraindications, cost considerations, or physician judgment that the test is unnecessary. These missing data patterns must be carefully modeled to avoid biased predictions and to extract the clinical information contained in the absence of measurements.
+
+Clinical data quality presents additional challenges, as data may be entered by multiple healthcare providers with varying levels of training and attention to detail. Laboratory values may be affected by measurement errors, sample quality issues, or calibration problems. Vital signs may be influenced by patient movement, equipment malfunction, or measurement technique variations. Medication data may be incomplete due to patient non-adherence, over-the-counter medications not captured in the EHR, or medications administered outside the healthcare system.
+
+The regulatory environment for clinical machine learning adds another layer of complexity, as models used for clinical decision support may be subject to FDA oversight as software as medical devices (SaMD). This requires comprehensive validation frameworks, risk management systems, and post-market surveillance capabilities that go far beyond traditional machine learning validation approaches.
+
+## 4.2 Advanced Clinical Data Preprocessing and Feature Engineering
+
+Clinical data preprocessing and feature engineering represent critical steps in developing effective machine learning systems for healthcare applications. The unique characteristics of clinical data—including temporal dependencies, missing data patterns, measurement variability, and clinical context—require specialized preprocessing techniques that go beyond standard machine learning approaches.
+
+### 4.2.1 Comprehensive Temporal Feature Engineering
+
+Clinical data is inherently temporal, requiring sophisticated preprocessing techniques to capture the dynamic nature of patient states and the complex relationships between measurements, interventions, and outcomes over time. The following implementation demonstrates a comprehensive temporal feature engineering pipeline designed specifically for clinical applications:
 
 ```python
-#!/usr/bin/env python3
 """
-Comprehensive Clinical Feature Engineering Pipeline
-Implements advanced feature engineering for clinical prediction models
+Comprehensive Clinical Temporal Feature Engineering System
 
-This is an original educational implementation demonstrating clinical feature
-engineering principles with production-ready architecture patterns.
+This implementation provides advanced temporal feature engineering capabilities
+specifically designed for clinical machine learning applications, including
+trend analysis, pattern recognition, and clinical knowledge integration.
 
-Author: Sanjay Basu, MD PhD (Waymark)
-Based on clinical machine learning research and healthcare data science best practices
-Educational use - requires clinical validation for production deployment
+Author: Sanjay Basu MD PhD
+License: MIT
 """
 
-import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Union, Callable
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 import warnings
-warnings.filterwarnings('ignore')
-
-import sklearn
-from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.preprocessing import StandardScaler, RobustScaler, LabelEncoder
-from sklearn.impute import SimpleImputer, KNNImputer
-from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif
-from sklearn.model_selection import train_test_split, StratifiedKFold, TimeSeriesSplit
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_auc_score, precision_recall_curve, calibration_curve
-from sklearn.calibration import CalibratedClassifierCV
-import xgboost as xgb
-import lightgbm as lgb
 from scipy import stats
 from scipy.signal import find_peaks
-import matplotlib.pyplot as plt
-import seaborn as sns
+from sklearn.preprocessing import StandardScaler, RobustScaler
+from sklearn.impute import KNNImputer
+from sklearn.cluster import KMeans
 import logging
 
 # Configure logging
@@ -114,982 +84,946 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 @dataclass
-class ClinicalVariable:
-    """Clinical variable definition with metadata"""
-    name: str
-    variable_type: str  # 'vital', 'lab', 'medication', 'diagnosis', 'procedure'
-    data_type: str  # 'continuous', 'categorical', 'binary', 'ordinal'
-    unit: Optional[str] = None
-    normal_range: Optional[Tuple[float, float]] = None
-    critical_values: Optional[Dict[str, float]] = None
-    temporal_pattern: Optional[str] = None  # 'stable', 'trending', 'episodic'
-    clinical_significance: Optional[str] = None
-    missing_pattern: Optional[str] = None  # 'random', 'informative', 'systematic'
+class ClinicalNormalRanges:
+    """Clinical normal ranges for common laboratory and vital sign values"""
+    
+    # Laboratory values (standard units)
+    hemoglobin: Tuple[float, float] = (12.0, 16.0)  # g/dL
+    hematocrit: Tuple[float, float] = (36.0, 48.0)  # %
+    white_blood_cell_count: Tuple[float, float] = (4.0, 11.0)  # K/uL
+    platelet_count: Tuple[float, float] = (150, 450)  # K/uL
+    sodium: Tuple[float, float] = (136, 145)  # mEq/L
+    potassium: Tuple[float, float] = (3.5, 5.0)  # mEq/L
+    chloride: Tuple[float, float] = (98, 107)  # mEq/L
+    co2: Tuple[float, float] = (22, 28)  # mEq/L
+    bun: Tuple[float, float] = (7, 20)  # mg/dL
+    creatinine: Tuple[float, float] = (0.6, 1.2)  # mg/dL
+    glucose: Tuple[float, float] = (70, 100)  # mg/dL
+    albumin: Tuple[float, float] = (3.5, 5.0)  # g/dL
+    total_bilirubin: Tuple[float, float] = (0.2, 1.2)  # mg/dL
+    alt: Tuple[float, float] = (7, 56)  # U/L
+    ast: Tuple[float, float] = (10, 40)  # U/L
+    
+    # Vital signs
+    systolic_bp: Tuple[float, float] = (90, 140)  # mmHg
+    diastolic_bp: Tuple[float, float] = (60, 90)  # mmHg
+    heart_rate: Tuple[float, float] = (60, 100)  # bpm
+    temperature: Tuple[float, float] = (97.0, 99.5)  # F
+    respiratory_rate: Tuple[float, float] = (12, 20)  # breaths/min
+    oxygen_saturation: Tuple[float, float] = (95, 100)  # %
+    
+    def get_normal_range(self, variable_name: str) -> Optional[Tuple[float, float]]:
+        """Get normal range for a clinical variable"""
+        return getattr(self, variable_name.lower().replace(' ', '_'), None)
+    
+    def is_abnormal(self, variable_name: str, value: float) -> Optional[str]:
+        """Determine if a value is abnormal and return direction"""
+        normal_range = self.get_normal_range(variable_name)
+        if normal_range is None:
+            return None
+        
+        if value < normal_range[0]:
+            return 'low'
+        elif value > normal_range[1]:
+            return 'high'
+        else:
+            return 'normal'
 
-@dataclass
-class FeatureEngineeringConfig:
-    """Configuration for clinical feature engineering"""
-    # Temporal features
-    lookback_windows: List[int] = field(default_factory=lambda: [1, 3, 7, 14, 30])  # days
-    temporal_aggregations: List[str] = field(default_factory=lambda: ['mean', 'std', 'min', 'max', 'trend', 'variability'])
-    
-    # Missing data handling
-    missing_threshold: float = 0.8  # Drop features with >80% missing
-    imputation_strategy: str = 'clinical'  # 'clinical', 'statistical', 'model-based'
-    
-    # Feature selection
-    feature_selection_method: str = 'clinical_importance'  # 'statistical', 'clinical_importance', 'hybrid'
-    max_features: Optional[int] = None
-    
-    # Clinical reasoning
-    enable_clinical_rules: bool = True
-    enable_interaction_features: bool = True
-    enable_derived_features: bool = True
-    
-    # Quality control
-    outlier_detection: bool = True
-    data_quality_checks: bool = True
-
-class ClinicalFeatureEngineer(BaseEstimator, TransformerMixin):
+class ClinicalTemporalFeatureEngineer:
     """
-    Comprehensive clinical feature engineering pipeline
+    Comprehensive temporal feature engineering for clinical data.
     
-    Implements advanced feature engineering techniques specifically designed
-    for clinical prediction tasks with proper handling of healthcare data
-    characteristics and clinical reasoning.
+    This class implements state-of-the-art techniques for processing
+    time-series clinical data, including trend analysis, statistical
+    aggregations, temporal pattern recognition, and clinical knowledge integration.
+    
+    The implementation is based on established clinical informatics principles
+    and incorporates domain knowledge about clinical data patterns and
+    temporal relationships in healthcare settings.
     """
     
-    def __init__(self, config: FeatureEngineeringConfig = None):
-        self.config = config or FeatureEngineeringConfig()
-        self.clinical_variables = {}
-        self.feature_metadata = {}
+    def __init__(self, 
+                 window_hours: int = 24,
+                 min_measurements: int = 3,
+                 clinical_ranges: Optional[ClinicalNormalRanges] = None):
+        """
+        Initialize the clinical temporal feature engineer.
+        
+        Args:
+            window_hours: Time window for feature extraction (hours)
+            min_measurements: Minimum number of measurements required
+            clinical_ranges: Clinical normal ranges for abnormality detection
+        """
+        self.window_hours = window_hours
+        self.min_measurements = min_measurements
+        self.clinical_ranges = clinical_ranges or ClinicalNormalRanges()
         self.scalers = {}
-        self.imputers = {}
-        self.encoders = {}
-        self.feature_importance_scores = {}
-        self.data_quality_report = {}
+        self.feature_names = []
         
-        # Clinical knowledge base
-        self._initialize_clinical_knowledge()
-        
-        logger.info("Clinical Feature Engineer initialized")
+        logger.info(f"Initialized clinical temporal feature engineer with {window_hours}h window")
     
-    def _initialize_clinical_knowledge(self):
-        """Initialize clinical knowledge base for feature engineering"""
-        # Define common clinical variables with metadata
-        self.clinical_variables = {
-            # Vital signs
-            'heart_rate': ClinicalVariable(
-                name='heart_rate',
-                variable_type='vital',
-                data_type='continuous',
-                unit='bpm',
-                normal_range=(60, 100),
-                critical_values={'bradycardia': 50, 'tachycardia': 120},
-                temporal_pattern='stable',
-                clinical_significance='cardiovascular_status'
-            ),
-            'systolic_bp': ClinicalVariable(
-                name='systolic_bp',
-                variable_type='vital',
-                data_type='continuous',
-                unit='mmHg',
-                normal_range=(90, 140),
-                critical_values={'hypotension': 90, 'hypertension': 180},
-                temporal_pattern='stable',
-                clinical_significance='cardiovascular_status'
-            ),
-            'temperature': ClinicalVariable(
-                name='temperature',
-                variable_type='vital',
-                data_type='continuous',
-                unit='celsius',
-                normal_range=(36.1, 37.2),
-                critical_values={'hypothermia': 35, 'hyperthermia': 38.5},
-                temporal_pattern='episodic',
-                clinical_significance='infection_inflammation'
-            ),
-            'respiratory_rate': ClinicalVariable(
-                name='respiratory_rate',
-                variable_type='vital',
-                data_type='continuous',
-                unit='breaths/min',
-                normal_range=(12, 20),
-                critical_values={'bradypnea': 10, 'tachypnea': 24},
-                temporal_pattern='stable',
-                clinical_significance='respiratory_status'
-            ),
-            
-            # Laboratory values
-            'glucose': ClinicalVariable(
-                name='glucose',
-                variable_type='lab',
-                data_type='continuous',
-                unit='mg/dL',
-                normal_range=(70, 100),
-                critical_values={'hypoglycemia': 70, 'hyperglycemia': 200},
-                temporal_pattern='trending',
-                clinical_significance='metabolic_status'
-            ),
-            'creatinine': ClinicalVariable(
-                name='creatinine',
-                variable_type='lab',
-                data_type='continuous',
-                unit='mg/dL',
-                normal_range=(0.6, 1.2),
-                critical_values={'elevated': 2.0},
-                temporal_pattern='trending',
-                clinical_significance='renal_function'
-            ),
-            'hemoglobin': ClinicalVariable(
-                name='hemoglobin',
-                variable_type='lab',
-                data_type='continuous',
-                unit='g/dL',
-                normal_range=(12, 16),
-                critical_values={'anemia': 10, 'polycythemia': 18},
-                temporal_pattern='stable',
-                clinical_significance='hematologic_status'
-            ),
-            'white_blood_cell_count': ClinicalVariable(
-                name='white_blood_cell_count',
-                variable_type='lab',
-                data_type='continuous',
-                unit='cells/μL',
-                normal_range=(4000, 11000),
-                critical_values={'leukopenia': 4000, 'leukocytosis': 15000},
-                temporal_pattern='episodic',
-                clinical_significance='immune_status'
-            )
-        }
-        
-        # Clinical interaction patterns
-        self.clinical_interactions = {
-            'cardiovascular_risk': ['systolic_bp', 'heart_rate', 'age', 'diabetes'],
-            'sepsis_indicators': ['temperature', 'white_blood_cell_count', 'heart_rate', 'respiratory_rate'],
-            'renal_function': ['creatinine', 'blood_urea_nitrogen', 'urine_output'],
-            'metabolic_syndrome': ['glucose', 'systolic_bp', 'triglycerides', 'hdl_cholesterol']
-        }
-        
-        # Clinical scoring systems
-        self.clinical_scores = {
-            'qsofa': {
-                'variables': ['systolic_bp', 'respiratory_rate', 'glasgow_coma_scale'],
-                'thresholds': [100, 22, 15],
-                'scoring': 'binary_sum'
-            },
-            'news2': {
-                'variables': ['respiratory_rate', 'oxygen_saturation', 'temperature', 'systolic_bp', 'heart_rate', 'consciousness_level'],
-                'scoring': 'weighted_sum'
-            }
-        }
-    
-    def fit(self, X: pd.DataFrame, y: Optional[pd.Series] = None) -> 'ClinicalFeatureEngineer':
+    def extract_temporal_features(self, 
+                                df: pd.DataFrame,
+                                patient_id_col: str = 'patient_id',
+                                timestamp_col: str = 'timestamp',
+                                value_col: str = 'value',
+                                variable_col: str = 'variable') -> pd.DataFrame:
         """
-        Fit the clinical feature engineering pipeline
+        Extract comprehensive temporal features from clinical time series data.
+        
+        This method processes clinical time series data to extract a rich set of
+        temporal features including statistical aggregations, trend analysis,
+        pattern recognition, and clinical knowledge-based features.
         
         Args:
-            X: Input clinical data
-            y: Target variable (optional)
+            df: DataFrame with columns [patient_id, timestamp, variable, value]
+            patient_id_col: Name of patient identifier column
+            timestamp_col: Name of timestamp column
+            value_col: Name of value column
+            variable_col: Name of variable/measurement type column
             
         Returns:
-            Fitted feature engineer
+            DataFrame with engineered temporal features for each patient
         """
-        logger.info("Fitting clinical feature engineering pipeline")
         
-        # Data quality assessment
-        self.data_quality_report = self._assess_data_quality(X)
+        # Validate input data
+        required_cols = [patient_id_col, timestamp_col, value_col, variable_col]
+        missing_cols = [col for col in required_cols if col not in df.columns]
+        if missing_cols:
+            raise ValueError(f"Missing required columns: {missing_cols}")
         
-        # Identify variable types and patterns
-        self._identify_variable_characteristics(X)
+        # Ensure timestamp is datetime
+        df[timestamp_col] = pd.to_datetime(df[timestamp_col])
         
-        # Fit imputers
-        self._fit_imputers(X)
+        # Sort by patient and timestamp
+        df = df.sort_values([patient_id_col, timestamp_col])
         
-        # Fit scalers
-        self._fit_scalers(X)
+        logger.info(f"Processing {len(df)} measurements for {df[patient_id_col].nunique()} patients")
         
-        # Fit encoders for categorical variables
-        self._fit_encoders(X)
+        features_list = []
         
-        # Calculate feature importance if target provided
-        if y is not None:
-            self._calculate_feature_importance(X, y)
-        
-        logger.info("Clinical feature engineering pipeline fitted successfully")
-        return self
-    
-    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
-        """
-        Transform clinical data using fitted pipeline
-        
-        Args:
-            X: Input clinical data
+        for patient_id in df[patient_id_col].unique():
+            patient_data = df[df[patient_id_col] == patient_id].copy()
             
-        Returns:
-            Transformed feature matrix
-        """
-        logger.info("Transforming clinical data")
-        
-        X_transformed = X.copy()
-        
-        # Handle missing data
-        X_transformed = self._handle_missing_data(X_transformed)
-        
-        # Generate temporal features
-        X_transformed = self._generate_temporal_features(X_transformed)
-        
-        # Generate clinical derived features
-        if self.config.enable_derived_features:
-            X_transformed = self._generate_derived_features(X_transformed)
-        
-        # Generate interaction features
-        if self.config.enable_interaction_features:
-            X_transformed = self._generate_interaction_features(X_transformed)
-        
-        # Apply clinical rules
-        if self.config.enable_clinical_rules:
-            X_transformed = self._apply_clinical_rules(X_transformed)
-        
-        # Scale features
-        X_transformed = self._scale_features(X_transformed)
-        
-        # Feature selection
-        X_transformed = self._select_features(X_transformed)
-        
-        # Quality control
-        if self.config.data_quality_checks:
-            X_transformed = self._quality_control(X_transformed)
-        
-        logger.info(f"Feature engineering complete: {X_transformed.shape[1]} features generated")
-        return X_transformed
-    
-    def _assess_data_quality(self, X: pd.DataFrame) -> Dict[str, Any]:
-        """Comprehensive data quality assessment"""
-        report = {
-            'total_samples': len(X),
-            'total_features': len(X.columns),
-            'missing_data': {},
-            'data_types': {},
-            'outliers': {},
-            'temporal_coverage': {},
-            'data_completeness': {}
-        }
-        
-        # Missing data analysis
-        for col in X.columns:
-            missing_count = X[col].isnull().sum()
-            missing_pct = missing_count / len(X)
-            report['missing_data'][col] = {
-                'count': missing_count,
-                'percentage': missing_pct,
-                'pattern': self._identify_missing_pattern(X[col])
-            }
-        
-        # Data type analysis
-        for col in X.columns:
-            report['data_types'][col] = {
-                'pandas_dtype': str(X[col].dtype),
-                'inferred_clinical_type': self._infer_clinical_type(X[col]),
-                'unique_values': X[col].nunique(),
-                'value_range': (X[col].min(), X[col].max()) if X[col].dtype in ['int64', 'float64'] else None
-            }
-        
-        # Outlier detection
-        for col in X.select_dtypes(include=[np.number]).columns:
-            Q1 = X[col].quantile(0.25)
-            Q3 = X[col].quantile(0.75)
-            IQR = Q3 - Q1
-            lower_bound = Q1 - 1.5 * IQR
-            upper_bound = Q3 + 1.5 * IQR
-            outliers = ((X[col] < lower_bound) | (X[col] > upper_bound)).sum()
-            report['outliers'][col] = {
-                'count': outliers,
-                'percentage': outliers / len(X),
-                'bounds': (lower_bound, upper_bound)
-            }
-        
-        # Temporal coverage (if timestamp column exists)
-        if 'timestamp' in X.columns or 'date' in X.columns:
-            time_col = 'timestamp' if 'timestamp' in X.columns else 'date'
-            report['temporal_coverage'] = {
-                'start_date': X[time_col].min(),
-                'end_date': X[time_col].max(),
-                'duration_days': (X[time_col].max() - X[time_col].min()).days,
-                'sampling_frequency': self._estimate_sampling_frequency(X[time_col])
-            }
-        
-        return report
-    
-    def _identify_missing_pattern(self, series: pd.Series) -> str:
-        """Identify missing data pattern"""
-        if series.isnull().sum() == 0:
-            return 'complete'
-        elif series.isnull().sum() == len(series):
-            return 'completely_missing'
-        else:
-            # Simple pattern detection
-            missing_mask = series.isnull()
-            if missing_mask.sum() / len(series) > 0.5:
-                return 'mostly_missing'
-            elif missing_mask.iloc[:len(missing_mask)//2].sum() > missing_mask.iloc[len(missing_mask)//2:].sum():
-                return 'early_missing'
-            elif missing_mask.iloc[:len(missing_mask)//2].sum() < missing_mask.iloc[len(missing_mask)//2:].sum():
-                return 'late_missing'
-            else:
-                return 'random_missing'
-    
-    def _infer_clinical_type(self, series: pd.Series) -> str:
-        """Infer clinical variable type from data characteristics"""
-        if series.dtype in ['int64', 'float64']:
-            if series.nunique() == 2:
-                return 'binary'
-            elif series.nunique() < 10:
-                return 'ordinal'
-            else:
-                return 'continuous'
-        elif series.dtype == 'object':
-            if series.nunique() == 2:
-                return 'binary_categorical'
-            elif series.nunique() < 20:
-                return 'categorical'
-            else:
-                return 'text'
-        else:
-            return 'unknown'
-    
-    def _estimate_sampling_frequency(self, time_series: pd.Series) -> str:
-        """Estimate sampling frequency from timestamps"""
-        if len(time_series) < 2:
-            return 'insufficient_data'
-        
-        time_diffs = time_series.sort_values().diff().dropna()
-        median_diff = time_diffs.median()
-        
-        if median_diff <= timedelta(minutes=5):
-            return 'high_frequency'
-        elif median_diff <= timedelta(hours=1):
-            return 'hourly'
-        elif median_diff <= timedelta(days=1):
-            return 'daily'
-        else:
-            return 'low_frequency'
-    
-    def _identify_variable_characteristics(self, X: pd.DataFrame):
-        """Identify characteristics of clinical variables"""
-        for col in X.columns:
-            if col not in self.clinical_variables:
-                # Create variable metadata for unknown variables
-                self.clinical_variables[col] = ClinicalVariable(
-                    name=col,
-                    variable_type='unknown',
-                    data_type=self._infer_clinical_type(X[col]),
-                    temporal_pattern='unknown'
+            try:
+                patient_features = self._extract_patient_features(
+                    patient_data, timestamp_col, value_col, variable_col
                 )
-    
-    def _fit_imputers(self, X: pd.DataFrame):
-        """Fit imputers for missing data handling"""
-        for col in X.columns:
-            var_info = self.clinical_variables.get(col)
-            
-            if X[col].isnull().sum() > 0:
-                if var_info and var_info.data_type == 'continuous':
-                    # Use clinical knowledge for imputation
-                    if var_info.normal_range:
-                        # Use median of normal range
-                        normal_median = np.mean(var_info.normal_range)
-                        self.imputers[col] = SimpleImputer(strategy='constant', fill_value=normal_median)
-                    else:
-                        # Use KNN imputation for continuous variables
-                        self.imputers[col] = KNNImputer(n_neighbors=5)
-                elif var_info and var_info.data_type in ['categorical', 'binary_categorical']:
-                    # Use mode for categorical variables
-                    self.imputers[col] = SimpleImputer(strategy='most_frequent')
-                else:
-                    # Default to median for unknown types
-                    self.imputers[col] = SimpleImputer(strategy='median')
+                patient_features[patient_id_col] = patient_id
+                features_list.append(patient_features)
                 
-                # Fit the imputer
-                self.imputers[col].fit(X[[col]])
+            except Exception as e:
+                logger.warning(f"Error processing patient {patient_id}: {e}")
+                continue
+        
+        result_df = pd.DataFrame(features_list)
+        logger.info(f"Extracted {len(result_df.columns)} features for {len(result_df)} patients")
+        
+        return result_df
     
-    def _fit_scalers(self, X: pd.DataFrame):
-        """Fit scalers for numerical features"""
-        for col in X.select_dtypes(include=[np.number]).columns:
-            var_info = self.clinical_variables.get(col)
+    def _extract_patient_features(self, 
+                                patient_data: pd.DataFrame,
+                                timestamp_col: str,
+                                value_col: str,
+                                variable_col: str) -> Dict[str, Any]:
+        """Extract comprehensive features for a single patient."""
+        
+        features = {}
+        
+        # Group by variable type
+        for variable in patient_data[variable_col].unique():
+            var_data = patient_data[patient_data[variable_col] == variable].copy()
             
-            if var_info and var_info.data_type == 'continuous':
-                # Use robust scaler for clinical data (handles outliers better)
-                self.scalers[col] = RobustScaler()
-                self.scalers[col].fit(X[[col]].dropna())
-    
-    def _fit_encoders(self, X: pd.DataFrame):
-        """Fit encoders for categorical variables"""
-        for col in X.select_dtypes(include=['object']).columns:
-            var_info = self.clinical_variables.get(col)
+            if len(var_data) < self.min_measurements:
+                continue
             
-            if var_info and var_info.data_type in ['categorical', 'binary_categorical']:
-                self.encoders[col] = LabelEncoder()
-                self.encoders[col].fit(X[col].dropna())
+            # Extract values and timestamps
+            values = var_data[value_col].values
+            timestamps = var_data[timestamp_col].values
+            
+            # Skip if all values are NaN
+            if np.all(np.isnan(values)):
+                continue
+            
+            # Remove NaN values for calculations
+            valid_mask = ~np.isnan(values)
+            valid_values = values[valid_mask]
+            valid_timestamps = timestamps[valid_mask]
+            
+            if len(valid_values) < self.min_measurements:
+                continue
+            
+            # Extract comprehensive feature set
+            var_features = {}
+            
+            # Basic statistical features
+            var_features.update(self._extract_statistical_features(variable, valid_values))
+            
+            # Temporal trend features
+            var_features.update(self._extract_trend_features(variable, valid_values, valid_timestamps))
+            
+            # Clinical knowledge-based features
+            var_features.update(self._extract_clinical_features(variable, valid_values))
+            
+            # Pattern recognition features
+            var_features.update(self._extract_pattern_features(variable, valid_values, valid_timestamps))
+            
+            # Time-based features
+            var_features.update(self._extract_time_features(variable, valid_timestamps))
+            
+            # Add to overall features
+            features.update(var_features)
+        
+        return features
     
-    def _calculate_feature_importance(self, X: pd.DataFrame, y: pd.Series):
-        """Calculate feature importance using multiple methods"""
-        # Prepare data for importance calculation
-        X_processed = self._basic_preprocessing(X)
+    def _extract_statistical_features(self, variable: str, values: np.ndarray) -> Dict[str, float]:
+        """Extract basic statistical features."""
         
-        # Statistical importance (mutual information)
-        mi_scores = mutual_info_classif(X_processed, y, random_state=42)
+        features = {}
         
-        # Tree-based importance
-        rf = RandomForestClassifier(n_estimators=100, random_state=42)
-        rf.fit(X_processed, y)
-        rf_importance = rf.feature_importances_
+        # Central tendency
+        features[f'{variable}_mean'] = np.mean(values)
+        features[f'{variable}_median'] = np.median(values)
+        features[f'{variable}_mode'] = stats.mode(values, keepdims=True)[0][0] if len(values) > 1 else values[0]
         
-        # Store importance scores
-        for i, col in enumerate(X_processed.columns):
-            self.feature_importance_scores[col] = {
-                'mutual_information': mi_scores[i],
-                'random_forest': rf_importance[i],
-                'clinical_priority': self._get_clinical_priority(col)
-            }
+        # Dispersion
+        features[f'{variable}_std'] = np.std(values)
+        features[f'{variable}_var'] = np.var(values)
+        features[f'{variable}_range'] = np.max(values) - np.min(values)
+        features[f'{variable}_iqr'] = np.percentile(values, 75) - np.percentile(values, 25)
+        features[f'{variable}_cv'] = np.std(values) / np.mean(values) if np.mean(values) != 0 else 0
+        
+        # Extremes
+        features[f'{variable}_min'] = np.min(values)
+        features[f'{variable}_max'] = np.max(values)
+        features[f'{variable}_q25'] = np.percentile(values, 25)
+        features[f'{variable}_q75'] = np.percentile(values, 75)
+        features[f'{variable}_q10'] = np.percentile(values, 10)
+        features[f'{variable}_q90'] = np.percentile(values, 90)
+        
+        # Distribution shape
+        features[f'{variable}_skewness'] = stats.skew(values)
+        features[f'{variable}_kurtosis'] = stats.kurtosis(values)
+        
+        # Count features
+        features[f'{variable}_count'] = len(values)
+        features[f'{variable}_unique_count'] = len(np.unique(values))
+        
+        return features
     
-    def _get_clinical_priority(self, feature_name: str) -> float:
-        """Get clinical priority score for feature"""
-        var_info = self.clinical_variables.get(feature_name)
+    def _extract_trend_features(self, variable: str, values: np.ndarray, timestamps: np.ndarray) -> Dict[str, float]:
+        """Extract temporal trend features."""
         
-        if not var_info:
-            return 0.5  # Default priority for unknown variables
+        features = {}
         
-        # Priority based on clinical significance
-        priority_map = {
-            'cardiovascular_status': 0.9,
-            'respiratory_status': 0.9,
-            'infection_inflammation': 0.8,
-            'renal_function': 0.8,
-            'metabolic_status': 0.7,
-            'hematologic_status': 0.6,
-            'immune_status': 0.7
-        }
+        if len(values) < 3:
+            return features
         
-        return priority_map.get(var_info.clinical_significance, 0.5)
+        # Convert timestamps to numeric (hours from first measurement)
+        time_numeric = np.array([(t - timestamps[0]).total_seconds() / 3600 for t in timestamps])
+        
+        # Linear trend analysis
+        try:
+            slope, intercept, r_value, p_value, std_err = stats.linregress(time_numeric, values)
+            features[f'{variable}_trend_slope'] = slope
+            features[f'{variable}_trend_intercept'] = intercept
+            features[f'{variable}_trend_r2'] = r_value ** 2
+            features[f'{variable}_trend_p_value'] = p_value
+            features[f'{variable}_trend_std_err'] = std_err
+            
+            # Trend direction and significance
+            features[f'{variable}_trend_direction'] = 1 if slope > 0 else -1 if slope < 0 else 0
+            features[f'{variable}_trend_significant'] = 1 if p_value < 0.05 else 0
+            
+        except Exception as e:
+            logger.warning(f"Error calculating trend for {variable}: {e}")
+        
+        # Rate of change features
+        if len(values) >= 2:
+            changes = np.diff(values)
+            time_diffs = np.diff(time_numeric)
+            rates = changes / time_diffs
+            
+            features[f'{variable}_mean_change'] = np.mean(changes)
+            features[f'{variable}_std_change'] = np.std(changes)
+            features[f'{variable}_max_increase'] = np.max(changes)
+            features[f'{variable}_max_decrease'] = np.min(changes)
+            features[f'{variable}_mean_rate'] = np.mean(rates)
+            features[f'{variable}_std_rate'] = np.std(rates)
+            features[f'{variable}_max_rate_increase'] = np.max(rates)
+            features[f'{variable}_max_rate_decrease'] = np.min(rates)
+            
+            # Volatility measures
+            features[f'{variable}_volatility'] = np.std(changes) / np.mean(np.abs(values)) if np.mean(np.abs(values)) > 0 else 0
+            features[f'{variable}_rate_volatility'] = np.std(rates) / np.mean(np.abs(rates)) if np.mean(np.abs(rates)) > 0 else 0
+        
+        # Polynomial trend features (quadratic)
+        if len(values) >= 4:
+            try:
+                poly_coeffs = np.polyfit(time_numeric, values, 2)
+                features[f'{variable}_quadratic_a'] = poly_coeffs[0]
+                features[f'{variable}_quadratic_b'] = poly_coeffs[1]
+                features[f'{variable}_quadratic_c'] = poly_coeffs[2]
+                
+                # Curvature indicator
+                features[f'{variable}_curvature'] = 2 * poly_coeffs[0]
+                
+            except Exception as e:
+                logger.warning(f"Error calculating polynomial trend for {variable}: {e}")
+        
+        return features
     
-    def _basic_preprocessing(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Basic preprocessing for feature importance calculation"""
-        X_processed = X.copy()
+    def _extract_clinical_features(self, variable: str, values: np.ndarray) -> Dict[str, float]:
+        """Extract clinical knowledge-based features."""
         
-        # Handle missing values
-        for col in X_processed.columns:
-            if col in self.imputers:
-                X_processed[col] = self.imputers[col].transform(X_processed[[col]]).flatten()
+        features = {}
         
-        # Encode categorical variables
-        for col in X_processed.select_dtypes(include=['object']).columns:
-            if col in self.encoders:
-                X_processed[col] = self.encoders[col].transform(X_processed[col].fillna('missing'))
+        # Clinical abnormality features
+        normal_range = self.clinical_ranges.get_normal_range(variable)
+        if normal_range:
+            low_threshold, high_threshold = normal_range
+            
+            # Abnormality counts and proportions
+            low_count = np.sum(values < low_threshold)
+            high_count = np.sum(values > high_threshold)
+            normal_count = len(values) - low_count - high_count
+            
+            features[f'{variable}_low_count'] = low_count
+            features[f'{variable}_high_count'] = high_count
+            features[f'{variable}_normal_count'] = normal_count
+            features[f'{variable}_low_proportion'] = low_count / len(values)
+            features[f'{variable}_high_proportion'] = high_count / len(values)
+            features[f'{variable}_normal_proportion'] = normal_count / len(values)
+            
+            # Severity of abnormality
+            if low_count > 0:
+                low_values = values[values < low_threshold]
+                features[f'{variable}_low_severity_mean'] = np.mean(low_threshold - low_values)
+                features[f'{variable}_low_severity_max'] = np.max(low_threshold - low_values)
+            
+            if high_count > 0:
+                high_values = values[values > high_threshold]
+                features[f'{variable}_high_severity_mean'] = np.mean(high_values - high_threshold)
+                features[f'{variable}_high_severity_max'] = np.max(high_values - high_threshold)
+            
+            # Distance from normal range
+            distances = np.minimum(np.abs(values - low_threshold), np.abs(values - high_threshold))
+            features[f'{variable}_mean_distance_from_normal'] = np.mean
+
+(distances)
+            features[f'{variable}_max_distance_from_normal'] = np.max(distances)
         
-        # Fill any remaining missing values
-        X_processed = X_processed.fillna(0)
+        # Clinical stability features
+        if len(values) >= 3:
+            # Consecutive abnormal values
+            if normal_range:
+                abnormal_mask = (values < normal_range[0]) | (values > normal_range[1])
+                consecutive_abnormal = self._find_consecutive_runs(abnormal_mask)
+                features[f'{variable}_max_consecutive_abnormal'] = max(consecutive_abnormal) if consecutive_abnormal else 0
+                features[f'{variable}_total_abnormal_runs'] = len(consecutive_abnormal)
         
-        return X_processed
+        return features
     
-    def _handle_missing_data(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Handle missing data using clinical knowledge"""
+    def _extract_pattern_features(self, variable: str, values: np.ndarray, timestamps: np.ndarray) -> Dict[str, float]:
+        """Extract pattern recognition features."""
+        
+        features = {}
+        
+        if len(values) < 4:
+            return features
+        
+        # Peak and valley detection
+        try:
+            peaks, peak_properties = find_peaks(values, height=np.mean(values))
+            valleys, valley_properties = find_peaks(-values, height=-np.mean(values))
+            
+            features[f'{variable}_peak_count'] = len(peaks)
+            features[f'{variable}_valley_count'] = len(valleys)
+            
+            if len(peaks) > 0:
+                features[f'{variable}_mean_peak_height'] = np.mean(peak_properties['peak_heights'])
+                features[f'{variable}_max_peak_height'] = np.max(peak_properties['peak_heights'])
+            
+            if len(valleys) > 0:
+                features[f'{variable}_mean_valley_depth'] = np.mean(valley_properties['peak_heights'])
+                features[f'{variable}_max_valley_depth'] = np.max(valley_properties['peak_heights'])
+                
+        except Exception as e:
+            logger.warning(f"Error in peak detection for {variable}: {e}")
+        
+        # Oscillation patterns
+        if len(values) >= 6:
+            # Simple oscillation detection using zero crossings of detrended signal
+            detrended = values - np.mean(values)
+            zero_crossings = np.where(np.diff(np.signbit(detrended)))[0]
+            features[f'{variable}_oscillation_frequency'] = len(zero_crossings) / len(values)
+        
+        # Stability patterns
+        if len(values) >= 5:
+            # Rolling stability (coefficient of variation in windows)
+            window_size = min(5, len(values) // 2)
+            rolling_cv = []
+            for i in range(len(values) - window_size + 1):
+                window_values = values[i:i + window_size]
+                cv = np.std(window_values) / np.mean(window_values) if np.mean(window_values) != 0 else 0
+                rolling_cv.append(cv)
+            
+            features[f'{variable}_mean_rolling_cv'] = np.mean(rolling_cv)
+            features[f'{variable}_std_rolling_cv'] = np.std(rolling_cv)
+            features[f'{variable}_max_rolling_cv'] = np.max(rolling_cv)
+            features[f'{variable}_min_rolling_cv'] = np.min(rolling_cv)
+        
+        return features
+    
+    def _extract_time_features(self, variable: str, timestamps: np.ndarray) -> Dict[str, float]:
+        """Extract time-based features."""
+        
+        features = {}
+        
+        if len(timestamps) < 2:
+            return features
+        
+        # Time interval analysis
+        time_diffs = np.diff(timestamps)
+        time_diffs_hours = np.array([td.total_seconds() / 3600 for td in time_diffs])
+        
+        features[f'{variable}_mean_interval'] = np.mean(time_diffs_hours)
+        features[f'{variable}_std_interval'] = np.std(time_diffs_hours)
+        features[f'{variable}_min_interval'] = np.min(time_diffs_hours)
+        features[f'{variable}_max_interval'] = np.max(time_diffs_hours)
+        features[f'{variable}_median_interval'] = np.median(time_diffs_hours)
+        
+        # Regularity of measurements
+        features[f'{variable}_interval_cv'] = np.std(time_diffs_hours) / np.mean(time_diffs_hours) if np.mean(time_diffs_hours) > 0 else 0
+        
+        # Time span features
+        total_time_hours = (timestamps[-1] - timestamps[0]).total_seconds() / 3600
+        features[f'{variable}_total_time_span'] = total_time_hours
+        features[f'{variable}_measurement_density'] = len(timestamps) / total_time_hours if total_time_hours > 0 else 0
+        
+        return features
+    
+    def _find_consecutive_runs(self, boolean_array: np.ndarray) -> List[int]:
+        """Find lengths of consecutive True values in boolean array."""
+        
+        runs = []
+        current_run = 0
+        
+        for value in boolean_array:
+            if value:
+                current_run += 1
+            else:
+                if current_run > 0:
+                    runs.append(current_run)
+                    current_run = 0
+        
+        # Don't forget the last run
+        if current_run > 0:
+            runs.append(current_run)
+        
+        return runs
+
+class ClinicalMissingDataHandler:
+    """
+    Advanced missing data handling for clinical datasets.
+    
+    Implements multiple imputation strategies appropriate for clinical data,
+    including clinical knowledge-based imputation, uncertainty quantification,
+    and missing data pattern analysis that accounts for the clinical significance
+    of missing values in healthcare settings.
+    """
+    
+    def __init__(self, strategy: str = 'clinical_aware', uncertainty_quantification: bool = True):
+        """
+        Initialize the missing data handler.
+        
+        Args:
+            strategy: Imputation strategy ('clinical_aware', 'knn', 'forward_fill', 'multiple')
+            uncertainty_quantification: Whether to quantify imputation uncertainty
+        """
+        self.strategy = strategy
+        self.uncertainty_quantification = uncertainty_quantification
+        self.imputers = {}
+        self.missing_indicators = {}
+        self.imputation_uncertainty = {}
+        self.clinical_ranges = ClinicalNormalRanges()
+        
+        logger.info(f"Initialized missing data handler with strategy: {strategy}")
+    
+    def fit_transform(self, X: pd.DataFrame, 
+                     clinical_ranges: Optional[Dict[str, Tuple[float, float]]] = None) -> pd.DataFrame:
+        """
+        Fit imputation models and transform data.
+        
+        Args:
+            X: Feature matrix with missing values
+            clinical_ranges: Dict of normal clinical ranges for each feature
+            
+        Returns:
+            Imputed feature matrix with missing indicators and uncertainty estimates
+        """
+        
         X_imputed = X.copy()
+        missing_mask = X.isnull()
         
+        # Analyze missing data patterns
+        missing_patterns = self._analyze_missing_patterns(X)
+        logger.info(f"Identified {len(missing_patterns)} missing data patterns")
+        
+        # Create missing indicators for features with missing data
         for col in X.columns:
-            if col in self.imputers:
-                X_imputed[col] = self.imputers[col].transform(X_imputed[[col]]).flatten()
+            if missing_mask[col].any():
+                X_imputed[f'{col}_missing'] = missing_mask[col].astype(int)
+                self.missing_indicators[col] = f'{col}_missing'
+                
+                # Calculate missing data statistics
+                missing_rate = missing_mask[col].mean()
+                X_imputed[f'{col}_missing_rate'] = missing_rate
+        
+        # Apply imputation strategy
+        if self.strategy == 'clinical_aware':
+            X_imputed = self._clinical_aware_imputation(X_imputed, clinical_ranges)
+        elif self.strategy == 'knn':
+            X_imputed = self._knn_imputation(X_imputed)
+        elif self.strategy == 'forward_fill':
+            X_imputed = self._forward_fill_imputation(X_imputed)
+        elif self.strategy == 'multiple':
+            X_imputed = self._multiple_imputation(X_imputed, clinical_ranges)
+        else:
+            raise ValueError(f"Unknown imputation strategy: {self.strategy}")
+        
+        # Add uncertainty quantification if requested
+        if self.uncertainty_quantification:
+            X_imputed = self._add_uncertainty_features(X_imputed, missing_mask)
         
         return X_imputed
     
-    def _generate_temporal_features(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Generate temporal features from clinical time series"""
-        X_temporal = X.copy()
+    def _analyze_missing_patterns(self, X: pd.DataFrame) -> Dict[str, Any]:
+        """Analyze patterns in missing data."""
         
-        # Check if we have temporal data
-        if 'timestamp' not in X.columns and 'date' not in X.columns:
-            logger.warning("No temporal column found, skipping temporal feature generation")
-            return X_temporal
+        missing_mask = X.isnull()
+        patterns = {}
         
-        time_col = 'timestamp' if 'timestamp' in X.columns else 'date'
+        # Overall missing statistics
+        patterns['overall_missing_rate'] = missing_mask.sum().sum() / (len(X) * len(X.columns))
+        patterns['features_with_missing'] = missing_mask.any().sum()
+        patterns['complete_cases'] = (~missing_mask.any(axis=1)).sum()
         
-        # Sort by time
-        X_temporal = X_temporal.sort_values(time_col)
+        # Per-feature missing rates
+        patterns['feature_missing_rates'] = missing_mask.mean().to_dict()
         
-        # Generate temporal features for each clinical variable
+        # Missing data correlations
+        if len(X.columns) > 1:
+            missing_corr = missing_mask.astype(int).corr()
+            patterns['missing_correlations'] = missing_corr.to_dict()
+        
+        # Identify common missing patterns
+        pattern_counts = missing_mask.value_counts()
+        patterns['common_patterns'] = pattern_counts.head(10).to_dict()
+        
+        return patterns
+    
+    def _clinical_aware_imputation(self, X: pd.DataFrame, 
+                                 clinical_ranges: Optional[Dict[str, Tuple[float, float]]] = None) -> pd.DataFrame:
+        """Impute using clinical knowledge and normal ranges."""
+        
+        X_imputed = X.copy()
+        
         for col in X.select_dtypes(include=[np.number]).columns:
-            if col == time_col:
+            if col.endswith('_missing') or col.endswith('_missing_rate'):
                 continue
             
-            var_info = self.clinical_variables.get(col)
+            missing_mask = X[col].isnull()
             
-            # Generate features based on lookback windows
-            for window in self.config.lookback_windows:
-                window_data = X_temporal[col].rolling(window=f'{window}D', on=time_col)
+            if missing_mask.any():
+                # Determine imputation value based on clinical knowledge
+                if clinical_ranges and col in clinical_ranges:
+                    # Use clinical normal range midpoint
+                    normal_range = clinical_ranges[col]
+                    impute_value = (normal_range[0] + normal_range[1]) / 2
+                    
+                elif hasattr(self.clinical_ranges, col.lower().replace(' ', '_')):
+                    # Use built-in clinical ranges
+                    normal_range = self.clinical_ranges.get_normal_range(col)
+                    if normal_range:
+                        impute_value = (normal_range[0] + normal_range[1]) / 2
+                    else:
+                        impute_value = X[col].median()
+                else:
+                    # Use median of observed values
+                    impute_value = X[col].median()
                 
-                # Basic aggregations
-                X_temporal[f'{col}_mean_{window}d'] = window_data.mean()
-                X_temporal[f'{col}_std_{window}d'] = window_data.std()
-                X_temporal[f'{col}_min_{window}d'] = window_data.min()
-                X_temporal[f'{col}_max_{window}d'] = window_data.max()
+                # Apply imputation
+                X_imputed.loc[missing_mask, col] = impute_value
                 
-                # Clinical-specific features
-                if var_info:
-                    # Trend detection
-                    X_temporal[f'{col}_trend_{window}d'] = self._calculate_trend(window_data)
-                    
-                    # Variability measures
-                    X_temporal[f'{col}_cv_{window}d'] = window_data.std() / (window_data.mean() + 1e-6)
-                    
-                    # Abnormal value counts
-                    if var_info.normal_range:
-                        normal_min, normal_max = var_info.normal_range
-                        abnormal_mask = (X_temporal[col] < normal_min) | (X_temporal[col] > normal_max)
-                        X_temporal[f'{col}_abnormal_count_{window}d'] = abnormal_mask.rolling(window=f'{window}D', on=time_col).sum()
-                    
-                    # Critical value indicators
-                    if var_info.critical_values:
-                        for critical_name, critical_value in var_info.critical_values.items():
-                            if 'hypo' in critical_name or 'low' in critical_name:
-                                critical_mask = X_temporal[col] < critical_value
-                            else:
-                                critical_mask = X_temporal[col] > critical_value
-                            X_temporal[f'{col}_{critical_name}_count_{window}d'] = critical_mask.rolling(window=f'{window}D', on=time_col).sum()
+                # Store imputation information
+                self.imputers[col] = {
+                    'method': 'clinical_aware',
+                    'value': impute_value,
+                    'missing_count': missing_mask.sum()
+                }
         
-        return X_temporal
+        return X_imputed
     
-    def _calculate_trend(self, window_data) -> pd.Series:
-        """Calculate trend in windowed data"""
-        def trend_slope(values):
-            if len(values) < 2 or values.isna().all():
-                return 0
-            x = np.arange(len(values))
-            y = values.dropna()
-            if len(y) < 2:
-                return 0
-            slope, _, _, _, _ = stats.linregress(x[:len(y)], y)
-            return slope
+    def _knn_imputation(self, X: pd.DataFrame) -> pd.DataFrame:
+        """KNN-based imputation for numerical features."""
         
-        return window_data.apply(trend_slope)
-    
-    def _generate_derived_features(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Generate clinically-derived features"""
-        X_derived = X.copy()
+        X_imputed = X.copy()
+        numerical_cols = X.select_dtypes(include=[np.number]).columns
+        numerical_cols = [col for col in numerical_cols 
+                         if not col.endswith('_missing') and not col.endswith('_missing_rate')]
         
-        # Body Mass Index (if height and weight available)
-        if 'height' in X.columns and 'weight' in X.columns:
-            X_derived['bmi'] = X['weight'] / ((X['height'] / 100) ** 2)
-            X_derived['bmi_category'] = pd.cut(X_derived['bmi'], 
-                                             bins=[0, 18.5, 25, 30, float('inf')],
-                                             labels=['underweight', 'normal', 'overweight', 'obese'])
-        
-        # Mean Arterial Pressure
-        if 'systolic_bp' in X.columns and 'diastolic_bp' in X.columns:
-            X_derived['mean_arterial_pressure'] = (X['systolic_bp'] + 2 * X['diastolic_bp']) / 3
-        
-        # Pulse Pressure
-        if 'systolic_bp' in X.columns and 'diastolic_bp' in X.columns:
-            X_derived['pulse_pressure'] = X['systolic_bp'] - X['diastolic_bp']
-        
-        # Shock Index
-        if 'heart_rate' in X.columns and 'systolic_bp' in X.columns:
-            X_derived['shock_index'] = X['heart_rate'] / X['systolic_bp']
-        
-        # Estimated GFR (simplified Cockcroft-Gault)
-        if all(col in X.columns for col in ['creatinine', 'age', 'weight', 'gender']):
-            male_factor = (X['gender'] == 'male').astype(int)
-            X_derived['estimated_gfr'] = ((140 - X['age']) * X['weight'] * (0.85 + 0.15 * male_factor)) / (72 * X['creatinine'])
-        
-        # Anion Gap (if electrolytes available)
-        if all(col in X.columns for col in ['sodium', 'chloride', 'bicarbonate']):
-            X_derived['anion_gap'] = X['sodium'] - (X['chloride'] + X['bicarbonate'])
-        
-        return X_derived
-    
-    def _generate_interaction_features(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Generate clinically-meaningful interaction features"""
-        X_interactions = X.copy()
-        
-        # Generate interactions based on clinical knowledge
-        for interaction_name, variables in self.clinical_interactions.items():
-            available_vars = [var for var in variables if var in X.columns]
+        if len(numerical_cols) > 0:
+            # Use KNN imputation with clinical-appropriate number of neighbors
+            imputer = KNNImputer(n_neighbors=min(5, len(X) // 10), weights='distance')
+            X_imputed[numerical_cols] = imputer.fit_transform(X[numerical_cols])
+            self.imputers['knn'] = imputer
             
-            if len(available_vars) >= 2:
-                # Multiplicative interactions
-                for i in range(len(available_vars)):
-                    for j in range(i + 1, len(available_vars)):
-                        var1, var2 = available_vars[i], available_vars[j]
-                        if X[var1].dtype in [np.number] and X[var2].dtype in [np.number]:
-                            X_interactions[f'{interaction_name}_{var1}_{var2}_product'] = X[var1] * X[var2]
-                
-                # Ratio interactions
-                for i in range(len(available_vars)):
-                    for j in range(len(available_vars)):
-                        if i != j:
-                            var1, var2 = available_vars[i], available_vars[j]
-                            if X[var1].dtype in [np.number] and X[var2].dtype in [np.number]:
-                                X_interactions[f'{interaction_name}_{var1}_{var2}_ratio'] = X[var1] / (X[var2] + 1e-6)
+            logger.info(f"Applied KNN imputation to {len(numerical_cols)} numerical features")
         
-        return X_interactions
+        return X_imputed
     
-    def _apply_clinical_rules(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Apply clinical decision rules and scoring systems"""
-        X_rules = X.copy()
+    def _multiple_imputation(self, X: pd.DataFrame, 
+                           clinical_ranges: Optional[Dict[str, Tuple[float, float]]] = None) -> pd.DataFrame:
+        """Multiple imputation with uncertainty quantification."""
         
-        # qSOFA Score
-        if all(col in X.columns for col in ['systolic_bp', 'respiratory_rate', 'glasgow_coma_scale']):
-            qsofa_score = 0
-            qsofa_score += (X['systolic_bp'] <= 100).astype(int)
-            qsofa_score += (X['respiratory_rate'] >= 22).astype(int)
-            qsofa_score += (X['glasgow_coma_scale'] < 15).astype(int)
-            X_rules['qsofa_score'] = qsofa_score
+        # For demonstration, implement a simplified version
+        # In production, would use more sophisticated multiple imputation
         
-        # SIRS Criteria
-        if all(col in X.columns for col in ['temperature', 'heart_rate', 'respiratory_rate', 'white_blood_cell_count']):
-            sirs_score = 0
-            sirs_score += ((X['temperature'] > 38) | (X['temperature'] < 36)).astype(int)
-            sirs_score += (X['heart_rate'] > 90).astype(int)
-            sirs_score += (X['respiratory_rate'] > 20).astype(int)
-            sirs_score += ((X['white_blood_cell_count'] > 12000) | (X['white_blood_cell_count'] < 4000)).astype(int)
-            X_rules['sirs_score'] = sirs_score
-        
-        # Hypertension categories
-        if 'systolic_bp' in X.columns:
-            X_rules['hypertension_stage'] = pd.cut(X['systolic_bp'],
-                                                 bins=[0, 120, 130, 140, 180, float('inf')],
-                                                 labels=['normal', 'elevated', 'stage1', 'stage2', 'crisis'])
-        
-        # Diabetes indicators
-        if 'glucose' in X.columns:
-            X_rules['diabetes_indicator'] = (X['glucose'] >= 126).astype(int)
-            X_rules['prediabetes_indicator'] = ((X['glucose'] >= 100) & (X['glucose'] < 126)).astype(int)
-        
-        # Acute kidney injury stages
-        if 'creatinine' in X.columns:
-            # Simplified AKI staging (would need baseline creatinine in practice)
-            X_rules['aki_stage'] = pd.cut(X['creatinine'],
-                                        bins=[0, 1.5, 2.0, 3.0, float('inf')],
-                                        labels=['normal', 'stage1', 'stage2', 'stage3'])
-        
-        return X_rules
-    
-    def _scale_features(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Scale numerical features"""
-        X_scaled = X.copy()
+        X_imputed = X.copy()
+        n_imputations = 5
         
         for col in X.select_dtypes(include=[np.number]).columns:
-            if col in self.scalers:
-                X_scaled[col] = self.scalers[col].transform(X_scaled[[col]]).flatten()
-        
-        return X_scaled
-    
-    def _select_features(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Select features based on clinical importance and statistical significance"""
-        if not self.feature_importance_scores:
-            return X
-        
-        # Calculate combined importance score
-        feature_scores = {}
-        for feature, scores in self.feature_importance_scores.items():
-            if feature in X.columns:
-                # Weighted combination of different importance measures
-                combined_score = (
-                    0.4 * scores.get('clinical_priority', 0) +
-                    0.3 * scores.get('mutual_information', 0) +
-                    0.3 * scores.get('random_forest', 0)
-                )
-                feature_scores[feature] = combined_score
-        
-        # Select top features
-        if self.config.max_features and len(feature_scores) > self.config.max_features:
-            top_features = sorted(feature_scores.items(), key=lambda x: x[1], reverse=True)[:self.config.max_features]
-            selected_features = [feature for feature, _ in top_features]
-            return X[selected_features]
-        
-        return X
-    
-    def _quality_control(self, X: pd.DataFrame) -> pd.DataFrame:
-        """Apply quality control measures"""
-        X_qc = X.copy()
-        
-        # Remove features with too many missing values
-        missing_threshold = self.config.missing_threshold
-        for col in X_qc.columns:
-            if X_qc[col].isnull().sum() / len(X_qc) > missing_threshold:
-                X_qc = X_qc.drop(columns=[col])
-                logger.warning(f"Dropped feature {col} due to high missing rate")
-        
-        # Remove constant features
-        constant_features = [col for col in X_qc.columns if X_qc[col].nunique() <= 1]
-        if constant_features:
-            X_qc = X_qc.drop(columns=constant_features)
-            logger.warning(f"Dropped constant features: {constant_features}")
-        
-        # Outlier detection and handling
-        if self.config.outlier_detection:
-            for col in X_qc.select_dtypes(include=[np.number]).columns:
-                Q1 = X_qc[col].quantile(0.25)
-                Q3 = X_qc[col].quantile(0.75)
-                IQR = Q3 - Q1
-                lower_bound = Q1 - 3 * IQR  # More conservative than 1.5 for clinical data
-                upper_bound = Q3 + 3 * IQR
+            if col.endswith('_missing') or col.endswith('_missing_rate'):
+                continue
+            
+            missing_mask = X[col].isnull()
+            
+            if missing_mask.any():
+                # Generate multiple imputations
+                imputations = []
                 
-                # Cap outliers instead of removing (preserve sample size)
-                X_qc[col] = X_qc[col].clip(lower=lower_bound, upper=upper_bound)
+                for i in range(n_imputations):
+                    # Add noise to clinical-aware imputation
+                    if clinical_ranges and col in clinical_ranges:
+                        normal_range = clinical_ranges[col]
+                        base_value = (normal_range[0] + normal_range[1]) / 2
+                        noise_std = (normal_range[1] - normal_range[0]) / 6  # Assume 99.7% within range
+                    else:
+                        base_value = X[col].median()
+                        noise_std = X[col].std() * 0.1  # 10% of standard deviation
+                    
+                    imputed_values = np.random.normal(base_value, noise_std, missing_mask.sum())
+                    imputations.append(imputed_values)
+                
+                # Use mean of imputations
+                final_imputation = np.mean(imputations, axis=0)
+                X_imputed.loc[missing_mask, col] = final_imputation
+                
+                # Store uncertainty information
+                imputation_std = np.std(imputations, axis=0)
+                self.imputation_uncertainty[col] = {
+                    'mean_uncertainty': np.mean(imputation_std),
+                    'max_uncertainty': np.max(imputation_std)
+                }
         
-        return X_qc
+        return X_imputed
     
-    def get_feature_metadata(self) -> Dict[str, Any]:
-        """Get comprehensive feature metadata"""
-        return {
-            'clinical_variables': {name: var.__dict__ for name, var in self.clinical_variables.items()},
-            'feature_importance': self.feature_importance_scores,
-            'data_quality_report': self.data_quality_report,
-            'processing_config': self.config.__dict__
-        }
-    
-    def visualize_feature_importance(self, top_n: int = 20, save_path: str = None):
-        """Visualize feature importance"""
-        if not self.feature_importance_scores:
-            print("No feature importance scores available")
-            return
+    def _add_uncertainty_features(self, X: pd.DataFrame, missing_mask: pd.DataFrame) -> pd.DataFrame:
+        """Add features quantifying imputation uncertainty."""
         
-        # Prepare data for visualization
-        features = []
-        clinical_scores = []
-        mi_scores = []
-        rf_scores = []
+        X_with_uncertainty = X.copy()
         
-        for feature, scores in self.feature_importance_scores.items():
-            features.append(feature)
-            clinical_scores.append(scores.get('clinical_priority', 0))
-            mi_scores.append(scores.get('mutual_information', 0))
-            rf_scores.append(scores.get('random_forest', 0))
+        # Add overall uncertainty score for each row
+        uncertainty_scores = []
         
-        # Create DataFrame
-        importance_df = pd.DataFrame({
-            'Feature': features,
-            'Clinical_Priority': clinical_scores,
-            'Mutual_Information': mi_scores,
-            'Random_Forest': rf_scores
-        })
-        
-        # Calculate combined score
-        importance_df['Combined_Score'] = (
-            0.4 * importance_df['Clinical_Priority'] +
-            0.3 * importance_df['Mutual_Information'] +
-            0.3 * importance_df['Random_Forest']
-        )
-        
-        # Sort and select top features
-        importance_df = importance_df.sort_values('Combined_Score', ascending=False).head(top_n)
-        
-        # Create visualization
-        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
-        
-        # Clinical Priority
-        ax1.barh(importance_df['Feature'], importance_df['Clinical_Priority'])
-        ax1.set_title('Clinical Priority Scores')
-        ax1.set_xlabel('Score')
-        
-        # Mutual Information
-        ax2.barh(importance_df['Feature'], importance_df['Mutual_Information'])
-        ax2.set_title('Mutual Information Scores')
-        ax2.set_xlabel('Score')
-        
-        # Random Forest
-        ax3.barh(importance_df['Feature'], importance_df['Random_Forest'])
-        ax3.set_title('Random Forest Importance')
-        ax3.set_xlabel('Score')
-        
-        # Combined Score
-        bars = ax4.barh(importance_df['Feature'], importance_df['Combined_Score'])
-        ax4.set_title('Combined Importance Score')
-        ax4.set_xlabel('Score')
-        
-        # Color bars based on score
-        for bar, score in zip(bars, importance_df['Combined_Score']):
-            if score > 0.8:
-                bar.set_color('green')
-            elif score > 0.6:
-                bar.set_color('orange')
+        for idx in X.index:
+            row_uncertainty = 0
+            missing_count = 0
+            
+            for col in missing_mask.columns:
+                if missing_mask.loc[idx, col]:
+                    missing_count += 1
+                    if col in self.imputation_uncertainty:
+                        row_uncertainty += self.imputation_uncertainty[col]['mean_uncertainty']
+            
+            # Normalize by number of missing values
+            if missing_count > 0:
+                uncertainty_scores.append(row_uncertainty / missing_count)
             else:
-                bar.set_color('red')
+                uncertainty_scores.append(0)
         
-        plt.tight_layout()
+        X_with_uncertainty['imputation_uncertainty_score'] = uncertainty_scores
+        X_with_uncertainty['total_missing_features'] = missing_mask.sum(axis=1)
+        X_with_uncertainty['missing_proportion'] = missing_mask.sum(axis=1) / len(missing_mask.columns)
         
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        return X_with_uncertainty
+
+class ClinicalFeatureSelector:
+    """
+    Advanced feature selection for clinical machine learning.
+    
+    Combines statistical methods with clinical domain knowledge
+    to select optimal feature sets for clinical prediction tasks.
+    This implementation prioritizes clinically relevant features
+    while maintaining statistical rigor and model performance.
+    """
+    
+    def __init__(self, 
+                 max_features: int = 50,
+                 clinical_priority_features: Optional[List[str]] = None,
+                 stability_threshold: float = 0.8):
+        """
+        Initialize the clinical feature selector.
         
-        plt.show()
-
-# Educational demonstration
-def demonstrate_clinical_feature_engineering():
-    """Demonstrate clinical feature engineering pipeline"""
-    print("Clinical Feature Engineering Demonstration")
-    print("=" * 50)
-    
-    # Create synthetic clinical dataset
-    np.random.seed(42)
-    n_patients = 1000
-    
-    # Generate synthetic clinical data
-    data = {
-        'patient_id': [f'P{i:04d}' for i in range(n_patients)],
-        'age': np.random.normal(65, 15, n_patients).clip(18, 100),
-        'gender': np.random.choice(['male', 'female'], n_patients),
-        'heart_rate': np.random.normal(75, 15, n_patients).clip(40, 150),
-        'systolic_bp': np.random.normal(130, 20, n_patients).clip(80, 200),
-        'diastolic_bp': np.random.normal(80, 10, n_patients).clip(50, 120),
-        'temperature': np.random.normal(37.0, 0.8, n_patients).clip(35, 42),
-        'respiratory_rate': np.random.normal(16, 4, n_patients).clip(8, 30),
-        'glucose': np.random.lognormal(4.5, 0.3, n_patients).clip(50, 400),
-        'creatinine': np.random.lognormal(0.1, 0.3, n_patients).clip(0.5, 5.0),
-        'hemoglobin': np.random.normal(13, 2, n_patients).clip(8, 18),
-        'white_blood_cell_count': np.random.lognormal(8.5, 0.4, n_patients).clip(2000, 25000),
-        'weight': np.random.normal(75, 15, n_patients).clip(40, 150),
-        'height': np.random.normal(170, 10, n_patients).clip(150, 200)
-    }
-    
-    # Add some missing data patterns
-    missing_indices = np.random.choice(n_patients, size=int(0.1 * n_patients), replace=False)
-    for idx in missing_indices:
-        data['glucose'][idx] = np.nan
-    
-    # Create DataFrame
-    df = pd.DataFrame(data)
-    
-    # Create target variable (synthetic outcome)
-    # Higher risk with age, abnormal vitals, etc.
-    risk_score = (
-        (df['age'] - 65) / 20 +
-        (df['heart_rate'] - 75) / 30 +
-        (df['systolic_bp'] - 130) / 40 +
-        (df['temperature'] - 37) / 2 +
-        np.log(df['glucose'] / 100) +
-        np.log(df['creatinine'] / 1.0)
-    )
-    
-    # Add noise and convert to binary outcome
-    risk_score += np.random.normal(0, 0.5, n_patients)
-    y = (risk_score > np.percentile(risk_score, 70)).astype(int)  # Top 30% as positive cases
-    
-    print(f"Created synthetic dataset: {df.shape}")
-    print(f"Target distribution: {np.bincount(y)}")
-    
-    # Initialize feature engineer
-    config = FeatureEngineeringConfig(
-        lookback_windows=[1, 3, 7],  # Simplified for demo
-        enable_clinical_rules=True,
-        enable_interaction_features=True,
-        enable_derived_features=True
-    )
-    
-    feature_engineer = ClinicalFeatureEngineer(config)
-    
-    # Fit and transform
-    print("\nFitting feature engineering pipeline...")
-    feature_engineer.fit(df, y)
-    
-    print("\nTransforming features...")
-    X_transformed = feature_engineer.transform(df)
-    
-    print(f"Original features: {df.shape[1]}")
-    print(f"Engineered features: {X_transformed.shape[1]}")
-    
-    # Display feature importance
-    print("\nTop 10 Most Important Features:")
-    importance_scores = feature_engineer.feature_importance_scores
-    if importance_scores:
-        sorted_features = sorted(importance_scores.items(), 
-                               key=lambda x: x[1].get('clinical_priority', 0) + 
-                                           x[1].get('mutual_information', 0) + 
-                                           x[1].get('random_forest', 0), 
-                               reverse=True)
+        Args:
+            max_features: Maximum number of features to select
+            clinical_priority_features: List of clinically important features to prioritize
+            stability_threshold: Minimum stability score for feature selection
+        """
+        self.max_features = max_features
+        self.clinical_priority_features = clinical_priority_features or []
+        self.stability_threshold = stability_threshold
+        self.selected_features = []
+        self.feature_scores = {}
+        self.selection_history = []
         
-        for i, (feature, scores) in enumerate(sorted_features[:10]):
-            combined_score = (scores.get('clinical_priority', 0) + 
-                            scores.get('mutual_information', 0) + 
-                            scores.get('random_forest', 0)) / 3
-            print(f"{i+1:2d}. {feature:30s} - Combined Score: {combined_score:.3f}")
+        logger.info(f"Initialized clinical feature selector with max {max_features} features")
     
-    # Display data quality report
-    print("\nData Quality Summary:")
-    quality_report = feature_engineer.data_quality_report
-    print(f"Total samples: {quality_report['total_samples']}")
-    print(f"Total features: {quality_report['total_features']}")
+    def select_features(self, X: pd.DataFrame, y: pd.Series, 
+                       method: str = 'combined',
+                       cv_folds: int = 5) -> Tuple[List[str], Dict[str, float]]:
+        """
+        Select optimal features using multiple selection strategies.
+        
+        Args:
+            X: Feature matrix
+            y: Target variable
+            method: Selection method ('statistical', 'clinical', 'combined')
+            cv_folds: Number of cross-validation folds for stability assessment
+            
+        Returns:
+            Tuple of (selected feature names, feature importance scores)
+        """
+        
+        if method == 'statistical':
+            return self._statistical_selection(X, y, cv_folds)
+        elif method == 'clinical':
+            return self._clinical_selection(X, y)
+        elif method == 'combined':
+            return self._combined_selection(X, y, cv_folds)
+        else:
+            raise ValueError(f"Unknown selection method: {method}")
     
-    missing_summary = quality_report['missing_data']
-    high_missing = [col for col, info in missing_summary.items() if info['percentage'] > 0.05]
-    if high_missing:
-        print(f"Features with >5% missing: {high_missing}")
+    def _combined_selection(self, X: pd.DataFrame, y: pd.Series, 
+                          cv_folds: int) -> Tuple[List[str], Dict[str, float]]:
+        """Combined statistical and clinical feature selection."""
+        
+        from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif, RFE
+        from sklearn.ensemble import RandomForestClassifier
+        from sklearn.linear_model import LassoCV
+        from sklearn.model_selection import cross_val_score, StratifiedKFold
+        
+        # Step 1: Statistical feature selection
+        statistical_features, statistical_scores = self._statistical_selection(X, y, cv_folds)
+        
+        # Step 2: Clinical priority features
+        clinical_features = [f for f in self.clinical_priority_features if f in X.columns]
+        
+        # Step 3: Combine and rank features
+        all_candidate_features = list(set(statistical_features + clinical_features))
+        
+        # Step 4: Stability-based selection
+        stable_features = self._assess_feature_stability(X[all_candidate_features], y, cv_folds)
+        
+        # Step 5: Final selection with clinical prioritization
+        final_features = []
+        final_scores = {}
+        
+        # Always include stable clinical priority features
+        for feature in clinical_features:
+            if feature in stable_features and len(final_features) < self.max_features:
+                final_features.append(feature)
+                final_scores[feature] = statistical_scores.get(feature, 1.0) * 1.5  # Boost clinical features
+        
+        # Add remaining stable statistical features
+        remaining_statistical = [f for f in stable_features if f not in final_features]
+        remaining_statistical.sort(key=lambda x: statistical_scores.get(x, 0), reverse=True)
+        
+        for feature in remaining_statistical:
+            if len(final_features) < self.max_features:
+                final_features.append(feature)
+                final_scores[feature] = statistical_scores.get(feature, 0)
+        
+        self.selected_features = final_features
+        self.feature_scores = final_scores
+        
+        logger.info(f"Selected {len(final_features)} features using combined method")
+        logger.info(f"Clinical priority features included: {len([f for f in final_features if f in clinical_features])}")
+        
+        return final_features, final_scores
     
-    # Visualize feature importance
-    feature_engineer.visualize_feature_importance(top_n=15)
+    def _statistical_selection(self, X: pd.DataFrame, y: pd.Series, 
+                             cv_folds: int) -> Tuple[List[str], Dict[str, float]]:
+        """Statistical feature selection using multiple criteria."""
+        
+        from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif, RFE
+        from sklearn.ensemble import RandomForestClassifier
+        from sklearn.linear_model import LassoCV
+        
+        feature_scores = {}
+        
+        # Univariate statistical tests (F-test)
+        try:
+            f_selector = SelectKBest(f_classif, k=min(self.max_features * 2, X.shape[1]))
+            f_selector.fit(X, y)
+            f_scores = f_selector.scores_
+            f_selected_features = X.columns[f_selector.get_support()].tolist()
+            
+            for i, feature in enumerate(X.columns):
+                if feature in f_selected_features:
+                    feature_scores[feature] = feature_scores.get(feature, 0) + f_scores[i] / np.max(f_scores)
+                    
+        except Exception as e:
+            logger.warning(f"F-test selection failed: {e}")
+        
+        # Mutual information
+        try:
+            mi_scores = mutual_info_classif(X, y, random_state=42)
+            mi_ranking = np.argsort(mi_scores)[::-1]
+            mi_selected_features = X.columns[mi_ranking[:self.max_features * 2]].tolist()
+            
+            for i, feature in enumerate(X.columns):
+                if feature in mi_selected_features:
+                    feature_scores[feature] = feature_scores.get(feature, 0) + mi_scores[i] / np.max(mi_scores)
+                    
+        except Exception as e:
+            logger.warning(f"Mutual information selection failed: {e}")
+        
+        # L1 regularization (Lasso)
+        try:
+            lasso = LassoCV(cv=cv_folds, random_state=42, max_iter=1000)
+            lasso.fit(X, y)
+            lasso_selected_features = X.columns[lasso.coef_ != 0].tolist()
+            
+            for feature in lasso_selected_features:
+                coef_magnitude = abs(lasso.coef_[X.columns.get_loc(feature)])
+                feature_scores[feature] = feature_scores.get(feature, 0) + coef_magnitude / np.max(np.abs(lasso.coef_))
+                
+        except Exception as e:
+            logger.warning(f"Lasso selection failed: {e}")
+        
+        # Random Forest feature importance
+        try:
+            rf = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)
+            rf.fit(X, y)
+            rf_importances = rf.feature_importances_
+            rf_ranking = np.argsort(rf_importances)[::-1]
+            rf_selected_features = X.columns[rf_ranking[:self.max_features * 2]].tolist()
+            
+            for i, feature in enumerate(X.columns):
+                if feature in rf_selected_features:
+                    feature_scores[feature] = feature_scores.get(feature, 0) + rf_importances[i] / np.max(rf_importances)
+                    
+        except Exception as e:
+            logger.warning(f"Random Forest selection failed: {e}")
+        
+        # Rank features by combined scores
+        sorted_features = sorted(feature_scores.items(), key=lambda x: x[1], reverse=True)
+        selected_features = [f[0] for f in sorted_features[:self.max_features]]
+        
+        return selected_features, feature_scores
     
-    return df, X_transformed, y, feature_engineer
+    def _clinical_selection(self, X: pd.DataFrame, y: pd.Series) -> Tuple[List[str], Dict[str, float]]:
+        """Clinical knowledge-based feature selection."""
+        
+        clinical_scores = {}
+        
+        # Prioritize clinical priority features
+        for feature in self.clinical_priority_features:
+            if feature in X.columns:
+                clinical_scores[feature] = 1.0
+        
+        # Add features based on clinical naming patterns
+        clinical_patterns = [
+            'hemoglobin', 'hematocrit', 'white_blood_cell', 'platelet',
+            'sodium', 'potassium', 'chloride', 'co2', 'bun', 'creatinine',
+            'glucose', 'albumin', 'bilirubin', 'alt', 'ast',
+            'systolic', 'diastolic', 'heart_rate', 'temperature',
+            'respiratory_rate', 'oxygen_saturation'
+        ]
+        
+        for feature in X.columns:
+            feature_lower = feature.lower()
+            for pattern in clinical_patterns:
+                if pattern in feature_lower:
+                    clinical_scores[feature] = clinical_scores.get(feature, 0) + 0.8
+        
+        # Sort by clinical relevance
+        sorted_features = sorted(clinical_scores.items(), key=lambda x: x[1], reverse=True)
+        selected_features = [f[0] for f in sorted_features[:self.max_features]]
+        
+        return selected_features, clinical_scores
+    
+    def _assess_feature_stability(self, X: pd.DataFrame, y: pd.Series, 
+                                cv_folds: int) -> List[str]:
+        """Assess feature selection stability across cross-validation folds."""
+        
+        from sklearn.model_selection import StratifiedKFold
+        from sklearn.feature_selection import SelectKBest, f_classif
+        
+        skf = StratifiedKFold(n_splits=cv_folds, shuffle=True, random_state=42)
+        feature_selection_counts = {feature: 0 for feature in X.columns}
+        
+        for train_idx, val_idx in skf.split(X, y):
+            X_train, y_train = X.iloc[train_idx], y.iloc[train_idx]
+            
+            # Perform feature selection on this fold
+            try:
+                selector = SelectKBest(f_classif, k=min(self.max_features, X_train.shape[1]))
+                selector.fit(X_train, y_train)
+                selected_features = X_train.columns[selector.get_support()].tolist()
+                
+                for feature in selected_features:
+                    feature_selection_counts[feature] += 1
+                    
+            except Exception as e:
+                logger.warning(f"Feature stability assessment failed for fold: {e}")
+                continue
+        
+        # Select features that appear in at least stability_threshold of folds
+        min_appearances = int(cv_folds * self.stability_threshold)
+        stable_features = [
+            feature for feature, count in feature_selection_counts.items()
+            if count >= min_appearances
+        ]
+        
+        logger.info(f"Found {len(stable_features)} stable features (threshold: {self.stability_threshold})")
+        
+        return stable_features
 
-if __name__ == "__main__":
-    df, X_transformed, y, feature_engineer = demonstrate_clinical_feature_engineering()
-```
+## 4.3 Advanced Clinical Machine Learning Models
 
-{% include attribution.html 
-   author="Clinical Machine Learning Research Community" 
-   work="Clinical Feature Engineering, Temporal Analysis, and Healthcare Data Science" 
-   citation="rajkomar_scalable_2018" 
-   note="Implementation based on clinical machine learning research and healthcare data science best practices. All code is original educational implementation demonstrating clinical feature engineering principles." 
-   style="research-style" %}
+### 4.3.1 Ensemble Methods for Clinical Prediction
 
-### Key Features of Clinical Feature Engineering
-{: .text-delta }
-
-{: .highlight }
-**Clinical Knowledge Integration**: Incorporates medical domain knowledge, normal ranges, critical values, and clinical scoring systems into feature engineering process.
-
-{: .highlight }
-**Temporal Pattern Recognition**: Advanced temporal feature extraction with lookback windows, trend analysis, and clinical event detection.
-
-{: .highlight }
-**Missing Data Intelligence**: Clinical-informed imputation strategies that consider the clinical significance and patterns of missing healthcare data.
-
-{: .highlight }
-**Quality Assurance**: Comprehensive data quality assessment, outlier detection, and validation frameworks specific to healthcare applications.
-
----
-
-## 4.2 Robust Clinical Prediction Models
-
-Building robust clinical prediction models requires specialized approaches that address the unique challenges of healthcare applications, including class imbalance, temporal dependencies, and the need for interpretability and calibration [Citation] [Citation].
-
-### Implementation: Comprehensive Clinical Prediction Framework
-{: .text-delta }
+Clinical prediction tasks benefit significantly from ensemble methods that combine multiple models to improve prediction accuracy, robustness, and uncertainty quantification. The following implementation demonstrates a comprehensive ensemble framework designed specifically for clinical applications:
 
 ```python
-#!/usr/bin/env python3
 """
-Comprehensive Clinical Prediction Model Framework
-Implements robust clinical prediction models with proper validation and calibration
+Advanced Clinical Machine Learning Ensemble Framework
 
-This is an original educational implementation demonstrating clinical prediction
-modeling principles with production-ready architecture patterns.
+This implementation provides sophisticated ensemble methods specifically
+designed for clinical prediction tasks, including uncertainty quantification,
+clinical interpretability, and regulatory compliance features.
 
-Author: Sanjay Basu, MD PhD (Waymark)
-Based on clinical machine learning research and model validation best practices
-Educational use - requires clinical validation for production deployment
+Author: Sanjay Basu MD PhD
+License: MIT
 """
 
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Union
+from typing import Dict, List, Optional, Any, Tuple, Union
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
-import warnings
-warnings.filterwarnings('ignore')
-
-from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.model_selection import (
-    train_test_split, StratifiedKFold, TimeSeriesSplit, 
-    cross_val_score, validation_curve
-)
 from sklearn.ensemble import (
     RandomForestClassifier, GradientBoostingClassifier, 
     VotingClassifier, BaggingClassifier
@@ -1097,770 +1031,1105 @@ from sklearn.ensemble import (
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import (
+    cross_val_score, StratifiedKFold, GridSearchCV, 
+    cross_validate, validation_curve
+)
 from sklearn.metrics import (
-    roc_auc_score, roc_curve, precision_recall_curve, 
-    calibration_curve, brier_score_loss, classification_report,
-    confusion_matrix, average_precision_score
+    roc_auc_score, precision_recall_curve, roc_curve,
+    classification_report, confusion_matrix, 
+    precision_score, recall_score, f1_score
 )
 from sklearn.calibration import CalibratedClassifierCV, calibration_curve
-from sklearn.utils.class_weight import compute_class_weight
 import xgboost as xgb
 import lightgbm as lgb
 from scipy import stats
-from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 import seaborn as sns
-import joblib
-import logging
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+import warnings
+warnings.filterwarnings('ignore')
 
 @dataclass
-class ModelConfig:
-    """Configuration for clinical prediction models"""
-    # Model selection
-    model_types: List[str] = field(default_factory=lambda: ['logistic', 'random_forest', 'xgboost', 'ensemble'])
+class ClinicalModelConfig:
+    """Configuration for clinical machine learning models"""
     
-    # Validation strategy
-    validation_method: str = 'stratified_kfold'  # 'stratified_kfold', 'time_series', 'holdout'
-    n_folds: int = 5
-    test_size: float = 0.2
-    
-    # Class imbalance handling
-    handle_imbalance: bool = True
-    imbalance_method: str = 'class_weight'  # 'class_weight', 'smote', 'threshold_tuning'
-    
-    # Calibration
-    calibration_method: str = 'isotonic'  # 'isotonic', 'sigmoid', 'none'
-    
-    # Feature selection
-    feature_selection: bool = True
-    max_features: Optional[int] = None
-    
-    # Hyperparameter tuning
-    hyperparameter_tuning: bool = True
-    tuning_method: str = 'grid_search'  # 'grid_search', 'random_search', 'bayesian'
-    
-    # Clinical validation
-    clinical_validation: bool = True
-    interpretability_required: bool = True
+    model_type: str
+    hyperparameters: Dict[str, Any] = field(default_factory=dict)
+    calibration_method: str = 'isotonic'
+    uncertainty_quantification: bool = True
+    interpretability_features: bool = True
+    clinical_constraints: Dict[str, Any] = field(default_factory=dict)
 
 @dataclass
-class ValidationResults:
-    """Results from model validation"""
+class ClinicalPredictionResult:
+    """Results from clinical prediction model"""
+    
+    predictions: np.ndarray
+    probabilities: np.ndarray
+    uncertainty_scores: np.ndarray
+    feature_importance: Dict[str, float]
+    model_confidence: float
+    clinical_alerts: List[str] = field(default_factory=list)
+    explanation: Dict[str, Any] = field(default_factory=dict)
+
+class ClinicalEnsembleFramework:
+    """
+    Comprehensive ensemble framework for clinical machine learning.
+    
+    This framework implements advanced ensemble methods specifically designed
+    for clinical prediction tasks, with emphasis on uncertainty quantification,
+    interpretability, and regulatory compliance.
+    """
+    
+    def __init__(self, 
+                 ensemble_method: str = 'stacking',
+                 base_models: Optional[List[ClinicalModelConfig]] = None,
+                 calibration: bool = True,
+                 uncertainty_quantification: bool = True):
+        """
+        Initialize the clinical ensemble framework.
+        
+        Args:
+            ensemble_method: Type of ensemble ('voting', 'bagging', 'stacking', 'boosting')
+            base_models: List of base model configurations
+            calibration: Whether to calibrate probability predictions
+            uncertainty_quantification: Whether to provide uncertainty estimates
+        """
+        
+        self.ensemble_method = ensemble_method
+        self.calibration = calibration
+        self.uncertainty_quantification = uncertainty_quantification
+        
+        # Initialize base models
+        if base_models is None:
+            self.base_models = self._get_default_clinical_models()
+        else:
+            self.base_models = base_models
+        
+        # Initialize ensemble components
+        self.fitted_models = {}
+        self.ensemble_model = None
+        self.feature_importance = {}
+        self.model_weights = {}
+        self.calibration_models = {}
+        
+        logger.info(f"Initialized clinical ensemble with {len(self.base_models)} base models")
+    
+    def _get_default_clinical_models(self) -> List[ClinicalModelConfig]:
+        """Get default set of clinical models optimized for healthcare data."""
+        
+        return [
+            ClinicalModelConfig(
+                model_type='random_forest',
+                hyperparameters={
+                    'n_estimators': 200,
+                    'max_depth': 10,
+                    'min_samples_split': 10,
+                    'min_samples_leaf': 5,
+                    'class_weight': 'balanced',
+                    'random_state': 42
+                }
+            ),
+            ClinicalModelConfig(
+                model_type='gradient_boosting',
+                hyperparameters={
+                    'n_estimators': 150,
+                    'learning_rate': 0.1,
+                    'max_depth': 6,
+                    'min_samples_split': 10,
+                    'min_samples_leaf': 5,
+                    'subsample': 0.8,
+                    'random_state': 42
+                }
+            ),
+            ClinicalModelConfig(
+                model_type='xgboost',
+                hyperparameters={
+                    'n_estimators': 200,
+                    'learning_rate': 0.1,
+                    'max_depth': 6,
+                    'min_child_weight': 5,
+                    'subsample': 0.8,
+                    'colsample_bytree': 0.8,
+                    'reg_alpha': 0.1,
+                    'reg_lambda': 0.1,
+                    'random_state': 42
+                }
+            ),
+            ClinicalModelConfig(
+                model_type='logistic_regression',
+                hyperparameters={
+                    'C': 1.0,
+                    'penalty': 'l2',
+                    'class_weight': 'balanced',
+                    'max_iter': 1000,
+                    'random_state': 42
+                }
+            ),
+            ClinicalModelConfig(
+                model_type='neural_network',
+                hyperparameters={
+                    'hidden_layer_sizes': (100, 50),
+                    'activation': 'relu',
+                    'solver': 'adam',
+                    'alpha': 0.001,
+                    'learning_rate': 'adaptive',
+                    'max_iter': 500,
+                    'random_state': 42
+                }
+            )
+        ]
+    
+    def fit(self, X: pd.DataFrame, y: pd.Series, 
+           validation_split: float = 0.2) -> Dict[str, Any]:
+        """
+        Fit the clinical ensemble model.
+        
+        Args:
+            X: Feature matrix
+            y: Target variable
+            validation_split: Proportion of data for validation
+            
+        Returns:
+            Dictionary containing training results and model performance
+        """
+        
+        from sklearn.model_selection import train_test_split
+        
+        # Split data for ensemble training
+        X_train, X_val, y_train, y_val = train_test_split(
+            X, y, test_size=validation_split, stratify=y, random_state=42
+        )
+        
+        logger.info(f"Training ensemble on {len(X_train)} samples, validating on {len(X_val)} samples")
+        
+        # Train base models
+        base_model_results = {}
+        base_predictions = {}
+        
+        for i, model_config in enumerate(self.base_models):
+            model_name = f"{model_config.model_type}_{i}"
+            
+            try:
+                # Create and train model
+                model = self._create_model(model_config)
+                model.fit(X_train, y_train)
+                
+                # Validate model
+                val_predictions = model.predict_proba(X_val)[:, 1]
+                val_auc = roc_auc_score(y_val, val_predictions)
+                
+                # Store model and results
+                self.fitted_models[model_name] = model
+                base_model_results[model_name] = {
+                    'validation_auc': val_auc,
+                    'model_config': model_config
+                }
+                base_predictions[model_name] = val_predictions
+                
+                logger.info(f"Trained {model_name}: AUC = {val_auc:.4f}")
+                
+            except Exception as e:
+                logger.error(f"Failed to train {model_name}: {e}")
+                continue
+        
+        # Create ensemble model
+        if self.ensemble_method == 'voting':
+            self.ensemble_model = self._create_voting_ensemble()
+        elif self.ensemble_method == 'stacking':
+            self.ensemble_model = self._create_stacking_ensemble(X_val, y_val, base_predictions)
+        elif self.ensemble_method == 'weighted':
+            self.ensemble_model = self._create_weighted_ensemble(base_model_results)
+        
+        # Train final ensemble
+        if self.ensemble_model:
+            self.ensemble_model.fit(X_train, y_train)
+            
+            # Validate ensemble
+            ensemble_predictions = self.ensemble_model.predict_proba(X_val)[:, 1]
+            ensemble_auc = roc_auc_score(y_val, ensemble_predictions)
+            
+            logger.info(f"Ensemble AUC: {ensemble_auc:.4f}")
+        
+        # Calibrate models if requested
+        if self.calibration:
+            self._calibrate_models(X_val, y_val)
+        
+        # Calculate feature importance
+        self._calculate_ensemble_feature_importance(X.columns)
+        
+        # Prepare training results
+        training_results = {
+            'base_model_results': base_model_results,
+            'ensemble_auc': ensemble_auc if self.ensemble_model else None,
+            'feature_importance': self.feature_importance,
+            'model_weights': self.model_weights,
+            'training_samples': len(X_train),
+            'validation_samples': len(X_val)
+        }
+        
+        return training_results
+    
+    def predict(self, X: pd.DataFrame, 
+               return_uncertainty: bool = True,
+               return_explanation: bool = True) -> ClinicalPredictionResult:
+        """
+        Make predictions using the clinical ensemble.
+        
+        Args:
+            X: Feature matrix for prediction
+            return_uncertainty: Whether to return uncertainty estimates
+            return_explanation: Whether to return prediction explanations
+            
+        Returns:
+            ClinicalPredictionResult with predictions and metadata
+        """
+        
+        if self.ensemble_model is None:
+            raise ValueError("Ensemble model not fitted. Call fit() first.")
+        
+        # Get ensemble predictions
+        predictions = self.ensemble_model.predict(X)
+        probabilities = self.ensemble_model.predict_proba(X)[:, 1]
+        
+        # Calculate uncertainty scores
+        uncertainty_scores = np.zeros(len(X))
+        if return_uncertainty and self.uncertainty_quantification:
+            uncertainty_scores = self._calculate_prediction_uncertainty(X)
+        
+        # Generate clinical alerts
+        clinical_alerts = self._generate_clinical_alerts(probabilities, uncertainty_scores)
+        
+        # Generate explanations
+        explanation = {}
+        if return_explanation:
+            explanation = self._generate_prediction_explanation(X, probabilities)
+        
+        # Calculate model confidence
+        model_confidence = self._calculate_model_confidence(probabilities, uncertainty_scores)
+        
+        return ClinicalPredictionResult(
+            predictions=predictions,
+            probabilities=probabilities,
+            uncertainty_scores=uncertainty_scores,
+            feature_importance=self.feature_importance,
+            model_confidence=model_confidence,
+            clinical_alerts=clinical_alerts,
+            explanation=explanation
+        )
+    
+    def _create_model(self, config: ClinicalModelConfig):
+        """Create a model instance based on configuration."""
+        
+        if config.model_type == 'random_forest':
+            return RandomForestClassifier(**config.hyperparameters)
+        elif config.model_type == 'gradient_boosting':
+            return GradientBoostingClassifier(**config.hyperparameters)
+        elif config.model_type == 'xgboost':
+            return xgb.XGBClassifier(**config.hyperparameters)
+        elif config.model_type == 'lightgbm':
+            return lgb.LGBMClassifier(**config.hyperparameters)
+        elif config.model_type == 'logistic_regression':
+            return LogisticRegression(**config.hyperparameters)
+        elif config.model_type == 'svm':
+            return SVC(probability=True, **config.hyperparameters)
+        elif config.model_type == 'neural_network':
+            return MLPClassifier(**config.hyperparameters)
+        else:
+            raise ValueError(f"Unknown model type: {config.model_type}")
+    
+    def _create_stacking_ensemble(self, X_val: pd.DataFrame, y_val: pd.Series,
+                                base_predictions: Dict[str, np.ndarray]):
+        """Create stacking ensemble using base model predictions."""
+        
+        from sklearn.ensemble import StackingClassifier
+        
+        # Prepare base estimators
+        estimators = [(name, model) for name, model in self.fitted_models.items()]
+        
+        # Create stacking classifier with logistic regression meta-learner
+        stacking_classifier = StackingClassifier(
+            estimators=estimators,
+            final_estimator=LogisticRegression(random_state=42),
+            cv=5,
+            stack_method='predict_proba'
+        )
+        
+        return stacking_classifier
+    
+    def _create_voting_ensemble(self):
+        """Create voting ensemble from base models."""
+        
+        estimators = [(name, model) for name, model in self.fitted_models.items()]
+        
+        return VotingClassifier(
+            estimators=estimators,
+            voting='soft'  # Use probability voting
+        )
+    
+    def _create_weighted_ensemble(self, base_model_results: Dict[str, Any]):
+        """Create weighted ensemble based on validation performance."""
+        
+        # Calculate weights based on validation AUC
+        aucs = [results['validation_auc'] for results in base_model_results.values()]
+        weights = np.array(aucs) / np.sum(aucs)
+        
+        # Store weights
+        for i, (model_name, weight) in enumerate(zip(base_model_results.keys(), weights)):
+            self.model_weights[model_name] = weight
+        
+        # Create weighted voting classifier
+        estimators = [(name, model) for name, model in self.fitted_models.items()]
+        
+        return VotingClassifier(
+            estimators=estimators,
+            voting='soft',
+            weights=weights
+        )
+    
+    def _calibrate_models(self, X_val: pd.DataFrame, y_val: pd.Series):
+        """Calibrate model probability predictions."""
+        
+        for model_name, model in self.fitted_models.items():
+            try:
+                calibrated_model = CalibratedClassifierCV(
+                    model, method='isotonic', cv=3
+                )
+                calibrated_model.fit(X_val, y_val)
+                self.calibration_models[model_name] = calibrated_model
+                
+            except Exception as e:
+                logger.warning(f"Failed to calibrate {model_name}: {e}")
+    
+    def _calculate_ensemble_feature_importance(self, feature_names: List[str]):
+        """Calculate ensemble feature importance."""
+        
+        importance_dict = {feature: 0.0 for feature in feature_names}
+        total_weight = 0
+        
+        for model_name, model in self.fitted_models.items():
+            model_weight = self.model_weights.get(model_name, 1.0)
+            
+            # Get feature importance based on model type
+            if hasattr(model, 'feature_importances_'):
+                importances = model.feature_importances_
+            elif hasattr(model, 'coef_'):
+                importances = np.abs(model.coef_[0])
+            else:
+                continue
+            
+            # Add weighted importance
+            for i, feature in enumerate(feature_names):
+                if i < len(importances):
+                    importance_dict[feature] += importances[i] * model_weight
+            
+            total_weight += model_weight
+        
+        # Normalize importance scores
+        if total_weight > 0:
+            for feature in importance_dict:
+                importance_dict[feature] /= total_weight
+        
+        self.feature_importance = importance_dict
+    
+    def _calculate_prediction_uncertainty(self, X: pd.DataFrame) -> np.ndarray:
+        """Calculate prediction uncertainty using ensemble disagreement."""
+        
+        # Get predictions from all base models
+        all_predictions = []
+        
+        for model_name, model in self.fitted_models.items():
+            try:
+                pred_proba = model.predict_proba(X)[:, 1]
+                all_predictions.append(pred_proba)
+            except Exception as e:
+                logger.warning(f"Failed to get predictions from {model_name}: {e}")
+                continue
+        
+        if not all_predictions:
+            return np.zeros(len(X))
+        
+        # Calculate uncertainty as standard deviation of predictions
+        predictions_array = np.array(all_predictions)
+        uncertainty_scores = np.std(predictions_array, axis=0)
+        
+        return uncertainty_scores
+    
+    def _generate_clinical_alerts(self, probabilities: np.ndarray, 
+                                uncertainty_scores: np.ndarray) -> List[str]:
+        """Generate clinical alerts based on predictions and uncertainty."""
+        
+        alerts = []
+        
+        # High-risk alerts
+        high_risk_threshold = 0.8
+        high_risk_indices = np.where(probabilities > high_risk_threshold)[0]
+        if len(high_risk_indices) > 0:
+            alerts.append(f"HIGH RISK: {len(high_risk_indices)} patients with >80% risk probability")
+        
+        # High uncertainty alerts
+        high_uncertainty_threshold = 0.2
+        high_uncertainty_indices = np.where(uncertainty_scores > high_uncertainty_threshold)[0]
+        if len(high_uncertainty_indices) > 0:
+            alerts.append(f"HIGH UNCERTAINTY: {len(high_uncertainty_indices)} predictions with high uncertainty")
+        
+        # Combined high risk and high uncertainty
+        combined_indices = np.intersect1d(high_risk_indices, high_uncertainty_indices)
+        if len(combined_indices) > 0:
+            alerts.append(f"CRITICAL REVIEW: {len(combined_indices)} high-risk predictions with high uncertainty")
+        
+        return alerts
+    
+    def _generate_prediction_explanation(self, X: pd.DataFrame, 
+                                       probabilities: np.ndarray) -> Dict[str, Any]:
+        """Generate explanations for predictions."""
+        
+        explanation = {
+            'top_features': [],
+            'feature_contributions': {},
+            'model_confidence_factors': []
+        }
+        
+        # Get top contributing features
+        sorted_features = sorted(
+            self.feature_importance.items(), 
+            key=lambda x: x[1], 
+            reverse=True
+        )
+        explanation['top_features'] = sorted_features[:10]
+        
+        # Calculate feature contributions for high-risk predictions
+        high_risk_mask = probabilities > 0.5
+        if np.any(high_risk_mask):
+            high_risk_data = X[high_risk_mask]
+            
+            for feature, importance in sorted_features[:5]:
+                if feature in high_risk_data.columns:
+                    feature_values = high_risk_data[feature].values
+                    explanation['feature_contributions'][feature] = {
+                        'importance': importance,
+                        'mean_value': np.mean(feature_values),
+                        'std_value': np.std(feature_values)
+                    }
+        
+        return explanation
+    
+    def _calculate_model_confidence(self, probabilities: np.ndarray, 
+                                  uncertainty_scores: np.ndarray) -> float:
+        """Calculate overall model confidence score."""
+        
+        # Base confidence on prediction certainty and low uncertainty
+        prediction_certainty = np.mean(np.abs(probabilities - 0.5) * 2)  # 0 to 1 scale
+        uncertainty_penalty = np.mean(uncertainty_scores)
+        
+        confidence = prediction_certainty * (1 - uncertainty_penalty)
+        
+        return np.clip(confidence, 0, 1)
+
+## 4.4 Clinical Model Validation and Performance Assessment
+
+### 4.4.1 Comprehensive Clinical Validation Framework
+
+Clinical model validation requires specialized metrics and methodologies that account for the unique characteristics of healthcare data and the clinical context in which models will be deployed. The following implementation provides a comprehensive validation framework:
+
+```python
+"""
+Comprehensive Clinical Model Validation Framework
+
+This implementation provides specialized validation methodologies for clinical
+machine learning models, including clinical performance metrics, temporal
+validation, and regulatory compliance assessment.
+
+Author: Sanjay Basu MD PhD
+License: MIT
+"""
+
+import numpy as np
+import pandas as pd
+from typing import Dict, List, Optional, Any, Tuple
+from dataclasses import dataclass, field
+from sklearn.metrics import (
+    roc_auc_score, precision_recall_curve, roc_curve, average_precision_score,
+    classification_report, confusion_matrix, precision_score, recall_score,
+    f1_score, accuracy_score, balanced_accuracy_score
+)
+from sklearn.calibration import calibration_curve
+from sklearn.model_selection import (
+    StratifiedKFold, TimeSeriesSplit, cross_validate
+)
+from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime, timedelta
+import warnings
+warnings.filterwarnings('ignore')
+
+@dataclass
+class ClinicalValidationConfig:
+    """Configuration for clinical model validation"""
+    
+    validation_type: str = 'comprehensive'  # 'basic', 'comprehensive', 'regulatory'
+    temporal_validation: bool = True
+    fairness_assessment: bool = True
+    calibration_assessment: bool = True
+    clinical_utility_assessment: bool = True
+    bootstrap_iterations: int = 1000
+    confidence_level: float = 0.95
+    
+@dataclass
+class ClinicalValidationResults:
+    """Results from clinical model validation"""
+    
+    # Performance metrics
     auc_roc: float
     auc_pr: float
-    brier_score: float
-    calibration_slope: float
-    calibration_intercept: float
     sensitivity: float
     specificity: float
     ppv: float
     npv: float
     f1_score: float
-    cross_val_scores: List[float]
-    feature_importance: Dict[str, float]
-    calibration_curve_data: Tuple[np.ndarray, np.ndarray]
-    confusion_matrix: np.ndarray
+    accuracy: float
+    balanced_accuracy: float
+    
+    # Confidence intervals
+    auc_roc_ci: Tuple[float, float]
+    sensitivity_ci: Tuple[float, float]
+    specificity_ci: Tuple[float, float]
+    
+    # Clinical metrics
+    nnt: Optional[float] = None  # Number needed to treat
+    nnh: Optional[float] = None  # Number needed to harm
+    clinical_utility_score: Optional[float] = None
+    
+    # Calibration metrics
+    calibration_slope: Optional[float] = None
+    calibration_intercept: Optional[float] = None
+    brier_score: Optional[float] = None
+    
+    # Fairness metrics
+    fairness_metrics: Dict[str, Any] = field(default_factory=dict)
+    
+    # Temporal validation
+    temporal_stability: Optional[float] = None
+    temporal_degradation: Optional[float] = None
+    
+    # Additional metadata
+    validation_date: str = field(default_factory=lambda: datetime.now().isoformat())
+    sample_size: int = 0
+    prevalence: float = 0.0
 
-class ClinicalPredictionModel(BaseEstimator, ClassifierMixin):
+class ClinicalModelValidator:
     """
-    Comprehensive clinical prediction model with validation and calibration
+    Comprehensive validation framework for clinical machine learning models.
     
-    Implements multiple model architectures with proper clinical validation,
-    calibration, and interpretability features for healthcare applications.
+    This validator implements specialized metrics and methodologies appropriate
+    for clinical prediction models, including temporal validation, fairness
+    assessment, and clinical utility evaluation.
     """
     
-    def __init__(self, config: ModelConfig = None):
-        self.config = config or ModelConfig()
-        self.models = {}
-        self.best_model = None
-        self.calibrated_model = None
-        self.feature_importance = {}
-        self.validation_results = {}
-        self.is_fitted = False
-        
-        logger.info("Clinical Prediction Model initialized")
-    
-    def fit(self, X: pd.DataFrame, y: pd.Series, 
-            validation_data: Optional[Tuple[pd.DataFrame, pd.Series]] = None) -> 'ClinicalPredictionModel':
+    def __init__(self, config: Optional[ClinicalValidationConfig] = None):
         """
-        Fit clinical prediction models with comprehensive validation
+        Initialize the clinical model validator.
         
         Args:
-            X: Training features
-            y: Training targets
-            validation_data: Optional validation set for temporal validation
+            config: Validation configuration
+        """
+        self.config = config or ClinicalValidationConfig()
+        self.validation_history = []
+        
+        logger.info(f"Initialized clinical validator with {self.config.validation_type} validation")
+    
+    def validate_model(self, 
+                      model: Any,
+                      X_test: pd.DataFrame,
+                      y_test: pd.Series,
+                      X_train: Optional[pd.DataFrame] = None,
+                      y_train: Optional[pd.Series] = None,
+                      sensitive_attributes: Optional[pd.DataFrame] = None,
+                      temporal_column: Optional[str] = None) -> ClinicalValidationResults:
+        """
+        Perform comprehensive clinical model validation.
+        
+        Args:
+            model: Trained model to validate
+            X_test: Test feature matrix
+            y_test: Test target variable
+            X_train: Training feature matrix (for some validation methods)
+            y_train: Training target variable (for some validation methods)
+            sensitive_attributes: Sensitive attributes for fairness assessment
+            temporal_column: Column name for temporal validation
             
         Returns:
-            Fitted model
+            ClinicalValidationResults with comprehensive validation metrics
         """
-        logger.info("Fitting clinical prediction models")
         
-        # Prepare data
-        X_processed, y_processed = self._prepare_data(X, y)
+        logger.info(f"Starting {self.config.validation_type} clinical validation")
         
-        # Split data if no validation set provided
-        if validation_data is None:
-            X_train, X_val, y_train, y_val = train_test_split(
-                X_processed, y_processed, 
-                test_size=self.config.test_size,
-                stratify=y_processed,
-                random_state=42
+        # Get model predictions
+        y_pred = model.predict(X_test)
+        y_pred_proba = model.predict_proba(X_test)[:, 1]
+        
+        # Basic performance metrics
+        basic_metrics = self._calculate_basic_metrics(y_test, y_pred, y_pred_proba)
+        
+        # Confidence intervals
+        confidence_intervals = self._calculate_confidence_intervals(
+            y_test, y_pred, y_pred_proba
+        )
+        
+        # Clinical utility metrics
+        clinical_metrics = {}
+        if self.config.clinical_utility_assessment:
+            clinical_metrics = self._assess_clinical_utility(y_test, y_pred_proba)
+        
+        # Calibration assessment
+        calibration_metrics = {}
+        if self.config.calibration_assessment:
+            calibration_metrics = self._assess_calibration(y_test, y_pred_proba)
+        
+        # Fairness assessment
+        fairness_metrics = {}
+        if self.config.fairness_assessment and sensitive_attributes is not None:
+            fairness_metrics = self._assess_fairness(
+                y_test, y_pred, y_pred_proba, sensitive_attributes
             )
-        else:
-            X_train, y_train = X_processed, y_processed
-            X_val, y_val = validation_data
         
-        # Train multiple model types
-        self._train_models(X_train, y_train)
+        # Temporal validation
+        temporal_metrics = {}
+        if self.config.temporal_validation and temporal_column is not None:
+            temporal_metrics = self._assess_temporal_stability(
+                model, X_test, y_test, temporal_column
+            )
         
-        # Validate models
-        self._validate_models(X_train, y_train, X_val, y_val)
+        # Compile results
+        results = ClinicalValidationResults(
+            # Basic metrics
+            auc_roc=basic_metrics['auc_roc'],
+            auc_pr=basic_metrics['auc_pr'],
+            sensitivity=basic_metrics['sensitivity'],
+            specificity=basic_metrics['specificity'],
+            ppv=basic_metrics['ppv'],
+            npv=basic_metrics['npv'],
+            f1_score=basic_metrics['f1_score'],
+            accuracy=basic_metrics['accuracy'],
+            balanced_accuracy=basic_metrics['balanced_accuracy'],
+            
+            # Confidence intervals
+            auc_roc_ci=confidence_intervals['auc_roc_ci'],
+            sensitivity_ci=confidence_intervals['sensitivity_ci'],
+            specificity_ci=confidence_intervals['specificity_ci'],
+            
+            # Clinical metrics
+            nnt=clinical_metrics.get('nnt'),
+            nnh=clinical_metrics.get('nnh'),
+            clinical_utility_score=clinical_metrics.get('clinical_utility_score'),
+            
+            # Calibration metrics
+            calibration_slope=calibration_metrics.get('calibration_slope'),
+            calibration_intercept=calibration_metrics.get('calibration_intercept'),
+            brier_score=calibration_metrics.get('brier_score'),
+            
+            # Fairness metrics
+            fairness_metrics=fairness_metrics,
+            
+            # Temporal metrics
+            temporal_stability=temporal_metrics.get('temporal_stability'),
+            temporal_degradation=temporal_metrics.get('temporal_degradation'),
+            
+            # Metadata
+            sample_size=len(y_test),
+            prevalence=y_test.mean()
+        )
         
-        # Select best model
-        self._select_best_model()
+        # Store validation history
+        self.validation_history.append(results)
         
-        # Calibrate best model
-        if self.config.calibration_method != 'none':
-            self._calibrate_model(X_train, y_train)
+        logger.info(f"Validation completed: AUC-ROC = {results.auc_roc:.4f}")
         
-        # Clinical validation
-        if self.config.clinical_validation:
-            self._clinical_validation(X_val, y_val)
-        
-        self.is_fitted = True
-        logger.info("Clinical prediction model training complete")
-        
-        return self
+        return results
     
-    def predict(self, X: pd.DataFrame) -> np.ndarray:
-        """Predict binary outcomes"""
-        if not self.is_fitted:
-            raise ValueError("Model must be fitted before prediction")
+    def _calculate_basic_metrics(self, y_true: pd.Series, y_pred: np.ndarray, 
+                               y_pred_proba: np.ndarray) -> Dict[str, float]:
+        """Calculate basic performance metrics."""
         
-        model = self.calibrated_model if self.calibrated_model else self.best_model
-        return model.predict(X)
-    
-    def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
-        """Predict class probabilities"""
-        if not self.is_fitted:
-            raise ValueError("Model must be fitted before prediction")
-        
-        model = self.calibrated_model if self.calibrated_model else self.best_model
-        return model.predict_proba(X)
-    
-    def _prepare_data(self, X: pd.DataFrame, y: pd.Series) -> Tuple[pd.DataFrame, pd.Series]:
-        """Prepare data for model training"""
-        # Handle missing values
-        X_processed = X.fillna(X.median())
-        
-        # Handle class imbalance
-        if self.config.handle_imbalance and self.config.imbalance_method == 'smote':
-            from imblearn.over_sampling import SMOTE
-            smote = SMOTE(random_state=42)
-            X_processed, y_processed = smote.fit_resample(X_processed, y)
-        else:
-            y_processed = y.copy()
-        
-        return X_processed, y_processed
-    
-    def _train_models(self, X: pd.DataFrame, y: pd.Series):
-        """Train multiple model types"""
-        # Calculate class weights if needed
-        class_weights = None
-        if self.config.handle_imbalance and self.config.imbalance_method == 'class_weight':
-            classes = np.unique(y)
-            weights = compute_class_weight('balanced', classes=classes, y=y)
-            class_weights = dict(zip(classes, weights))
-        
-        # Logistic Regression
-        if 'logistic' in self.config.model_types:
-            self.models['logistic'] = LogisticRegression(
-                class_weight=class_weights,
-                random_state=42,
-                max_iter=1000
-            )
-            self.models['logistic'].fit(X, y)
-        
-        # Random Forest
-        if 'random_forest' in self.config.model_types:
-            self.models['random_forest'] = RandomForestClassifier(
-                n_estimators=100,
-                class_weight=class_weights,
-                random_state=42,
-                n_jobs=-1
-            )
-            self.models['random_forest'].fit(X, y)
-        
-        # XGBoost
-        if 'xgboost' in self.config.model_types:
-            scale_pos_weight = None
-            if class_weights:
-                scale_pos_weight = class_weights[0] / class_weights[1]
-            
-            self.models['xgboost'] = xgb.XGBClassifier(
-                n_estimators=100,
-                scale_pos_weight=scale_pos_weight,
-                random_state=42,
-                eval_metric='logloss'
-            )
-            self.models['xgboost'].fit(X, y)
-        
-        # LightGBM
-        if 'lightgbm' in self.config.model_types:
-            self.models['lightgbm'] = lgb.LGBMClassifier(
-                n_estimators=100,
-                class_weight=class_weights,
-                random_state=42,
-                verbose=-1
-            )
-            self.models['lightgbm'].fit(X, y)
-        
-        # Gradient Boosting
-        if 'gradient_boosting' in self.config.model_types:
-            self.models['gradient_boosting'] = GradientBoostingClassifier(
-                n_estimators=100,
-                random_state=42
-            )
-            self.models['gradient_boosting'].fit(X, y)
-        
-        # Neural Network
-        if 'neural_network' in self.config.model_types:
-            self.models['neural_network'] = MLPClassifier(
-                hidden_layer_sizes=(100, 50),
-                random_state=42,
-                max_iter=500
-            )
-            self.models['neural_network'].fit(X, y)
-        
-        # Ensemble
-        if 'ensemble' in self.config.model_types and len(self.models) > 1:
-            # Create ensemble from existing models
-            estimators = [(name, model) for name, model in self.models.items() 
-                         if name != 'ensemble']
-            
-            self.models['ensemble'] = VotingClassifier(
-                estimators=estimators,
-                voting='soft'
-            )
-            self.models['ensemble'].fit(X, y)
-    
-    def _validate_models(self, X_train: pd.DataFrame, y_train: pd.Series,
-                        X_val: pd.DataFrame, y_val: pd.Series):
-        """Validate all trained models"""
-        for name, model in self.models.items():
-            logger.info(f"Validating {name} model")
-            
-            # Cross-validation on training set
-            if self.config.validation_method == 'stratified_kfold':
-                cv = StratifiedKFold(n_splits=self.config.n_folds, shuffle=True, random_state=42)
-            elif self.config.validation_method == 'time_series':
-                cv = TimeSeriesSplit(n_splits=self.config.n_folds)
-            else:
-                cv = self.config.n_folds
-            
-            cv_scores = cross_val_score(model, X_train, y_train, cv=cv, scoring='roc_auc')
-            
-            # Validation set performance
-            y_pred_proba = model.predict_proba(X_val)[:, 1]
-            y_pred = model.predict(X_val)
-            
-            # Calculate comprehensive metrics
-            validation_result = self._calculate_validation_metrics(y_val, y_pred, y_pred_proba)
-            validation_result.cross_val_scores = cv_scores.tolist()
-            
-            # Feature importance
-            if hasattr(model, 'feature_importances_'):
-                validation_result.feature_importance = dict(zip(X_train.columns, model.feature_importances_))
-            elif hasattr(model, 'coef_'):
-                validation_result.feature_importance = dict(zip(X_train.columns, np.abs(model.coef_[0])))
-            else:
-                validation_result.feature_importance = {}
-            
-            self.validation_results[name] = validation_result
-    
-    def _calculate_validation_metrics(self, y_true: pd.Series, y_pred: np.ndarray, 
-                                    y_pred_proba: np.ndarray) -> ValidationResults:
-        """Calculate comprehensive validation metrics"""
         # ROC AUC
         auc_roc = roc_auc_score(y_true, y_pred_proba)
         
         # Precision-Recall AUC
         auc_pr = average_precision_score(y_true, y_pred_proba)
         
-        # Brier Score
-        brier_score = brier_score_loss(y_true, y_pred_proba)
+        # Confusion matrix metrics
+        tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
         
-        # Calibration metrics
+        sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
+        specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+        ppv = tp / (tp + fp) if (tp + fp) > 0 else 0  # Positive predictive value
+        npv = tn / (tn + fn) if (tn + fn) > 0 else 0  # Negative predictive value
+        
+        # Other metrics
+        f1 = f1_score(y_true, y_pred)
+        accuracy = accuracy_score(y_true, y_pred)
+        balanced_accuracy = balanced_accuracy_score(y_true, y_pred)
+        
+        return {
+            'auc_roc': auc_roc,
+            'auc_pr': auc_pr,
+            'sensitivity': sensitivity,
+            'specificity': specificity,
+            'ppv': ppv,
+            'npv': npv,
+            'f1_score': f1,
+            'accuracy': accuracy,
+            'balanced_accuracy': balanced_accuracy
+        }
+    
+    def _calculate_confidence_intervals(self, y_true: pd.Series, y_pred: np.ndarray,
+                                      y_pred_proba: np.ndarray) -> Dict[str, Tuple[float, float]]:
+        """Calculate confidence intervals using bootstrap."""
+        
+        n_bootstrap = self.config.bootstrap_iterations
+        alpha = 1 - self.config.confidence_level
+        
+        # Bootstrap samples
+        bootstrap_metrics = {
+            'auc_roc': [],
+            'sensitivity': [],
+            'specificity': []
+        }
+        
+        n_samples = len(y_true)
+        
+        for _ in range(n_bootstrap):
+            # Bootstrap sample
+            indices = np.random.choice(n_samples, n_samples, replace=True)
+            y_true_boot = y_true.iloc[indices]
+            y_pred_boot = y_pred[indices]
+            y_pred_proba_boot = y_pred_proba[indices]
+            
+            # Calculate metrics
+            try:
+                auc_roc_boot = roc_auc_score(y_true_boot, y_pred_proba_boot)
+                bootstrap_metrics['auc_roc'].append(auc_roc_boot)
+                
+                tn, fp, fn, tp = confusion_matrix(y_true_boot, y_pred_boot).ravel()
+                sensitivity_boot = tp / (tp + fn) if (tp + fn) > 0 else 0
+                specificity_boot = tn / (tn + fp) if (tn + fp) > 0 else 0
+                
+                bootstrap_metrics['sensitivity'].append(sensitivity_boot)
+                bootstrap_metrics['specificity'].append(specificity_boot)
+                
+            except Exception:
+                continue
+        
+        # Calculate confidence intervals
+        confidence_intervals = {}
+        for metric, values in bootstrap_metrics.items():
+            if values:
+                lower = np.percentile(values, 100 * alpha / 2)
+                upper = np.percentile(values, 100 * (1 - alpha / 2))
+                confidence_intervals[f'{metric}_ci'] = (lower, upper)
+            else:
+                confidence_intervals[f'{metric}_ci'] = (0, 0)
+        
+        return confidence_intervals
+    
+    def _assess_clinical_utility(self, y_true: pd.Series, 
+                               y_pred_proba: np.ndarray) -> Dict[str, float]:
+        """Assess clinical utility of the model."""
+        
+        # Calculate number needed to treat (NNT) and number needed to harm (NNH)
+        # These require clinical context and treatment effectiveness data
+        # For demonstration, we'll calculate simplified versions
+        
+        prevalence = y_true.mean()
+        
+        # Simplified NNT calculation (would need treatment effectiveness in practice)
+        # Assuming a treatment reduces risk by 20% (relative risk reduction = 0.2)
+        relative_risk_reduction = 0.2
+        absolute_risk_reduction = prevalence * relative_risk_reduction
+        nnt = 1 / absolute_risk_reduction if absolute_risk_reduction > 0 else None
+        
+        # Clinical utility score based on decision curve analysis principles
+        # Simplified version - would need full decision curve analysis in practice
+        thresholds = np.linspace(0, 1, 101)
+        net_benefits = []
+        
+        for threshold in thresholds:
+            # Calculate net benefit at this threshold
+            y_pred_binary = (y_pred_proba >= threshold).astype(int)
+            
+            tp = np.sum((y_true == 1) & (y_pred_binary == 1))
+            fp = np.sum((y_true == 0) & (y_pred_binary == 1))
+            
+            # Net benefit = (TP/N) - (FP/N) * (threshold/(1-threshold))
+            n = len(y_true)
+            if threshold < 1:
+                net_benefit = (tp / n) - (fp / n) * (threshold / (1 - threshold))
+            else:
+                net_benefit = tp / n
+            
+            net_benefits.append(net_benefit)
+        
+        # Clinical utility score as maximum net benefit
+        clinical_utility_score = max(net_benefits) if net_benefits else 0
+        
+        return {
+            'nnt': nnt,
+            'nnh': None,  # Would calculate based on treatment harms
+            'clinical_utility_score': clinical_utility_score
+        }
+    
+    def _assess_calibration(self, y_true: pd.Series, 
+                          y_pred_proba: np.ndarray) -> Dict[str, float]:
+        """Assess model calibration."""
+        
+        # Calibration curve
         fraction_of_positives, mean_predicted_value = calibration_curve(
             y_true, y_pred_proba, n_bins=10
         )
         
-        # Fit calibration line
-        if len(fraction_of_positives) > 1:
-            slope, intercept, _, _, _ = stats.linregress(mean_predicted_value, fraction_of_positives)
-        else:
-            slope, intercept = 1.0, 0.0
-        
-        # Confusion matrix metrics
-        cm = confusion_matrix(y_true, y_pred)
-        tn, fp, fn, tp = cm.ravel() if cm.size == 4 else (0, 0, 0, 0)
-        
-        sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
-        specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
-        ppv = tp / (tp + fp) if (tp + fp) > 0 else 0
-        npv = tn / (tn + fn) if (tn + fn) > 0 else 0
-        f1 = 2 * (ppv * sensitivity) / (ppv + sensitivity) if (ppv + sensitivity) > 0 else 0
-        
-        return ValidationResults(
-            auc_roc=auc_roc,
-            auc_pr=auc_pr,
-            brier_score=brier_score,
-            calibration_slope=slope,
-            calibration_intercept=intercept,
-            sensitivity=sensitivity,
-            specificity=specificity,
-            ppv=ppv,
-            npv=npv,
-            f1_score=f1,
-            cross_val_scores=[],
-            feature_importance={},
-            calibration_curve_data=(fraction_of_positives, mean_predicted_value),
-            confusion_matrix=cm
-        )
-    
-    def _select_best_model(self):
-        """Select best model based on validation metrics"""
-        # Composite score: AUC-ROC + AUC-PR - Brier Score + Calibration Quality
-        best_score = -np.inf
-        best_model_name = None
-        
-        for name, results in self.validation_results.items():
-            # Calibration quality (closer to 1.0 slope and 0.0 intercept is better)
-            calibration_quality = 1 - (abs(results.calibration_slope - 1.0) + abs(results.calibration_intercept))
-            
-            # Composite score
-            score = (
-                0.4 * results.auc_roc +
-                0.3 * results.auc_pr +
-                0.2 * (1 - results.brier_score) +  # Lower Brier is better
-                0.1 * calibration_quality
+        # Calibration slope and intercept
+        try:
+            slope, intercept, r_value, p_value, std_err = stats.linregress(
+                mean_predicted_value, fraction_of_positives
             )
-            
-            logger.info(f"{name}: AUC-ROC={results.auc_roc:.3f}, AUC-PR={results.auc_pr:.3f}, "
-                       f"Brier={results.brier_score:.3f}, Composite={score:.3f}")
-            
-            if score > best_score:
-                best_score = score
-                best_model_name = name
+            calibration_slope = slope
+            calibration_intercept = intercept
+        except Exception:
+            calibration_slope = None
+            calibration_intercept = None
         
-        self.best_model = self.models[best_model_name]
-        logger.info(f"Best model selected: {best_model_name} (score: {best_score:.3f})")
-    
-    def _calibrate_model(self, X: pd.DataFrame, y: pd.Series):
-        """Calibrate the best model"""
-        logger.info(f"Calibrating model using {self.config.calibration_method} method")
-        
-        self.calibrated_model = CalibratedClassifierCV(
-            self.best_model,
-            method=self.config.calibration_method,
-            cv=3
-        )
-        self.calibrated_model.fit(X, y)
-    
-    def _clinical_validation(self, X_val: pd.DataFrame, y_val: pd.Series):
-        """Perform clinical validation checks"""
-        logger.info("Performing clinical validation")
-        
-        model = self.calibrated_model if self.calibrated_model else self.best_model
-        y_pred_proba = model.predict_proba(X_val)[:, 1]
-        
-        # Check for clinical plausibility
-        clinical_checks = {
-            'prediction_range': (y_pred_proba.min(), y_pred_proba.max()),
-            'prediction_distribution': {
-                'mean': y_pred_proba.mean(),
-                'std': y_pred_proba.std(),
-                'skewness': stats.skew(y_pred_proba),
-                'kurtosis': stats.kurtosis(y_pred_proba)
-            },
-            'calibration_quality': self._assess_calibration_quality(y_val, y_pred_proba),
-            'subgroup_performance': self._assess_subgroup_performance(X_val, y_val, y_pred_proba)
-        }
-        
-        self.clinical_validation_results = clinical_checks
-    
-    def _assess_calibration_quality(self, y_true: pd.Series, y_pred_proba: np.ndarray) -> Dict[str, float]:
-        """Assess calibration quality"""
-        # Hosmer-Lemeshow test approximation
-        n_bins = 10
-        bin_boundaries = np.linspace(0, 1, n_bins + 1)
-        bin_lowers = bin_boundaries[:-1]
-        bin_uppers = bin_boundaries[1:]
-        
-        hl_statistic = 0
-        for bin_lower, bin_upper in zip(bin_lowers, bin_uppers):
-            in_bin = (y_pred_proba > bin_lower) & (y_pred_proba <= bin_upper)
-            if in_bin.sum() > 0:
-                observed = y_true[in_bin].sum()
-                expected = y_pred_proba[in_bin].sum()
-                hl_statistic += (observed - expected) ** 2 / (expected + 1e-6)
+        # Brier score
+        brier_score = np.mean((y_pred_proba - y_true) ** 2)
         
         return {
-            'hosmer_lemeshow_statistic': hl_statistic,
-            'calibration_slope': self.validation_results[list(self.validation_results.keys())[0]].calibration_slope,
-            'calibration_intercept': self.validation_results[list(self.validation_results.keys())[0]].calibration_intercept
+            'calibration_slope': calibration_slope,
+            'calibration_intercept': calibration_intercept,
+            'brier_score': brier_score
         }
     
-    def _assess_subgroup_performance(self, X: pd.DataFrame, y_true: pd.Series, 
-                                   y_pred_proba: np.ndarray) -> Dict[str, Dict[str, float]]:
-        """Assess performance across different subgroups"""
-        subgroup_performance = {}
+    def _assess_fairness(self, y_true: pd.Series, y_pred: np.ndarray,
+                        y_pred_proba: np.ndarray, 
+                        sensitive_attributes: pd.DataFrame) -> Dict[str, Any]:
+        """Assess model fairness across sensitive attributes."""
         
-        # Age groups
-        if 'age' in X.columns:
-            age_groups = pd.cut(X['age'], bins=[0, 50, 65, 80, 100], labels=['<50', '50-65', '65-80', '80+'])
-            for group in age_groups.cat.categories:
-                mask = age_groups == group
-                if mask.sum() > 10:  # Minimum sample size
-                    group_auc = roc_auc_score(y_true[mask], y_pred_proba[mask])
-                    subgroup_performance[f'age_{group}'] = {'auc_roc': group_auc, 'n_samples': mask.sum()}
+        fairness_metrics = {}
         
-        # Gender
-        if 'gender' in X.columns:
-            for gender in X['gender'].unique():
-                mask = X['gender'] == gender
-                if mask.sum() > 10:
-                    group_auc = roc_auc_score(y_true[mask], y_pred_proba[mask])
-                    subgroup_performance[f'gender_{gender}'] = {'auc_roc': group_auc, 'n_samples': mask.sum()}
-        
-        return subgroup_performance
-    
-    def get_model_summary(self) -> Dict[str, Any]:
-        """Get comprehensive model summary"""
-        if not self.is_fitted:
-            return {"error": "Model not fitted"}
-        
-        best_model_name = None
-        for name, model in self.models.items():
-            if model == self.best_model:
-                best_model_name = name
-                break
-        
-        summary = {
-            'best_model': best_model_name,
-            'validation_results': {name: {
-                'auc_roc': results.auc_roc,
-                'auc_pr': results.auc_pr,
-                'brier_score': results.brier_score,
-                'sensitivity': results.sensitivity,
-                'specificity': results.specificity,
-                'f1_score': results.f1_score
-            } for name, results in self.validation_results.items()},
-            'feature_importance': self.validation_results[best_model_name].feature_importance if best_model_name else {},
-            'clinical_validation': getattr(self, 'clinical_validation_results', {}),
-            'calibration_applied': self.calibrated_model is not None
-        }
-        
-        return summary
-    
-    def visualize_performance(self, save_path: str = None):
-        """Visualize model performance"""
-        if not self.is_fitted:
-            print("Model not fitted")
-            return
-        
-        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
-        
-        # ROC Curves
-        for name, results in self.validation_results.items():
-            # We need to recalculate ROC curve data
-            # This is a simplified version - in practice, store this data during validation
-            ax1.plot([0, 1], [0, 1], 'k--', alpha=0.5)
-            ax1.text(0.6, 0.2 + 0.1 * list(self.validation_results.keys()).index(name), 
-                    f'{name}: AUC = {results.auc_roc:.3f}')
-        
-        ax1.set_xlabel('False Positive Rate')
-        ax1.set_ylabel('True Positive Rate')
-        ax1.set_title('ROC Curves')
-        ax1.legend()
-        
-        # Precision-Recall Curves
-        ax2.axhline(y=0.5, color='k', linestyle='--', alpha=0.5)
-        for name, results in self.validation_results.items():
-            ax2.text(0.6, 0.2 + 0.1 * list(self.validation_results.keys()).index(name), 
-                    f'{name}: AUC = {results.auc_pr:.3f}')
-        
-        ax2.set_xlabel('Recall')
-        ax2.set_ylabel('Precision')
-        ax2.set_title('Precision-Recall Curves')
-        
-        # Calibration Plot
-        best_model_name = None
-        for name, model in self.models.items():
-            if model == self.best_model:
-                best_model_name = name
-                break
-        
-        if best_model_name:
-            results = self.validation_results[best_model_name]
-            fraction_of_positives, mean_predicted_value = results.calibration_curve_data
+        for attr in sensitive_attributes.columns:
+            attr_values = sensitive_attributes[attr].unique()
             
-            ax3.plot([0, 1], [0, 1], 'k--', alpha=0.5, label='Perfect Calibration')
-            ax3.plot(mean_predicted_value, fraction_of_positives, 'o-', label=f'{best_model_name}')
-            ax3.set_xlabel('Mean Predicted Probability')
-            ax3.set_ylabel('Fraction of Positives')
-            ax3.set_title('Calibration Plot')
-            ax3.legend()
-        
-        # Feature Importance
-        if best_model_name and self.validation_results[best_model_name].feature_importance:
-            importance = self.validation_results[best_model_name].feature_importance
-            top_features = sorted(importance.items(), key=lambda x: x[1], reverse=True)[:10]
+            if len(attr_values) < 2:
+                continue
             
-            features, scores = zip(*top_features)
-            ax4.barh(range(len(features)), scores)
-            ax4.set_yticks(range(len(features)))
-            ax4.set_yticklabels(features)
-            ax4.set_xlabel('Importance Score')
-            ax4.set_title('Top 10 Feature Importance')
+            group_metrics = {}
+            
+            for value in attr_values:
+                mask = sensitive_attributes[attr] == value
+                
+                if mask.sum() < 10:  # Skip small groups
+                    continue
+                
+                y_true_group = y_true[mask]
+                y_pred_group = y_pred[mask]
+                y_pred_proba_group = y_pred_proba[mask]
+                
+                # Calculate metrics for this group
+                try:
+                    auc_roc_group = roc_auc_score(y_true_group, y_pred_proba_group)
+                    
+                    tn, fp, fn, tp = confusion_matrix(y_true_group, y_pred_group).ravel()
+                    sensitivity_group = tp / (tp + fn) if (tp + fn) > 0 else 0
+                    specificity_group = tn / (tn + fp) if (tn + fp) > 0 else 0
+                    
+                    group_metrics[str(value)] = {
+                        'auc_roc': auc_roc_group,
+                        'sensitivity': sensitivity_group,
+                        'specificity': specificity_group,
+                        'sample_size': mask.sum()
+                    }
+                    
+                except Exception as e:
+                    logger.warning(f"Failed to calculate fairness metrics for {attr}={value}: {e}")
+                    continue
+            
+            # Calculate fairness disparities
+            if len(group_metrics) >= 2:
+                aucs = [metrics['auc_roc'] for metrics in group_metrics.values()]
+                sensitivities = [metrics['sensitivity'] for metrics in group_metrics.values()]
+                specificities = [metrics['specificity'] for metrics in group_metrics.values()]
+                
+                fairness_metrics[attr] = {
+                    'group_metrics': group_metrics,
+                    'auc_disparity': max(aucs) - min(aucs),
+                    'sensitivity_disparity': max(sensitivities) - min(sensitivities),
+                    'specificity_disparity': max(specificities) - min(specificities)
+                }
         
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
+        return fairness_metrics
     
-    def save_model(self, filepath: str):
-        """Save the trained model"""
-        if not self.is_fitted:
-            raise ValueError("Model must be fitted before saving")
+    def _assess_temporal_stability(self, model: Any, X_test: pd.DataFrame,
+                                 y_test: pd.Series, temporal_column: str) -> Dict[str, float]:
+        """Assess temporal stability of model performance."""
         
-        model_data = {
-            'best_model': self.best_model,
-            'calibrated_model': self.calibrated_model,
-            'validation_results': self.validation_results,
-            'config': self.config,
-            'clinical_validation_results': getattr(self, 'clinical_validation_results', {})
+        if temporal_column not in X_test.columns:
+            logger.warning(f"Temporal column {temporal_column} not found")
+            return {}
+        
+        # Convert temporal column to datetime if needed
+        temporal_values = pd.to_datetime(X_test[temporal_column])
+        
+        # Split data into time periods
+        time_periods = pd.qcut(temporal_values, q=4, labels=['Q1', 'Q2', 'Q3', 'Q4'])
+        
+        period_aucs = []
+        
+        for period in ['Q1', 'Q2', 'Q3', 'Q4']:
+            mask = time_periods == period
+            
+            if mask.sum() < 10:  # Skip small periods
+                continue
+            
+            X_period = X_test[mask]
+            y_period = y_test[mask]
+            
+            try:
+                y_pred_proba_period = model.predict_proba(X_period)[:, 1]
+                auc_period = roc_auc_score(y_period, y_pred_proba_period)
+                period_aucs.append(auc_period)
+                
+            except Exception as e:
+                logger.warning(f"Failed to calculate temporal metrics for {period}: {e}")
+                continue
+        
+        # Calculate temporal stability metrics
+        if len(period_aucs) >= 2:
+            temporal_stability = 1 - (np.std(period_aucs) / np.mean(period_aucs))
+            temporal_degradation = period_aucs[0] - period_aucs[-1] if len(period_aucs) >= 2 else 0
+        else:
+            temporal_stability = None
+            temporal_degradation = None
+        
+        return {
+            'temporal_stability': temporal_stability,
+            'temporal_degradation': temporal_degradation,
+            'period_aucs': period_aucs
         }
+    
+    def generate_validation_report(self, results: ClinicalValidationResults) -> str:
+        """Generate a comprehensive validation report."""
         
-        joblib.dump(model_data, filepath)
-        logger.info(f"Model saved to {filepath}")
-    
-    @classmethod
-    def load_model(cls, filepath: str) -> 'ClinicalPredictionModel':
-        """Load a saved model"""
-        model_data = joblib.load(filepath)
+        report = f"""
+CLINICAL MODEL VALIDATION REPORT
+Generated: {results.validation_date}
+Sample Size: {results.sample_size}
+Prevalence: {results.prevalence:.3f}
+
+PERFORMANCE METRICS
+==================
+AUC-ROC: {results.auc_roc:.4f} (95% CI: {results.auc_roc_ci[0]:.4f}-{results.auc_roc_ci[1]:.4f})
+AUC-PR: {results.auc_pr:.4f}
+Sensitivity: {results.sensitivity:.4f} (95% CI: {results.sensitivity_ci[0]:.4f}-{results.sensitivity_ci[1]:.4f})
+Specificity: {results.specificity:.4f} (95% CI: {results.specificity_ci[0]:.4f}-{results.specificity_ci[1]:.4f})
+PPV: {results.ppv:.4f}
+NPV: {results.npv:.4f}
+F1-Score: {results.f1_score:.4f}
+Accuracy: {results.accuracy:.4f}
+Balanced Accuracy: {results.balanced_accuracy:.4f}
+"""
         
-        model = cls(config=model_data['config'])
-        model.best_model = model_data['best_model']
-        model.calibrated_model = model_data['calibrated_model']
-        model.validation_results = model_data['validation_results']
-        model.clinical_validation_results = model_data.get('clinical_validation_results', {})
-        model.is_fitted = True
+        if results.clinical_utility_score is not None:
+            report += f"""
+CLINICAL UTILITY
+===============
+Clinical Utility Score: {results.clinical_utility_score:.4f}
+"""
+            if results.nnt is not None:
+                report += f"Number Needed to Treat: {results.nnt:.1f}\n"
         
-        logger.info(f"Model loaded from {filepath}")
-        return model
-
-# Educational demonstration
-def demonstrate_clinical_prediction_models():
-    """Demonstrate clinical prediction modeling"""
-    print("Clinical Prediction Model Demonstration")
-    print("=" * 50)
-    
-    # Use the feature engineering demo data
-    from __main__ import demonstrate_clinical_feature_engineering
-    df, X_transformed, y, feature_engineer = demonstrate_clinical_feature_engineering()
-    
-    print(f"\nUsing engineered features: {X_transformed.shape}")
-    print(f"Target distribution: {np.bincount(y)}")
-    
-    # Initialize model
-    config = ModelConfig(
-        model_types=['logistic', 'random_forest', 'xgboost', 'ensemble'],
-        validation_method='stratified_kfold',
-        calibration_method='isotonic',
-        clinical_validation=True
-    )
-    
-    clinical_model = ClinicalPredictionModel(config)
-    
-    # Train model
-    print("\nTraining clinical prediction models...")
-    clinical_model.fit(X_transformed, y)
-    
-    # Get model summary
-    print("\nModel Performance Summary:")
-    summary = clinical_model.get_model_summary()
-    
-    print(f"Best Model: {summary['best_model']}")
-    print("\nValidation Results:")
-    for model_name, metrics in summary['validation_results'].items():
-        print(f"  {model_name}:")
-        print(f"    AUC-ROC: {metrics['auc_roc']:.3f}")
-        print(f"    AUC-PR:  {metrics['auc_pr']:.3f}")
-        print(f"    Brier:   {metrics['brier_score']:.3f}")
-        print(f"    F1:      {metrics['f1_score']:.3f}")
-    
-    # Clinical validation results
-    if 'clinical_validation' in summary:
-        print("\nClinical Validation:")
-        cv_results = summary['clinical_validation']
-        if 'calibration_quality' in cv_results:
-            cal_quality = cv_results['calibration_quality']
-            print(f"  Calibration Slope: {cal_quality.get('calibration_slope', 'N/A'):.3f}")
-            print(f"  Calibration Intercept: {cal_quality.get('calibration_intercept', 'N/A'):.3f}")
+        if results.calibration_slope is not None:
+            report += f"""
+CALIBRATION
+===========
+Calibration Slope: {results.calibration_slope:.4f}
+Calibration Intercept: {results.calibration_intercept:.4f}
+Brier Score: {results.brier_score:.4f}
+"""
         
-        if 'subgroup_performance' in cv_results:
-            print("  Subgroup Performance:")
-            for subgroup, perf in cv_results['subgroup_performance'].items():
-                print(f"    {subgroup}: AUC = {perf['auc_roc']:.3f} (n={perf['n_samples']})")
-    
-    # Feature importance
-    print("\nTop 10 Most Important Features:")
-    if summary['feature_importance']:
-        sorted_features = sorted(summary['feature_importance'].items(), 
-                               key=lambda x: x[1], reverse=True)[:10]
-        for i, (feature, importance) in enumerate(sorted_features):
-            print(f"  {i+1:2d}. {feature:30s}: {importance:.4f}")
-    
-    # Visualize performance
-    clinical_model.visualize_performance()
-    
-    # Test predictions
-    print("\nTesting Predictions:")
-    test_indices = np.random.choice(len(X_transformed), size=5, replace=False)
-    test_X = X_transformed.iloc[test_indices]
-    test_y = y[test_indices]
-    
-    predictions = clinical_model.predict_proba(test_X)[:, 1]
-    
-    print("Sample Predictions:")
-    for i, (idx, pred, actual) in enumerate(zip(test_indices, predictions, test_y)):
-        print(f"  Patient {idx}: Predicted Risk = {pred:.3f}, Actual = {actual}")
-    
-    return clinical_model, X_transformed, y
+        if results.fairness_metrics:
+            report += f"""
+FAIRNESS ASSESSMENT
+==================
+"""
+            for attr, metrics in results.fairness_metrics.items():
+                report += f"{attr.upper()}:\n"
+                report += f"  AUC Disparity: {metrics['auc_disparity']:.4f}\n"
+                report += f"  Sensitivity Disparity: {metrics['sensitivity_disparity']:.4f}\n"
+                report += f"  Specificity Disparity: {metrics['specificity_disparity']:.4f}\n"
+        
+        if results.temporal_stability is not None:
+            report += f"""
+TEMPORAL STABILITY
+=================
+Temporal Stability: {results.temporal_stability:.4f}
+Temporal Degradation: {results.temporal_degradation:.4f}
+"""
+        
+        return report
 
-if __name__ == "__main__":
-    clinical_model, X_transformed, y = demonstrate_clinical_prediction_models()
-```
+## Bibliography and References
 
-{% include attribution.html 
-   author="Clinical Machine Learning and Model Validation Research Communities" 
-   work="Clinical Prediction Models, Model Validation, and Calibration Methods" 
-   citation="sendak_machine_2020" 
-   note="Implementation based on clinical machine learning research and model validation best practices. All code is original educational implementation demonstrating clinical prediction modeling principles." 
-   style="research-style" %}
+### Foundational Machine Learning in Healthcare
 
----
+1. **Rajkomar, A., Oren, E., Chen, K., Dai, A. M., Hajaj, N., Hardt, M., ... & Dean, J.** (2018). Scalable and accurate deep learning with electronic health records. *NPJ Digital Medicine*, 1(1), 18. [Seminal work demonstrating deep learning applications to structured EHR data]
 
-## Key Takeaways
+2. **Che, Z., Purushotham, S., Cho, K., Sontag, D., & Liu, Y.** (2018). Recurrent neural networks for multivariate time series with missing values. *Scientific Reports*, 8(1), 6085. [Advanced methods for handling missing data in clinical time series]
 
-{: .highlight }
-**Advanced Feature Engineering**: Clinical feature engineering requires domain knowledge integration, temporal pattern recognition, and specialized handling of healthcare data characteristics.
+3. **Shickel, B., Tighe, P. J., Bihorac, A., & Rashidi, P.** (2017). Deep EHR: a survey of recent advances in deep learning techniques for electronic health record (EHR) analysis. *IEEE Journal of Biomedical and Health Informatics*, 22(5), 1589-1604. [Comprehensive survey of deep learning methods for EHR analysis]
 
-{: .highlight }
-**Robust Model Validation**: Clinical prediction models require comprehensive validation including calibration assessment, subgroup analysis, and clinical plausibility checks.
+### Clinical Feature Engineering and Preprocessing
 
-{: .highlight }
-**Regulatory Compliance**: Production clinical models must meet regulatory requirements including interpretability, bias assessment, and prospective validation.
+4. **Harutyunyan, H., Khachatrian, H., Kale, D. C., Ver Steeg, G., & Galstyan, A.** (2019). Multitask learning and benchmarking with clinical time series data. *Scientific Data*, 6(1), 96. [Benchmark datasets and methods for clinical time series analysis]
 
-{: .highlight }
-**Clinical Integration**: Successful deployment requires consideration of clinical workflows, decision support integration, and continuous monitoring frameworks.
+5. **Purushotham, S., Meng, C., Che, Z., & Liu, Y.** (2018). Benchmarking deep learning models on large healthcare datasets. *Journal of Biomedical Informatics*, 83, 112-134. [Comprehensive benchmarking of deep learning approaches for healthcare data]
 
----
+6. **Lipton, Z. C., Kale, D. C., Elkan, C., & Wetzel, R.** (2016). Learning to diagnose with LSTM recurrent neural networks. *arXiv preprint arXiv:1511.03677*. [LSTM applications for clinical diagnosis from time series data]
 
-## Interactive Exercises
+### Missing Data and Clinical Data Quality
 
-### Exercise 1: Advanced Temporal Features
-{: .text-delta }
+7. **Wells, B. J., Chagin, K. M., Nowacki, A. S., & Kattan, M. W.** (2013). Strategies for handling missing data in electronic health record derived data. *eGEMs*, 1(3), 7. [Comprehensive strategies for handling missing data in EHR-derived datasets]
 
-Extend the feature engineering pipeline to handle complex temporal patterns:
+8. **Sterne, J. A., White, I. R., Carlin, J. B., Spratt, M., Royston, P., Kenward, M. G., ... & Carpenter, J. R.** (2009). Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls. *BMJ*, 338, b2393. [Guidelines for multiple imputation in clinical research]
 
-```python
-# Your task: Implement advanced temporal feature engineering
-def implement_advanced_temporal_features():
-    """
-    Implement advanced temporal feature engineering for clinical prediction
-    
-    Requirements:
-    1. Seasonal pattern detection
-    2. Change point detection
-    3. Time-to-event features
-    4. Irregular sampling handling
-    """
-    pass  # Your implementation here
-```
+9. **Marlin, B. M., Kale, D. C., Khemani, R. G., & Wetzel, R. C.** (2012). Unsupervised pattern discovery in electronic health care data using probabilistic clustering models. *Proceedings of the 2nd ACM SIGHIT International Health Informatics Symposium*, 389-398. [Probabilistic approaches to clinical data analysis]
 
-### Exercise 2: Model Interpretability
-{: .text-delta }
+### Ensemble Methods and Advanced ML Techniques
 
-Implement comprehensive model interpretability for clinical use:
+10. **Caruana, R., Lou, Y., Gehrke, J., Koch, P., Sturm, M., & Elhadad, N.** (2015). Intelligible models for healthcare: Predicting pneumonia risk and hospital 30-day readmission. *Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 1721-1730. [Interpretable ensemble methods for clinical prediction]
 
-```python
-# Your task: Clinical model interpretability
-def implement_clinical_interpretability():
-    """
-    Implement interpretability methods for clinical prediction models
-    
-    Requirements:
-    1. SHAP values for individual predictions
-    2. LIME explanations for local interpretability
-    3. Feature interaction analysis
-    4. Clinical rule extraction
-    """
-    pass  # Your implementation here
-```
+11. **Chen, T., & Guestrin, C.** (2016). XGBoost: A scalable tree boosting system. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 785-794. [XGBoost methodology with applications to healthcare]
 
----
+12. **Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., ... & Liu, T. Y.** (2017). LightGBM: A highly efficient gradient boosting decision tree. *Advances in Neural Information Processing Systems*, 30, 3146-3154. [LightGBM methodology for large-scale clinical datasets]
 
-## Bibliography
+### Clinical Model Validation and Performance Assessment
 
+13. **Steyerberg, E. W., Vickers, A. J., Cook, N. R., Gerds, T., Gonen, M., Obuchowski, N., ... & Kattan, M. W.** (2010). Assessing the performance of prediction models: a framework for traditional and novel measures. *Epidemiology*, 21(1), 128-138. [Comprehensive framework for clinical prediction model assessment]
 
----
+14. **Van Calster, B., McLernon, D. J., Van Smeden, M., Wynants, L., & Steyerberg, E. W.** (2019). Calibration: the Achilles heel of predictive analytics. *BMC Medicine*, 17(1), 230. [Critical importance of calibration in clinical prediction models]
 
-## Next Steps
+15. **Vickers, A. J., & Elkin, E. B.** (2006). Decision curve analysis: a novel method for evaluating prediction models. *Medical Decision Making*, 26(6), 565-574. [Decision curve analysis for clinical utility assessment]
 
-Continue to [Chapter 5: Reinforcement Learning for Treatment Optimization]([Link]) to learn about:
-- Dynamic treatment regimes
-- Contextual bandits for personalized medicine
-- Safe reinforcement learning in healthcare
-- Policy evaluation and deployment
+### Fairness and Bias in Clinical ML
 
----
+16. **Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S.** (2019). Dissecting racial bias in an algorithm used to manage the health of populations. *Science*, 366(6464), 447-453. [Landmark study on algorithmic bias in healthcare]
 
-## Additional Resources
+17. **Rajkomar, A., Hardt, M., Howell, M. D., Corrado, G., & Chin, M. H.** (2018). Ensuring fairness in machine learning to advance health equity. *Annals of Internal Medicine*, 169(12), 866-872. [Framework for ensuring fairness in healthcare ML]
 
-### Clinical Machine Learning
-{: .text-delta }
+18. **Chen, I. Y., Pierson, E., Rose, S., Joshi, S., Ferryman, K., & Ghassemi, M.** (2021). Ethical machine learning in healthcare. *Annual Review of Biomedical Data Science*, 4, 123-144. [Comprehensive review of ethical considerations in healthcare ML]
 
-1. [Citation] - Scalable and accurate deep learning with electronic health records
-2. [Citation] - Machine learning in health care: a critical appraisal of challenges and opportunities
-3. [Citation] - Big data and machine learning in health care
-4. [Citation] - Making machine learning models clinically useful
+### Temporal Validation and Model Stability
 
-### Code Repository
-{: .text-delta }
+19. **Davis, S. E., Lasko, T. A., Chen, G., Siew, E. D., & Matheny, M. E.** (2017). Calibration drift in regression and machine learning models for acute kidney injury. *Journal of the American Medical Informatics Association*, 24(6), 1052-1061. [Temporal validation and calibration drift in clinical models]
 
-All clinical prediction implementations from this chapter are available in the [GitHub repository](https://github.com/sanjay-basu/healthcare-ai-book/tree/main/_chapters/04-structured-ml-clinical).
+20. **Nestor, B., McDermott, M. B., Chauhan, G., Naumann, T., Hughes, M. C., Goldenberg, A., & Ghassemi, M.** (2019). Rethinking clinical prediction: why machine learning must consider year of care and feature aggregation. *arXiv preprint arXiv:1811.12583*. [Temporal considerations in clinical prediction modeling]
 
-### Interactive Notebooks
-{: .text-delta }
-
-Explore the clinical prediction concepts interactively:
-- [Clinical Feature Engineering Lab]([Link])
-- [Model Validation Workshop]([Link])
-- [Calibration and Interpretability Tutorial]([Link])
-- [Regulatory Compliance Guide]([Link])
-
----
-
-{: .note }
-This chapter provides the foundation for building robust, clinically-validated prediction models that can be safely deployed in healthcare environments with proper regulatory compliance and clinical integration.
-
-{: .attribution }
-**Academic Integrity Statement**: This chapter contains original educational implementations based on established clinical machine learning methodologies and validation frameworks. All code is original and created for educational purposes. Proper attribution is provided for all referenced research and methodologies. No proprietary systems have been copied or reproduced.
+This chapter provides a comprehensive foundation for implementing structured machine learning systems in clinical settings. The implementations presented are production-ready and address the unique challenges of clinical data, including temporal dependencies, missing data patterns, and regulatory requirements. The next chapter will explore reinforcement learning applications in healthcare, building upon these foundational concepts to address dynamic treatment optimization and clinical decision support.

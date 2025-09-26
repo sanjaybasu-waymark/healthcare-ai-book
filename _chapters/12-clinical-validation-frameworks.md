@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 12: Clinical Validation Frameworks - Evidence Generation for Healthcare AI Systems"
+title: "Chapter 12: Clinical Validation Frameworks"
 nav_order: 12
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 12: Clinical Validation Frameworks - Evidence Generation for Healthcare AI Systems

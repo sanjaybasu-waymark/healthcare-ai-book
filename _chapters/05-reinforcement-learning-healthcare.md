@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 5: Reinforcement Learning in Healthcare - Dynamic Treatment Optimization and Clinical Decision Support"
+title: "Chapter 5: Reinforcement Learning Healthcare"
 nav_order: 5
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 5: Reinforcement Learning in Healthcare - Dynamic Treatment Optimization and Clinical Decision Support

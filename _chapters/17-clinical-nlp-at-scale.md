@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 17: Clinical NLP at Scale - Transformers, Entity Recognition, and Question Answering"
+title: "Chapter 17: Clinical Nlp At Scale"
 nav_order: 17
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 17: Clinical NLP at Scale - Transformers, Entity Recognition, and Question Answering

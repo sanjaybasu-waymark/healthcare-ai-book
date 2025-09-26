@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 16: Advanced Medical Imaging AI - Vision Transformers, 3D CNNs, and Foundation Models"
+title: "Chapter 16: Advanced Medical Imaging Ai"
 nav_order: 16
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 16: Advanced Medical Imaging AI - Vision Transformers, 3D CNNs, and Foundation Models

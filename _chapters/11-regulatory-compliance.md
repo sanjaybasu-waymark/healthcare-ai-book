@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 11: Regulatory Compliance and Validation Frameworks - Navigating Healthcare AI Approval and Deployment"
+title: "Chapter 11: Regulatory Compliance"
 nav_order: 11
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 11: Regulatory Compliance and Validation Frameworks - Navigating Healthcare AI Approval and Deployment

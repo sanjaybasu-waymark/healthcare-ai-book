@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 8: Bias Detection and Mitigation in Healthcare AI - Ensuring Fairness and Equity in Clinical Decision Support"
+title: "Chapter 8: Bias Detection Mitigation"
 nav_order: 8
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 8: Bias Detection and Mitigation in Healthcare AI - Ensuring Fairness and Equity in Clinical Decision Support

@@ -1,2822 +1,2311 @@
 ---
 layout: default
-title: "Chapter 2: Mathematical Foundations for Healthcare AI"
-nav_order: 3
-parent: "Part I: Foundations"
-has_children: true
-has_toc: true
-description: "Master the mathematical foundations essential for healthcare AI implementation with Bayesian methods, optimization, and uncertainty quantification"
-author: "Sanjay Basu, MD PhD"
-institution: "Waymark"
-require_attribution: true
-citation_check: true
+title: "Chapter 2: Mathematical Foundations"
+nav_order: 2
+parent: Chapters
 ---
 
 # Chapter 2: Mathematical Foundations for Healthcare AI
-{: .no_toc }
 
-Master the essential mathematical concepts that underpin successful healthcare AI implementations, from Bayesian diagnostic reasoning to optimization algorithms and uncertainty quantification.
-{: .fs-6 .fw-300 }
-
-{% include attribution.html 
-   author="Multiple Mathematical and Statistical Research Communities" 
-   work="Bayesian Statistics, Optimization Theory, and Uncertainty Quantification" 
-   note="Mathematical foundations based on established statistical and optimization theory. All implementations are original educational examples demonstrating these mathematical principles in healthcare contexts." %}
-
-## Table of Contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
+*By Sanjay Basu MD PhD*
 
 ## Learning Objectives
 
-By the end of this chapter, you will be able to:
+By the end of this chapter, physician data scientists will be able to:
 
-{: .highlight }
-- **Implement** Bayesian diagnostic reasoning systems with proper uncertainty quantification
-- **Design** optimization algorithms for clinical decision making and treatment planning
-- **Apply** statistical inference methods for population health analysis
-- **Validate** mathematical models using clinical data and real-world evidence
+- Apply probability theory and Bayesian inference to clinical decision-making with rigorous mathematical foundations
+- Implement linear algebra operations for high-dimensional healthcare data analysis and dimensionality reduction
+- Design and optimize machine learning models using advanced optimization theory and gradient-based methods
+- Utilize information theory and entropy measures for feature selection and uncertainty quantification
+- Apply causal inference methods to healthcare data for treatment effect estimation and policy evaluation
+- Implement time series analysis techniques for longitudinal patient data and temporal prediction models
+- Understand and apply advanced statistical methods including survival analysis and competing risks models
 
----
+## 2.1 Introduction: Mathematical Rigor in Healthcare AI
 
-## Chapter Overview
+The mathematical foundations underlying healthcare artificial intelligence represent a sophisticated synthesis of statistical theory, linear algebra, probability theory, optimization methods, and information theory that have been refined over centuries of mathematical development. This chapter provides a comprehensive exploration of these mathematical principles, demonstrating how they enable the development of robust, clinically validated AI systems that can meaningfully improve patient outcomes while maintaining the highest standards of scientific rigor.
 
-Healthcare AI requires sophisticated mathematical foundations that go beyond standard machine learning approaches. This chapter provides comprehensive coverage of the mathematical concepts essential for clinical applications, grounded in statistical theory [Citation] and Bayesian methods [Citation], with specific applications to healthcare problems documented in medical statistics literature [Citation].
+Healthcare AI differs fundamentally from other AI applications due to the unique characteristics of medical data, the high stakes of clinical decision-making, and the complex regulatory environment in which these systems must operate. The mathematical frameworks that support healthcare AI must therefore address challenges such as missing data, measurement uncertainty, temporal dependencies, causal inference, and the need for interpretable models that can be validated by clinical experts.
 
-### What You'll Build
-{: .text-delta }
+### 2.1.1 The Clinical Context of Mathematical Modeling
 
-- **Bayesian Diagnostic System**: Complete implementation with uncertainty quantification
-- **Clinical Optimization Framework**: Multi-objective optimization for treatment planning
-- **Population Health Statistical Models**: Causal inference and effect estimation
-- **Uncertainty Quantification Tools**: Comprehensive uncertainty assessment for clinical AI
+Clinical medicine operates in an environment of fundamental uncertainty, where diagnostic decisions must be made with incomplete information, treatment effects vary across individuals, and outcomes are influenced by complex interactions between biological, social, and environmental factors. Mathematical modeling provides the tools necessary to quantify this uncertainty, make optimal decisions under constraints, and continuously improve clinical practice through evidence-based learning.
 
----
+The application of mathematical methods to healthcare requires careful consideration of the clinical context in which these methods will be applied. Unlike other domains where mathematical optimization can focus solely on predictive accuracy, healthcare applications must balance multiple competing objectives including patient safety, clinical interpretability, regulatory compliance, and health equity. This multi-objective optimization problem requires sophisticated mathematical frameworks that can accommodate these diverse requirements while maintaining computational efficiency.
 
-## 2.1 Bayesian Methods in Healthcare
+### 2.1.2 Foundational Mathematical Principles
 
-Bayesian methods provide a principled framework for incorporating prior knowledge and quantifying uncertainty in healthcare AI systems. This approach is particularly valuable in clinical settings where decisions must be made under uncertainty [Citation].
+The mathematical foundations of healthcare AI rest on several key principles that distinguish medical applications from other domains:
 
-### Theoretical Foundation
-{: .text-delta }
+**Uncertainty Quantification**: Medical decisions must be made under uncertainty, requiring probabilistic frameworks that can quantify confidence in predictions and recommendations. This goes beyond simple point estimates to include full uncertainty distributions that can inform clinical decision-making.
 
-Bayes' theorem forms the foundation of probabilistic reasoning in healthcare:
+**Causal Reasoning**: Healthcare interventions are fundamentally causal in nature, requiring mathematical frameworks that can distinguish between correlation and causation. This is essential for developing AI systems that can support treatment decisions and policy interventions.
 
-$$P(Disease|Test) = \frac{P(Test|Disease) \cdot P(Disease)}{P(Test)}$$
+**Temporal Modeling**: Patient health states evolve over time, with complex dependencies between past treatments, current conditions, and future outcomes. Mathematical models must capture these temporal relationships while accounting for irregular sampling and missing data.
+
+**Interpretability**: Clinical decisions require explanations that can be understood and validated by healthcare providers. Mathematical models must therefore balance predictive accuracy with interpretability, often requiring specialized techniques for model explanation and validation.
+
+## 2.2 Probability Theory and Statistical Inference in Healthcare
+
+Probability theory forms the cornerstone of healthcare AI, providing the mathematical framework for reasoning under uncertainty that is inherent in medical diagnosis, treatment selection, and outcome prediction. The application of probability theory to healthcare requires careful consideration of the unique characteristics of medical data and the clinical context in which probabilistic reasoning occurs.
+
+### 2.2.1 Bayesian Inference in Clinical Decision Making
+
+Bayesian inference provides a principled approach to updating beliefs about patient conditions based on new evidence, making it particularly well-suited for clinical applications where prior knowledge and new observations must be systematically combined. The fundamental theorem of Bayesian inference, known as Bayes' theorem, can be expressed as:
+
+$$P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)}$$
 
 Where:
-- $P(Disease|Test)$ is the posterior probability (what we want to know)
-- $P(Test|Disease)$ is the likelihood (test sensitivity)
-- $P(Disease)$ is the prior probability (disease prevalence)
-- $P(Test)$ is the marginal probability (normalizing constant)
+- $P(H|E)$ is the posterior probability of hypothesis $H$ given evidence $E$
+- $P(E|H)$ is the likelihood of observing evidence $E$ given hypothesis $H$
+- $P(H)$ is the prior probability of hypothesis $H$
+- $P(E)$ is the marginal probability of evidence $E$
 
-### Implementation: Bayesian Diagnostic Reasoning System
-{: .text-delta }
+In the clinical context, this theorem enables the systematic integration of diagnostic test results with prior clinical knowledge to arrive at updated probability estimates for various medical conditions. The power of Bayesian inference lies in its ability to incorporate uncertainty at every level of the analysis while providing interpretable results that can be understood and validated by clinical experts.
+
+The application of Bayesian methods to healthcare AI requires careful consideration of prior specification, likelihood modeling, and computational implementation. The following comprehensive implementation demonstrates how Bayesian inference can be applied to clinical diagnosis:
 
 ```python
-#!/usr/bin/env python3
 """
-Bayesian Diagnostic Reasoning System for Healthcare AI
-Implements comprehensive Bayesian inference for clinical diagnosis
+Comprehensive Bayesian Inference System for Clinical Diagnosis
 
-This is an original educational implementation demonstrating Bayesian
-methods in healthcare contexts with proper uncertainty quantification.
+This implementation demonstrates advanced Bayesian techniques including
+hierarchical modeling, MCMC sampling, and clinical validation frameworks
+specifically designed for healthcare AI applications.
 
-Author: Sanjay Basu, MD PhD (Waymark)
-Based on Bayesian statistical theory and clinical diagnostic principles
-Educational use - requires clinical validation before deployment
+Author: Sanjay Basu MD PhD
+License: MIT
 """
 
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Union
-from dataclasses import dataclass
-from scipy import stats
-from scipy.special import logsumexp
+import scipy.stats as stats
+from scipy.special import logsumexp, gammaln
 import matplotlib.pyplot as plt
 import seaborn as sns
-from abc import ABC, abstractmethod
+from typing import Dict, List, Tuple, Optional, Any, Union, Callable
+from dataclasses import dataclass, field
+from datetime import datetime, timedelta
+import warnings
 import logging
+from abc import ABC, abstractmethod
+from enum import Enum
+import json
 
-# Configure logging
+# Advanced statistical libraries
+try:
+    import pymc as pm
+    import arviz as az
+    HAS_PYMC = True
+except ImportError:
+    HAS_PYMC = False
+    warnings.warn("PyMC not available. Some advanced Bayesian features will be disabled.")
+
+from sklearn.metrics import (
+    roc_auc_score, precision_recall_curve, confusion_matrix,
+    classification_report, roc_curve
+)
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+import joblib
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@dataclass
-class DiagnosticTest:
-    """Represents a diagnostic test with performance characteristics"""
-    test_name: str
-    sensitivity: float  # P(Test+|Disease+)
-    specificity: float  # P(Test-|Disease-)
-    cost: float
-    risk_level: str  # 'low', 'medium', 'high'
-    
-    def __post_init__(self):
-        """Validate test parameters"""
-        if not (0 <= self.sensitivity <= 1):
-            raise ValueError(f"Sensitivity must be between 0 and 1, got {self.sensitivity}")
-        if not (0 <= self.specificity <= 1):
-            raise ValueError(f"Specificity must be between 0 and 1, got {self.specificity}")
+class TestType(Enum):
+    """Types of diagnostic tests."""
+    LABORATORY = "laboratory"
+    IMAGING = "imaging"
+    CLINICAL_EXAM = "clinical_exam"
+    GENETIC = "genetic"
+    BIOMARKER = "biomarker"
+
+class EvidenceLevel(Enum):
+    """Levels of clinical evidence."""
+    LEVEL_1A = "1a"  # Systematic review of RCTs
+    LEVEL_1B = "1b"  # Individual RCT
+    LEVEL_2A = "2a"  # Systematic review of cohort studies
+    LEVEL_2B = "2b"  # Individual cohort study
+    LEVEL_3A = "3a"  # Systematic review of case-control studies
+    LEVEL_3B = "3b"  # Individual case-control study
+    LEVEL_4 = "4"    # Case series
+    LEVEL_5 = "5"    # Expert opinion
 
 @dataclass
-class Disease:
-    """Represents a disease with epidemiological characteristics"""
-    disease_name: str
-    base_prevalence: float  # Population prevalence
-    age_risk_factors: Dict[str, float]  # Age-specific risk multipliers
-    gender_risk_factors: Dict[str, float]  # Gender-specific risk multipliers
-    comorbidity_risk_factors: Dict[str, float]  # Comorbidity risk multipliers
+class DiagnosticTest:
+    """
+    Represents a diagnostic test with comprehensive performance characteristics.
     
-    def calculate_prior_probability(self, patient_demographics: Dict[str, Any]) -> float:
+    This class encapsulates all relevant information about a diagnostic test
+    including performance metrics, cost considerations, and clinical context.
+    """
+    test_name: str
+    test_type: TestType
+    sensitivity: float  # True positive rate
+    specificity: float  # True negative rate
+    positive_predictive_value: Optional[float] = None
+    negative_predictive_value: Optional[float] = None
+    cost: float = 0.0
+    risk_level: str = "low"
+    turnaround_time_hours: float = 24.0
+    reference_standard: str = "gold_standard"
+    evidence_level: EvidenceLevel = EvidenceLevel.LEVEL_3B
+    sample_size_validation: int = 0
+    confidence_interval_sensitivity: Tuple[float, float] = (0.0, 1.0)
+    confidence_interval_specificity: Tuple[float, float] = (0.0, 1.0)
+    
+    def __post_init__(self):
+        """Validate test parameters and calculate derived metrics."""
+        if not self.validate_performance():
+            raise ValueError(f"Invalid performance parameters for test: {self.test_name}")
+        
+        # Calculate likelihood ratios
+        self._positive_lr = self.sensitivity / (1 - self.specificity) if self.specificity < 1.0 else float('inf')
+        self._negative_lr = (1 - self.sensitivity) / self.specificity if self.specificity > 0.0 else 0.0
+    
+    @property
+    def positive_likelihood_ratio(self) -> float:
+        """Calculate positive likelihood ratio."""
+        return self._positive_lr
+    
+    @property
+    def negative_likelihood_ratio(self) -> float:
+        """Calculate negative likelihood ratio."""
+        return self._negative_lr
+    
+    @property
+    def diagnostic_odds_ratio(self) -> float:
+        """Calculate diagnostic odds ratio."""
+        if self._negative_lr > 0:
+            return self._positive_lr / self._negative_lr
+        return float('inf')
+    
+    def validate_performance(self) -> bool:
+        """Validate test performance parameters."""
+        return (0 <= self.sensitivity <= 1 and 
+                0 <= self.specificity <= 1 and
+                self.cost >= 0 and
+                self.turnaround_time_hours >= 0)
+    
+    def calculate_predictive_values(self, prevalence: float) -> Tuple[float, float]:
         """
-        Calculate patient-specific prior probability based on demographics
+        Calculate positive and negative predictive values for given prevalence.
         
         Args:
-            patient_demographics: Patient demographic and clinical information
+            prevalence: Disease prevalence in the population
             
         Returns:
-            Adjusted prior probability for this patient
+            Tuple of (positive_predictive_value, negative_predictive_value)
         """
-        prior = self.base_prevalence
+        if not (0 <= prevalence <= 1):
+            raise ValueError("Prevalence must be between 0 and 1")
         
-        # Adjust for age
-        age = patient_demographics.get('age', 50)
-        age_group = self._get_age_group(age)
-        if age_group in self.age_risk_factors:
-            prior *= self.age_risk_factors[age_group]
+        # Calculate using Bayes' theorem
+        ppv = (self.sensitivity * prevalence) / (
+            self.sensitivity * prevalence + (1 - self.specificity) * (1 - prevalence)
+        )
         
-        # Adjust for gender
-        gender = patient_demographics.get('gender', 'unknown')
-        if gender in self.gender_risk_factors:
-            prior *= self.gender_risk_factors[gender]
+        npv = (self.specificity * (1 - prevalence)) / (
+            self.specificity * (1 - prevalence) + (1 - self.sensitivity) * prevalence
+        )
         
-        # Adjust for comorbidities
-        comorbidities = patient_demographics.get('comorbidities', [])
-        for comorbidity in comorbidities:
-            if comorbidity in self.comorbidity_risk_factors:
-                prior *= self.comorbidity_risk_factors[comorbidity]
+        return ppv, npv
+    
+    def get_performance_summary(self) -> Dict[str, Any]:
+        """Get comprehensive performance summary."""
+        return {
+            'test_name': self.test_name,
+            'test_type': self.test_type.value,
+            'sensitivity': self.sensitivity,
+            'specificity': self.specificity,
+            'positive_lr': self.positive_likelihood_ratio,
+            'negative_lr': self.negative_likelihood_ratio,
+            'diagnostic_odds_ratio': self.diagnostic_odds_ratio,
+            'cost': self.cost,
+            'turnaround_time_hours': self.turnaround_time_hours,
+            'evidence_level': self.evidence_level.value,
+            'sample_size_validation': self.sample_size_validation
+        }
+
+@dataclass
+class ClinicalCondition:
+    """
+    Represents a clinical condition with comprehensive epidemiological data.
+    
+    This class encapsulates all relevant information about a medical condition
+    including prevalence, severity, and treatment considerations.
+    """
+    condition_name: str
+    icd_10_code: str
+    prevalence: float
+    age_adjusted_prevalence: Dict[str, float] = field(default_factory=dict)
+    gender_specific_prevalence: Dict[str, float] = field(default_factory=dict)
+    severity_score: int = 1  # 1-5 scale
+    mortality_risk: float = 0.0
+    morbidity_risk: float = 0.0
+    treatment_available: bool = True
+    treatment_effectiveness: float = 0.8
+    natural_history: str = "chronic"
+    risk_factors: List[str] = field(default_factory=list)
+    protective_factors: List[str] = field(default_factory=list)
+    
+    def validate_parameters(self) -> bool:
+        """Validate condition parameters."""
+        return (0 <= self.prevalence <= 1 and
+                1 <= self.severity_score <= 5 and
+                0 <= self.mortality_risk <= 1 and
+                0 <= self.morbidity_risk <= 1 and
+                0 <= self.treatment_effectiveness <= 1)
+    
+    def get_adjusted_prevalence(self, 
+                               age: Optional[int] = None,
+                               gender: Optional[str] = None) -> float:
+        """
+        Get prevalence adjusted for patient demographics.
         
-        # Ensure probability remains valid
-        return min(prior, 0.99)
+        Args:
+            age: Patient age in years
+            gender: Patient gender ('male', 'female', 'other')
+            
+        Returns:
+            Adjusted prevalence estimate
+        """
+        adjusted_prevalence = self.prevalence
+        
+        # Adjust for age if available
+        if age is not None and self.age_adjusted_prevalence:
+            age_group = self._get_age_group(age)
+            if age_group in self.age_adjusted_prevalence:
+                adjusted_prevalence *= self.age_adjusted_prevalence[age_group]
+        
+        # Adjust for gender if available
+        if gender is not None and self.gender_specific_prevalence:
+            if gender.lower() in self.gender_specific_prevalence:
+                adjusted_prevalence *= self.gender_specific_prevalence[gender.lower()]
+        
+        return min(adjusted_prevalence, 1.0)  # Cap at 1.0
     
     def _get_age_group(self, age: int) -> str:
-        """Categorize age into groups"""
+        """Categorize age into standard age groups."""
         if age < 18:
-            return 'pediatric'
-        elif age < 40:
-            return 'young_adult'
+            return "pediatric"
         elif age < 65:
-            return 'middle_age'
+            return "adult"
         else:
-            return 'elderly'
+            return "elderly"
 
 class BayesianDiagnosticSystem:
     """
-    Comprehensive Bayesian diagnostic reasoning system
+    Advanced Bayesian system for clinical diagnosis with uncertainty quantification.
     
-    Implements Bayesian inference for clinical diagnosis with uncertainty
-    quantification and decision-theoretic optimization.
+    This system implements state-of-the-art Bayesian methods for combining
+    multiple diagnostic tests, incorporating prior clinical knowledge, and
+    providing uncertainty-aware diagnostic recommendations.
     """
     
-    def __init__(self):
-        self.diseases: Dict[str, Disease] = {}
-        self.tests: Dict[str, DiagnosticTest] = {}
-        self.test_correlations: Dict[Tuple[str, str], float] = {}
-        logger.info("Bayesian Diagnostic System initialized")
-    
-    def add_disease(self, disease: Disease) -> None:
-        """Add a disease to the diagnostic system"""
-        self.diseases[disease.disease_name] = disease
-        logger.info(f"Added disease: {disease.disease_name}")
-    
-    def add_test(self, test: DiagnosticTest) -> None:
-        """Add a diagnostic test to the system"""
-        self.tests[test.test_name] = test
-        logger.info(f"Added test: {test.test_name}")
-    
-    def set_test_correlation(self, test1: str, test2: str, correlation: float) -> None:
-        """Set correlation between two tests"""
-        if not (-1 <= correlation <= 1):
-            raise ValueError(f"Correlation must be between -1 and 1, got {correlation}")
-        
-        self.test_correlations[(test1, test2)] = correlation
-        self.test_correlations[(test2, test1)] = correlation
-    
-    def calculate_posterior_probabilities(self, 
-                                        patient_demographics: Dict[str, Any],
-                                        test_results: Dict[str, bool]) -> Dict[str, float]:
+    def __init__(self, 
+                 enable_hierarchical_modeling: bool = True,
+                 mcmc_samples: int = 2000,
+                 random_seed: int = 42):
         """
-        Calculate posterior probabilities for all diseases given test results
+        Initialize Bayesian diagnostic system.
         
         Args:
-            patient_demographics: Patient demographic and clinical information
-            test_results: Dictionary of test names to boolean results
+            enable_hierarchical_modeling: Whether to use hierarchical Bayesian models
+            mcmc_samples: Number of MCMC samples for posterior inference
+            random_seed: Random seed for reproducibility
+        """
+        self.enable_hierarchical_modeling = enable_hierarchical_modeling
+        self.mcmc_samples = mcmc_samples
+        self.random_seed = random_seed
+        
+        # Set random seeds for reproducibility
+        np.random.seed(random_seed)
+        
+        # Data storage
+        self.conditions: Dict[str, ClinicalCondition] = {}
+        self.tests: Dict[str, DiagnosticTest] = {}
+        self.test_correlations: Optional[np.ndarray] = None
+        self.population_data: Optional[pd.DataFrame] = None
+        
+        # Model storage
+        self.mcmc_trace = None
+        self.posterior_samples: Dict[str, np.ndarray] = {}
+        
+        # Performance tracking
+        self.diagnostic_history: List[Dict[str, Any]] = []
+        self.validation_results: Dict[str, Dict[str, float]] = {}
+        
+        logger.info("Bayesian diagnostic system initialized")
+    
+    def add_condition(self, condition: ClinicalCondition) -> bool:
+        """
+        Add a clinical condition to the diagnostic system.
+        
+        Args:
+            condition: ClinicalCondition object to add
             
         Returns:
-            Dictionary of disease names to posterior probabilities
+            True if condition added successfully
         """
-        if not self.diseases:
-            raise ValueError("No diseases defined in the system")
-        
-        posteriors = {}
-        
-        for disease_name, disease in self.diseases.items():
-            # Calculate prior probability
-            prior = disease.calculate_prior_probability(patient_demographics)
+        try:
+            if not condition.validate_parameters():
+                raise ValueError(f"Invalid parameters for condition: {condition.condition_name}")
             
-            # Calculate likelihood of test results given disease
-            likelihood_disease = self._calculate_likelihood(test_results, disease_name, True)
-            likelihood_no_disease = self._calculate_likelihood(test_results, disease_name, False)
+            self.conditions[condition.condition_name] = condition
+            logger.info(f"Added condition: {condition.condition_name} (ICD-10: {condition.icd_10_code})")
+            return True
             
-            # Apply Bayes' theorem
-            numerator = likelihood_disease * prior
-            denominator = (likelihood_disease * prior + 
-                          likelihood_no_disease * (1 - prior))
-            
-            if denominator > 0:
-                posterior = numerator / denominator
-            else:
-                posterior = prior  # Fallback to prior if denominator is zero
-            
-            posteriors[disease_name] = posterior
-        
-        return posteriors
+        except Exception as e:
+            logger.error(f"Error adding condition {condition.condition_name}: {e}")
+            return False
     
-    def _calculate_likelihood(self, 
-                            test_results: Dict[str, bool], 
-                            disease_name: str, 
-                            has_disease: bool) -> float:
+    def add_diagnostic_test(self, test: DiagnosticTest) -> bool:
         """
-        Calculate likelihood of test results given disease status
+        Add a diagnostic test to the system.
         
-        This implementation assumes conditional independence of tests
-        given disease status. In practice, test correlations should be
-        considered for more accurate likelihood calculation.
+        Args:
+            test: DiagnosticTest object to add
+            
+        Returns:
+            True if test added successfully
         """
-        likelihood = 1.0
+        try:
+            if not test.validate_performance():
+                raise ValueError(f"Invalid parameters for test: {test.test_name}")
+            
+            self.tests[test.test_name] = test
+            logger.info(f"Added diagnostic test: {test.test_name}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error adding test {test.test_name}: {e}")
+            return False
+    
+    def calculate_posterior_probability(
+        self, 
+        condition_name: str, 
+        test_results: Dict[str, bool],
+        patient_demographics: Optional[Dict[str, Any]] = None,
+        use_test_correlations: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Calculate posterior probability using advanced Bayesian inference.
         
-        for test_name, test_result in test_results.items():
+        Args:
+            condition_name: Name of the condition to evaluate
+            test_results: Dictionary of test names and results (True/False)
+            patient_demographics: Optional patient demographic information
+            use_test_correlations: Whether to account for test correlations
+            
+        Returns:
+            Dictionary containing posterior probability and uncertainty measures
+        """
+        if condition_name not in self.conditions:
+            raise ValueError(f"Unknown condition: {condition_name}")
+        
+        condition = self.conditions[condition_name]
+        
+        # Get adjusted prior probability
+        prior_prob = self._get_adjusted_prior(condition, patient_demographics)
+        
+        # Calculate likelihood with correlation adjustment
+        if use_test_correlations and self.test_correlations is not None:
+            likelihood_pos, likelihood_neg = self._calculate_correlated_likelihood(
+                test_results, condition_name
+            )
+        else:
+            likelihood_pos, likelihood_neg = self._calculate_independent_likelihood(
+                test_results
+            )
+        
+        # Bayesian inference using log-space arithmetic for numerical stability
+        log_prior_pos = np.log(prior_prob)
+        log_prior_neg = np.log(1 - prior_prob)
+        
+        log_posterior_pos = log_prior_pos + likelihood_pos
+        log_posterior_neg = log_prior_neg + likelihood_neg
+        
+        # Normalize using logsumexp
+        log_evidence = logsumexp([log_posterior_pos, log_posterior_neg])
+        
+        posterior_prob = np.exp(log_posterior_pos - log_evidence)
+        
+        # Calculate uncertainty measures
+        uncertainty_measures = self._calculate_uncertainty_measures(
+            posterior_prob, test_results, prior_prob
+        )
+        
+        # Store diagnostic decision for learning
+        diagnostic_record = {
+            'timestamp': datetime.now(),
+            'condition': condition_name,
+            'test_results': test_results.copy(),
+            'patient_demographics': patient_demographics,
+            'prior_probability': prior_prob,
+            'posterior_probability': posterior_prob,
+            'uncertainty_measures': uncertainty_measures
+        }
+        self.diagnostic_history.append(diagnostic_record)
+        
+        return {
+            'condition': condition_name,
+            'posterior_probability': posterior_prob,
+            'prior_probability': prior_prob,
+            'likelihood_ratio': np.exp(likelihood_pos - likelihood_neg),
+            'uncertainty_measures': uncertainty_measures,
+            'test_contributions': self._calculate_test_contributions(test_results),
+            'clinical_interpretation': self._generate_clinical_interpretation(
+                posterior_prob, uncertainty_measures
+            )
+        }
+    
+    def perform_hierarchical_analysis(self, 
+                                    patient_data: pd.DataFrame,
+                                    condition_name: str) -> Dict[str, Any]:
+        """
+        Perform hierarchical Bayesian analysis for population-level inference.
+        
+        Args:
+            patient_data: DataFrame with patient data and outcomes
+            condition_name: Condition to analyze
+            
+        Returns:
+            Dictionary with hierarchical analysis results
+        """
+        if not HAS_PYMC:
+            raise ImportError("PyMC is required for hierarchical analysis")
+        
+        if condition_name not in self.conditions:
+            raise ValueError(f"Unknown condition: {condition_name}")
+        
+        try:
+            # Prepare data for hierarchical modeling
+            y = patient_data[f'has_{condition_name}'].values.astype(int)
+            X = patient_data[[col for col in patient_data.columns 
+                            if col.startswith('test_')]].values
+            
+            # Build hierarchical model
+            with pm.Model() as hierarchical_model:
+                # Hyperpriors for test performance
+                alpha_sens = pm.Beta('alpha_sens', alpha=2, beta=2, shape=X.shape[1])
+                beta_spec = pm.Beta('beta_spec', alpha=2, beta=2, shape=X.shape[1])
+                
+                # Individual test sensitivities and specificities
+                sensitivity = pm.Beta('sensitivity', alpha=alpha_sens * 100, 
+                                    beta=(1 - alpha_sens) * 100, shape=X.shape[1])
+                specificity = pm.Beta('specificity', alpha=beta_spec * 100,
+                                    beta=(1 - beta_spec) * 100, shape=X.shape[1])
+                
+                # Prior probability (prevalence)
+                prevalence = pm.Beta('prevalence', alpha=1, beta=1)
+                
+                # Likelihood for each patient
+                for i in range(len(y)):
+                    # Calculate likelihood for positive and negative cases
+                    likelihood_pos = pm.math.prod(
+                        pm.math.where(X[i] == 1, sensitivity, 1 - sensitivity)
+                    )
+                    likelihood_neg = pm.math.prod(
+                        pm.math.where(X[i] == 1, 1 - specificity, specificity)
+                    )
+                    
+                    # Posterior probability
+                    posterior_prob = (prevalence * likelihood_pos) / (
+                        prevalence * likelihood_pos + (1 - prevalence) * likelihood_neg
+                    )
+                    
+                    # Observed outcome
+                    pm.Bernoulli(f'obs_{i}', p=posterior_prob, observed=y[i])
+                
+                # Sample from posterior
+                trace = pm.sample(self.mcmc_samples, random_seed=self.random_seed,
+                                return_inferencedata=True)
+            
+            self.mcmc_trace = trace
+            
+            # Extract posterior summaries
+            summary = az.summary(trace)
+            
+            # Calculate model diagnostics
+            diagnostics = {
+                'r_hat': summary['r_hat'].max(),
+                'ess_bulk': summary['ess_bulk'].min(),
+                'ess_tail': summary['ess_tail'].min(),
+                'mcse_mean': summary['mcse_mean'].max(),
+                'mcse_sd': summary['mcse_sd'].max()
+            }
+            
+            return {
+                'model_summary': summary.to_dict(),
+                'diagnostics': diagnostics,
+                'posterior_samples': {
+                    var: trace.posterior[var].values.flatten() 
+                    for var in ['prevalence', 'sensitivity', 'specificity']
+                },
+                'convergence_achieved': diagnostics['r_hat'] < 1.1
+            }
+            
+        except Exception as e:
+            logger.error(f"Error in hierarchical analysis: {e}")
+            raise
+    
+    def validate_diagnostic_performance(self, 
+                                      validation_data: pd.DataFrame,
+                                      condition_name: str) -> Dict[str, float]:
+        """
+        Validate diagnostic system performance using held-out data.
+        
+        Args:
+            validation_data: DataFrame with validation data
+            condition_name: Condition to validate
+            
+        Returns:
+            Dictionary with validation metrics
+        """
+        if condition_name not in self.conditions:
+            raise ValueError(f"Unknown condition: {condition_name}")
+        
+        try:
+            # Extract true labels and test results
+            y_true = validation_data[f'has_{condition_name}'].values
+            test_columns = [col for col in validation_data.columns 
+                          if col.startswith('test_')]
+            
+            # Calculate posterior probabilities for all patients
+            y_pred_proba = []
+            y_pred_binary = []
+            
+            for idx, row in validation_data.iterrows():
+                test_results = {col.replace('test_', ''): bool(row[col]) 
+                              for col in test_columns}
+                
+                patient_demographics = {
+                    'age': row.get('age'),
+                    'gender': row.get('gender')
+                }
+                
+                result = self.calculate_posterior_probability(
+                    condition_name, test_results, patient_demographics
+                )
+                
+                y_pred_proba.append(result['posterior_probability'])
+                y_pred_binary.append(result['posterior_probability'] > 0.5)
+            
+            y_pred_proba = np.array(y_pred_proba)
+            y_pred_binary = np.array(y_pred_binary)
+            
+            # Calculate performance metrics
+            auc_roc = roc_auc_score(y_true, y_pred_proba)
+            
+            # Precision-recall curve
+            precision, recall, _ = precision_recall_curve(y_true, y_pred_proba)
+            auc_pr = np.trapz(precision, recall)
+            
+            # Confusion matrix
+            cm = confusion_matrix(y_true, y_pred_binary)
+            tn, fp, fn, tp = cm.ravel()
+            
+            # Calculate derived metrics
+            sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
+            specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+            ppv = tp / (tp + fp) if (tp + fp) > 0 else 0
+            npv = tn / (tn + fn) if (tn + fn) > 0 else 0
+            
+            # F1 score
+            f1_score = 2 * (ppv * sensitivity) / (ppv + sensitivity) if (ppv + sensitivity) > 0 else 0
+            
+            # Calibration metrics
+            calibration_slope, calibration_intercept = self._calculate_calibration_metrics(
+                y_true, y_pred_proba
+            )
+            
+            validation_metrics = {
+                'auc_roc': auc_roc,
+                'auc_pr': auc_pr,
+                'sensitivity': sensitivity,
+                'specificity': specificity,
+                'positive_predictive_value': ppv,
+                'negative_predictive_value': npv,
+                'f1_score': f1_score,
+                'calibration_slope': calibration_slope,
+                'calibration_intercept': calibration_intercept,
+                'n_patients': len(y_true),
+                'prevalence': np.mean(y_true)
+            }
+            
+            # Store validation results
+            self.validation_results[condition_name] = validation_metrics
+            
+            logger.info(f"Validation completed for {condition_name}: AUC-ROC = {auc_roc:.3f}")
+            
+            return validation_metrics
+            
+        except Exception as e:
+            logger.error(f"Error in validation: {e}")
+            raise
+    
+    def _get_adjusted_prior(self, 
+                           condition: ClinicalCondition,
+                           patient_demographics: Optional[Dict[str, Any]]) -> float:
+        """Get prior probability adjusted for patient demographics."""
+        if patient_demographics is None:
+            return condition.prevalence
+        
+        age = patient_demographics.get('age')
+        gender = patient_demographics.get('gender')
+        
+        return condition.get_adjusted_prevalence(age, gender)
+    
+    def _calculate_independent_likelihood(self, 
+                                        test_results: Dict[str, bool]) -> Tuple[float, float]:
+        """Calculate likelihood assuming test independence."""
+        log_likelihood_pos = 0.0
+        log_likelihood_neg = 0.0
+        
+        for test_name, result in test_results.items():
             if test_name not in self.tests:
                 logger.warning(f"Unknown test: {test_name}")
                 continue
             
             test = self.tests[test_name]
             
-            if has_disease:
-                # P(Test Result | Disease Present)
-                if test_result:  # Positive test
-                    prob = test.sensitivity
-                else:  # Negative test
-                    prob = 1 - test.sensitivity
-            else:
-                # P(Test Result | Disease Absent)
-                if test_result:  # Positive test (false positive)
-                    prob = 1 - test.specificity
-                else:  # Negative test (true negative)
-                    prob = test.specificity
-            
-            likelihood *= prob
+            if result:  # Positive test result
+                log_likelihood_pos += np.log(test.sensitivity)
+                log_likelihood_neg += np.log(1 - test.specificity)
+            else:  # Negative test result
+                log_likelihood_pos += np.log(1 - test.sensitivity)
+                log_likelihood_neg += np.log(test.specificity)
         
-        return likelihood
+        return log_likelihood_pos, log_likelihood_neg
     
-    def calculate_uncertainty_metrics(self, 
-                                    posteriors: Dict[str, float]) -> Dict[str, float]:
-        """
-        Calculate uncertainty metrics for diagnostic probabilities
+    def _calculate_correlated_likelihood(self, 
+                                       test_results: Dict[str, bool],
+                                       condition_name: str) -> Tuple[float, float]:
+        """Calculate likelihood accounting for test correlations."""
+        # Simplified implementation - in practice would use copula models
+        # or multivariate distributions to model test correlations
         
-        Returns:
-            Dictionary of uncertainty metrics
-        """
-        probs = list(posteriors.values())
+        # For now, apply a correlation adjustment factor
+        log_likelihood_pos, log_likelihood_neg = self._calculate_independent_likelihood(test_results)
         
-        # Shannon entropy
-        entropy = -sum(p * np.log2(p + 1e-10) for p in probs if p > 0)
+        # Reduce likelihood magnitude to account for positive correlations
+        correlation_adjustment = 0.9  # Assumes moderate positive correlation
         
-        # Maximum probability
-        max_prob = max(probs)
+        return (log_likelihood_pos * correlation_adjustment, 
+                log_likelihood_neg * correlation_adjustment)
+    
+    def _calculate_uncertainty_measures(self, 
+                                      posterior_prob: float,
+                                      test_results: Dict[str, bool],
+                                      prior_prob: float) -> Dict[str, float]:
+        """Calculate comprehensive uncertainty measures."""
+        # Entropy-based uncertainty
+        if posterior_prob == 0 or posterior_prob == 1:
+            entropy = 0.0
+        else:
+            entropy = -(posterior_prob * np.log2(posterior_prob) + 
+                       (1 - posterior_prob) * np.log2(1 - posterior_prob))
         
-        # Probability mass in top 2 diagnoses
-        sorted_probs = sorted(probs, reverse=True)
-        top2_mass = sum(sorted_probs[:2])
+        # Information gain
+        if prior_prob == 0 or prior_prob == 1:
+            prior_entropy = 0.0
+        else:
+            prior_entropy = -(prior_prob * np.log2(prior_prob) + 
+                            (1 - prior_prob) * np.log2(1 - prior_prob))
         
-        # Gini coefficient (inequality measure)
-        n = len(probs)
-        sorted_probs = sorted(probs)
-        gini = (2 * sum((i + 1) * p for i, p in enumerate(sorted_probs))) / (n * sum(probs)) - (n + 1) / n
+        information_gain = prior_entropy - entropy
+        
+        # Confidence based on distance from 0.5
+        confidence = abs(posterior_prob - 0.5) * 2
+        
+        # Number of tests contributing to decision
+        n_tests = len(test_results)
         
         return {
             'entropy': entropy,
-            'max_probability': max_prob,
-            'top2_probability_mass': top2_mass,
-            'gini_coefficient': gini,
-            'confidence_level': self._calculate_confidence_level(max_prob, entropy)
+            'information_gain': information_gain,
+            'confidence': confidence,
+            'n_tests': n_tests,
+            'uncertainty_category': self._categorize_uncertainty(entropy, confidence)
         }
     
-    def _calculate_confidence_level(self, max_prob: float, entropy: float) -> str:
-        """Calculate qualitative confidence level"""
-        if max_prob > 0.8 and entropy < 1.0:
-            return 'high'
-        elif max_prob > 0.6 and entropy < 2.0:
-            return 'medium'
+    def _categorize_uncertainty(self, entropy: float, confidence: float) -> str:
+        """Categorize uncertainty level for clinical interpretation."""
+        if entropy < 0.5 and confidence > 0.8:
+            return "low_uncertainty"
+        elif entropy < 0.8 and confidence > 0.6:
+            return "moderate_uncertainty"
         else:
-            return 'low'
+            return "high_uncertainty"
     
-    def recommend_additional_tests(self, 
-                                 current_posteriors: Dict[str, float],
-                                 patient_demographics: Dict[str, Any],
-                                 max_tests: int = 3) -> List[Tuple[str, float]]:
-        """
-        Recommend additional tests to reduce diagnostic uncertainty
+    def _calculate_test_contributions(self, test_results: Dict[str, bool]) -> Dict[str, float]:
+        """Calculate individual test contributions to the diagnostic decision."""
+        contributions = {}
         
-        Uses information-theoretic approach to select tests that maximize
-        expected information gain.
-        
-        Args:
-            current_posteriors: Current disease probabilities
-            patient_demographics: Patient information
-            max_tests: Maximum number of tests to recommend
+        for test_name, result in test_results.items():
+            if test_name not in self.tests:
+                continue
             
-        Returns:
-            List of (test_name, expected_information_gain) tuples
-        """
-        if not self.tests:
-            return []
-        
-        test_recommendations = []
-        
-        for test_name, test in self.tests.items():
-            # Calculate expected information gain for this test
-            expected_gain = self._calculate_expected_information_gain(
-                test_name, current_posteriors, patient_demographics
-            )
+            test = self.tests[test_name]
             
-            test_recommendations.append((test_name, expected_gain))
+            if result:
+                # Positive test - contribution is positive likelihood ratio
+                contribution = np.log(test.positive_likelihood_ratio)
+            else:
+                # Negative test - contribution is negative likelihood ratio
+                contribution = np.log(test.negative_likelihood_ratio)
+            
+            contributions[test_name] = contribution
         
-        # Sort by expected information gain and return top recommendations
-        test_recommendations.sort(key=lambda x: x[1], reverse=True)
-        return test_recommendations[:max_tests]
+        return contributions
     
-    def _calculate_expected_information_gain(self, 
-                                           test_name: str,
-                                           current_posteriors: Dict[str, float],
-                                           patient_demographics: Dict[str, Any]) -> float:
-        """
-        Calculate expected information gain from performing a test
+    def _generate_clinical_interpretation(self, 
+                                        posterior_prob: float,
+                                        uncertainty_measures: Dict[str, float]) -> str:
+        """Generate clinical interpretation of diagnostic results."""
+        prob_percent = posterior_prob * 100
+        uncertainty_category = uncertainty_measures['uncertainty_category']
         
-        This is a simplified implementation. A full implementation would
-        consider the joint distribution of all diseases and tests.
-        """
-        if test_name not in self.tests:
-            return 0.0
+        if posterior_prob >= 0.9:
+            interpretation = f"High probability ({prob_percent:.1f}%) of condition"
+        elif posterior_prob >= 0.7:
+            interpretation = f"Moderate-high probability ({prob_percent:.1f}%) of condition"
+        elif posterior_prob >= 0.3:
+            interpretation = f"Intermediate probability ({prob_percent:.1f}%) of condition"
+        elif posterior_prob >= 0.1:
+            interpretation = f"Low-moderate probability ({prob_percent:.1f}%) of condition"
+        else:
+            interpretation = f"Low probability ({prob_percent:.1f}%) of condition"
         
-        test = self.tests[test_name]
+        if uncertainty_category == "high_uncertainty":
+            interpretation += " - Consider additional testing"
+        elif uncertainty_category == "moderate_uncertainty":
+            interpretation += " - Moderate confidence in assessment"
+        else:
+            interpretation += " - High confidence in assessment"
         
-        # Current entropy
-        current_entropy = -sum(p * np.log2(p + 1e-10) for p in current_posteriors.values() if p > 0)
+        return interpretation
+    
+    def _calculate_calibration_metrics(self, 
+                                     y_true: np.ndarray,
+                                     y_pred_proba: np.ndarray) -> Tuple[float, float]:
+        """Calculate calibration slope and intercept."""
+        from sklearn.linear_model import LinearRegression
         
-        # Expected entropy after positive test result
-        expected_entropy_positive = 0.0
-        # Expected entropy after negative test result  
-        expected_entropy_negative = 0.0
+        # Logit transformation of predicted probabilities
+        y_pred_logit = np.log(y_pred_proba / (1 - y_pred_proba + 1e-10))
         
-        # Probability of positive test result
-        prob_positive = 0.0
+        # Fit calibration model
+        calibration_model = LinearRegression()
+        calibration_model.fit(y_pred_logit.reshape(-1, 1), y_true)
         
-        for disease_name, prior_prob in current_posteriors.items():
-            if disease_name in self.diseases:
-                # P(Test+ | Disease) * P(Disease)
-                prob_positive += test.sensitivity * prior_prob
-                # P(Test+ | No Disease) * P(No Disease)
-                prob_positive += (1 - test.specificity) * (1 - prior_prob)
+        slope = calibration_model.coef_[0]
+        intercept = calibration_model.intercept_
         
-        prob_negative = 1 - prob_positive
-        
-        # This is a simplified calculation
-        # Full implementation would calculate exact posterior entropies
-        expected_entropy_after = (prob_positive * current_entropy * 0.7 + 
-                                prob_negative * current_entropy * 0.7)
-        
-        information_gain = current_entropy - expected_entropy_after
-        
-        # Adjust for test cost and risk
-        cost_penalty = test.cost / 1000.0  # Normalize cost
-        risk_penalty = {'low': 0.0, 'medium': 0.1, 'high': 0.2}[test.risk_level]
-        
-        adjusted_gain = information_gain - cost_penalty - risk_penalty
-        
-        return max(0.0, adjusted_gain)
+        return slope, intercept
     
     def generate_diagnostic_report(self, 
-                                 patient_demographics: Dict[str, Any],
-                                 test_results: Dict[str, bool]) -> Dict[str, Any]:
-        """
-        Generate comprehensive diagnostic report
+                                 condition_name: str,
+                                 include_validation: bool = True) -> Dict[str, Any]:
+        """Generate comprehensive diagnostic system report."""
+        if condition_name not in self.conditions:
+            raise ValueError(f"Unknown condition: {condition_name}")
         
-        Args:
-            patient_demographics: Patient information
-            test_results: Test results
-            
-        Returns:
-            Comprehensive diagnostic report
-        """
-        # Calculate posterior probabilities
-        posteriors = self.calculate_posterior_probabilities(
-            patient_demographics, test_results
-        )
+        condition = self.conditions[condition_name]
         
-        # Calculate uncertainty metrics
-        uncertainty = self.calculate_uncertainty_metrics(posteriors)
-        
-        # Recommend additional tests
-        test_recommendations = self.recommend_additional_tests(
-            posteriors, patient_demographics
-        )
-        
-        # Sort diseases by probability
-        sorted_diseases = sorted(posteriors.items(), key=lambda x: x[1], reverse=True)
-        
-        return {
-            'patient_id': patient_demographics.get('patient_id', 'unknown'),
-            'timestamp': pd.Timestamp.now().isoformat(),
-            'disease_probabilities': posteriors,
-            'ranked_diagnoses': sorted_diseases,
-            'uncertainty_metrics': uncertainty,
-            'recommended_tests': test_recommendations,
-            'confidence_level': uncertainty['confidence_level'],
-            'primary_diagnosis': sorted_diseases[0] if sorted_diseases else None,
-            'differential_diagnoses': sorted_diseases[1:4] if len(sorted_diseases) > 1 else []
+        # Basic condition information
+        report = {
+            'condition_name': condition_name,
+            'icd_10_code': condition.icd_10_code,
+            'prevalence': condition.prevalence,
+            'severity_score': condition.severity_score,
+            'generated_at': datetime.now().isoformat()
         }
-    
-    def visualize_diagnostic_probabilities(self, 
-                                         posteriors: Dict[str, float],
-                                         save_path: Optional[str] = None) -> None:
-        """
-        Create visualization of diagnostic probabilities
-        """
-        if not posteriors:
-            print("No diagnostic probabilities to visualize")
-            return
         
-        # Sort diseases by probability
-        sorted_items = sorted(posteriors.items(), key=lambda x: x[1], reverse=True)
-        diseases = [item[0] for item in sorted_items]
-        probabilities = [item[1] for item in sorted_items]
+        # Available tests
+        relevant_tests = {name: test.get_performance_summary() 
+                         for name, test in self.tests.items()}
+        report['available_tests'] = relevant_tests
         
-        # Create bar plot
-        plt.figure(figsize=(10, 6))
-        bars = plt.bar(range(len(diseases)), probabilities, 
-                      color=['red' if p > 0.5 else 'orange' if p > 0.2 else 'lightblue' 
-                            for p in probabilities])
+        # Validation results if available
+        if include_validation and condition_name in self.validation_results:
+            report['validation_results'] = self.validation_results[condition_name]
         
-        plt.xlabel('Diseases')
-        plt.ylabel('Posterior Probability')
-        plt.title('Bayesian Diagnostic Probabilities')
-        plt.xticks(range(len(diseases)), diseases, rotation=45, ha='right')
+        # Diagnostic history summary
+        condition_history = [record for record in self.diagnostic_history 
+                           if record['condition'] == condition_name]
         
-        # Add probability labels on bars
-        for i, (bar, prob) in enumerate(zip(bars, probabilities)):
-            plt.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
-                    f'{prob:.3f}', ha='center', va='bottom')
+        if condition_history:
+            report['diagnostic_statistics'] = {
+                'total_diagnoses': len(condition_history),
+                'average_posterior_probability': np.mean([
+                    record['posterior_probability'] for record in condition_history
+                ]),
+                'high_confidence_diagnoses': len([
+                    record for record in condition_history 
+                    if record['uncertainty_measures']['confidence'] > 0.8
+                ])
+            }
         
-        # Add threshold lines
-        plt.axhline(y=0.5, color='red', linestyle='--', alpha=0.7, label='High Confidence')
-        plt.axhline(y=0.2, color='orange', linestyle='--', alpha=0.7, label='Moderate Confidence')
-        
-        plt.legend()
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
+        return report
 
-# Educational demonstration
-def demonstrate_bayesian_diagnostics():
-    """Demonstrate the Bayesian diagnostic system"""
-    # Initialize system
-    diagnostic_system = BayesianDiagnosticSystem()
+
+# Demonstration and testing functions
+def create_example_diagnostic_system() -> BayesianDiagnosticSystem:
+    """Create an example diagnostic system for demonstration."""
+    system = BayesianDiagnosticSystem()
     
-    # Define diseases with epidemiological data
-    pneumonia = Disease(
-        disease_name='pneumonia',
-        base_prevalence=0.05,  # 5% base prevalence
-        age_risk_factors={
-            'pediatric': 1.5,
-            'young_adult': 0.8,
-            'middle_age': 1.0,
-            'elderly': 2.0
+    # Add example condition: Myocardial Infarction
+    mi_condition = ClinicalCondition(
+        condition_name="Myocardial Infarction",
+        icd_10_code="I21.9",
+        prevalence=0.05,
+        age_adjusted_prevalence={
+            "adult": 1.0,
+            "elderly": 2.5,
+            "pediatric": 0.1
         },
-        gender_risk_factors={
-            'M': 1.1,
-            'F': 0.9
+        gender_specific_prevalence={
+            "male": 1.5,
+            "female": 0.8
         },
-        comorbidity_risk_factors={
-            'copd': 3.0,
-            'diabetes': 1.5,
-            'immunocompromised': 4.0
+        severity_score=5,
+        mortality_risk=0.15,
+        treatment_available=True,
+        treatment_effectiveness=0.85
+    )
+    system.add_condition(mi_condition)
+    
+    # Add diagnostic tests
+    troponin_test = DiagnosticTest(
+        test_name="Troponin I",
+        test_type=TestType.LABORATORY,
+        sensitivity=0.95,
+        specificity=0.90,
+        cost=50.0,
+        turnaround_time_hours=2.0,
+        evidence_level=EvidenceLevel.LEVEL_1A,
+        sample_size_validation=5000
+    )
+    system.add_diagnostic_test(troponin_test)
+    
+    ecg_test = DiagnosticTest(
+        test_name="ECG",
+        test_type=TestType.CLINICAL_EXAM,
+        sensitivity=0.80,
+        specificity=0.85,
+        cost=25.0,
+        turnaround_time_hours=0.25,
+        evidence_level=EvidenceLevel.LEVEL_1B,
+        sample_size_validation=10000
+    )
+    system.add_diagnostic_test(ecg_test)
+    
+    echo_test = DiagnosticTest(
+        test_name="Echocardiogram",
+        test_type=TestType.IMAGING,
+        sensitivity=0.85,
+        specificity=0.95,
+        cost=200.0,
+        turnaround_time_hours=4.0,
+        evidence_level=EvidenceLevel.LEVEL_2A,
+        sample_size_validation=2000
+    )
+    system.add_diagnostic_test(echo_test)
+    
+    return system
+
+
+def demonstrate_bayesian_diagnosis():
+    """Demonstrate comprehensive Bayesian diagnostic system."""
+    print("=== Bayesian Diagnostic System Demonstration ===\n")
+    
+    # Create example system
+    system = create_example_diagnostic_system()
+    
+    # Example patient scenarios
+    scenarios = [
+        {
+            'name': 'High-risk elderly male',
+            'demographics': {'age': 72, 'gender': 'male'},
+            'test_results': {'Troponin I': True, 'ECG': True, 'Echocardiogram': False}
+        },
+        {
+            'name': 'Low-risk young female',
+            'demographics': {'age': 28, 'gender': 'female'},
+            'test_results': {'Troponin I': False, 'ECG': False, 'Echocardiogram': False}
+        },
+        {
+            'name': 'Intermediate-risk middle-aged male',
+            'demographics': {'age': 55, 'gender': 'male'},
+            'test_results': {'Troponin I': True, 'ECG': False, 'Echocardiogram': True}
         }
-    )
+    ]
     
-    covid19 = Disease(
-        disease_name='covid19',
-        base_prevalence=0.02,  # 2% base prevalence (varies by time/location)
-        age_risk_factors={
-            'pediatric': 0.5,
-            'young_adult': 0.8,
-            'middle_age': 1.0,
-            'elderly': 2.5
-        },
-        gender_risk_factors={
-            'M': 1.2,
-            'F': 0.8
-        },
-        comorbidity_risk_factors={
-            'diabetes': 2.0,
-            'hypertension': 1.5,
-            'obesity': 1.8
-        }
-    )
-    
-    # Add diseases to system
-    diagnostic_system.add_disease(pneumonia)
-    diagnostic_system.add_disease(covid19)
-    
-    # Define diagnostic tests
-    chest_xray = DiagnosticTest(
-        test_name='chest_xray',
-        sensitivity=0.75,  # 75% sensitivity for pneumonia
-        specificity=0.85,  # 85% specificity
-        cost=200,
-        risk_level='low'
-    )
-    
-    pcr_test = DiagnosticTest(
-        test_name='covid_pcr',
-        sensitivity=0.95,  # 95% sensitivity for COVID-19
-        specificity=0.99,  # 99% specificity
-        cost=150,
-        risk_level='low'
-    )
-    
-    ct_chest = DiagnosticTest(
-        test_name='ct_chest',
-        sensitivity=0.90,  # 90% sensitivity
-        specificity=0.80,  # 80% specificity
-        cost=800,
-        risk_level='medium'
-    )
-    
-    # Add tests to system
-    diagnostic_system.add_test(chest_xray)
-    diagnostic_system.add_test(pcr_test)
-    diagnostic_system.add_test(ct_chest)
-    
-    # Example patient
-    patient = {
-        'patient_id': 'DEMO_001',
-        'age': 70,
-        'gender': 'M',
-        'comorbidities': ['diabetes', 'copd']
-    }
-    
-    # Example test results
-    test_results = {
-        'chest_xray': True,  # Positive chest X-ray
-        'covid_pcr': False   # Negative COVID PCR
-    }
+    # Analyze each scenario
+    for i, scenario in enumerate(scenarios, 1):
+        print(f"{i}. {scenario['name']}")
+        print("-" * 50)
+        
+        result = system.calculate_posterior_probability(
+            condition_name="Myocardial Infarction",
+            test_results=scenario['test_results'],
+            patient_demographics=scenario['demographics']
+        )
+        
+        print(f"Prior probability: {result['prior_probability']:.3f}")
+        print(f"Posterior probability: {result['posterior_probability']:.3f}")
+        print(f"Likelihood ratio: {result['likelihood_ratio']:.2f}")
+        print(f"Clinical interpretation: {result['clinical_interpretation']}")
+        
+        # Show uncertainty measures
+        uncertainty = result['uncertainty_measures']
+        print(f"Uncertainty category: {uncertainty['uncertainty_category']}")
+        print(f"Information gain: {uncertainty['information_gain']:.3f} bits")
+        print(f"Confidence: {uncertainty['confidence']:.3f}")
+        
+        # Show test contributions
+        print("\nTest contributions:")
+        for test_name, contribution in result['test_contributions'].items():
+            print(f"  {test_name}: {contribution:+.3f}")
+        
+        print("\n")
     
     # Generate diagnostic report
-    report = diagnostic_system.generate_diagnostic_report(patient, test_results)
+    print("=== Diagnostic System Report ===")
+    report = system.generate_diagnostic_report("Myocardial Infarction", include_validation=False)
     
-    print("Bayesian Diagnostic System Demonstration")
-    print("=" * 50)
-    print(f"Patient: {patient['patient_id']}")
-    print(f"Age: {patient['age']}, Gender: {patient['gender']}")
-    print(f"Comorbidities: {', '.join(patient['comorbidities'])}")
-    print(f"\nTest Results:")
-    for test, result in test_results.items():
-        print(f"  {test}: {'Positive' if result else 'Negative'}")
+    print(f"Condition: {report['condition_name']} ({report['icd_10_code']})")
+    print(f"Population prevalence: {report['prevalence']:.3f}")
+    print(f"Severity score: {report['severity_score']}/5")
     
-    print(f"\nDiagnostic Probabilities:")
-    for disease, prob in report['ranked_diagnoses']:
-        print(f"  {disease}: {prob:.3f} ({prob*100:.1f}%)")
+    print(f"\nAvailable tests: {len(report['available_tests'])}")
+    for test_name, test_info in report['available_tests'].items():
+        print(f"  {test_name}: Sens={test_info['sensitivity']:.2f}, "
+              f"Spec={test_info['specificity']:.2f}, "
+              f"Cost=${test_info['cost']:.0f}")
     
-    print(f"\nUncertainty Metrics:")
-    for metric, value in report['uncertainty_metrics'].items():
-        if isinstance(value, float):
-            print(f"  {metric}: {value:.3f}")
-        else:
-            print(f"  {metric}: {value}")
-    
-    print(f"\nRecommended Additional Tests:")
-    for test, gain in report['recommended_tests']:
-        print(f"  {test}: Information Gain = {gain:.3f}")
-    
-    # Visualize results
-    diagnostic_system.visualize_diagnostic_probabilities(
-        report['disease_probabilities']
-    )
+    if 'diagnostic_statistics' in report:
+        stats = report['diagnostic_statistics']
+        print(f"\nDiagnostic statistics:")
+        print(f"  Total diagnoses: {stats['total_diagnoses']}")
+        print(f"  Average posterior probability: {stats['average_posterior_probability']:.3f}")
+        print(f"  High confidence diagnoses: {stats['high_confidence_diagnoses']}")
+
 
 if __name__ == "__main__":
-    demonstrate_bayesian_diagnostics()
+    demonstrate_bayesian_diagnosis()
 ```
 
-{% include attribution.html 
-   author="Statistical and Bayesian Research Communities" 
-   work="Bayesian Statistical Methods and Diagnostic Theory" 
-   citation="gelman_bayesian_2013" 
-   note="Implementation based on established Bayesian statistical theory. All code is original educational implementation demonstrating Bayesian diagnostic reasoning principles." 
-   style="research-style" %}
+### 2.2.2 Advanced Statistical Inference Methods
 
-### Key Features of Bayesian Implementation
-{: .text-delta }
+Beyond basic Bayesian inference, healthcare AI applications often require more sophisticated statistical methods to handle complex data structures and clinical scenarios. These advanced methods include hierarchical modeling, survival analysis, and causal inference techniques that are essential for developing clinically meaningful AI systems.
 
-{: .highlight }
-**Prior Knowledge Integration**: The system incorporates epidemiological data, patient demographics, and clinical risk factors to calculate patient-specific prior probabilities.
+#### Hierarchical Bayesian Models
 
-{: .highlight }
-**Uncertainty Quantification**: Comprehensive uncertainty metrics including Shannon entropy, confidence intervals, and information-theoretic measures.
+Hierarchical Bayesian models are particularly valuable in healthcare applications where data exhibits natural grouping structures, such as patients within hospitals, repeated measurements within patients, or treatments within therapeutic classes. These models allow for the sharing of information across groups while accounting for group-specific variations.
 
-{: .highlight }
-**Decision Support**: Automated recommendations for additional testing based on expected information gain and cost-benefit analysis.
+The mathematical framework for hierarchical models can be expressed as:
 
-{: .highlight }
-**Clinical Validation**: Framework designed for integration with clinical validation studies and real-world evidence generation.
+**Level 1 (Individual level):**
+$$y_{ij} | \theta_j, \sigma^2 \sim N(\theta_j, \sigma^2)$$
 
----
+**Level 2 (Group level):**
+$$\theta_j | \mu, \tau^2 \sim N(\mu, \tau^2)$$
 
-## 2.2 Optimization Methods for Clinical Decision Making
+**Level 3 (Population level):**
+$$\mu \sim N(\mu_0, \sigma_0^2), \quad \tau^2 \sim \text{InverseGamma}(\alpha, \beta)$$
 
-Healthcare decisions often involve complex trade-offs between multiple objectives, requiring sophisticated optimization approaches. This section implements multi-objective optimization frameworks specifically designed for clinical applications [Citation] [Citation].
+This hierarchical structure enables the model to learn from both individual patient data and population-level patterns, leading to more robust and generalizable predictions.
 
-### Multi-Objective Clinical Optimization
-{: .text-delta }
+#### Survival Analysis and Time-to-Event Modeling
+
+Survival analysis provides mathematical frameworks for analyzing time-to-event data, which is ubiquitous in healthcare applications. The fundamental concepts include the survival function, hazard function, and cumulative hazard function:
+
+**Survival Function:**
+$$S(t) = P(T > t) = 1 - F(t)$$
+
+**Hazard Function:**
+$$h(t) = \lim_{\Delta t \to 0} \frac{P(t \leq T < t + \Delta t | T \geq t)}{\Delta t}$$
+
+**Cumulative Hazard Function:**
+$$H(t) = \int_0^t h(u) du = -\log S(t)$$
+
+The Cox proportional hazards model is particularly important for healthcare AI:
+
+$$h(t|x) = h_0(t) \exp(\beta^T x)$$
+
+Where $h_0(t)$ is the baseline hazard and $\beta^T x$ represents the linear combination of covariates.
+
+## 2.3 Linear Algebra for Healthcare Data
+
+Linear algebra provides the mathematical foundation for representing and manipulating healthcare data in high-dimensional spaces. The application of linear algebraic methods to healthcare AI enables efficient computation, dimensionality reduction, and the extraction of meaningful patterns from complex medical datasets.
+
+### 2.3.1 Matrix Operations in Clinical Data Analysis
+
+Healthcare data is naturally represented as matrices, where rows correspond to patients and columns represent clinical variables such as laboratory values, vital signs, diagnostic codes, and treatment histories. The mathematical operations on these matrices enable sophisticated analyses that would be computationally intractable using scalar arithmetic.
+
+The fundamental matrix operations in healthcare AI include:
+
+**Matrix Multiplication for Feature Transformation:**
+$$\mathbf{Y} = \mathbf{X}\mathbf{W} + \mathbf{b}$$
+
+Where $\mathbf{X} \in \mathbb{R}^{n \times p}$ is the patient data matrix, $\mathbf{W} \in \mathbb{R}^{p \times k}$ is the weight matrix, $\mathbf{b} \in \mathbb{R}^k$ is the bias vector, and $\mathbf{Y} \in \mathbb{R}^{n \times k}$ is the transformed feature matrix.
+
+**Eigenvalue Decomposition for Principal Component Analysis:**
+$$\mathbf{C} = \mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^T$$
+
+Where $\mathbf{C}$ is the covariance matrix of clinical variables, $\mathbf{Q}$ contains the eigenvectors (principal components), and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues.
+
+**Singular Value Decomposition for Matrix Factorization:**
+$$\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T$$
+
+This decomposition is particularly useful for handling missing data and identifying latent clinical phenotypes.
+
+The following implementation demonstrates advanced linear algebra operations for healthcare data analysis:
 
 ```python
-#!/usr/bin/env python3
 """
-Multi-Objective Optimization Framework for Clinical Decision Making
-Implements sophisticated optimization algorithms for healthcare applications
+Advanced Linear Algebra Operations for Healthcare Data Analysis
 
-This is an original educational implementation demonstrating optimization
-methods in clinical contexts with multiple competing objectives.
+This module implements sophisticated linear algebraic methods specifically
+designed for healthcare AI applications, including dimensionality reduction,
+missing data imputation, and clinical phenotype discovery.
 
-Author: Sanjay Basu, MD PhD (Waymark)
-Based on optimization theory and clinical decision science
-Educational use - requires clinical validation before deployment
+Author: Sanjay Basu MD PhD
+License: MIT
 """
 
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Callable
-from dataclasses import dataclass
-from scipy.optimize import minimize, differential_evolution
-from scipy.spatial.distance import cdist
+import scipy.linalg as la
+from scipy.sparse import csr_matrix, issparse
+from scipy.sparse.linalg import svds
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import seaborn as sns
+from typing import Dict, List, Tuple, Optional, Any, Union
+from dataclasses import dataclass, field
+from datetime import datetime
+import warnings
 import logging
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.decomposition import PCA, TruncatedSVD, NMF
+from sklearn.impute import SimpleImputer, KNNImputer
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+import joblib
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 @dataclass
-class ClinicalObjective:
-    """Represents a clinical objective to optimize"""
-    name: str
-    objective_function: Callable[[np.ndarray], float]
-    weight: float
-    minimize: bool = True  # True for minimization, False for maximization
-    constraint_function: Optional[Callable[[np.ndarray], float]] = None
-    target_value: Optional[float] = None
-    
-    def evaluate(self, solution: np.ndarray) -> float:
-        """Evaluate the objective function"""
-        value = self.objective_function(solution)
-        return value if self.minimize else -value
-
-@dataclass
-class ClinicalConstraint:
-    """Represents a clinical constraint"""
-    name: str
-    constraint_function: Callable[[np.ndarray], float]
-    constraint_type: str  # 'eq' for equality, 'ineq' for inequality
-    tolerance: float = 1e-6
-
-@dataclass
-class OptimizationResult:
-    """Results from clinical optimization"""
-    solution: np.ndarray
-    objective_values: Dict[str, float]
-    constraint_violations: Dict[str, float]
-    optimization_success: bool
-    convergence_info: Dict[str, Any]
-    pareto_front: Optional[np.ndarray] = None
-
-class ClinicalOptimizationFramework:
+class ClinicalDataMatrix:
     """
-    Comprehensive optimization framework for clinical decision making
+    Represents a clinical data matrix with comprehensive metadata.
     
-    Supports multiple optimization algorithms and clinical constraints.
+    This class encapsulates clinical data along with variable information,
+    patient metadata, and data quality metrics essential for healthcare AI.
     """
+    data: np.ndarray
+    patient_ids: List[str]
+    variable_names: List[str]
+    variable_types: Dict[str, str]  # 'continuous', 'categorical', 'binary'
+    missing_data_pattern: Optional[np.ndarray] = None
+    data_quality_score: float = 0.0
+    collection_date: datetime = field(default_factory=datetime.now)
     
-    def __init__(self):
-        self.objectives: List[ClinicalObjective] = []
-        self.constraints: List[ClinicalConstraint] = []
-        self.bounds: List[Tuple[float, float]] = []
-        self.variable_names: List[str] = []
-        logger.info("Clinical Optimization Framework initialized")
+    def __post_init__(self):
+        """Validate data matrix and calculate quality metrics."""
+        self._validate_dimensions()
+        self._calculate_missing_pattern()
+        self._calculate_quality_score()
     
-    def add_objective(self, objective: ClinicalObjective) -> None:
-        """Add a clinical objective to optimize"""
-        self.objectives.append(objective)
-        logger.info(f"Added objective: {objective.name}")
-    
-    def add_constraint(self, constraint: ClinicalConstraint) -> None:
-        """Add a clinical constraint"""
-        self.constraints.append(constraint)
-        logger.info(f"Added constraint: {constraint.name}")
-    
-    def set_variable_bounds(self, bounds: List[Tuple[float, float]], 
-                          names: List[str]) -> None:
-        """Set bounds and names for optimization variables"""
-        if len(bounds) != len(names):
-            raise ValueError("Number of bounds must match number of variable names")
+    def _validate_dimensions(self):
+        """Validate matrix dimensions and metadata consistency."""
+        n_patients, n_variables = self.data.shape
         
-        self.bounds = bounds
-        self.variable_names = names
-        logger.info(f"Set bounds for {len(bounds)} variables")
+        if len(self.patient_ids) != n_patients:
+            raise ValueError(f"Patient ID count ({len(self.patient_ids)}) "
+                           f"doesn't match data rows ({n_patients})")
+        
+        if len(self.variable_names) != n_variables:
+            raise ValueError(f"Variable name count ({len(self.variable_names)}) "
+                           f"doesn't match data columns ({n_variables})")
     
-    def weighted_sum_optimization(self, 
-                                initial_guess: Optional[np.ndarray] = None) -> OptimizationResult:
+    def _calculate_missing_pattern(self):
+        """Calculate missing data pattern matrix."""
+        self.missing_data_pattern = np.isnan(self.data).astype(int)
+    
+    def _calculate_quality_score(self):
+        """Calculate overall data quality score."""
+        if self.missing_data_pattern is not None:
+            completeness = 1 - np.mean(self.missing_data_pattern)
+            self.data_quality_score = completeness
+        else:
+            self.data_quality_score = 1.0
+    
+    @property
+    def shape(self) -> Tuple[int, int]:
+        """Get matrix dimensions."""
+        return self.data.shape
+    
+    @property
+    def missing_percentage(self) -> float:
+        """Get percentage of missing values."""
+        if self.missing_data_pattern is not None:
+            return np.mean(self.missing_data_pattern) * 100
+        return 0.0
+    
+    def get_variable_summary(self) -> pd.DataFrame:
+        """Get summary statistics for all variables."""
+        summary_data = []
+        
+        for i, var_name in enumerate(self.variable_names):
+            var_data = self.data[:, i]
+            var_type = self.variable_types.get(var_name, 'unknown')
+            
+            if var_type == 'continuous':
+                summary = {
+                    'variable': var_name,
+                    'type': var_type,
+                    'mean': np.nanmean(var_data),
+                    'std': np.nanstd(var_data),
+                    'min': np.nanmin(var_data),
+                    'max': np.nanmax(var_data),
+                    'missing_pct': np.mean(np.isnan(var_data)) * 100
+                }
+            else:
+                unique_values = np.unique(var_data[~np.isnan(var_data)])
+                summary = {
+                    'variable': var_name,
+                    'type': var_type,
+                    'unique_values': len(unique_values),
+                    'most_common': unique_values[0] if len(unique_values) > 0 else None,
+                    'missing_pct': np.mean(np.isnan(var_data)) * 100
+                }
+            
+            summary_data.append(summary)
+        
+        return pd.DataFrame(summary_data)
+
+class AdvancedLinearAlgebra:
+    """
+    Advanced linear algebra operations for healthcare data analysis.
+    
+    This class implements sophisticated matrix operations, decompositions,
+    and transformations specifically designed for clinical data analysis
+    and healthcare AI applications.
+    """
+    
+    def __init__(self, random_seed: int = 42):
         """
-        Solve multi-objective problem using weighted sum approach
+        Initialize advanced linear algebra processor.
         
         Args:
-            initial_guess: Initial solution guess
+            random_seed: Random seed for reproducible results
+        """
+        self.random_seed = random_seed
+        np.random.seed(random_seed)
+        
+        # Storage for computed decompositions
+        self.pca_components: Optional[np.ndarray] = None
+        self.svd_components: Optional[Dict[str, np.ndarray]] = None
+        self.nmf_components: Optional[Dict[str, np.ndarray]] = None
+        
+        logger.info("Advanced linear algebra processor initialized")
+    
+    def robust_pca(self, 
+                   clinical_data: ClinicalDataMatrix,
+                   n_components: Optional[int] = None,
+                   handle_missing: str = 'impute') -> Dict[str, Any]:
+        """
+        Perform robust Principal Component Analysis on clinical data.
+        
+        Args:
+            clinical_data: ClinicalDataMatrix object
+            n_components: Number of components to extract (None for all)
+            handle_missing: How to handle missing data ('impute', 'exclude', 'iterative')
             
         Returns:
-            Optimization result
+            Dictionary containing PCA results and clinical interpretation
         """
-        if not self.objectives:
-            raise ValueError("No objectives defined")
+        try:
+            # Prepare data
+            X = self._prepare_data_for_pca(clinical_data, handle_missing)
+            
+            # Determine number of components
+            if n_components is None:
+                n_components = min(X.shape) - 1
+            
+            # Standardize data
+            scaler = StandardScaler()
+            X_scaled = scaler.fit_transform(X)
+            
+            # Perform PCA
+            pca = PCA(n_components=n_components, random_state=self.random_seed)
+            X_transformed = pca.fit_transform(X_scaled)
+            
+            # Store components
+            self.pca_components = pca.components_
+            
+            # Calculate explained variance ratios
+            explained_variance_ratio = pca.explained_variance_ratio_
+            cumulative_variance = np.cumsum(explained_variance_ratio)
+            
+            # Identify clinically meaningful components
+            component_interpretations = self._interpret_pca_components(
+                pca.components_, clinical_data.variable_names, clinical_data.variable_types
+            )
+            
+            # Calculate component stability (using bootstrap if data is large enough)
+            if X.shape[0] > 100:
+                stability_scores = self._calculate_component_stability(
+                    X_scaled, n_components, n_bootstrap=100
+                )
+            else:
+                stability_scores = np.ones(n_components)
+            
+            results = {
+                'transformed_data': X_transformed,
+                'components': pca.components_,
+                'explained_variance_ratio': explained_variance_ratio,
+                'cumulative_variance_ratio': cumulative_variance,
+                'eigenvalues': pca.explained_variance_,
+                'component_interpretations': component_interpretations,
+                'stability_scores': stability_scores,
+                'scaler': scaler,
+                'pca_model': pca,
+                'n_components_95_variance': np.argmax(cumulative_variance >= 0.95) + 1,
+                'clinical_phenotypes': self._identify_clinical_phenotypes(
+                    X_transformed, clinical_data.patient_ids
+                )
+            }
+            
+            logger.info(f"PCA completed: {n_components} components explain "
+                       f"{cumulative_variance[-1]:.1%} of variance")
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error in robust PCA: {e}")
+            raise
+    
+    def matrix_completion_svd(self, 
+                             clinical_data: ClinicalDataMatrix,
+                             rank: Optional[int] = None,
+                             max_iterations: int = 100,
+                             tolerance: float = 1e-6) -> Dict[str, Any]:
+        """
+        Perform matrix completion using iterative SVD for missing clinical data.
         
-        if not self.bounds:
-            raise ValueError("Variable bounds not set")
+        Args:
+            clinical_data: ClinicalDataMatrix with missing values
+            rank: Target rank for low-rank approximation
+            max_iterations: Maximum number of iterations
+            tolerance: Convergence tolerance
+            
+        Returns:
+            Dictionary containing completed matrix and decomposition results
+        """
+        try:
+            X = clinical_data.data.copy()
+            missing_mask = np.isnan(X)
+            
+            if not np.any(missing_mask):
+                logger.warning("No missing data found, performing standard SVD")
+                return self._standard_svd(X, rank)
+            
+            # Initialize missing values with column means
+            col_means = np.nanmean(X, axis=0)
+            for j in range(X.shape[1]):
+                X[missing_mask[:, j], j] = col_means[j]
+            
+            # Determine rank
+            if rank is None:
+                rank = min(X.shape) // 2
+            
+            # Iterative SVD completion
+            prev_X = X.copy()
+            
+            for iteration in range(max_iterations):
+                # SVD decomposition
+                U, s, Vt = la.svd(X, full_matrices=False)
+                
+                # Truncate to desired rank
+                U_r = U[:, :rank]
+                s_r = s[:rank]
+                Vt_r = Vt[:rank, :]
+                
+                # Reconstruct matrix
+                X_reconstructed = U_r @ np.diag(s_r) @ Vt_r
+                
+                # Update only missing entries
+                X[missing_mask] = X_reconstructed[missing_mask]
+                
+                # Check convergence
+                change = np.linalg.norm(X - prev_X, 'fro')
+                if change < tolerance:
+                    logger.info(f"Matrix completion converged after {iteration + 1} iterations")
+                    break
+                
+                prev_X = X.copy()
+            
+            # Final SVD for analysis
+            U_final, s_final, Vt_final = la.svd(X, full_matrices=False)
+            
+            # Calculate completion quality metrics
+            completion_metrics = self._calculate_completion_metrics(
+                clinical_data.data, X, missing_mask
+            )
+            
+            # Store SVD components
+            self.svd_components = {
+                'U': U_final[:, :rank],
+                'sigma': s_final[:rank],
+                'Vt': Vt_final[:rank, :]
+            }
+            
+            results = {
+                'completed_matrix': X,
+                'U': U_final[:, :rank],
+                'singular_values': s_final[:rank],
+                'Vt': Vt_final[:rank, :],
+                'rank': rank,
+                'iterations': iteration + 1,
+                'completion_metrics': completion_metrics,
+                'missing_data_percentage': np.mean(missing_mask) * 100,
+                'latent_factors': self._interpret_svd_factors(
+                    U_final[:, :rank], Vt_final[:rank, :], 
+                    clinical_data.patient_ids, clinical_data.variable_names
+                )
+            }
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error in matrix completion SVD: {e}")
+            raise
+    
+    def non_negative_matrix_factorization(self, 
+                                        clinical_data: ClinicalDataMatrix,
+                                        n_components: int,
+                                        max_iterations: int = 200) -> Dict[str, Any]:
+        """
+        Perform Non-negative Matrix Factorization for clinical phenotype discovery.
         
-        # Define combined objective function
-        def combined_objective(x: np.ndarray) -> float:
-            total = 0.0
-            for obj in self.objectives:
-                value = obj.evaluate(x)
-                total += obj.weight * value
-            return total
+        NMF is particularly useful for identifying clinical phenotypes because
+        it produces interpretable, parts-based representations.
         
-        # Define constraints for scipy
-        scipy_constraints = []
-        for constraint in self.constraints:
-            scipy_constraints.append({
-                'type': constraint.constraint_type,
-                'fun': constraint.constraint_function
+        Args:
+            clinical_data: ClinicalDataMatrix object
+            n_components: Number of components (phenotypes) to extract
+            max_iterations: Maximum number of iterations
+            
+        Returns:
+            Dictionary containing NMF results and phenotype interpretations
+        """
+        try:
+            X = clinical_data.data.copy()
+            
+            # Handle missing data
+            if np.any(np.isnan(X)):
+                imputer = SimpleImputer(strategy='median')
+                X = imputer.fit_transform(X)
+            
+            # Ensure non-negativity (required for NMF)
+            X_min = np.min(X)
+            if X_min < 0:
+                X = X - X_min  # Shift to make all values non-negative
+                logger.info(f"Shifted data by {-X_min} to ensure non-negativity")
+            
+            # Perform NMF
+            nmf = NMF(n_components=n_components, 
+                     max_iter=max_iterations,
+                     random_state=self.random_seed,
+                     init='nndsvd')  # Better initialization
+            
+            W = nmf.fit_transform(X)  # Patient loadings
+            H = nmf.components_       # Feature loadings
+            
+            # Store NMF components
+            self.nmf_components = {'W': W, 'H': H}
+            
+            # Interpret clinical phenotypes
+            phenotype_interpretations = self._interpret_nmf_phenotypes(
+                H, clinical_data.variable_names, clinical_data.variable_types
+            )
+            
+            # Assign patients to dominant phenotypes
+            patient_phenotypes = self._assign_patient_phenotypes(
+                W, clinical_data.patient_ids
+            )
+            
+            # Calculate reconstruction quality
+            X_reconstructed = W @ H
+            reconstruction_error = np.linalg.norm(X - X_reconstructed, 'fro')
+            relative_error = reconstruction_error / np.linalg.norm(X, 'fro')
+            
+            results = {
+                'patient_loadings': W,
+                'feature_loadings': H,
+                'reconstructed_matrix': X_reconstructed,
+                'reconstruction_error': reconstruction_error,
+                'relative_error': relative_error,
+                'phenotype_interpretations': phenotype_interpretations,
+                'patient_phenotypes': patient_phenotypes,
+                'nmf_model': nmf,
+                'n_components': n_components,
+                'phenotype_prevalence': self._calculate_phenotype_prevalence(W)
+            }
+            
+            logger.info(f"NMF completed: {n_components} phenotypes identified "
+                       f"with {relative_error:.3f} relative reconstruction error")
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error in NMF: {e}")
+            raise
+    
+    def tensor_decomposition_clinical(self, 
+                                    tensor_data: np.ndarray,
+                                    rank: int,
+                                    max_iterations: int = 100) -> Dict[str, Any]:
+        """
+        Perform tensor decomposition for multi-way clinical data analysis.
+        
+        This method is useful for analyzing data with multiple modes such as
+        patients × variables × time or patients × variables × hospitals.
+        
+        Args:
+            tensor_data: 3D numpy array (patients × variables × time/context)
+            rank: Rank of the decomposition
+            max_iterations: Maximum number of iterations
+            
+        Returns:
+            Dictionary containing tensor decomposition results
+        """
+        try:
+            if len(tensor_data.shape) != 3:
+                raise ValueError("Tensor data must be 3-dimensional")
+            
+            n_patients, n_variables, n_contexts = tensor_data.shape
+            
+            # Initialize factor matrices randomly
+            A = np.random.rand(n_patients, rank)
+            B = np.random.rand(n_variables, rank)
+            C = np.random.rand(n_contexts, rank)
+            
+            # Alternating least squares algorithm
+            for iteration in range(max_iterations):
+                # Update A (patients)
+                for i in range(n_patients):
+                    X_i = tensor_data[i, :, :]  # variables × contexts
+                    khatri_rao_BC = self._khatri_rao_product(B, C)
+                    A[i, :] = la.lstsq(khatri_rao_BC, X_i.flatten())[0]
+                
+                # Update B (variables)
+                for j in range(n_variables):
+                    X_j = tensor_data[:, j, :]  # patients × contexts
+                    khatri_rao_AC = self._khatri_rao_product(A, C)
+                    B[j, :] = la.lstsq(khatri_rao_AC, X_j.flatten())[0]
+                
+                # Update C (contexts)
+                for k in range(n_contexts):
+                    X_k = tensor_data[:, :, k]  # patients × variables
+                    khatri_rao_AB = self._khatri_rao_product(A, B)
+                    C[k, :] = la.lstsq(khatri_rao_AB, X_k.flatten())[0]
+                
+                # Check convergence (simplified)
+                if iteration > 0 and iteration % 10 == 0:
+                    reconstructed = self._reconstruct_tensor(A, B, C)
+                    error = np.linalg.norm(tensor_data - reconstructed)
+                    logger.info(f"Iteration {iteration}: Reconstruction error = {error:.6f}")
+            
+            # Final reconstruction
+            reconstructed_tensor = self._reconstruct_tensor(A, B, C)
+            reconstruction_error = np.linalg.norm(tensor_data - reconstructed_tensor)
+            
+            results = {
+                'patient_factors': A,
+                'variable_factors': B,
+                'context_factors': C,
+                'reconstructed_tensor': reconstructed_tensor,
+                'reconstruction_error': reconstruction_error,
+                'rank': rank,
+                'iterations': max_iterations
+            }
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error in tensor decomposition: {e}")
+            raise
+    
+    def _prepare_data_for_pca(self, 
+                             clinical_data: ClinicalDataMatrix,
+                             handle_missing: str) -> np.ndarray:
+        """Prepare clinical data for PCA analysis."""
+        X = clinical_data.data.copy()
+        
+        if handle_missing == 'impute':
+            # Use KNN imputation for better results with clinical data
+            imputer = KNNImputer(n_neighbors=5)
+            X = imputer.fit_transform(X)
+        elif handle_missing == 'exclude':
+            # Remove rows with any missing values
+            complete_rows = ~np.any(np.isnan(X), axis=1)
+            X = X[complete_rows, :]
+            logger.info(f"Excluded {np.sum(~complete_rows)} patients with missing data")
+        elif handle_missing == 'iterative':
+            # Use iterative imputation
+            from sklearn.experimental import enable_iterative_imputer
+            from sklearn.impute import IterativeImputer
+            imputer = IterativeImputer(random_state=self.random_seed)
+            X = imputer.fit_transform(X)
+        
+        return X
+    
+    def _interpret_pca_components(self, 
+                                 components: np.ndarray,
+                                 variable_names: List[str],
+                                 variable_types: Dict[str, str]) -> List[Dict[str, Any]]:
+        """Interpret PCA components in clinical context."""
+        interpretations = []
+        
+        for i, component in enumerate(components):
+            # Find variables with highest absolute loadings
+            abs_loadings = np.abs(component)
+            top_indices = np.argsort(abs_loadings)[-10:][::-1]  # Top 10
+            
+            top_variables = []
+            for idx in top_indices:
+                if abs_loadings[idx] > 0.1:  # Threshold for meaningful loading
+                    top_variables.append({
+                        'variable': variable_names[idx],
+                        'loading': component[idx],
+                        'type': variable_types.get(variable_names[idx], 'unknown')
+                    })
+            
+            # Generate clinical interpretation
+            interpretation = self._generate_component_interpretation(top_variables)
+            
+            interpretations.append({
+                'component_number': i + 1,
+                'top_variables': top_variables,
+                'clinical_interpretation': interpretation,
+                'variance_explained': None  # Will be filled by calling function
             })
         
-        # Set initial guess
-        if initial_guess is None:
-            initial_guess = np.array([
-                (bound[0] + bound[1]) / 2 for bound in self.bounds
-            ])
-        
-        # Perform optimization
-        try:
-            result = minimize(
-                combined_objective,
-                initial_guess,
-                method='SLSQP',
-                bounds=self.bounds,
-                constraints=scipy_constraints,
-                options={'maxiter': 1000, 'ftol': 1e-9}
-            )
-            
-            # Evaluate individual objectives
-            objective_values = {}
-            for obj in self.objectives:
-                objective_values[obj.name] = obj.objective_function(result.x)
-            
-            # Check constraint violations
-            constraint_violations = {}
-            for constraint in self.constraints:
-                violation = constraint.constraint_function(result.x)
-                constraint_violations[constraint.name] = violation
-            
-            return OptimizationResult(
-                solution=result.x,
-                objective_values=objective_values,
-                constraint_violations=constraint_violations,
-                optimization_success=result.success,
-                convergence_info={
-                    'iterations': result.nit,
-                    'function_evaluations': result.nfev,
-                    'final_objective': result.fun,
-                    'message': result.message
-                }
-            )
-            
-        except Exception as e:
-            logger.error(f"Optimization failed: {e}")
-            return OptimizationResult(
-                solution=initial_guess,
-                objective_values={},
-                constraint_violations={},
-                optimization_success=False,
-                convergence_info={'error': str(e)}
-            )
-    
-    def pareto_optimization(self, 
-                          population_size: int = 100,
-                          generations: int = 100) -> OptimizationResult:
-        """
-        Find Pareto-optimal solutions using evolutionary algorithm
-        
-        Args:
-            population_size: Size of population for evolutionary algorithm
-            generations: Number of generations
-            
-        Returns:
-            Optimization result with Pareto front
-        """
-        if len(self.objectives) < 2:
-            raise ValueError("Pareto optimization requires at least 2 objectives")
-        
-        # Use NSGA-II-like approach with differential evolution
-        def multi_objective_function(x: np.ndarray) -> np.ndarray:
-            """Evaluate all objectives for a solution"""
-            return np.array([obj.evaluate(x) for obj in self.objectives])
-        
-        # Generate initial population
-        population = []
-        for _ in range(population_size):
-            individual = np.array([
-                np.random.uniform(bound[0], bound[1]) for bound in self.bounds
-            ])
-            population.append(individual)
-        
-        # Evaluate population
-        objective_values = np.array([
-            multi_objective_function(ind) for ind in population
-        ])
-        
-        # Find Pareto front
-        pareto_front_indices = self._find_pareto_front(objective_values)
-        pareto_front = objective_values[pareto_front_indices]
-        pareto_solutions = [population[i] for i in pareto_front_indices]
-        
-        # Select best compromise solution (closest to ideal point)
-        ideal_point = np.min(objective_values, axis=0)
-        distances = cdist(pareto_front, [ideal_point], metric='euclidean')
-        best_index = np.argmin(distances)
-        best_solution = pareto_solutions[best_index]
-        
-        # Evaluate individual objectives for best solution
-        objective_values_dict = {}
-        for i, obj in enumerate(self.objectives):
-            objective_values_dict[obj.name] = obj.objective_function(best_solution)
-        
-        # Check constraint violations
-        constraint_violations = {}
-        for constraint in self.constraints:
-            violation = constraint.constraint_function(best_solution)
-            constraint_violations[constraint.name] = violation
-        
-        return OptimizationResult(
-            solution=best_solution,
-            objective_values=objective_values_dict,
-            constraint_violations=constraint_violations,
-            optimization_success=True,
-            convergence_info={
-                'pareto_front_size': len(pareto_front),
-                'population_size': population_size,
-                'generations': generations
-            },
-            pareto_front=pareto_front
-        )
-    
-    def _find_pareto_front(self, objective_values: np.ndarray) -> List[int]:
-        """
-        Find Pareto-optimal solutions
-        
-        Args:
-            objective_values: Array of objective values for each solution
-            
-        Returns:
-            Indices of Pareto-optimal solutions
-        """
-        n_solutions = objective_values.shape[0]
-        pareto_front = []
-        
-        for i in range(n_solutions):
-            is_dominated = False
-            for j in range(n_solutions):
-                if i != j:
-                    # Check if solution j dominates solution i
-                    if np.all(objective_values[j] <= objective_values[i]) and \
-                       np.any(objective_values[j] < objective_values[i]):
-                        is_dominated = True
-                        break
-            
-            if not is_dominated:
-                pareto_front.append(i)
-        
-        return pareto_front
-    
-    def robust_optimization(self, 
-                          uncertainty_scenarios: List[Dict[str, Any]],
-                          robustness_measure: str = 'worst_case') -> OptimizationResult:
-        """
-        Perform robust optimization under uncertainty
-        
-        Args:
-            uncertainty_scenarios: List of uncertainty scenarios
-            robustness_measure: 'worst_case', 'expected_value', or 'cvar'
-            
-        Returns:
-            Robust optimization result
-        """
-        if not uncertainty_scenarios:
-            raise ValueError("No uncertainty scenarios provided")
-        
-        def robust_objective(x: np.ndarray) -> float:
-            """Evaluate robust objective function"""
-            scenario_values = []
-            
-            for scenario in uncertainty_scenarios:
-                # Modify objectives based on scenario
-                scenario_value = 0.0
-                for obj in self.objectives:
-                    # Apply scenario modifications to objective
-                    modified_value = obj.evaluate(x)
-                    if 'objective_multipliers' in scenario:
-                        multiplier = scenario['objective_multipliers'].get(obj.name, 1.0)
-                        modified_value *= multiplier
-                    
-                    scenario_value += obj.weight * modified_value
-                
-                scenario_values.append(scenario_value)
-            
-            # Apply robustness measure
-            if robustness_measure == 'worst_case':
-                return max(scenario_values)
-            elif robustness_measure == 'expected_value':
-                return np.mean(scenario_values)
-            elif robustness_measure == 'cvar':
-                # Conditional Value at Risk (95th percentile)
-                return np.percentile(scenario_values, 95)
-            else:
-                raise ValueError(f"Unknown robustness measure: {robustness_measure}")
-        
-        # Perform robust optimization
-        initial_guess = np.array([
-            (bound[0] + bound[1]) / 2 for bound in self.bounds
-        ])
-        
-        try:
-            result = minimize(
-                robust_objective,
-                initial_guess,
-                method='L-BFGS-B',
-                bounds=self.bounds,
-                options={'maxiter': 1000}
-            )
-            
-            # Evaluate individual objectives
-            objective_values = {}
-            for obj in self.objectives:
-                objective_values[obj.name] = obj.objective_function(result.x)
-            
-            return OptimizationResult(
-                solution=result.x,
-                objective_values=objective_values,
-                constraint_violations={},
-                optimization_success=result.success,
-                convergence_info={
-                    'robustness_measure': robustness_measure,
-                    'scenarios_evaluated': len(uncertainty_scenarios),
-                    'final_objective': result.fun
-                }
-            )
-            
-        except Exception as e:
-            logger.error(f"Robust optimization failed: {e}")
-            return OptimizationResult(
-                solution=initial_guess,
-                objective_values={},
-                constraint_violations={},
-                optimization_success=False,
-                convergence_info={'error': str(e)}
-            )
-    
-    def visualize_optimization_results(self, 
-                                     result: OptimizationResult,
-                                     save_path: Optional[str] = None) -> None:
-        """
-        Visualize optimization results
-        """
-        if not result.optimization_success:
-            print("Optimization was not successful - cannot visualize")
-            return
-        
-        # Create subplots
-        n_objectives = len(self.objectives)
-        if n_objectives == 2:
-            self._plot_2d_results(result, save_path)
-        elif n_objectives == 3:
-            self._plot_3d_results(result, save_path)
-        else:
-            self._plot_parallel_coordinates(result, save_path)
-    
-    def _plot_2d_results(self, result: OptimizationResult, save_path: Optional[str]) -> None:
-        """Plot 2D optimization results"""
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-        
-        # Plot objective values
-        obj_names = list(result.objective_values.keys())
-        obj_values = list(result.objective_values.values())
-        
-        ax1.bar(obj_names, obj_values)
-        ax1.set_title('Objective Values')
-        ax1.set_ylabel('Value')
-        ax1.tick_params(axis='x', rotation=45)
-        
-        # Plot Pareto front if available
-        if result.pareto_front is not None and len(self.objectives) == 2:
-            ax2.scatter(result.pareto_front[:, 0], result.pareto_front[:, 1], 
-                       alpha=0.6, label='Pareto Front')
-            ax2.scatter(obj_values[0], obj_values[1], 
-                       color='red', s=100, label='Selected Solution')
-            ax2.set_xlabel(obj_names[0])
-            ax2.set_ylabel(obj_names[1])
-            ax2.set_title('Pareto Front')
-            ax2.legend()
-        else:
-            # Plot solution variables
-            ax2.bar(self.variable_names, result.solution)
-            ax2.set_title('Solution Variables')
-            ax2.set_ylabel('Value')
-            ax2.tick_params(axis='x', rotation=45)
-        
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
-    
-    def _plot_3d_results(self, result: OptimizationResult, save_path: Optional[str]) -> None:
-        """Plot 3D optimization results"""
-        if result.pareto_front is None or len(self.objectives) != 3:
-            print("3D plotting requires Pareto front with 3 objectives")
-            return
-        
-        fig = plt.figure(figsize=(10, 8))
-        ax = fig.add_subplot(111, projection='3d')
-        
-        # Plot Pareto front
-        ax.scatter(result.pareto_front[:, 0], result.pareto_front[:, 1], 
-                  result.pareto_front[:, 2], alpha=0.6, label='Pareto Front')
-        
-        # Plot selected solution
-        obj_values = list(result.objective_values.values())
-        ax.scatter(obj_values[0], obj_values[1], obj_values[2], 
-                  color='red', s=100, label='Selected Solution')
-        
-        obj_names = list(result.objective_values.keys())
-        ax.set_xlabel(obj_names[0])
-        ax.set_ylabel(obj_names[1])
-        ax.set_zlabel(obj_names[2])
-        ax.set_title('3D Pareto Front')
-        ax.legend()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
-    
-    def _plot_parallel_coordinates(self, result: OptimizationResult, 
-                                 save_path: Optional[str]) -> None:
-        """Plot parallel coordinates for high-dimensional results"""
-        obj_names = list(result.objective_values.keys())
-        obj_values = list(result.objective_values.values())
-        
-        # Normalize values for parallel coordinates
-        normalized_values = [(val - min(obj_values)) / (max(obj_values) - min(obj_values)) 
-                           for val in obj_values]
-        
-        plt.figure(figsize=(10, 6))
-        plt.plot(range(len(obj_names)), normalized_values, 'o-', linewidth=2, markersize=8)
-        plt.xticks(range(len(obj_names)), obj_names, rotation=45)
-        plt.ylabel('Normalized Value')
-        plt.title('Multi-Objective Solution (Parallel Coordinates)')
-        plt.grid(True, alpha=0.3)
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
-
-# Educational demonstration
-def demonstrate_clinical_optimization():
-    """Demonstrate clinical optimization framework"""
-    optimizer = ClinicalOptimizationFramework()
-    
-    # Define clinical optimization problem: Treatment planning
-    # Variables: [drug_dose_1, drug_dose_2, treatment_duration]
-    optimizer.set_variable_bounds(
-        bounds=[(0, 100), (0, 50), (1, 30)],  # dose1, dose2, duration
-        names=['Drug_A_Dose', 'Drug_B_Dose', 'Treatment_Duration']
-    )
-    
-    # Objective 1: Minimize treatment cost
-    def cost_function(x: np.ndarray) -> float:
-        dose_a, dose_b, duration = x
-        cost_per_day_a = 10.0  # $10 per unit of drug A
-        cost_per_day_b = 15.0  # $15 per unit of drug B
-        return (dose_a * cost_per_day_a + dose_b * cost_per_day_b) * duration
-    
-    cost_objective = ClinicalObjective(
-        name='treatment_cost',
-        objective_function=cost_function,
-        weight=0.3,
-        minimize=True
-    )
-    
-    # Objective 2: Maximize treatment efficacy
-    def efficacy_function(x: np.ndarray) -> float:
-        dose_a, dose_b, duration = x
-        # Simplified efficacy model with diminishing returns
-        efficacy = (1 - np.exp(-0.1 * dose_a)) * (1 - np.exp(-0.15 * dose_b)) * \
-                  (1 - np.exp(-0.2 * duration))
-        return efficacy
-    
-    efficacy_objective = ClinicalObjective(
-        name='treatment_efficacy',
-        objective_function=efficacy_function,
-        weight=0.5,
-        minimize=False  # Maximize efficacy
-    )
-    
-    # Objective 3: Minimize side effects
-    def side_effects_function(x: np.ndarray) -> float:
-        dose_a, dose_b, duration = x
-        # Side effects increase with dose and duration
-        side_effects = 0.01 * dose_a**1.5 + 0.02 * dose_b**1.5 + 0.005 * duration**2
-        return side_effects
-    
-    side_effects_objective = ClinicalObjective(
-        name='side_effects',
-        objective_function=side_effects_function,
-        weight=0.2,
-        minimize=True
-    )
-    
-    # Add objectives
-    optimizer.add_objective(cost_objective)
-    optimizer.add_objective(efficacy_objective)
-    optimizer.add_objective(side_effects_objective)
-    
-    # Add clinical constraints
-    def minimum_efficacy_constraint(x: np.ndarray) -> float:
-        # Efficacy must be at least 0.7
-        return efficacy_function(x) - 0.7
-    
-    def maximum_dose_constraint(x: np.ndarray) -> float:
-        # Total dose should not exceed safety limit
-        dose_a, dose_b, duration = x
-        return 150 - (dose_a + dose_b)  # Combined dose limit
-    
-    efficacy_constraint = ClinicalConstraint(
-        name='minimum_efficacy',
-        constraint_function=minimum_efficacy_constraint,
-        constraint_type='ineq'
-    )
-    
-    dose_constraint = ClinicalConstraint(
-        name='maximum_dose',
-        constraint_function=maximum_dose_constraint,
-        constraint_type='ineq'
-    )
-    
-    optimizer.add_constraint(efficacy_constraint)
-    optimizer.add_constraint(dose_constraint)
-    
-    print("Clinical Optimization Framework Demonstration")
-    print("=" * 50)
-    print("Problem: Multi-objective treatment planning")
-    print("Variables: Drug A dose, Drug B dose, Treatment duration")
-    print("Objectives: Minimize cost, Maximize efficacy, Minimize side effects")
-    print("Constraints: Minimum efficacy, Maximum dose")
-    
-    # Solve using weighted sum approach
-    print("\n1. Weighted Sum Optimization:")
-    result_weighted = optimizer.weighted_sum_optimization()
-    
-    if result_weighted.optimization_success:
-        print("  Optimization successful!")
-        print(f"  Solution: {result_weighted.solution}")
-        print(f"  Objective values:")
-        for name, value in result_weighted.objective_values.items():
-            print(f"    {name}: {value:.4f}")
-        
-        print(f"  Constraint violations:")
-        for name, violation in result_weighted.constraint_violations.items():
-            status = "Satisfied" if violation >= 0 else f"Violated by {abs(violation):.4f}"
-            print(f"    {name}: {status}")
-    else:
-        print("  Optimization failed!")
-    
-    # Solve using Pareto optimization
-    print("\n2. Pareto Optimization:")
-    result_pareto = optimizer.pareto_optimization(population_size=50, generations=50)
-    
-    if result_pareto.optimization_success:
-        print("  Pareto optimization successful!")
-        print(f"  Best compromise solution: {result_pareto.solution}")
-        print(f"  Objective values:")
-        for name, value in result_pareto.objective_values.items():
-            print(f"    {name}: {value:.4f}")
-        print(f"  Pareto front size: {result_pareto.convergence_info['pareto_front_size']}")
-    
-    # Robust optimization under uncertainty
-    print("\n3. Robust Optimization:")
-    uncertainty_scenarios = [
-        {'objective_multipliers': {'treatment_cost': 1.0, 'treatment_efficacy': 1.0, 'side_effects': 1.0}},
-        {'objective_multipliers': {'treatment_cost': 1.2, 'treatment_efficacy': 0.9, 'side_effects': 1.1}},
-        {'objective_multipliers': {'treatment_cost': 0.8, 'treatment_efficacy': 1.1, 'side_effects': 0.9}}
-    ]
-    
-    result_robust = optimizer.robust_optimization(uncertainty_scenarios, 'worst_case')
-    
-    if result_robust.optimization_success:
-        print("  Robust optimization successful!")
-        print(f"  Robust solution: {result_robust.solution}")
-        print(f"  Objective values:")
-        for name, value in result_robust.objective_values.items():
-            print(f"    {name}: {value:.4f}")
-    
-    # Visualize results
-    if result_pareto.optimization_success:
-        optimizer.visualize_optimization_results(result_pareto)
-
-if __name__ == "__main__":
-    demonstrate_clinical_optimization()
-```
-
-{% include attribution.html 
-   author="Optimization Research Community" 
-   work="Multi-Objective Optimization Theory and Algorithms" 
-   citation="miettinen_nonlinear_2012" 
-   note="Implementation based on established optimization theory and algorithms. All code is original educational implementation demonstrating multi-objective optimization in clinical contexts." 
-   style="research-style" %}
-
----
-
-## 2.3 Statistical Inference for Population Health
-
-Population health applications require sophisticated statistical methods that can handle complex data structures, confounding variables, and causal relationships. This section implements advanced statistical inference methods specifically designed for population health analysis [Citation] [Citation].
-
-### Causal Inference Framework
-{: .text-delta }
-
-```python
-#!/usr/bin/env python3
-"""
-Statistical Inference Framework for Population Health
-Implements causal inference and advanced statistical methods for healthcare
-
-This is an original educational implementation demonstrating statistical
-inference methods in population health contexts.
-
-Author: Sanjay Basu, MD PhD (Waymark)
-Based on causal inference theory and epidemiological methods
-Educational use - requires validation for real-world applications
-"""
-
-import numpy as np
-import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Union
-from dataclasses import dataclass
-from scipy import stats
-from scipy.special import expit, logit
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.linear_model import LogisticRegression, LinearRegression
-from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
-import seaborn as sns
-import warnings
-warnings.filterwarnings('ignore')
-
-@dataclass
-class CausalEstimate:
-    """Results from causal inference analysis"""
-    treatment_effect: float
-    confidence_interval: Tuple[float, float]
-    p_value: float
-    method: str
-    sample_size: int
-    assumptions_met: Dict[str, bool]
-    sensitivity_analysis: Dict[str, float]
-
-@dataclass
-class PopulationHealthMetric:
-    """Population health outcome metric"""
-    metric_name: str
-    value: float
-    confidence_interval: Tuple[float, float]
-    population_size: int
-    subgroup_analysis: Dict[str, float]
-
-class PopulationHealthInference:
-    """
-    Comprehensive statistical inference framework for population health
-    
-    Implements causal inference methods, survival analysis, and
-    population health metrics with proper uncertainty quantification.
-    """
-    
-    def __init__(self):
-        self.data: Optional[pd.DataFrame] = None
-        self.treatment_column: Optional[str] = None
-        self.outcome_column: Optional[str] = None
-        self.confounders: List[str] = []
-        logger.info("Population Health Inference Framework initialized")
-    
-    def load_data(self, 
-                  data: pd.DataFrame,
-                  treatment_column: str,
-                  outcome_column: str,
-                  confounders: List[str]) -> None:
-        """
-        Load data for causal inference analysis
-        
-        Args:
-            data: Population health dataset
-            treatment_column: Name of treatment/intervention column
-            outcome_column: Name of outcome column
-            confounders: List of confounder variable names
-        """
-        self.data = data.copy()
-        self.treatment_column = treatment_column
-        self.outcome_column = outcome_column
-        self.confounders = confounders
-        
-        # Validate data
-        required_columns = [treatment_column, outcome_column] + confounders
-        missing_columns = [col for col in required_columns if col not in data.columns]
-        
-        if missing_columns:
-            raise ValueError(f"Missing columns in data: {missing_columns}")
-        
-        logger.info(f"Loaded data with {len(data)} observations")
-        logger.info(f"Treatment: {treatment_column}, Outcome: {outcome_column}")
-        logger.info(f"Confounders: {confounders}")
-    
-    def propensity_score_matching(self, 
-                                caliper: float = 0.1,
-                                replacement: bool = False) -> CausalEstimate:
-        """
-        Estimate treatment effect using propensity score matching
-        
-        Args:
-            caliper: Maximum distance for matching
-            replacement: Whether to allow replacement in matching
-            
-        Returns:
-            Causal effect estimate
-        """
-        if self.data is None:
-            raise ValueError("Data not loaded")
-        
-        # Estimate propensity scores
-        X = self.data[self.confounders]
-        y = self.data[self.treatment_column]
-        
-        # Standardize features
-        scaler = StandardScaler()
-        X_scaled = scaler.fit_transform(X)
-        
-        # Fit propensity score model
-        ps_model = LogisticRegression(random_state=42)
-        ps_model.fit(X_scaled, y)
-        
-        # Calculate propensity scores
-        propensity_scores = ps_model.predict_proba(X_scaled)[:, 1]
-        self.data['propensity_score'] = propensity_scores
-        
-        # Perform matching
-        treated_indices = self.data[self.data[self.treatment_column] == 1].index
-        control_indices = self.data[self.data[self.treatment_column] == 0].index
-        
-        matched_pairs = []
-        used_controls = set()
-        
-        for treated_idx in treated_indices:
-            treated_ps = propensity_scores[treated_idx]
-            
-            # Find best match among controls
-            best_match = None
-            best_distance = float('inf')
-            
-            for control_idx in control_indices:
-                if not replacement and control_idx in used_controls:
-                    continue
-                
-                control_ps = propensity_scores[control_idx]
-                distance = abs(treated_ps - control_ps)
-                
-                if distance < caliper and distance < best_distance:
-                    best_match = control_idx
-                    best_distance = distance
-            
-            if best_match is not None:
-                matched_pairs.append((treated_idx, best_match))
-                if not replacement:
-                    used_controls.add(best_match)
-        
-        if not matched_pairs:
-            raise ValueError("No valid matches found with given caliper")
-        
-        # Calculate treatment effect on matched sample
-        treated_outcomes = []
-        control_outcomes = []
-        
-        for treated_idx, control_idx in matched_pairs:
-            treated_outcomes.append(self.data.loc[treated_idx, self.outcome_column])
-            control_outcomes.append(self.data.loc[control_idx, self.outcome_column])
-        
-        treated_outcomes = np.array(treated_outcomes)
-        control_outcomes = np.array(control_outcomes)
-        
-        # Calculate average treatment effect
-        ate = np.mean(treated_outcomes - control_outcomes)
-        
-        # Calculate confidence interval using paired t-test
-        differences = treated_outcomes - control_outcomes
-        t_stat, p_value = stats.ttest_1samp(differences, 0)
-        
-        n = len(differences)
-        se = np.std(differences) / np.sqrt(n)
-        ci_lower = ate - 1.96 * se
-        ci_upper = ate + 1.96 * se
-        
-        # Check assumptions
-        assumptions = self._check_propensity_score_assumptions(matched_pairs)
-        
-        # Sensitivity analysis
-        sensitivity = self._propensity_score_sensitivity_analysis(matched_pairs)
-        
-        return CausalEstimate(
-            treatment_effect=ate,
-            confidence_interval=(ci_lower, ci_upper),
-            p_value=p_value,
-            method='propensity_score_matching',
-            sample_size=len(matched_pairs),
-            assumptions_met=assumptions,
-            sensitivity_analysis=sensitivity
-        )
-    
-    def instrumental_variable_analysis(self, 
-                                     instrument_column: str) -> CausalEstimate:
-        """
-        Estimate treatment effect using instrumental variable analysis
-        
-        Args:
-            instrument_column: Name of instrumental variable column
-            
-        Returns:
-            Causal effect estimate
-        """
-        if self.data is None:
-            raise ValueError("Data not loaded")
-        
-        if instrument_column not in self.data.columns:
-            raise ValueError(f"Instrument column {instrument_column} not found")
-        
-        # Two-stage least squares (2SLS)
-        
-        # First stage: Regress treatment on instrument and confounders
-        X_first = self.data[[instrument_column] + self.confounders]
-        y_first = self.data[self.treatment_column]
-        
-        first_stage_model = LinearRegression()
-        first_stage_model.fit(X_first, y_first)
-        
-        # Predict treatment from first stage
-        predicted_treatment = first_stage_model.predict(X_first)
-        
-        # Check instrument strength (F-statistic)
-        f_stat = self._calculate_f_statistic(X_first, y_first, instrument_column)
-        
-        # Second stage: Regress outcome on predicted treatment and confounders
-        X_second = np.column_stack([predicted_treatment, self.data[self.confounders]])
-        y_second = self.data[self.outcome_column]
-        
-        second_stage_model = LinearRegression()
-        second_stage_model.fit(X_second, y_second)
-        
-        # Treatment effect is coefficient of predicted treatment
-        treatment_effect = second_stage_model.coef_[0]
-        
-        # Calculate standard error using delta method (simplified)
-        n = len(self.data)
-        residuals = y_second - second_stage_model.predict(X_second)
-        mse = np.sum(residuals**2) / (n - X_second.shape[1])
-        
-        # Simplified standard error calculation
-        se = np.sqrt(mse / n)
-        
-        # Confidence interval and p-value
-        ci_lower = treatment_effect - 1.96 * se
-        ci_upper = treatment_effect + 1.96 * se
-        p_value = 2 * (1 - stats.norm.cdf(abs(treatment_effect / se)))
-        
-        # Check IV assumptions
-        assumptions = self._check_iv_assumptions(instrument_column, f_stat)
-        
-        # Sensitivity analysis
-        sensitivity = {'f_statistic': f_stat, 'weak_instrument': f_stat < 10}
-        
-        return CausalEstimate(
-            treatment_effect=treatment_effect,
-            confidence_interval=(ci_lower, ci_upper),
-            p_value=p_value,
-            method='instrumental_variable',
-            sample_size=n,
-            assumptions_met=assumptions,
-            sensitivity_analysis=sensitivity
-        )
-    
-    def doubly_robust_estimation(self) -> CausalEstimate:
-        """
-        Estimate treatment effect using doubly robust estimation
-        
-        Combines propensity score and outcome regression for robustness.
-        
-        Returns:
-            Causal effect estimate
-        """
-        if self.data is None:
-            raise ValueError("Data not loaded")
-        
-        X = self.data[self.confounders]
-        treatment = self.data[self.treatment_column]
-        outcome = self.data[self.outcome_column]
-        
-        # Standardize features
-        scaler = StandardScaler()
-        X_scaled = scaler.fit_transform(X)
-        
-        # Estimate propensity scores
-        ps_model = LogisticRegression(random_state=42)
-        ps_model.fit(X_scaled, treatment)
-        propensity_scores = ps_model.predict_proba(X_scaled)[:, 1]
-        
-        # Estimate outcome regression for each treatment group
-        treated_mask = treatment == 1
-        control_mask = treatment == 0
-        
-        # Outcome model for treated
-        outcome_model_treated = RandomForestRegressor(n_estimators=100, random_state=42)
-        outcome_model_treated.fit(X_scaled[treated_mask], outcome[treated_mask])
-        
-        # Outcome model for control
-        outcome_model_control = RandomForestRegressor(n_estimators=100, random_state=42)
-        outcome_model_control.fit(X_scaled[control_mask], outcome[control_mask])
-        
-        # Predict potential outcomes for all individuals
-        mu1_hat = outcome_model_treated.predict(X_scaled)  # E[Y|X,T=1]
-        mu0_hat = outcome_model_control.predict(X_scaled)  # E[Y|X,T=0]
-        
-        # Doubly robust estimator
-        n = len(self.data)
-        
-        # AIPW (Augmented Inverse Probability Weighting) estimator
-        treated_component = (treatment * outcome) / propensity_scores - \
-                          (treatment - propensity_scores) * mu1_hat / propensity_scores
-        
-        control_component = ((1 - treatment) * outcome) / (1 - propensity_scores) - \
-                          (treatment - propensity_scores) * mu0_hat / (1 - propensity_scores)
-        
-        individual_effects = treated_component - control_component
-        
-        # Average treatment effect
-        ate = np.mean(individual_effects)
-        
-        # Standard error using influence function
-        se = np.std(individual_effects) / np.sqrt(n)
-        
-        # Confidence interval and p-value
-        ci_lower = ate - 1.96 * se
-        ci_upper = ate + 1.96 * se
-        p_value = 2 * (1 - stats.norm.cdf(abs(ate / se)))
-        
-        # Check assumptions
-        assumptions = self._check_doubly_robust_assumptions()
-        
-        # Sensitivity analysis
-        sensitivity = {
-            'propensity_score_overlap': self._check_overlap(propensity_scores),
-            'outcome_model_performance': self._assess_outcome_models(
-                outcome_model_treated, outcome_model_control, X_scaled, outcome, treatment
-            )
-        }
-        
-        return CausalEstimate(
-            treatment_effect=ate,
-            confidence_interval=(ci_lower, ci_upper),
-            p_value=p_value,
-            method='doubly_robust',
-            sample_size=n,
-            assumptions_met=assumptions,
-            sensitivity_analysis=sensitivity
-        )
-    
-    def calculate_population_health_metrics(self, 
-                                          stratification_variables: List[str] = None) -> Dict[str, PopulationHealthMetric]:
-        """
-        Calculate comprehensive population health metrics
-        
-        Args:
-            stratification_variables: Variables for subgroup analysis
-            
-        Returns:
-            Dictionary of population health metrics
-        """
-        if self.data is None:
-            raise ValueError("Data not loaded")
-        
-        metrics = {}
-        
-        # Overall outcome prevalence/mean
-        if self.data[self.outcome_column].dtype in ['int64', 'float64']:
-            if set(self.data[self.outcome_column].unique()).issubset({0, 1}):
-                # Binary outcome - calculate prevalence
-                prevalence = self.data[self.outcome_column].mean()
-                n = len(self.data)
-                se = np.sqrt(prevalence * (1 - prevalence) / n)
-                ci_lower = prevalence - 1.96 * se
-                ci_upper = prevalence + 1.96 * se
-                
-                metrics['prevalence'] = PopulationHealthMetric(
-                    metric_name='prevalence',
-                    value=prevalence,
-                    confidence_interval=(ci_lower, ci_upper),
-                    population_size=n,
-                    subgroup_analysis={}
-                )
-            else:
-                # Continuous outcome - calculate mean
-                mean_outcome = self.data[self.outcome_column].mean()
-                se = self.data[self.outcome_column].std() / np.sqrt(len(self.data))
-                ci_lower = mean_outcome - 1.96 * se
-                ci_upper = mean_outcome + 1.96 * se
-                
-                metrics['mean_outcome'] = PopulationHealthMetric(
-                    metric_name='mean_outcome',
-                    value=mean_outcome,
-                    confidence_interval=(ci_lower, ci_upper),
-                    population_size=len(self.data),
-                    subgroup_analysis={}
-                )
-        
-        # Subgroup analysis
-        if stratification_variables:
-            for var in stratification_variables:
-                if var in self.data.columns:
-                    subgroup_metrics = {}
-                    for group in self.data[var].unique():
-                        group_data = self.data[self.data[var] == group]
-                        if len(group_data) > 0:
-                            group_outcome = group_data[self.outcome_column].mean()
-                            subgroup_metrics[str(group)] = group_outcome
-                    
-                    # Add subgroup analysis to existing metrics
-                    for metric in metrics.values():
-                        if var not in metric.subgroup_analysis:
-                            metric.subgroup_analysis[var] = subgroup_metrics
-        
-        return metrics
-    
-    def _check_propensity_score_assumptions(self, matched_pairs: List[Tuple[int, int]]) -> Dict[str, bool]:
-        """Check propensity score matching assumptions"""
-        assumptions = {}
-        
-        # Balance check
-        treated_indices = [pair[0] for pair in matched_pairs]
-        control_indices = [pair[1] for pair in matched_pairs]
-        
-        balance_achieved = True
-        for confounder in self.confounders:
-            treated_values = self.data.loc[treated_indices, confounder]
-            control_values = self.data.loc[control_indices, confounder]
-            
-            # Standardized mean difference
-            smd = abs(treated_values.mean() - control_values.mean()) / \
-                  np.sqrt((treated_values.var() + control_values.var()) / 2)
-            
-            if smd > 0.1:  # Common threshold
-                balance_achieved = False
-                break
-        
-        assumptions['balance_achieved'] = balance_achieved
-        assumptions['sufficient_overlap'] = len(matched_pairs) > 0.5 * len(self.data[self.data[self.treatment_column] == 1])
-        
-        return assumptions
-    
-    def _propensity_score_sensitivity_analysis(self, matched_pairs: List[Tuple[int, int]]) -> Dict[str, float]:
-        """Perform sensitivity analysis for propensity score matching"""
-        # Rosenbaum bounds analysis (simplified)
-        treated_outcomes = [self.data.loc[pair[0], self.outcome_column] for pair in matched_pairs]
-        control_outcomes = [self.data.loc[pair[1], self.outcome_column] for pair in matched_pairs]
-        
-        differences = np.array(treated_outcomes) - np.array(control_outcomes)
-        
-        return {
-            'rosenbaum_gamma_1.5': self._rosenbaum_bound(differences, 1.5),
-            'rosenbaum_gamma_2.0': self._rosenbaum_bound(differences, 2.0)
-        }
-    
-    def _rosenbaum_bound(self, differences: np.ndarray, gamma: float) -> float:
-        """Calculate Rosenbaum bound for sensitivity analysis"""
-        # Simplified implementation
-        n = len(differences)
-        positive_diffs = np.sum(differences > 0)
-        
-        # Under null hypothesis with gamma sensitivity
-        p_plus = gamma / (1 + gamma)
-        expected = n * p_plus
-        variance = n * p_plus * (1 - p_plus)
-        
-        z_score = (positive_diffs - expected) / np.sqrt(variance)
-        p_value = 1 - stats.norm.cdf(z_score)
-        
-        return p_value
-    
-    def _calculate_f_statistic(self, X: pd.DataFrame, y: pd.Series, instrument: str) -> float:
-        """Calculate F-statistic for instrument strength"""
-        # Regression with instrument
-        model_with_instrument = LinearRegression()
-        model_with_instrument.fit(X, y)
-        
-        # Regression without instrument
-        X_without_instrument = X.drop(columns=[instrument])
-        model_without_instrument = LinearRegression()
-        model_without_instrument.fit(X_without_instrument, y)
-        
-        # Calculate F-statistic
-        rss_restricted = np.sum((y - model_without_instrument.predict(X_without_instrument))**2)
-        rss_unrestricted = np.sum((y - model_with_instrument.predict(X))**2)
-        
-        n = len(y)
-        k = X.shape[1]
-        
-        f_stat = ((rss_restricted - rss_unrestricted) / 1) / (rss_unrestricted / (n - k))
-        
-        return f_stat
-    
-    def _check_iv_assumptions(self, instrument: str, f_stat: float) -> Dict[str, bool]:
-        """Check instrumental variable assumptions"""
-        assumptions = {}
-        
-        # Instrument strength (weak instrument test)
-        assumptions['strong_instrument'] = f_stat > 10  # Rule of thumb
-        
-        # Relevance: correlation between instrument and treatment
-        correlation = self.data[instrument].corr(self.data[self.treatment_column])
-        assumptions['instrument_relevance'] = abs(correlation) > 0.1
-        
-        # Note: Exclusion restriction and independence cannot be tested statistically
-        assumptions['exclusion_restriction'] = True  # Assumed based on domain knowledge
-        assumptions['independence'] = True  # Assumed based on study design
-        
-        return assumptions
-    
-    def _check_doubly_robust_assumptions(self) -> Dict[str, bool]:
-        """Check doubly robust estimation assumptions"""
-        assumptions = {}
-        
-        # Positivity assumption
-        propensity_scores = self.data.get('propensity_score', [])
-        if len(propensity_scores) > 0:
-            assumptions['positivity'] = np.min(propensity_scores) > 0.01 and np.max(propensity_scores) < 0.99
-        else:
-            assumptions['positivity'] = True  # Cannot check without propensity scores
-        
-        # Unconfoundedness (assumed based on measured confounders)
-        assumptions['unconfoundedness'] = True
-        
-        return assumptions
-    
-    def _check_overlap(self, propensity_scores: np.ndarray) -> float:
-        """Check propensity score overlap"""
-        treated_ps = propensity_scores[self.data[self.treatment_column] == 1]
-        control_ps = propensity_scores[self.data[self.treatment_column] == 0]
-        
-        # Calculate overlap as intersection of support
-        min_treated = np.min(treated_ps)
-        max_treated = np.max(treated_ps)
-        min_control = np.min(control_ps)
-        max_control = np.max(control_ps)
-        
-        overlap_start = max(min_treated, min_control)
-        overlap_end = min(max_treated, max_control)
-        
-        if overlap_end > overlap_start:
-            overlap_ratio = (overlap_end - overlap_start) / (max(max_treated, max_control) - min(min_treated, min_control))
-        else:
-            overlap_ratio = 0.0
-        
-        return overlap_ratio
-    
-    def _assess_outcome_models(self, model_treated, model_control, X, y, treatment) -> float:
-        """Assess outcome model performance"""
-        # Cross-validation performance (simplified)
-        treated_mask = treatment == 1
-        control_mask = treatment == 0
-        
-        # Predict on opposite groups for assessment
-        treated_pred_on_control = model_treated.predict(X[control_mask])
-        control_pred_on_treated = model_control.predict(X[treated_mask])
-        
-        # Calculate R-squared as performance metric
-        treated_r2 = model_treated.score(X[treated_mask], y[treated_mask])
-        control_r2 = model_control.score(X[control_mask], y[control_mask])
-        
-        return (treated_r2 + control_r2) / 2
-    
-    def visualize_causal_analysis(self, 
-                                estimates: List[CausalEstimate],
-                                save_path: Optional[str] = None) -> None:
-        """
-        Visualize causal analysis results
-        """
-        if not estimates:
-            print("No estimates to visualize")
-            return
-        
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-        
-        # Plot treatment effects with confidence intervals
-        methods = [est.method for est in estimates]
-        effects = [est.treatment_effect for est in estimates]
-        ci_lower = [est.confidence_interval[0] for est in estimates]
-        ci_upper = [est.confidence_interval[1] for est in estimates]
-        
-        y_pos = np.arange(len(methods))
-        
-        ax1.errorbar(effects, y_pos, xerr=[np.array(effects) - np.array(ci_lower),
-                                          np.array(ci_upper) - np.array(effects)],
-                    fmt='o', capsize=5)
-        ax1.set_yticks(y_pos)
-        ax1.set_yticklabels(methods)
-        ax1.set_xlabel('Treatment Effect')
-        ax1.set_title('Causal Effect Estimates')
-        ax1.axvline(x=0, color='red', linestyle='--', alpha=0.7)
-        ax1.grid(True, alpha=0.3)
-        
-        # Plot p-values
-        p_values = [est.p_value for est in estimates]
-        colors = ['green' if p < 0.05 else 'red' for p in p_values]
-        
-        ax2.barh(y_pos, p_values, color=colors, alpha=0.7)
-        ax2.set_yticks(y_pos)
-        ax2.set_yticklabels(methods)
-        ax2.set_xlabel('P-value')
-        ax2.set_title('Statistical Significance')
-        ax2.axvline(x=0.05, color='red', linestyle='--', alpha=0.7, label='α = 0.05')
-        ax2.legend()
-        ax2.grid(True, alpha=0.3)
-        
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
-
-# Educational demonstration
-def demonstrate_population_health_inference():
-    """Demonstrate population health inference framework"""
-    # Generate synthetic population health data
-    np.random.seed(42)
-    n = 1000
-    
-    # Confounders
-    age = np.random.normal(50, 15, n)
-    income = np.random.normal(50000, 20000, n)
-    education = np.random.choice([0, 1, 2], n, p=[0.3, 0.5, 0.2])  # 0=HS, 1=College, 2=Graduate
-    
-    # Treatment assignment (influenced by confounders)
-    treatment_logit = -2 + 0.02 * age + 0.00001 * income + 0.5 * education + np.random.normal(0, 0.5, n)
-    treatment = (np.random.random(n) < expit(treatment_logit)).astype(int)
-    
-    # Outcome (influenced by treatment and confounders)
-    outcome_mean = 0.5 + 0.3 * treatment + 0.01 * age + 0.000005 * income + 0.2 * education
-    outcome = (np.random.random(n) < expit(outcome_mean)).astype(int)
-    
-    # Create dataset
-    data = pd.DataFrame({
-        'age': age,
-        'income': income,
-        'education': education,
-        'treatment': treatment,
-        'outcome': outcome,
-        'instrument': np.random.choice([0, 1], n, p=[0.7, 0.3])  # Synthetic instrument
-    })
-    
-    # Initialize inference framework
-    inference = PopulationHealthInference()
-    inference.load_data(
-        data=data,
-        treatment_column='treatment',
-        outcome_column='outcome',
-        confounders=['age', 'income', 'education']
-    )
-    
-    print("Population Health Statistical Inference Demonstration")
-    print("=" * 60)
-    print(f"Dataset: {len(data)} observations")
-    print(f"Treatment prevalence: {data['treatment'].mean():.3f}")
-    print(f"Outcome prevalence: {data['outcome'].mean():.3f}")
-    
-    # Causal inference analyses
-    estimates = []
-    
-    print("\n1. Propensity Score Matching:")
-    try:
-        ps_estimate = inference.propensity_score_matching(caliper=0.1)
-        estimates.append(ps_estimate)
-        print(f"   Treatment Effect: {ps_estimate.treatment_effect:.4f}")
-        print(f"   95% CI: ({ps_estimate.confidence_interval[0]:.4f}, {ps_estimate.confidence_interval[1]:.4f})")
-        print(f"   P-value: {ps_estimate.p_value:.4f}")
-        print(f"   Sample Size: {ps_estimate.sample_size}")
-    except Exception as e:
-        print(f"   Error: {e}")
-    
-    print("\n2. Instrumental Variable Analysis:")
-    try:
-        iv_estimate = inference.instrumental_variable_analysis('instrument')
-        estimates.append(iv_estimate)
-        print(f"   Treatment Effect: {iv_estimate.treatment_effect:.4f}")
-        print(f"   95% CI: ({iv_estimate.confidence_interval[0]:.4f}, {iv_estimate.confidence_interval[1]:.4f})")
-        print(f"   P-value: {iv_estimate.p_value:.4f}")
-        print(f"   F-statistic: {iv_estimate.sensitivity_analysis['f_statistic']:.2f}")
-    except Exception as e:
-        print(f"   Error: {e}")
-    
-    print("\n3. Doubly Robust Estimation:")
-    try:
-        dr_estimate = inference.doubly_robust_estimation()
-        estimates.append(dr_estimate)
-        print(f"   Treatment Effect: {dr_estimate.treatment_effect:.4f}")
-        print(f"   95% CI: ({dr_estimate.confidence_interval[0]:.4f}, {dr_estimate.confidence_interval[1]:.4f})")
-        print(f"   P-value: {dr_estimate.p_value:.4f}")
-        print(f"   Propensity Score Overlap: {dr_estimate.sensitivity_analysis['propensity_score_overlap']:.3f}")
-    except Exception as e:
-        print(f"   Error: {e}")
-    
-    # Population health metrics
-    print("\n4. Population Health Metrics:")
-    metrics = inference.calculate_population_health_metrics(['education'])
-    
-    for metric_name, metric in metrics.items():
-        print(f"   {metric_name}: {metric.value:.4f}")
-        print(f"   95% CI: ({metric.confidence_interval[0]:.4f}, {metric.confidence_interval[1]:.4f})")
-        print(f"   Population Size: {metric.population_size}")
-    
-    # Visualize results
-    if estimates:
-        inference.visualize_causal_analysis(estimates)
-
-if __name__ == "__main__":
-    demonstrate_population_health_inference()
-```
-
-{% include attribution.html 
-   author="Causal Inference Research Community" 
-   work="Causal Inference Methods and Epidemiological Statistics" 
-   citation="hernan_causal_2020" 
-   note="Implementation based on established causal inference theory and epidemiological methods. All code is original educational implementation demonstrating statistical inference in population health contexts." 
-   style="research-style" %}
-
----
-
-## 2.4 Uncertainty Quantification in Healthcare AI
-
-Healthcare AI systems must provide reliable uncertainty estimates to support clinical decision making. This section implements comprehensive uncertainty quantification methods specifically designed for healthcare applications [Citation] [Citation].
-
-### Comprehensive Uncertainty Framework
-{: .text-delta }
-
-```python
-#!/usr/bin/env python3
-"""
-Comprehensive Uncertainty Quantification Framework for Healthcare AI
-Implements multiple uncertainty quantification methods for clinical applications
-
-This is an original educational implementation demonstrating uncertainty
-quantification methods in healthcare AI contexts.
-
-Author: Sanjay Basu, MD PhD (Waymark)
-Based on uncertainty quantification theory and Bayesian methods
-Educational use - requires clinical validation before deployment
-"""
-
-import numpy as np
-import pandas as pd
-from typing import Dict, List, Tuple, Optional, Any, Callable
-from dataclasses import dataclass
-from scipy import stats
-from scipy.special import softmax
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
-import matplotlib.pyplot as plt
-import seaborn as sns
-import warnings
-warnings.filterwarnings('ignore')
-
-@dataclass
-class UncertaintyEstimate:
-    """Uncertainty estimate for a prediction"""
-    prediction: float
-    aleatoric_uncertainty: float  # Data uncertainty
-    epistemic_uncertainty: float  # Model uncertainty
-    total_uncertainty: float
-    confidence_interval: Tuple[float, float]
-    prediction_interval: Tuple[float, float]
-    calibration_score: float
-
-@dataclass
-class UncertaintyAnalysis:
-    """Results from uncertainty analysis"""
-    individual_estimates: List[UncertaintyEstimate]
-    population_uncertainty: Dict[str, float]
-    calibration_metrics: Dict[str, float]
-    reliability_assessment: Dict[str, Any]
-
-class BayesianNeuralNetwork(nn.Module):
-    """
-    Bayesian Neural Network for uncertainty quantification
-    
-    Uses variational inference to approximate posterior distributions
-    over network weights.
-    """
-    
-    def __init__(self, input_dim: int, hidden_dim: int, output_dim: int):
-        super().__init__()
-        
-        # Variational parameters for weights
-        self.fc1_mu = nn.Linear(input_dim, hidden_dim)
-        self.fc1_logvar = nn.Linear(input_dim, hidden_dim)
-        
-        self.fc2_mu = nn.Linear(hidden_dim, hidden_dim)
-        self.fc2_logvar = nn.Linear(hidden_dim, hidden_dim)
-        
-        self.fc3_mu = nn.Linear(hidden_dim, output_dim)
-        self.fc3_logvar = nn.Linear(hidden_dim, output_dim)
-        
-        # Initialize log variance to small negative values
-        for layer in [self.fc1_logvar, self.fc2_logvar, self.fc3_logvar]:
-            layer.weight.data.fill_(-3.0)
-            layer.bias.data.fill_(-3.0)
-    
-    def reparameterize(self, mu: torch.Tensor, logvar: torch.Tensor) -> torch.Tensor:
-        """Reparameterization trick for sampling"""
-        std = torch.exp(0.5 * logvar)
-        eps = torch.randn_like(std)
-        return mu + eps * std
-    
-    def forward(self, x: torch.Tensor, sample: bool = True) -> Tuple[torch.Tensor, torch.Tensor]:
-        """
-        Forward pass with uncertainty quantification
-        
-        Args:
-            x: Input tensor
-            sample: Whether to sample from posterior (True) or use mean (False)
-            
-        Returns:
-            Tuple of (output, kl_divergence)
-        """
-        kl_div = 0.0
-        
-        # First layer
-        if sample:
-            w1 = self.reparameterize(self.fc1_mu.weight, self.fc1_logvar.weight)
-            b1 = self.reparameterize(self.fc1_mu.bias, self.fc1_logvar.bias)
-            h1 = F.linear(x, w1, b1)
-        else:
-            h1 = self.fc1_mu(x)
-        
-        h1 = F.relu(h1)
-        
-        # KL divergence for first layer
-        kl_div += self._kl_divergence(self.fc1_mu.weight, self.fc1_logvar.weight)
-        kl_div += self._kl_divergence(self.fc1_mu.bias, self.fc1_logvar.bias)
-        
-        # Second layer
-        if sample:
-            w2 = self.reparameterize(self.fc2_mu.weight, self.fc2_logvar.weight)
-            b2 = self.reparameterize(self.fc2_mu.bias, self.fc2_logvar.bias)
-            h2 = F.linear(h1, w2, b2)
-        else:
-            h2 = self.fc2_mu(h1)
-        
-        h2 = F.relu(h2)
-        
-        # KL divergence for second layer
-        kl_div += self._kl_divergence(self.fc2_mu.weight, self.fc2_logvar.weight)
-        kl_div += self._kl_divergence(self.fc2_mu.bias, self.fc2_logvar.bias)
-        
-        # Output layer
-        if sample:
-            w3 = self.reparameterize(self.fc3_mu.weight, self.fc3_logvar.weight)
-            b3 = self.reparameterize(self.fc3_mu.bias, self.fc3_logvar.bias)
-            output = F.linear(h2, w3, b3)
-        else:
-            output = self.fc3_mu(h2)
-        
-        # KL divergence for output layer
-        kl_div += self._kl_divergence(self.fc3_mu.weight, self.fc3_logvar.weight)
-        kl_div += self._kl_divergence(self.fc3_mu.bias, self.fc3_logvar.bias)
-        
-        return output, kl_div
-    
-    def _kl_divergence(self, mu: torch.Tensor, logvar: torch.Tensor) -> torch.Tensor:
-        """Calculate KL divergence between posterior and prior"""
-        # KL(q(w) || p(w)) where p(w) = N(0, 1)
-        return -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-
-class HealthcareUncertaintyQuantification:
-    """
-    Comprehensive uncertainty quantification framework for healthcare AI
-    
-    Implements multiple uncertainty quantification methods including
-    Bayesian neural networks, ensemble methods, and calibration techniques.
-    """
-    
-    def __init__(self):
-        self.models: Dict[str, Any] = {}
-        self.calibration_data: Optional[pd.DataFrame] = None
-        logger.info("Healthcare Uncertainty Quantification Framework initialized")
-    
-    def train_bayesian_model(self, 
-                           X_train: np.ndarray, 
-                           y_train: np.ndarray,
-                           X_val: np.ndarray,
-                           y_val: np.ndarray,
-                           epochs: int = 100,
-                           learning_rate: float = 0.001) -> None:
-        """
-        Train Bayesian neural network for uncertainty quantification
-        
-        Args:
-            X_train: Training features
-            y_train: Training targets
-            X_val: Validation features
-            y_val: Validation targets
-            epochs: Number of training epochs
-            learning_rate: Learning rate
-        """
-        input_dim = X_train.shape[1]
-        output_dim = 1 if len(y_train.shape) == 1 else y_train.shape[1]
-        
-        # Initialize Bayesian neural network
-        model = BayesianNeuralNetwork(input_dim, 64, output_dim)
-        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-        
-        # Convert to tensors
-        X_train_tensor = torch.FloatTensor(X_train)
-        y_train_tensor = torch.FloatTensor(y_train.reshape(-1, 1))
-        X_val_tensor = torch.FloatTensor(X_val)
-        y_val_tensor = torch.FloatTensor(y_val.reshape(-1, 1))
-        
-        # Training loop
-        train_losses = []
-        val_losses = []
-        
-        for epoch in range(epochs):
-            model.train()
-            optimizer.zero_grad()
-            
-            # Forward pass
-            output, kl_div = model(X_train_tensor, sample=True)
-            
-            # Loss function: negative log likelihood + KL divergence
-            nll = F.mse_loss(output, y_train_tensor)
-            loss = nll + 0.01 * kl_div / len(X_train)  # Beta = 0.01
-            
-            # Backward pass
-            loss.backward()
-            optimizer.step()
-            
-            train_losses.append(loss.item())
-            
-            # Validation
-            if epoch % 10 == 0:
-                model.eval()
-                with torch.no_grad():
-                    val_output, val_kl = model(X_val_tensor, sample=False)
-                    val_loss = F.mse_loss(val_output, y_val_tensor)
-                    val_losses.append(val_loss.item())
-                
-                logger.info(f"Epoch {epoch}: Train Loss = {loss.item():.4f}, Val Loss = {val_loss.item():.4f}")
-        
-        self.models['bayesian_nn'] = model
-        logger.info("Bayesian neural network training completed")
-    
-    def train_ensemble_model(self, 
-                           X_train: np.ndarray, 
-                           y_train: np.ndarray,
-                           n_estimators: int = 10) -> None:
-        """
-        Train ensemble model for uncertainty quantification
-        
-        Args:
-            X_train: Training features
-            y_train: Training targets
-            n_estimators: Number of ensemble members
-        """
-        ensemble = []
-        
-        for i in range(n_estimators):
-            # Bootstrap sampling
-            n_samples = len(X_train)
+        return interpretations
+    
+    def _generate_component_interpretation(self, top_variables: List[Dict[str, Any]]) -> str:
+        """Generate clinical interpretation for a PCA component."""
+        if not top_variables:
+            return "No significant variable loadings"
+        
+        # Group variables by clinical domain
+        lab_vars = [v for v in top_variables if 'lab' in v['variable'].lower()]
+        vital_vars = [v for v in top_variables if any(term in v['variable'].lower() 
+                     for term in ['bp', 'hr', 'temp', 'resp'])]
+        
+        interpretation_parts = []
+        
+        if lab_vars:
+            interpretation_parts.append(f"Laboratory profile ({len(lab_vars)} variables)")
+        if vital_vars:
+            interpretation_parts.append(f"Vital signs pattern ({len(vital_vars)} variables)")
+        
+        if not interpretation_parts:
+            interpretation_parts.append("Mixed clinical variables")
+        
+        return " + ".join(interpretation_parts)
+    
+    def _calculate_component_stability(self, 
+                                     X: np.ndarray,
+                                     n_components: int,
+                                     n_bootstrap: int = 100) -> np.ndarray:
+        """Calculate stability of PCA components using bootstrap."""
+        n_samples = X.shape[0]
+        component_similarities = []
+        
+        # Original PCA
+        pca_original = PCA(n_components=n_components, random_state=self.random_seed)
+        pca_original.fit(X)
+        original_components = pca_original.components_
+        
+        # Bootstrap iterations
+        for _ in range(n_bootstrap):
+            # Bootstrap sample
             bootstrap_indices = np.random.choice(n_samples, n_samples, replace=True)
-            X_bootstrap = X_train[bootstrap_indices]
-            y_bootstrap = y_train[bootstrap_indices]
+            X_bootstrap = X[bootstrap_indices, :]
             
-            # Train individual model
-            model = RandomForestClassifier(n_estimators=100, random_state=i)
-            model.fit(X_bootstrap, y_bootstrap)
-            ensemble.append(model)
+            # PCA on bootstrap sample
+            pca_bootstrap = PCA(n_components=n_components, random_state=self.random_seed)
+            pca_bootstrap.fit(X_bootstrap)
+            bootstrap_components = pca_bootstrap.components_
+            
+            # Calculate component similarities (absolute correlation)
+            similarities = []
+            for i in range(n_components):
+                max_similarity = 0
+                for j in range(n_components):
+                    similarity = abs(np.corrcoef(original_components[i], 
+                                               bootstrap_components[j])[0, 1])
+                    max_similarity = max(max_similarity, similarity)
+                similarities.append(max_similarity)
+            
+            component_similarities.append(similarities)
         
-        self.models['ensemble'] = ensemble
-        logger.info(f"Ensemble model with {n_estimators} members trained")
+        # Average similarities across bootstrap iterations
+        stability_scores = np.mean(component_similarities, axis=0)
+        
+        return stability_scores
     
-    def predict_with_uncertainty(self, 
-                                X: np.ndarray,
-                                method: str = 'bayesian',
-                                n_samples: int = 100) -> List[UncertaintyEstimate]:
-        """
-        Make predictions with uncertainty quantification
+    def _identify_clinical_phenotypes(self, 
+                                    X_transformed: np.ndarray,
+                                    patient_ids: List[str]) -> Dict[str, Any]:
+        """Identify clinical phenotypes from PCA-transformed data."""
+        from sklearn.cluster import KMeans
         
-        Args:
-            X: Input features
-            method: Uncertainty quantification method ('bayesian' or 'ensemble')
-            n_samples: Number of samples for uncertainty estimation
-            
-        Returns:
-            List of uncertainty estimates
-        """
-        if method == 'bayesian' and 'bayesian_nn' in self.models:
-            return self._bayesian_predict(X, n_samples)
-        elif method == 'ensemble' and 'ensemble' in self.models:
-            return self._ensemble_predict(X)
-        else:
-            raise ValueError(f"Method {method} not available or model not trained")
-    
-    def _bayesian_predict(self, X: np.ndarray, n_samples: int) -> List[UncertaintyEstimate]:
-        """Make predictions using Bayesian neural network"""
-        model = self.models['bayesian_nn']
-        model.eval()
+        # Determine optimal number of clusters using elbow method
+        max_clusters = min(10, X_transformed.shape[0] // 10)
+        inertias = []
         
-        X_tensor = torch.FloatTensor(X)
-        predictions = []
+        for k in range(1, max_clusters + 1):
+            kmeans = KMeans(n_clusters=k, random_state=self.random_seed)
+            kmeans.fit(X_transformed)
+            inertias.append(kmeans.inertia_)
         
-        # Monte Carlo sampling
-        samples = []
-        for _ in range(n_samples):
-            with torch.no_grad():
-                output, _ = model(X_tensor, sample=True)
-                samples.append(output.numpy())
+        # Find elbow point (simplified)
+        optimal_k = 3  # Default, could implement more sophisticated elbow detection
         
-        samples = np.array(samples)  # Shape: (n_samples, n_data, output_dim)
+        # Perform final clustering
+        kmeans_final = KMeans(n_clusters=optimal_k, random_state=self.random_seed)
+        cluster_labels = kmeans_final.fit_predict(X_transformed)
         
-        estimates = []
-        for i in range(X.shape[0]):
-            sample_predictions = samples[:, i, 0]
-            
-            # Point prediction (mean)
-            prediction = np.mean(sample_predictions)
-            
-            # Total uncertainty (variance)
-            total_uncertainty = np.var(sample_predictions)
-            
-            # Aleatoric uncertainty (data uncertainty)
-            # Simplified: assume constant noise
-            aleatoric_uncertainty = 0.1  # This would be learned in practice
-            
-            # Epistemic uncertainty (model uncertainty)
-            epistemic_uncertainty = max(0, total_uncertainty - aleatoric_uncertainty)
-            
-            # Confidence interval
-            ci_lower = np.percentile(sample_predictions, 2.5)
-            ci_upper = np.percentile(sample_predictions, 97.5)
-            
-            # Prediction interval (includes aleatoric uncertainty)
-            pi_std = np.sqrt(total_uncertainty + aleatoric_uncertainty)
-            pi_lower = prediction - 1.96 * pi_std
-            pi_upper = prediction + 1.96 * pi_std
-            
-            # Calibration score (simplified)
-            calibration_score = self._calculate_calibration_score(
-                prediction, total_uncertainty
-            )
-            
-            estimates.append(UncertaintyEstimate(
-                prediction=prediction,
-                aleatoric_uncertainty=aleatoric_uncertainty,
-                epistemic_uncertainty=epistemic_uncertainty,
-                total_uncertainty=total_uncertainty,
-                confidence_interval=(ci_lower, ci_upper),
-                prediction_interval=(pi_lower, pi_upper),
-                calibration_score=calibration_score
-            ))
-        
-        return estimates
-    
-    def _ensemble_predict(self, X: np.ndarray) -> List[UncertaintyEstimate]:
-        """Make predictions using ensemble method"""
-        ensemble = self.models['ensemble']
-        
-        # Get predictions from all ensemble members
-        all_predictions = []
-        for model in ensemble:
-            pred_proba = model.predict_proba(X)
-            all_predictions.append(pred_proba[:, 1])  # Probability of positive class
-        
-        all_predictions = np.array(all_predictions)  # Shape: (n_models, n_data)
-        
-        estimates = []
-        for i in range(X.shape[0]):
-            ensemble_predictions = all_predictions[:, i]
-            
-            # Point prediction (mean)
-            prediction = np.mean(ensemble_predictions)
-            
-            # Total uncertainty (variance across ensemble)
-            total_uncertainty = np.var(ensemble_predictions)
-            
-            # For ensemble methods, epistemic uncertainty dominates
-            epistemic_uncertainty = total_uncertainty
-            aleatoric_uncertainty = 0.05  # Simplified assumption
-            
-            # Confidence interval
-            ci_lower = np.percentile(ensemble_predictions, 2.5)
-            ci_upper = np.percentile(ensemble_predictions, 97.5)
-            
-            # Prediction interval
-            pi_std = np.sqrt(total_uncertainty + aleatoric_uncertainty)
-            pi_lower = prediction - 1.96 * pi_std
-            pi_upper = prediction + 1.96 * pi_std
-            
-            # Calibration score
-            calibration_score = self._calculate_calibration_score(
-                prediction, total_uncertainty
-            )
-            
-            estimates.append(UncertaintyEstimate(
-                prediction=prediction,
-                aleatoric_uncertainty=aleatoric_uncertainty,
-                epistemic_uncertainty=epistemic_uncertainty,
-                total_uncertainty=total_uncertainty,
-                confidence_interval=(ci_lower, ci_upper),
-                prediction_interval=(pi_lower, pi_upper),
-                calibration_score=calibration_score
-            ))
-        
-        return estimates
-    
-    def _calculate_calibration_score(self, prediction: float, uncertainty: float) -> float:
-        """Calculate calibration score for a prediction"""
-        # Simplified calibration score
-        # In practice, this would be calculated using calibration data
-        if uncertainty > 0.1:
-            return 0.8  # High uncertainty, moderate calibration
-        elif uncertainty > 0.05:
-            return 0.9  # Medium uncertainty, good calibration
-        else:
-            return 0.95  # Low uncertainty, excellent calibration
-    
-    def calibrate_uncertainty(self, 
-                            X_cal: np.ndarray, 
-                            y_cal: np.ndarray,
-                            method: str = 'platt') -> None:
-        """
-        Calibrate uncertainty estimates using calibration data
-        
-        Args:
-            X_cal: Calibration features
-            y_cal: Calibration targets
-            method: Calibration method ('platt' or 'isotonic')
-        """
-        # Get uncalibrated predictions
-        estimates = self.predict_with_uncertainty(X_cal)
-        
-        predictions = [est.prediction for est in estimates]
-        uncertainties = [est.total_uncertainty for est in estimates]
-        
-        # Store calibration data for future use
-        self.calibration_data = pd.DataFrame({
-            'prediction': predictions,
-            'uncertainty': uncertainties,
-            'true_label': y_cal
-        })
-        
-        logger.info(f"Uncertainty calibration completed using {method} method")
-    
-    def evaluate_calibration(self, 
-                           X_test: np.ndarray, 
-                           y_test: np.ndarray) -> Dict[str, float]:
-        """
-        Evaluate calibration quality of uncertainty estimates
-        
-        Args:
-            X_test: Test features
-            y_test: Test targets
-            
-        Returns:
-            Dictionary of calibration metrics
-        """
-        estimates = self.predict_with_uncertainty(X_test)
-        
-        predictions = np.array([est.prediction for est in estimates])
-        uncertainties = np.array([est.total_uncertainty for est in estimates])
-        
-        # Reliability diagram
-        n_bins = 10
-        bin_boundaries = np.linspace(0, 1, n_bins + 1)
-        bin_lowers = bin_boundaries[:-1]
-        bin_uppers = bin_boundaries[1:]
-        
-        ece = 0  # Expected Calibration Error
-        mce = 0  # Maximum Calibration Error
-        
-        for bin_lower, bin_upper in zip(bin_lowers, bin_uppers):
-            # Find predictions in this confidence bin
-            in_bin = (predictions > bin_lower) & (predictions <= bin_upper)
-            prop_in_bin = in_bin.mean()
-            
-            if prop_in_bin > 0:
-                accuracy_in_bin = y_test[in_bin].mean()
-                avg_confidence_in_bin = predictions[in_bin].mean()
-                
-                # Calibration error for this bin
-                bin_error = abs(avg_confidence_in_bin - accuracy_in_bin)
-                ece += bin_error * prop_in_bin
-                mce = max(mce, bin_error)
-        
-        # Brier score
-        brier_score = np.mean((predictions - y_test) ** 2)
-        
-        # Uncertainty quality metrics
-        # Correlation between uncertainty and error
-        errors = np.abs(predictions - y_test)
-        uncertainty_error_correlation = np.corrcoef(uncertainties, errors)[0, 1]
+        # Analyze phenotypes
+        phenotypes = {}
+        for k in range(optimal_k):
+            cluster_mask = cluster_labels == k
+            phenotypes[f'phenotype_{k+1}'] = {
+                'patient_count': np.sum(cluster_mask),
+                'patient_ids': [patient_ids[i] for i in np.where(cluster_mask)[0]],
+                'centroid': kmeans_final.cluster_centers_[k],
+                'prevalence': np.mean(cluster_mask)
+            }
         
         return {
-            'expected_calibration_error': ece,
-            'maximum_calibration_error': mce,
-            'brier_score': brier_score,
-            'uncertainty_error_correlation': uncertainty_error_correlation
+            'phenotypes': phenotypes,
+            'cluster_labels': cluster_labels,
+            'optimal_k': optimal_k,
+            'clustering_model': kmeans_final
         }
     
-    def analyze_uncertainty_sources(self, 
-                                  X: np.ndarray,
-                                  feature_names: List[str] = None) -> UncertaintyAnalysis:
-        """
-        Analyze sources of uncertainty in predictions
+    def _standard_svd(self, X: np.ndarray, rank: Optional[int]) -> Dict[str, Any]:
+        """Perform standard SVD decomposition."""
+        U, s, Vt = la.svd(X, full_matrices=False)
         
-        Args:
-            X: Input features
-            feature_names: Names of features
+        if rank is not None:
+            U = U[:, :rank]
+            s = s[:rank]
+            Vt = Vt[:rank, :]
+        
+        return {
+            'U': U,
+            'singular_values': s,
+            'Vt': Vt,
+            'rank': len(s)
+        }
+    
+    def _calculate_completion_metrics(self, 
+                                    original: np.ndarray,
+                                    completed: np.ndarray,
+                                    missing_mask: np.ndarray) -> Dict[str, float]:
+        """Calculate metrics for matrix completion quality."""
+        # Only evaluate on originally missing entries
+        if not np.any(missing_mask):
+            return {'rmse': 0.0, 'mae': 0.0, 'completion_rate': 1.0}
+        
+        # For missing entries, we can't calculate true error
+        # Instead, calculate consistency metrics
+        completion_rate = 1.0  # All missing values were filled
+        
+        # Calculate overall matrix properties
+        frobenius_norm_ratio = (np.linalg.norm(completed, 'fro') / 
+                               np.linalg.norm(original[~missing_mask], 'fro'))
+        
+        return {
+            'completion_rate': completion_rate,
+            'frobenius_norm_ratio': frobenius_norm_ratio,
+            'missing_percentage': np.mean(missing_mask) * 100
+        }
+    
+    def _interpret_svd_factors(self, 
+                              U: np.ndarray,
+                              Vt: np.ndarray,
+                              patient_ids: List[str],
+                              variable_names: List[str]) -> Dict[str, Any]:
+        """Interpret SVD factors in clinical context."""
+        n_factors = U.shape[1]
+        
+        factor_interpretations = []
+        for i in range(n_factors):
+            # Patient factor interpretation
+            patient_loadings = U[:, i]
+            top_patient_indices = np.argsort(np.abs(patient_loadings))[-5:][::-1]
             
-        Returns:
-            Comprehensive uncertainty analysis
-        """
-        # Get uncertainty estimates
-        estimates = self.predict_with_uncertainty(X)
+            # Variable factor interpretation
+            variable_loadings = Vt[i, :]
+            top_variable_indices = np.argsort(np.abs(variable_loadings))[-10:][::-1]
+            
+            factor_interpretations.append({
+                'factor_number': i + 1,
+                'top_patients': [patient_ids[idx] for idx in top_patient_indices],
+                'top_variables': [variable_names[idx] for idx in top_variable_indices],
+                'patient_loading_range': (np.min(patient_loadings), np.max(patient_loadings)),
+                'variable_loading_range': (np.min(variable_loadings), np.max(variable_loadings))
+            })
         
-        # Population-level uncertainty metrics
-        aleatoric_uncertainties = [est.aleatoric_uncertainty for est in estimates]
-        epistemic_uncertainties = [est.epistemic_uncertainty for est in estimates]
-        total_uncertainties = [est.total_uncertainty for est in estimates]
-        
-        population_uncertainty = {
-            'mean_aleatoric': np.mean(aleatoric_uncertainties),
-            'mean_epistemic': np.mean(epistemic_uncertainties),
-            'mean_total': np.mean(total_uncertainties),
-            'uncertainty_ratio': np.mean(epistemic_uncertainties) / np.mean(total_uncertainties)
+        return {
+            'factor_interpretations': factor_interpretations,
+            'n_factors': n_factors
         }
-        
-        # Calibration metrics
-        calibration_scores = [est.calibration_score for est in estimates]
-        calibration_metrics = {
-            'mean_calibration_score': np.mean(calibration_scores),
-            'calibration_std': np.std(calibration_scores),
-            'well_calibrated_fraction': np.mean(np.array(calibration_scores) > 0.8)
-        }
-        
-        # Reliability assessment
-        predictions = [est.prediction for est in estimates]
-        reliability_assessment = {
-            'prediction_range': (np.min(predictions), np.max(predictions)),
-            'high_uncertainty_fraction': np.mean(np.array(total_uncertainties) > np.percentile(total_uncertainties, 75)),
-            'confidence_coverage': self._calculate_confidence_coverage(estimates)
-        }
-        
-        return UncertaintyAnalysis(
-            individual_estimates=estimates,
-            population_uncertainty=population_uncertainty,
-            calibration_metrics=calibration_metrics,
-            reliability_assessment=reliability_assessment
-        )
     
-    def _calculate_confidence_coverage(self, estimates: List[UncertaintyEstimate]) -> float:
-        """Calculate empirical coverage of confidence intervals"""
-        # This would require true labels for proper calculation
-        # Simplified implementation
-        return 0.95  # Assume nominal coverage
+    def _interpret_nmf_phenotypes(self, 
+                                 H: np.ndarray,
+                                 variable_names: List[str],
+                                 variable_types: Dict[str, str]) -> List[Dict[str, Any]]:
+        """Interpret NMF phenotypes based on feature loadings."""
+        phenotype_interpretations = []
+        
+        for i in range(H.shape[0]):
+            feature_loadings = H[i, :]
+            
+            # Find top contributing features
+            top_indices = np.argsort(feature_loadings)[-10:][::-1]
+            
+            top_features = []
+            for idx in top_indices:
+                if feature_loadings[idx] > 0.1:  # Threshold for meaningful contribution
+                    top_features.append({
+                        'variable': variable_names[idx],
+                        'loading': feature_loadings[idx],
+                        'type': variable_types.get(variable_names[idx], 'unknown')
+                    })
+            
+            # Generate phenotype description
+            phenotype_description = self._generate_phenotype_description(top_features)
+            
+            phenotype_interpretations.append({
+                'phenotype_number': i + 1,
+                'top_features': top_features,
+                'description': phenotype_description,
+                'feature_diversity': len(set(f['type'] for f in top_features))
+            })
+        
+        return phenotype_interpretations
     
-    def visualize_uncertainty(self, 
-                            analysis: UncertaintyAnalysis,
-                            save_path: Optional[str] = None) -> None:
-        """
-        Create comprehensive uncertainty visualizations
-        """
-        estimates = analysis.individual_estimates
+    def _generate_phenotype_description(self, top_features: List[Dict[str, Any]]) -> str:
+        """Generate clinical description for NMF phenotype."""
+        if not top_features:
+            return "Undefined phenotype"
         
-        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 10))
+        # Group features by type
+        feature_types = {}
+        for feature in top_features:
+            ftype = feature['type']
+            if ftype not in feature_types:
+                feature_types[ftype] = []
+            feature_types[ftype].append(feature['variable'])
         
-        # 1. Uncertainty decomposition
-        aleatoric = [est.aleatoric_uncertainty for est in estimates]
-        epistemic = [est.epistemic_uncertainty for est in estimates]
+        description_parts = []
+        for ftype, variables in feature_types.items():
+            if ftype == 'continuous':
+                description_parts.append(f"Continuous variables ({len(variables)})")
+            elif ftype == 'categorical':
+                description_parts.append(f"Categorical features ({len(variables)})")
+            elif ftype == 'binary':
+                description_parts.append(f"Binary indicators ({len(variables)})")
         
-        ax1.scatter(aleatoric, epistemic, alpha=0.6)
-        ax1.set_xlabel('Aleatoric Uncertainty')
-        ax1.set_ylabel('Epistemic Uncertainty')
-        ax1.set_title('Uncertainty Decomposition')
-        ax1.grid(True, alpha=0.3)
+        return " + ".join(description_parts) if description_parts else "Mixed phenotype"
+    
+    def _assign_patient_phenotypes(self, 
+                                  W: np.ndarray,
+                                  patient_ids: List[str]) -> Dict[str, Any]:
+        """Assign patients to dominant phenotypes."""
+        # Find dominant phenotype for each patient
+        dominant_phenotypes = np.argmax(W, axis=1)
         
-        # 2. Prediction vs. uncertainty
-        predictions = [est.prediction for est in estimates]
-        total_uncertainties = [est.total_uncertainty for est in estimates]
+        # Calculate phenotype assignments
+        phenotype_assignments = {}
+        for i, patient_id in enumerate(patient_ids):
+            phenotype_assignments[patient_id] = {
+                'dominant_phenotype': int(dominant_phenotypes[i]) + 1,
+                'phenotype_weights': W[i, :].tolist(),
+                'confidence': np.max(W[i, :]) / np.sum(W[i, :])
+            }
         
-        ax2.scatter(predictions, total_uncertainties, alpha=0.6)
-        ax2.set_xlabel('Prediction')
-        ax2.set_ylabel('Total Uncertainty')
-        ax2.set_title('Prediction vs. Uncertainty')
-        ax2.grid(True, alpha=0.3)
+        return phenotype_assignments
+    
+    def _calculate_phenotype_prevalence(self, W: np.ndarray) -> Dict[str, float]:
+        """Calculate prevalence of each phenotype."""
+        dominant_phenotypes = np.argmax(W, axis=1)
+        n_patients = W.shape[0]
+        n_phenotypes = W.shape[1]
         
-        # 3. Uncertainty distribution
-        ax3.hist(total_uncertainties, bins=20, alpha=0.7, edgecolor='black')
-        ax3.set_xlabel('Total Uncertainty')
-        ax3.set_ylabel('Frequency')
-        ax3.set_title('Uncertainty Distribution')
-        ax3.grid(True, alpha=0.3)
+        prevalence = {}
+        for i in range(n_phenotypes):
+            count = np.sum(dominant_phenotypes == i)
+            prevalence[f'phenotype_{i+1}'] = count / n_patients
         
-        # 4. Calibration scores
-        calibration_scores = [est.calibration_score for est in estimates]
-        ax4.hist(calibration_scores, bins=20, alpha=0.7, edgecolor='black')
-        ax4.set_xlabel('Calibration Score')
-        ax4.set_ylabel('Frequency')
-        ax4.set_title('Calibration Quality')
-        ax4.axvline(x=0.8, color='red', linestyle='--', label='Good Calibration Threshold')
-        ax4.legend()
-        ax4.grid(True, alpha=0.3)
+        return prevalence
+    
+    def _khatri_rao_product(self, A: np.ndarray, B: np.ndarray) -> np.ndarray:
+        """Compute Khatri-Rao product of two matrices."""
+        return np.kron(A, np.ones((1, B.shape[1]))) * np.kron(np.ones((1, A.shape[1])), B)
+    
+    def _reconstruct_tensor(self, A: np.ndarray, B: np.ndarray, C: np.ndarray) -> np.ndarray:
+        """Reconstruct tensor from factor matrices."""
+        rank = A.shape[1]
+        tensor_shape = (A.shape[0], B.shape[0], C.shape[0])
+        reconstructed = np.zeros(tensor_shape)
         
-        plt.tight_layout()
+        for r in range(rank):
+            reconstructed += np.outer(A[:, r], np.outer(B[:, r], C[:, r]).flatten()).reshape(tensor_shape)
         
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        
-        plt.show()
-        
-        # Print summary statistics
-        print("\nUncertainty Analysis Summary:")
-        print("=" * 40)
-        print(f"Mean Aleatoric Uncertainty: {analysis.population_uncertainty['mean_aleatoric']:.4f}")
-        print(f"Mean Epistemic Uncertainty: {analysis.population_uncertainty['mean_epistemic']:.4f}")
-        print(f"Mean Total Uncertainty: {analysis.population_uncertainty['mean_total']:.4f}")
-        print(f"Epistemic/Total Ratio: {analysis.population_uncertainty['uncertainty_ratio']:.4f}")
-        print(f"Mean Calibration Score: {analysis.calibration_metrics['mean_calibration_score']:.4f}")
-        print(f"Well-Calibrated Fraction: {analysis.calibration_metrics['well_calibrated_fraction']:.4f}")
+        return reconstructed
 
-# Educational demonstration
-def demonstrate_uncertainty_quantification():
-    """Demonstrate uncertainty quantification framework"""
-    # Generate synthetic healthcare data
+
+# Demonstration functions
+def create_example_clinical_data() -> ClinicalDataMatrix:
+    """Create example clinical data matrix for demonstration."""
     np.random.seed(42)
-    n_train = 800
-    n_val = 100
-    n_test = 100
     
-    # Features: age, biomarker1, biomarker2, comorbidity_score
-    X_train = np.random.randn(n_train, 4)
-    X_val = np.random.randn(n_val, 4)
-    X_test = np.random.randn(n_test, 4)
+    # Simulate clinical data
+    n_patients = 200
+    n_variables = 50
     
-    # True function with noise
-    def true_function(X):
-        return 0.5 + 0.3 * X[:, 0] + 0.2 * X[:, 1] - 0.1 * X[:, 2] + 0.4 * X[:, 3]
+    # Generate patient IDs
+    patient_ids = [f"PATIENT_{i:04d}" for i in range(n_patients)]
     
-    # Generate targets with noise
-    y_train = (true_function(X_train) + 0.1 * np.random.randn(n_train) > 0).astype(int)
-    y_val = (true_function(X_val) + 0.1 * np.random.randn(n_val) > 0).astype(int)
-    y_test = (true_function(X_test) + 0.1 * np.random.randn(n_test) > 0).astype(int)
+    # Generate variable names
+    variable_names = []
+    variable_types = {}
     
-    # Initialize uncertainty quantification framework
-    uq = HealthcareUncertaintyQuantification()
+    # Laboratory values (continuous)
+    lab_vars = ['glucose', 'creatinine', 'hemoglobin', 'wbc_count', 'platelet_count',
+                'sodium', 'potassium', 'chloride', 'bun', 'alt', 'ast', 'bilirubin']
+    for var in lab_vars:
+        variable_names.append(f'lab_{var}')
+        variable_types[f'lab_{var}'] = 'continuous'
     
-    print("Healthcare Uncertainty Quantification Demonstration")
-    print("=" * 55)
-    print(f"Training set: {n_train} samples")
-    print(f"Validation set: {n_val} samples")
-    print(f"Test set: {n_test} samples")
+    # Vital signs (continuous)
+    vital_vars = ['systolic_bp', 'diastolic_bp', 'heart_rate', 'temperature', 'respiratory_rate']
+    for var in vital_vars:
+        variable_names.append(f'vital_{var}')
+        variable_types[f'vital_{var}'] = 'continuous'
     
-    # Train Bayesian model
-    print("\n1. Training Bayesian Neural Network...")
-    uq.train_bayesian_model(X_train, y_train, X_val, y_val, epochs=50)
+    # Demographics (mixed)
+    demo_vars = ['age', 'bmi']
+    for var in demo_vars:
+        variable_names.append(f'demo_{var}')
+        variable_types[f'demo_{var}'] = 'continuous'
     
-    # Train ensemble model
-    print("\n2. Training Ensemble Model...")
-    uq.train_ensemble_model(X_train, y_train, n_estimators=10)
+    # Comorbidities (binary)
+    comorbidity_vars = ['diabetes', 'hypertension', 'heart_disease', 'copd', 'ckd']
+    for var in comorbidity_vars:
+        variable_names.append(f'comorbid_{var}')
+        variable_types[f'comorbid_{var}'] = 'binary'
     
-    # Make predictions with uncertainty
-    print("\n3. Making Predictions with Uncertainty...")
+    # Medications (binary)
+    med_vars = ['ace_inhibitor', 'beta_blocker', 'statin', 'metformin', 'insulin']
+    for var in med_vars:
+        variable_names.append(f'med_{var}')
+        variable_types[f'med_{var}'] = 'binary'
     
-    # Bayesian predictions
-    bayesian_estimates = uq.predict_with_uncertainty(X_test, method='bayesian', n_samples=100)
+    # Additional variables to reach 50
+    remaining = n_variables - len(variable_names)
+    for i in range(remaining):
+        var_name = f'additional_var_{i}'
+        variable_names.append(var_name)
+        variable_types[var_name] = 'continuous'
     
-    # Ensemble predictions
-    ensemble_estimates = uq.predict_with_uncertainty(X_test, method='ensemble')
+    # Generate correlated clinical data
+    data = np.random.randn(n_patients, n_variables)
     
-    # Calibrate uncertainty
-    print("\n4. Calibrating Uncertainty...")
-    uq.calibrate_uncertainty(X_val, y_val)
+    # Add clinical correlations
+    # Diabetes cluster
+    diabetes_indices = [i for i, name in enumerate(variable_names) 
+                       if any(term in name for term in ['glucose', 'diabetes', 'metformin'])]
+    for i in diabetes_indices:
+        for j in diabetes_indices:
+            if i != j:
+                data[:, i] += 0.3 * data[:, j]
     
-    # Evaluate calibration
-    print("\n5. Evaluating Calibration...")
-    calibration_metrics = uq.evaluate_calibration(X_test, y_test)
+    # Cardiovascular cluster
+    cv_indices = [i for i, name in enumerate(variable_names) 
+                 if any(term in name for term in ['bp', 'heart', 'ace_inhibitor', 'beta_blocker'])]
+    for i in cv_indices:
+        for j in cv_indices:
+            if i != j:
+                data[:, i] += 0.2 * data[:, j]
     
-    print("Calibration Metrics:")
-    for metric, value in calibration_metrics.items():
-        print(f"  {metric}: {value:.4f}")
+    # Add missing data pattern
+    missing_prob = 0.1
+    missing_mask = np.random.random((n_patients, n_variables)) < missing_prob
+    data[missing_mask] = np.nan
     
-    # Analyze uncertainty sources
-    print("\n6. Analyzing Uncertainty Sources...")
+    return ClinicalDataMatrix(
+        data=data,
+        patient_ids=patient_ids,
+        variable_names=variable_names,
+        variable_types=variable_types
+    )
+
+
+def demonstrate_advanced_linear_algebra():
+    """Demonstrate advanced linear algebra operations on clinical data."""
+    print("=== Advanced Linear Algebra for Healthcare Data ===\n")
     
-    # Bayesian analysis
-    bayesian_analysis = uq.analyze_uncertainty_sources(X_test)
-    print("\nBayesian Model Analysis:")
-    print(f"  Mean Total Uncertainty: {bayesian_analysis.population_uncertainty['mean_total']:.4f}")
-    print(f"  Epistemic/Total Ratio: {bayesian_analysis.population_uncertainty['uncertainty_ratio']:.4f}")
+    # Create example clinical data
+    clinical_data = create_example_clinical_data()
     
-    # Visualize uncertainty
-    print("\n7. Visualizing Uncertainty...")
-    uq.visualize_uncertainty(bayesian_analysis)
+    print(f"Clinical Data Matrix:")
+    print(f"  Patients: {clinical_data.shape[0]}")
+    print(f"  Variables: {clinical_data.shape[1]}")
+    print(f"  Missing data: {clinical_data.missing_percentage:.1f}%")
+    print(f"  Data quality score: {clinical_data.data_quality_score:.3f}")
     
-    # Compare methods
-    print("\n8. Method Comparison:")
-    print("Bayesian Neural Network:")
-    print(f"  Mean Prediction: {np.mean([est.prediction for est in bayesian_estimates]):.4f}")
-    print(f"  Mean Uncertainty: {np.mean([est.total_uncertainty for est in bayesian_estimates]):.4f}")
+    # Initialize linear algebra processor
+    la_processor = AdvancedLinearAlgebra(random_seed=42)
     
-    print("Ensemble Method:")
-    print(f"  Mean Prediction: {np.mean([est.prediction for est in ensemble_estimates]):.4f}")
-    print(f"  Mean Uncertainty: {np.mean([est.total_uncertainty for est in ensemble_estimates]):.4f}")
+    # 1. Robust PCA Analysis
+    print(f"\n1. Robust PCA Analysis")
+    print("-" * 40)
+    
+    pca_results = la_processor.robust_pca(
+        clinical_data=clinical_data,
+        n_components=10,
+        handle_missing='impute'
+    )
+    
+    print(f"PCA Results:")
+    print(f"  Components extracted: {len(pca_results['explained_variance_ratio'])}")
+    print(f"  Variance explained by first 5 components: {pca_results['cumulative_variance_ratio'][4]:.1%}")
+    print(f"  Components needed for 95% variance: {pca_results['n_components_95_variance']}")
+    
+    # Show component interpretations
+    print(f"\nTop 3 Component Interpretations:")
+    for i, interp in enumerate(pca_results['component_interpretations'][:3]):
+        print(f"  Component {interp['component_number']}: {interp['clinical_interpretation']}")
+        print(f"    Stability score: {pca_results['stability_scores'][i]:.3f}")
+    
+    # 2. Matrix Completion with SVD
+    print(f"\n2. Matrix Completion using SVD")
+    print("-" * 40)
+    
+    svd_results = la_processor.matrix_completion_svd(
+        clinical_data=clinical_data,
+        rank=15,
+        max_iterations=50
+    )
+    
+    print(f"SVD Matrix Completion Results:")
+    print(f"  Rank: {svd_results['rank']}")
+    print(f"  Iterations: {svd_results['iterations']}")
+    print(f"  Missing data: {svd_results['missing_data_percentage']:.1f}%")
+    
+    completion_metrics = svd_results['completion_metrics']
+    print(f"  Completion rate: {completion_metrics['completion_rate']:.1%}")
+    print(f"  Frobenius norm ratio: {completion_metrics['frobenius_norm_ratio']:.3f}")
+    
+    # 3. Non-negative Matrix Factorization
+    print(f"\n3. Non-negative Matrix Factorization")
+    print("-" * 40)
+    
+    # Prepare data for NMF (ensure non-negativity)
+    nmf_results = la_processor.non_negative_matrix_factorization(
+        clinical_data=clinical_data,
+        n_components=5,
+        max_iterations=200
+    )
+    
+    print(f"NMF Results:")
+    print(f"  Phenotypes identified: {nmf_results['n_components']}")
+    print(f"  Reconstruction error: {nmf_results['relative_error']:.4f}")
+    
+    # Show phenotype prevalence
+    print(f"\nPhenotype Prevalence:")
+    for phenotype, prevalence in nmf_results['phenotype_prevalence'].items():
+        print(f"  {phenotype}: {prevalence:.1%}")
+    
+    # Show phenotype interpretations
+    print(f"\nPhenotype Interpretations:")
+    for interp in nmf_results['phenotype_interpretations'][:3]:
+        print(f"  Phenotype {interp['phenotype_number']}: {interp['description']}")
+        print(f"    Feature diversity: {interp['feature_diversity']} types")
+    
+    # 4. Clinical Phenotype Analysis
+    print(f"\n4. Clinical Phenotype Analysis")
+    print("-" * 40)
+    
+    phenotypes = pca_results['clinical_phenotypes']
+    print(f"PCA-based Phenotypes:")
+    print(f"  Optimal clusters: {phenotypes['optimal_k']}")
+    
+    for phenotype_name, phenotype_info in phenotypes['phenotypes'].items():
+        print(f"  {phenotype_name}: {phenotype_info['patient_count']} patients "
+              f"({phenotype_info['prevalence']:.1%})")
+    
+    # 5. Data Quality Assessment
+    print(f"\n5. Data Quality Assessment")
+    print("-" * 40)
+    
+    variable_summary = clinical_data.get_variable_summary()
+    
+    # Show variables with highest missing rates
+    if 'missing_pct' in variable_summary.columns:
+        high_missing = variable_summary.nlargest(5, 'missing_pct')
+        print(f"Variables with highest missing rates:")
+        for _, row in high_missing.iterrows():
+            print(f"  {row['variable']}: {row['missing_pct']:.1f}% missing")
+    
+    # Show continuous variable statistics
+    continuous_vars = variable_summary[variable_summary['type'] == 'continuous']
+    if not continuous_vars.empty and 'mean' in continuous_vars.columns:
+        print(f"\nContinuous variables summary:")
+        print(f"  Mean range: [{continuous_vars['mean'].min():.2f}, {continuous_vars['mean'].max():.2f}]")
+        print(f"  Std range: [{continuous_vars['std'].min():.2f}, {continuous_vars['std'].max():.2f}]")
+
 
 if __name__ == "__main__":
-    demonstrate_uncertainty_quantification()
+    demonstrate_advanced_linear_algebra()
 ```
 
-{% include attribution.html 
-   author="Uncertainty Quantification Research Community" 
-   work="Bayesian Deep Learning and Uncertainty Quantification Methods" 
-   citation="ghahramani_probabilistic_2015" 
-   note="Implementation based on established uncertainty quantification theory and Bayesian methods. All code is original educational implementation demonstrating uncertainty quantification in healthcare AI contexts." 
-   style="research-style" %}
+## 2.4 Optimization Theory for Model Training
 
----
+Optimization theory provides the mathematical framework for training AI models by finding parameter values that minimize prediction errors while maintaining model generalizability. In healthcare applications, optimization must balance multiple objectives including predictive accuracy, interpretability, clinical utility, and fairness across different patient populations.
 
-## Key Takeaways
+### 2.4.1 Gradient-Based Optimization Methods
 
-{: .highlight }
-**Bayesian Foundation**: Bayesian methods provide the principled framework for incorporating prior knowledge and quantifying uncertainty in healthcare AI, essential for clinical decision making under uncertainty.
+The most commonly used optimization methods in healthcare AI are gradient-based approaches that iteratively update model parameters in the direction of steepest descent of the loss function. The fundamental update rule can be expressed as:
 
-{: .highlight }
-**Multi-Objective Optimization**: Healthcare decisions involve complex trade-offs that require sophisticated optimization approaches capable of handling multiple competing objectives and clinical constraints.
+$$\theta_{t+1} = \theta_t - \alpha \nabla_\theta L(\theta_t)$$
 
-{: .highlight }
-**Causal Inference**: Population health applications demand rigorous causal inference methods to establish treatment effects and guide policy decisions, going beyond simple correlation analysis.
+Where $\theta$ represents the model parameters, $\alpha$ is the learning rate, and $L(\theta)$ is the loss function.
 
-{: .highlight }
-**Uncertainty Quantification**: Reliable uncertainty estimates are crucial for clinical deployment, requiring comprehensive frameworks that distinguish between different sources of uncertainty and provide calibrated confidence measures.
+For healthcare applications, the loss function often incorporates multiple clinical considerations:
 
----
+$$L(\theta) = L_{prediction}(\theta) + \lambda L_{regularization}(\theta) + \gamma L_{fairness}(\theta) + \delta L_{interpretability}(\theta)$$
 
-## Interactive Exercises
+This multi-objective formulation ensures that models not only achieve high predictive accuracy but also maintain fairness across different patient populations, avoid overfitting to training data, and provide interpretable results that can be validated by clinical experts.
 
-### Exercise 1: Bayesian Diagnostic System
-{: .text-delta }
+### 2.4.2 Constrained Optimization for Clinical Requirements
 
-Extend the Bayesian diagnostic system to handle multiple correlated diseases:
+Healthcare AI systems often must satisfy hard constraints related to clinical safety, regulatory requirements, and operational considerations. These constraints can be incorporated into the optimization problem using Lagrangian methods:
 
-```python
-# Your task: Implement correlated disease modeling
-def implement_correlated_diseases():
-    """
-    Extend the Bayesian system to handle disease correlations
-    
-    Requirements:
-    1. Model disease co-occurrence probabilities
-    2. Update Bayesian inference for correlated diseases
-    3. Validate against clinical data
-    4. Implement sensitivity analysis
-    """
-    pass  # Your implementation here
-```
+$$\mathcal{L}(\theta, \lambda, \mu) = L(\theta) + \sum_i \lambda_i g_i(\theta) + \sum_j \mu_j h_j(\theta)$$
 
-### Exercise 2: Clinical Optimization Challenge
-{: .text-delta }
+Where $g_i(\theta) \leq 0$ are inequality constraints and $h_j(\theta) = 0$ are equality constraints.
 
-Design a multi-objective optimization system for ICU resource allocation:
+Common clinical constraints include:
+- **Safety constraints**: Ensuring that model predictions do not recommend harmful treatments
+- **Fairness constraints**: Maintaining equitable performance across different demographic groups
+- **Interpretability constraints**: Limiting model complexity to ensure clinical interpretability
+- **Resource constraints**: Considering computational and financial costs of model deployment
 
-```python
-# Your task: ICU resource optimization
-def optimize_icu_resources():
-    """
-    Design optimization system for ICU resource allocation
-    
-    Requirements:
-    1. Multiple objectives (patient outcomes, costs, staff workload)
-    2. Real-time constraints (bed availability, staff schedules)
-    3. Uncertainty handling (patient condition changes)
-    4. Fairness considerations (equitable access)
-    """
-    pass  # Your implementation here
-```
+## 2.5 Information Theory and Entropy in Healthcare
 
----
+Information theory provides mathematical tools for quantifying uncertainty, measuring information content, and optimizing communication systems. In healthcare AI, information-theoretic measures are used to evaluate model uncertainty, select informative features, and design efficient diagnostic protocols.
 
-## Bibliography
+### 2.5.1 Entropy and Uncertainty Quantification
 
+The entropy of a clinical variable measures the uncertainty associated with that variable:
 
----
+$$H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)$$
 
-## Next Steps
+High entropy indicates high uncertainty, while low entropy suggests more predictable outcomes. This measure is particularly useful for:
 
-Continue to [Chapter 3: Healthcare Data Engineering at Scale]([Link]) to learn about:
-- FHIR-compliant data pipelines
-- Medical imaging preprocessing
-- Multi-modal data fusion
-- Real-time clinical data streaming
+- **Feature Selection**: Variables with high entropy may provide more information for prediction
+- **Uncertainty Quantification**: Model predictions with high entropy require additional clinical validation
+- **Diagnostic Test Ordering**: Tests that maximize information gain should be prioritized
 
----
+### 2.5.2 Mutual Information for Feature Relationships
 
-## Additional Resources
+Mutual information quantifies the amount of information that one variable provides about another:
 
-### Mathematical References
-{: .text-delta }
+$$I(X;Y) = \sum_{x,y} p(x,y) \log_2 \frac{p(x,y)}{p(x)p(y)}$$
 
-1. [Citation] - Comprehensive statistical learning theory
-2. [Citation] - Bayesian data analysis methods
-3. [Citation] - Convex optimization theory and algorithms
-4. [Citation] - Causal inference in epidemiology
+This measure is essential for understanding relationships between clinical variables and identifying redundant measurements.
 
-### Code Repository
-{: .text-delta }
+### 2.5.3 Information-Theoretic Model Selection
 
-All mathematical implementations from this chapter are available in the [GitHub repository](https://github.com/sanjay-basu/healthcare-ai-book/tree/main/_chapters/02-mathematical-foundations).
+Information theory provides principled approaches to model selection through criteria such as the Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC):
 
-### Interactive Notebooks
-{: .text-delta }
+$$AIC = 2k - 2\ln(L)$$
+$$BIC = k\ln(n) - 2\ln(L)$$
 
-Explore the mathematical concepts interactively:
-- [Bayesian Diagnostics Tutorial]([Link])
-- [Clinical Optimization Workshop]([Link])
-- [Causal Inference Lab]([Link])
-- [Uncertainty Quantification Demo]([Link])
+Where $k$ is the number of parameters, $n$ is the sample size, and $L$ is the likelihood.
 
----
+## 2.6 Causal Inference and Graphical Models
 
-{: .note }
-This chapter provides the mathematical foundation for all advanced healthcare AI implementations. These concepts are essential for understanding the theoretical basis of clinical AI systems and ensuring their reliability in healthcare environments.
+Causal inference provides mathematical frameworks for understanding cause-and-effect relationships in healthcare data, enabling the development of AI systems that can support treatment decisions and policy interventions.
 
-{: .attribution }
-**Academic Integrity Statement**: This chapter contains original educational implementations based on established mathematical and statistical theory. All code is original and created for educational purposes. Proper attribution is provided for all referenced mathematical frameworks and methodologies. No proprietary algorithms have been copied or reproduced.
+### 2.6.1 Directed Acyclic Graphs (DAGs)
+
+Causal relationships in healthcare can be represented using directed acyclic graphs, where nodes represent variables and edges represent causal relationships. The mathematical framework of DAGs enables:
+
+- **Confounding Control**: Identification of variables that must be controlled to estimate causal effects
+- **Mediation Analysis**: Understanding how treatments affect outcomes through intermediate variables
+- **Collider Bias Prevention**: Avoiding spurious associations introduced by conditioning on colliders
+
+### 2.6.2 Causal Effect Estimation
+
+The fundamental problem of causal inference is estimating the effect of an intervention on an outcome. This can be formalized using potential outcomes:
+
+$$\tau = E[Y(1) - Y(0)]$$
+
+Where $Y(1)$ is the potential outcome under treatment and $Y(0)$ is the potential outcome under control.
+
+Various methods exist for causal effect estimation:
+
+**Propensity Score Methods**: Balance treatment and control groups based on observed covariates
+**Instrumental Variables**: Use variables that affect treatment assignment but not outcomes directly
+**Regression Discontinuity**: Exploit arbitrary cutoffs in treatment assignment
+**Difference-in-Differences**: Compare changes over time between treatment and control groups
+
+## 2.7 Time Series Analysis for Longitudinal Healthcare Data
+
+Healthcare data is inherently temporal, with patient conditions evolving over time and treatments having delayed effects. Time series analysis provides mathematical tools for modeling these temporal dependencies and making predictions about future health states.
+
+### 2.7.1 State Space Models
+
+State space models provide a flexible framework for modeling temporal healthcare data:
+
+**State Equation:**
+$$x_t = F_t x_{t-1} + B_t u_t + w_t$$
+
+**Observation Equation:**
+$$y_t = H_t x_t + v_t$$
+
+Where $x_t$ represents the hidden health state, $y_t$ represents observed measurements, $u_t$ represents interventions, and $w_t$, $v_t$ are noise terms.
+
+### 2.7.2 Survival Analysis and Hazard Modeling
+
+Survival analysis extends time series methods to handle censored data and time-to-event outcomes:
+
+**Kaplan-Meier Estimator:**
+$$\hat{S}(t) = \prod_{t_i \leq t} \left(1 - \frac{d_i}{n_i}\right)$$
+
+**Cox Proportional Hazards Model:**
+$$h(t|x) = h_0(t) \exp(\beta^T x)$$
+
+These models are essential for analyzing patient outcomes, treatment effectiveness, and disease progression.
+
+## 2.8 Advanced Statistical Methods
+
+Healthcare AI applications often require specialized statistical methods that go beyond standard machine learning approaches. These methods address the unique challenges of medical data including missing values, measurement error, and complex dependency structures.
+
+### 2.8.1 Multiple Imputation for Missing Data
+
+Missing data is ubiquitous in healthcare datasets. Multiple imputation provides a principled approach to handling missing values:
+
+1. **Imputation**: Create multiple complete datasets by imputing missing values
+2. **Analysis**: Perform the desired analysis on each complete dataset
+3. **Pooling**: Combine results using Rubin's rules
+
+The pooled estimate is:
+$$\bar{Q} = \frac{1}{m} \sum_{i=1}^m Q_i$$
+
+The total variance is:
+$$T = \bar{U} + \left(1 + \frac{1}{m}\right)B$$
+
+Where $\bar{U}$ is the within-imputation variance and $B$ is the between-imputation variance.
+
+### 2.8.2 Measurement Error Models
+
+Clinical measurements often contain error, which can bias statistical analyses. Measurement error models account for this uncertainty:
+
+**Classical Measurement Error:**
+$$X^* = X + U$$
+
+Where $X^*$ is the observed value, $X$ is the true value, and $U$ is the measurement error.
+
+**Berkson Measurement Error:**
+$$X = X^* + U$$
+
+These models require specialized estimation techniques such as regression calibration or SIMEX (Simulation-Extrapolation).
+
+## 2.9 Computational Considerations
+
+The mathematical methods described in this chapter must be implemented efficiently to handle large healthcare datasets. Key computational considerations include:
+
+### 2.9.1 Numerical Stability
+
+Healthcare data often exhibits extreme values and high dynamic ranges, requiring careful attention to numerical stability:
+
+- **Log-space arithmetic**: Prevent underflow in probability calculations
+- **Condition number monitoring**: Detect ill-conditioned matrices
+- **Regularization**: Improve numerical stability of optimization problems
+
+### 2.9.2 Scalability
+
+Healthcare datasets can be extremely large, requiring scalable algorithms:
+
+- **Stochastic optimization**: Use mini-batches for large datasets
+- **Distributed computing**: Parallelize computations across multiple processors
+- **Approximation methods**: Use approximations when exact solutions are computationally intractable
+
+## 2.10 Clinical Validation of Mathematical Models
+
+Mathematical models in healthcare must undergo rigorous clinical validation to ensure safety and effectiveness. This validation process includes:
+
+### 2.10.1 Statistical Validation
+
+- **Cross-validation**: Assess model generalizability
+- **Bootstrap confidence intervals**: Quantify parameter uncertainty
+- **Goodness-of-fit tests**: Verify model assumptions
+
+### 2.10.2 Clinical Validation
+
+- **Expert review**: Clinical experts evaluate model outputs
+- **Prospective studies**: Test models in real clinical settings
+- **Outcome validation**: Verify that model use improves patient outcomes
+
+## Bibliography and References
+
+1. **Hastie, T., Tibshirani, R., & Friedman, J.** (2009). *The Elements of Statistical Learning: Data Mining, Inference, and Prediction* (2nd ed.). Springer. [Comprehensive coverage of statistical learning methods with mathematical rigor]
+
+2. **Bishop, C. M.** (2006). *Pattern Recognition and Machine Learning*. Springer. [Foundational text on probabilistic approaches to machine learning]
+
+3. **Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B.** (2013). *Bayesian Data Analysis* (3rd ed.). CRC Press. [Authoritative treatment of Bayesian methods]
+
+4. **Pearl, J.** (2009). *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge University Press. [Seminal work on causal inference and graphical models]
+
+5. **Hernán, M. A., & Robins, J. M.** (2020). *Causal Inference: What If*. CRC Press. [Modern approach to causal inference with healthcare applications]
+
+6. **Kalbfleisch, J. D., & Prentice, R. L.** (2002). *The Statistical Analysis of Failure Time Data* (2nd ed.). Wiley. [Comprehensive treatment of survival analysis methods]
+
+7. **Little, R. J. A., & Rubin, D. B.** (2019). *Statistical Analysis with Missing Data* (3rd ed.). Wiley. [Authoritative guide to handling missing data]
+
+8. **Strang, G.** (2016). *Introduction to Linear Algebra* (5th ed.). Wellesley-Cambridge Press. [Clear exposition of linear algebra fundamentals]
+
+9. **Boyd, S., & Vandenberghe, L.** (2004). *Convex Optimization*. Cambridge University Press. [Comprehensive treatment of optimization theory]
+
+10. **Cover, T. M., & Thomas, J. A.** (2006). *Elements of Information Theory* (2nd ed.). Wiley. [Foundational text on information theory]
+
+### Key Healthcare AI Papers
+
+11. **Rajkomar, A., Dean, J., & Kohane, I.** (2019). Machine learning in medicine. *New England Journal of Medicine*, 380(14), 1347-1358. [Overview of machine learning applications in healthcare]
+
+12. **Topol, E. J.** (2019). High-performance medicine: the convergence of human and artificial intelligence. *Nature Medicine*, 25(1), 44-56. [Vision for AI-augmented healthcare]
+
+13. **Ghassemi, M., Naumann, T., Schulam, P., Beam, A. L., Chen, I. Y., & Ranganath, R.** (2020). A review of challenges and opportunities in machine learning for health. *AMIA Summits on Translational Science Proceedings*, 2020, 191-200. [Comprehensive review of healthcare ML challenges]
+
+14. **Chen, I. Y., Pierson, E., Rose, S., Joshi, S., Ferryman, K., & Ghassemi, M.** (2021). Ethical machine learning in healthcare. *Annual Review of Biomedical Data Science*, 4, 123-144. [Important considerations for ethical AI in healthcare]
+
+15. **Beam, A. L., & Kohane, I. S.** (2018). Big data and machine learning in health care. *JAMA*, 319(13), 1317-1318. [Perspective on big data applications in healthcare]
+
+This chapter provides the mathematical foundation necessary for developing sophisticated healthcare AI systems. The concepts and methods presented here will be applied throughout the remaining chapters as we explore specific applications in clinical prediction, treatment optimization, and population health management.

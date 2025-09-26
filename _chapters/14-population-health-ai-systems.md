@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 14: Population Health AI Systems - Large-Scale Health Analytics and Intervention Strategies"
+title: "Chapter 14: Population Health Ai Systems"
 nav_order: 14
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 14: Population Health AI Systems - Large-Scale Health Analytics and Intervention Strategies

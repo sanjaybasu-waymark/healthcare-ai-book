@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 9: Interpretability and Explainability in Healthcare AI - Building Trust Through Transparent Clinical Decision Support"
+title: "Chapter 9: Interpretability Explainability"
 nav_order: 9
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 9: Interpretability and Explainability in Healthcare AI - Building Trust Through Transparent Clinical Decision Support

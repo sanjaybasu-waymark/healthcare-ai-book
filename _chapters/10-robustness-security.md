@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 10: Robustness and Security in Healthcare AI - Building Resilient and Secure Clinical Systems"
+title: "Chapter 10: Robustness Security"
 nav_order: 10
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 10: Robustness and Security in Healthcare AI - Building Resilient and Secure Clinical Systems

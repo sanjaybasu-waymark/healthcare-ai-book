@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 19: Federated Learning in Healthcare - Collaborative AI Across Institutions"
+title: "Chapter 19: Federated Learning Healthcare"
 nav_order: 19
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 19: Federated Learning in Healthcare - Collaborative AI Across Institutions

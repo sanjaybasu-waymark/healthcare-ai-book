@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 6: Generative AI in Healthcare - Large Language Models and Multimodal Applications"
+title: "Chapter 6: Generative Ai Healthcare"
 nav_order: 6
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 6: Generative AI in Healthcare - Large Language Models and Multimodal Applications

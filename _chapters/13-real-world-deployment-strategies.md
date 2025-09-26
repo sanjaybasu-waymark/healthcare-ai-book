@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 13: Real-World Deployment Strategies - Production Implementation of Healthcare AI Systems"
+title: "Chapter 13: Real World Deployment Strategies"
 nav_order: 13
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 13: Real-World Deployment Strategies - Production Implementation of Healthcare AI Systems

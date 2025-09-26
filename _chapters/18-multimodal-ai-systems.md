@@ -1,9 +1,8 @@
 ---
 layout: default
-title: "Chapter 18: Multimodal AI Systems - Integrating Imaging, Text, and Clinical Data"
+title: "Chapter 18: Multimodal Ai Systems"
 nav_order: 18
 parent: Chapters
-has_children: false
 ---
 
 # Chapter 18: Multimodal AI Systems - Integrating Imaging, Text, and Clinical Data
