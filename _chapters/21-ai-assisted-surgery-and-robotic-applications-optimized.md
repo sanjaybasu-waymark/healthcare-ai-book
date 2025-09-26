@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 21: Ai Assisted Surgery And Robotic Applications"
+nav_order: 21
+parent: Chapters
+---
+
 # Chapter 21: AI-Assisted Surgery and Robotic Applications
 
 ## I. Introduction to AI-Assisted Surgery and Robotics

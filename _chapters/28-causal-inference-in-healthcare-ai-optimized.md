@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 28: Causal Inference In Healthcare Ai"
+nav_order: 28
+parent: Chapters
+---
+
 # Chapter 28: Causal Inference in Healthcare AI
 
 ## 1. Introduction to Causal Inference in Healthcare AI

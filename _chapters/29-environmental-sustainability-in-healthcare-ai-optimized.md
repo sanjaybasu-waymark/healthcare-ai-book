@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 29: Environmental Sustainability In Healthcare Ai"
+nav_order: 29
+parent: Chapters
+---
+
 # Chapter 29: Environmental Sustainability in Healthcare AI
 
 ## 1. Introduction

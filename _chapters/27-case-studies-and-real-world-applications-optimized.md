@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 27: Case Studies And Real World Applications"
+nav_order: 27
+parent: Chapters
+---
+
 # Chapter 27: Case Studies and Real-World Applications
 
 ## 1. Introduction to AI/ML in Clinical Practice for Physician Data Scientists

@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 01: Clinical Informatics Full Academic"
+nav_order: 01
+parent: Chapters
+---
+
 # Chapter 1: Foundations of Clinical Informatics for Healthcare AI
 
 *"The intersection of clinical practice and computational science represents one of the most promising frontiers in modern medicine, where the systematic application of information technology can transform how we understand, diagnose, and treat human disease."*

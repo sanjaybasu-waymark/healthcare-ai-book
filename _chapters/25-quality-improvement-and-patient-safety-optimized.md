@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 25: Quality Improvement And Patient Safety"
+nav_order: 25
+parent: Chapters
+---
+
 ## Chapter 25: Quality Improvement and Patient Safety
 
 ## 2. Theoretical Foundations of Quality Improvement

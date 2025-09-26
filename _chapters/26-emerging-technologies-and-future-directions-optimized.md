@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 26: Emerging Technologies And Future Directions"
+nav_order: 26
+parent: Chapters
+---
+
 # Chapter 26: Emerging Technologies and Future Directions
 
 ## I. Introduction

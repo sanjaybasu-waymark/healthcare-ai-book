@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 24: Healthcare Operations And Resource Optimization"
+nav_order: 24
+parent: Chapters
+---
+
 # Chapter 24: Healthcare Operations and Resource Optimization
 
 ## 1. Introduction

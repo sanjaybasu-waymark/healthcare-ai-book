@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 22: Drug Discovery And Development With Ai"
+nav_order: 22
+parent: Chapters
+---
+
 # Chapter 22: Drug Discovery and Development with AI
 
 ## 22.1 Introduction: The AI Revolution in Pharmaceutical Sciences

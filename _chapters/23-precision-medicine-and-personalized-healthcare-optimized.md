@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Chapter 23: Precision Medicine And Personalized Healthcare"
+nav_order: 23
+parent: Chapters
+---
+
 # Chapter 23: Precision Medicine and Personalized Healthcare
 
 ## 1. Introduction to Precision Medicine and Personalized Healthcare
