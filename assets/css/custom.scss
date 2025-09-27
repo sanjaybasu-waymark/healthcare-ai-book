@@ -1,372 +1,64 @@
 ---
 ---
 
-/* ULTIMATE ICON DESTRUCTION - EVERY POSSIBLE APPROACH */
+/* Custom CSS to ensure clean code blocks */
 
-/* Method 1: Hide all pseudo-elements globally */
-*::before, *::after {
-    content: "" !important;
+/* Remove line numbers from code blocks */
+.highlight .lineno {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    font-size: 0 !important;
-    background: none !important;
-    background-image: none !important;
-    border: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
 }
 
-/* Method 2: Target all possible icon elements */
-svg, 
-.icon, 
-[class*="icon"], 
-.fa, .fas, .far, .fab, .fal, .fad,
-[class^="fa-"], [class*=" fa-"],
-.octicon, [class^="octicon"], [class*=" octicon"],
-.material-icons, .glyphicon, [class^="glyphicon"],
-img[src*="icon"], img[src*="svg"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    max-width: 0 !important;
-    max-height: 0 !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
+.highlight pre {
+    counter-reset: none !important;
 }
 
-/* Method 3: Target Just the Docs specific elements */
-.nav-list-expander,
-.nav-list-expander::before,
-.nav-list-expander::after,
-.navigation-list-child-list-expander,
-.navigation-list-child-list-expander::before,
-.navigation-list-child-list-expander::after,
-.search-icon,
-.search-icon::before,
-.search-icon::after,
-.search-input-wrap::before,
-.search-input-wrap::after,
-.search-label::before,
-.search-label::after,
-.aux-nav-list-link::after,
-.aux-nav-list-link::before,
-.site-button::before,
-.site-button::after {
-    display: none !important;
-    content: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
+.highlight pre code {
+    counter-increment: none !important;
 }
 
-/* Method 4: Remove background images that could be icons */
-* {
-    background-image: none !important;
-    background: none !important;
-}
-
-/* Method 5: Target navigation specifically */
-.site-nav *::before,
-.site-nav *::after,
-.main-nav *::before,
-.main-nav *::after,
-.navigation-list *::before,
-.navigation-list *::after,
-.nav-list *::before,
-.nav-list *::after {
-    display: none !important;
+.highlight pre code:before {
     content: none !important;
 }
 
-/* Method 6: Force text-only buttons */
-.btn, button, input[type="button"], input[type="submit"] {
-    background-image: none !important;
-    text-indent: 0 !important;
-    overflow: visible !important;
-}
-
-.btn::before, .btn::after,
-button::before, button::after,
-input[type="button"]::before, input[type="button"]::after,
-input[type="submit"]::before, input[type="submit"]::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* Method 7: Disable icon fonts */
-@font-face {
-    font-family: 'FontAwesome';
-    src: none !important;
-}
-
-@font-face {
-    font-family: 'Material Icons';
-    src: none !important;
-}
-
-/* Method 8: Hide specific theme classes */
-[class*="external-link"]::after,
-[class*="external"]::after,
-.external::after,
-.external-link::after {
-    display: none !important;
-    content: none !important;
-}
-
-/* Method 9: CSS content property override */
-[class^="icon-"]:before, [class*=" icon-"]:before,
-[class^="fa-"]:before, [class*=" fa-"]:before,
-[class^="octicon-"]:before, [class*=" octicon-"]:before {
-    content: none !important;
-    display: none !important;
-}
-
-/* Method 10: Target any remaining large elements */
-.site-header svg, .site-nav svg, .main-content svg, .site-footer svg,
-.site-header .icon, .site-nav .icon, .main-content .icon, .site-footer .icon {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-}
-
-/* PROFESSIONAL STYLING */
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    font-size: 16px;
-}
-
-/* Clean typography */
-h1, h2, h3, h4, h5, h6 {
+/* Ensure proper markdown rendering */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
     font-weight: 600;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    line-height: 1.3;
-    color: #2c3e50;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    margin-top: 24px;
 }
 
-h1 { font-size: 2.2em; }
-h2 { font-size: 1.8em; }
-h3 { font-size: 1.5em; }
-h4 { font-size: 1.3em; }
-h5 { font-size: 1.1em; }
-h6 { font-size: 1em; }
-
-/* Professional main content */
-.main-content {
-    max-width: 1000px;
-    padding: 2rem;
-    font-size: 16px;
-    line-height: 1.6;
+/* Clean code block styling */
+.highlight {
+    background: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+    margin: 16px 0;
 }
 
-.main-content p {
-    margin-bottom: 1rem;
-    color: #333;
-}
-
-/* Clean buttons */
-.btn, button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid #007bff;
-    background: #007bff;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    font-family: inherit;
-}
-
-.btn:hover, button:hover {
-    background: #0056b3;
-    border-color: #0056b3;
-}
-
-/* Professional tables */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1.5em 0;
-    font-size: 14px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 12px 16px;
-    text-align: left;
-}
-
-th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    color: #495057;
-}
-
-tr:nth-child(even) {
-    background-color: #f8f9fa;
-}
-
-/* Code styling */
-pre, code {
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.9em;
-}
-
-pre {
-    background: #f8f9fa;
-    padding: 1em;
-    border-radius: 4px;
-    overflow-x: auto;
-    border: 1px solid #e9ecef;
-    margin: 1em 0;
-}
-
-code {
-    background-color: #f1f3f4;
-    padding: 2px 4px;
-    border-radius: 3px;
+.highlight pre {
+    background: transparent;
+    border: 0;
     font-size: 85%;
+    line-height: 1.45;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    word-wrap: normal;
 }
 
-/* Clean navigation */
-.site-nav {
-    font-size: 14px;
-    background-color: #f8f9fa;
+/* Ensure math renders properly */
+.MathJax {
+    display: inline-block !important;
 }
 
-.nav-list-item, .navigation-list-item {
-    margin: 0.25em 0;
-}
-
-.nav-list-link, .navigation-list-link {
-    padding: 0.5em 0.75em;
-    display: block;
-    text-decoration: none;
-    border-radius: 4px;
-    color: #495057;
-}
-
-.nav-list-link:hover, .navigation-list-link:hover {
-    background-color: #e9ecef;
-    color: #007bff;
-}
-
-/* Professional header */
-.site-header {
-    background-color: #fff;
-    border-bottom: 1px solid #dee2e6;
-    padding: 1rem 0;
-}
-
-.site-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    text-decoration: none;
-}
-
-/* Clean search */
-.search-input {
-    font-size: 14px;
-    padding: 8px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    width: 100%;
-    max-width: 300px;
-}
-
-/* Professional links */
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-/* Clean lists */
-ul, ol {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-}
-
-li {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-}
-
-/* Professional spacing */
-hr {
-    border: none;
-    border-top: 1px solid #dee2e6;
-    margin: 2rem 0;
-}
-
-/* Clean blockquotes */
-blockquote {
-    border-left: 4px solid #dee2e6;
-    padding-left: 1rem;
-    margin: 1rem 0;
-    font-style: italic;
-    color: #6c757d;
-}
-
-/* Professional footer */
-.site-footer {
-    font-size: 12px;
-    color: #6c757d;
-    border-top: 1px solid #dee2e6;
-    padding: 1.5rem 0;
-    background-color: #f8f9fa;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .main-content {
-        padding: 1rem;
-    }
-    
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.5rem; }
-    
-    .btn, button {
-        font-size: 12px;
-        padding: 6px 12px;
-    }
-    
-    table {
-        font-size: 12px;
-    }
-    
-    th, td {
-        padding: 8px 10px;
-    }
-}
-
-/* Clean form elements */
-input, textarea, select {
-    font-family: inherit;
-    font-size: 14px;
-    padding: 8px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-}
-
-/* Professional content wrapper */
-.wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+.MathJax_Display {
+    text-align: center !important;
+    margin: 1em 0 !important;
 }

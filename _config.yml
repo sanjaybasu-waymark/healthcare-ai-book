@@ -79,8 +79,10 @@ kramdown:
     css_class: 'highlight'
     default_lang: python
     block:
-      line_numbers: true
+      line_numbers: false
       start_line: 1
+  parse_block_html: true
+  hard_wrap: false
 
 # Rouge Configuration for Code Highlighting
 rouge:
@@ -321,4 +323,4 @@ waymark:
     use_waymark_components: true
     maintain_brand_guidelines: true
 
-# Last rebuild: 2025-09-27T12:01:24.553073
+# Last rebuild: 2025-09-27T12:04:17.354463
