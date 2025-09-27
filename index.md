@@ -102,3 +102,5 @@ This project is licensed under the MIT License, making it free for educational a
 ---
 
 **Ready to implement AI in healthcare?** Start with the foundational chapters or jump to specific topics using the navigation menu.
+
+<!-- Force rebuild 2025-09-27T12:01:24.553073 -->
