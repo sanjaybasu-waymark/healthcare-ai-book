@@ -1659,6 +1659,7 @@ class HealthcareAIBiasMitigator:
         
         return bias_reduction
 
+
 ## Bibliography and References
 
 ### Foundational Bias and Fairness Literature
@@ -1717,6 +1718,7 @@ This chapter provides a comprehensive framework for detecting and mitigating bia
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_08/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_08/)

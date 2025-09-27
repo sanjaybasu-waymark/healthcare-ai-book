@@ -1612,6 +1612,7 @@ class ClinicalValidationFramework:
         
         return next_steps
 
+
 ## Bibliography and References
 
 ### Foundational Clinical Validation Literature
@@ -1668,6 +1669,7 @@ This chapter provides a comprehensive framework for clinical validation of healt
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_12/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_12/)

@@ -726,6 +726,7 @@ class SafeRLAgent(nn.Module):
         
         return action
 
+
 ## Bibliography and References
 
 ### Foundational Reinforcement Learning in Healthcare
@@ -786,6 +787,7 @@ This chapter provides a comprehensive foundation for implementing reinforcement 
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_05/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_05/)

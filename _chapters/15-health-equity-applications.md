@@ -1891,6 +1891,7 @@ class HealthEquityAISystem:
         except Exception as e:
             logger.error(f"Failed to save equity assessment results: {str(e)}")
 
+
 ## Bibliography and References
 
 ### Health Equity and Social Justice
@@ -1949,6 +1950,7 @@ This chapter provides a comprehensive framework for developing health equity app
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_15/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_15/)

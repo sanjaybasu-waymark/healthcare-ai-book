@@ -2430,6 +2430,7 @@ class PopulationHealthAISystem:
         except Exception as e:
             logger.error(f"Failed to save analysis results: {str(e)}")
 
+
 ## Bibliography and References
 
 ### Population Health and Public Health Informatics
@@ -2486,6 +2487,7 @@ This chapter provides a comprehensive framework for population health AI systems
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_14/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_14/)

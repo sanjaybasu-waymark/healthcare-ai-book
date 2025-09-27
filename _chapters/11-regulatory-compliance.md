@@ -1925,6 +1925,7 @@ class RegulatoryComplianceFramework:
             "Finalize labeling and instructions for use"
         ]
 
+
 ## Bibliography and References
 
 ### Foundational Regulatory Literature
@@ -1981,6 +1982,7 @@ This chapter provides a comprehensive framework for navigating the complex regul
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_11/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_11/)

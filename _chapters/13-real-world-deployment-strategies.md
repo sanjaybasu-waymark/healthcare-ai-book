@@ -1505,6 +1505,7 @@ class HealthcareAIDeploymentFramework:
         
         return deployment_config.deployment_id
 
+
 ## Bibliography and References
 
 ### Infrastructure and Deployment Architecture
@@ -1561,6 +1562,7 @@ This chapter provides a comprehensive framework for real-world deployment of hea
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_13/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_13/)

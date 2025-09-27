@@ -1452,6 +1452,7 @@ class HealthcareAIExplainer:
         
         fig.show()
 
+
 ## Bibliography and References
 
 ### Foundational Interpretability and Explainability Literature
@@ -1510,6 +1511,7 @@ This chapter provides a comprehensive framework for implementing interpretable a
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_09/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_09/)

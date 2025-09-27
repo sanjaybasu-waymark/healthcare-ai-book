@@ -2077,6 +2077,7 @@ Temporal Degradation: {results.temporal_degradation:.4f}
         
         return report
 
+
 ## Bibliography and References
 
 ### Foundational Machine Learning in Healthcare
@@ -2137,6 +2138,7 @@ This chapter provides a comprehensive foundation for implementing structured mac
 
 
 ## Code Examples
+
 
 All code examples from this chapter are available in the repository:
 - **Directory**: [`code_examples/chapter_04/`](https://github.com/sanjaybasu-waymark/healthcare-ai-book/tree/main/code_examples/chapter_04/)
