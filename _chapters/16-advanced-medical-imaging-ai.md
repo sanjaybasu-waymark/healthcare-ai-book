@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/16-advanced-medical-imaging-ai/
 ---
 
-\# Chapter 16: Advanced Medical Imaging AI - Vision Transformers, 3D CNNs, and Foundation Models
+# Chapter 16: Advanced Medical Imaging AI - Vision Transformers, 3D CNNs, and Foundation Models
 
 *By Sanjay Basu MD PhD*
 
-\#\# Learning Objectives
+## Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,7 +22,7 @@ By the end of this chapter, physician data scientists will be able to:
 - Address bias and fairness in medical imaging AI across diverse populations, implementing detection and mitigation strategies for demographic bias, acquisition bias, and algorithmic bias while ensuring equitable performance across different patient groups, imaging protocols, and healthcare settings
 - Develop production-ready medical imaging AI systems with robust preprocessing pipelines, quality assurance mechanisms, clinical integration capabilities, and comprehensive monitoring systems that meet the stringent requirements of clinical deployment and ongoing operation
 
-\#\# 16.1 Introduction to Advanced Medical Imaging AI
+## 16.1 Introduction to Advanced Medical Imaging AI
 
 Medical imaging artificial intelligence represents one of the most mature and clinically impactful applications of AI in healthcare, with demonstrated success across multiple imaging modalities including radiology, pathology, ophthalmology, and dermatology. From the early breakthrough of diabetic retinopathy screening systems that achieved FDA approval to the recent advances in radiology workflow optimization and automated diagnosis, imaging AI has demonstrated tangible benefits for patient care, clinical efficiency, and healthcare accessibility.
 
@@ -32,7 +32,7 @@ The clinical impact of medical imaging AI extends far beyond simple automation o
 
 However, realizing this potential requires careful attention to technical implementation, clinical validation, regulatory compliance, and ethical deployment considerations. **Production-ready medical imaging AI** must address challenges including data heterogeneity across institutions, imaging protocol variations, patient population differences, regulatory requirements for medical devices, and the need for seamless integration with existing clinical workflows and electronic health record systems.
 
-\#\#\# 16.1.1 Evolution of Medical Imaging AI Architectures
+### 16.1.1 Evolution of Medical Imaging AI Architectures
 
 The evolution of medical imaging AI has progressed through several distinct phases, each characterized by significant architectural innovations and clinical breakthroughs. **Traditional computer vision approaches** relied on handcrafted features and classical machine learning algorithms, requiring extensive domain expertise to design appropriate feature extractors for specific imaging tasks and anatomical structures.
 
@@ -42,7 +42,7 @@ The evolution of medical imaging AI has progressed through several distinct phas
 
 **Foundation models** and **self-supervised learning** approaches have emerged as powerful paradigms for medical imaging AI, enabling the development of general-purpose models that can be fine-tuned for specific clinical tasks with limited labeled data. **Large-scale pre-training** on diverse medical imaging datasets has produced models with robust representations that transfer effectively across different imaging modalities, anatomical regions, and clinical applications.
 
-\#\#\# 16.1.2 Clinical Applications and Impact
+### 16.1.2 Clinical Applications and Impact
 
 Medical imaging AI has demonstrated clinical impact across numerous specialties and applications, with varying levels of regulatory approval and clinical adoption. **Ophthalmology applications** including diabetic retinopathy screening, age-related macular degeneration detection, and glaucoma assessment have achieved widespread clinical deployment with FDA-approved systems demonstrating non-inferiority to human experts in large-scale clinical trials.
 
@@ -52,7 +52,7 @@ Medical imaging AI has demonstrated clinical impact across numerous specialties 
 
 The clinical impact extends beyond diagnostic accuracy to include workflow optimization, standardization of image interpretation, reduction of inter-observer variability, and enabling of population-level screening programs. **Quantitative imaging biomarkers** derived from AI analysis provide objective measures for disease monitoring, treatment response assessment, and clinical trial endpoints.
 
-\#\#\# 16.1.3 Technical Challenges and Solutions
+### 16.1.3 Technical Challenges and Solutions
 
 Medical imaging AI faces unique technical challenges that require specialized solutions and careful consideration of clinical requirements. **Data heterogeneity** across institutions, imaging protocols, and patient populations can significantly impact model performance and generalizability, requiring robust preprocessing pipelines, domain adaptation techniques, and multi-site validation protocols.
 
@@ -62,9 +62,9 @@ Medical imaging AI faces unique technical challenges that require specialized so
 
 **Clinical integration challenges** include seamless workflow integration, real-time inference requirements, interpretability and explainability for clinical decision-making, and robust quality assurance mechanisms to ensure patient safety and clinical effectiveness.
 
-\#\# 16.2 Vision Transformers for Medical Imaging
+## 16.2 Vision Transformers for Medical Imaging
 
-\#\#\# 16.2.1 Mathematical Foundations and Architecture
+### 16.2.1 Mathematical Foundations and Architecture
 
 Vision Transformers (ViTs) have revolutionized computer vision and demonstrated remarkable promise in medical imaging applications by treating images as sequences of patches and applying self-attention mechanisms to capture long-range dependencies and global context. Unlike traditional convolutional neural networks that process images through local receptive fields, **ViTs enable global information integration** from the first layer, which is particularly valuable in medical imaging where global context often provides crucial diagnostic information.
 
@@ -115,7 +115,7 @@ $$
 
 where $\mathrm{\1}$ denotes multi-head self-attention, $\mathrm{\1}$ is layer normalization, and $\mathrm{\1}$ is a multi-layer perceptron with GELU activation.
 
-\#\#\# 16.2.2 Medical Imaging Adaptations
+### 16.2.2 Medical Imaging Adaptations
 
 Medical imaging presents unique challenges that require specialized adaptations of the standard Vision Transformer architecture. **High-resolution medical images** often exceed the input size limitations of standard ViTs, requiring strategies such as hierarchical processing, patch overlap, or multi-scale analysis to maintain spatial resolution while managing computational complexity.
 
@@ -123,7 +123,7 @@ Medical imaging presents unique challenges that require specialized adaptations 
 
 **Clinical context integration** requires mechanisms to incorporate patient metadata, clinical history, and multi-modal information into the transformer architecture. **Uncertainty quantification** is critical for medical applications, requiring modifications to provide calibrated confidence estimates and identify cases requiring human review.
 
-\#\#\# 16.2.3 Production-Ready Vision Transformer Implementation
+### 16.2.3 Production-Ready Vision Transformer Implementation
 
 ```python
 """
@@ -187,7 +187,7 @@ import SimpleITK as sitk
 
 warnings.filterwarnings('ignore')
 
-\# Configure logging
+# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -296,17 +296,17 @@ class MedicalViT(nn.Module):
         self.uncertainty_estimation = uncertainty_estimation
         self.clinical_features_dim = clinical_features_dim
         
-        \# Patch embedding
+        # Patch embedding
         self.patch_embed = nn.Conv2d(
             in_chans, embed_dim, kernel_size=patch_size, stride=patch_size
         )
         
-        \# Class token and positional embedding
+        # Class token and positional embedding
         self.cls_token = nn.Parameter(torch.zeros(1, 1, embed_dim))
         self.pos_embed = nn.Parameter(torch.zeros(1, self.num_patches + 1, embed_dim))
         self.pos_drop = nn.Dropout(p=drop_rate)
         
-        \# Transformer blocks
+        # Transformer blocks
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, depth)]
         self.blocks = nn.ModuleList([
             TransformerBlock(
@@ -321,25 +321,25 @@ class MedicalViT(nn.Module):
             for i in range(depth)
         ])
         
-        \# Layer normalization
+        # Layer normalization
         self.norm = nn.LayerNorm(embed_dim)
         
-        \# Clinical features integration
+        # Clinical features integration
         if clinical_features_dim > 0:
             self.clinical_proj = nn.Linear(clinical_features_dim, embed_dim)
             self.clinical_norm = nn.LayerNorm(embed_dim)
         
-        \# Classification head
+        # Classification head
         if uncertainty_estimation:
-            \# Bayesian classification head
+            # Bayesian classification head
             self.head = BayesianLinear(embed_dim, num_classes)
         else:
             self.head = nn.Linear(embed_dim, num_classes)
         
-        \# Attention visualization
+        # Attention visualization
         self.attention_maps = []
         
-        \# Initialize weights
+        # Initialize weights
         self._init_weights()
     
     def _init_weights(self):
@@ -362,26 +362,26 @@ class MedicalViT(nn.Module):
         """Extract features using transformer encoder."""
         B = x.shape<sup>0</sup>
         
-        \# Patch embedding
-        x = self.patch_embed(x)  \# (B, embed_dim, H//patch_size, W//patch_size)
-        x = x.flatten(2).transpose(1, 2)  \# (B, num_patches, embed_dim)
+        # Patch embedding
+        x = self.patch_embed(x)  # (B, embed_dim, H//patch_size, W//patch_size)
+        x = x.flatten(2).transpose(1, 2)  # (B, num_patches, embed_dim)
         
-        \# Add class token
+        # Add class token
         cls_tokens = self.cls_token.expand(B, -1, -1)
         x = torch.cat((cls_tokens, x), dim=1)
         
-        \# Add positional embedding
+        # Add positional embedding
         x = x + self.pos_embed
         x = self.pos_drop(x)
         
-        \# Integrate clinical features if provided
+        # Integrate clinical features if provided
         if clinical_features is not None and self.clinical_features_dim > 0:
             clinical_embed = self.clinical_proj(clinical_features)
             clinical_embed = self.clinical_norm(clinical_embed)
-            clinical_embed = clinical_embed.unsqueeze(1)  \# (B, 1, embed_dim)
+            clinical_embed = clinical_embed.unsqueeze(1)  # (B, 1, embed_dim)
             x = torch.cat((x, clinical_embed), dim=1)
         
-        \# Apply transformer blocks
+        # Apply transformer blocks
         self.attention_maps = []
         for block in self.blocks:
             x, attn_weights = block(x, return_attention=True)
@@ -389,14 +389,14 @@ class MedicalViT(nn.Module):
         
         x = self.norm(x)
         
-        return x[:, 0]  \# Return class token
+        return x[:, 0]  # Return class token
     
     def forward(self, x: torch.Tensor, clinical_features: Optional[torch.Tensor] = None):
         """Forward pass."""
         features = self.forward_features(x, clinical_features)
         
         if self.uncertainty_estimation:
-            \# Bayesian inference
+            # Bayesian inference
             logits, uncertainty = self.head(features)
             return logits, uncertainty
         else:
@@ -550,18 +550,18 @@ class BayesianLinear(nn.Module):
         self.out_features = out_features
         self.num_samples = num_samples
         
-        \# Weight parameters
+        # Weight parameters
         self.weight_mu = nn.Parameter(torch.randn(out_features, in_features) * 0.1)
         self.weight_rho = nn.Parameter(torch.randn(out_features, in_features) * 0.1)
         
-        \# Bias parameters
+        # Bias parameters
         self.bias_mu = nn.Parameter(torch.randn(out_features) * 0.1)
         self.bias_rho = nn.Parameter(torch.randn(out_features) * 0.1)
     
     def forward(self, x: torch.Tensor):
         """Forward pass with uncertainty estimation."""
         if self.training:
-            \# Sample weights and biases
+            # Sample weights and biases
             weight_sigma = torch.log1p(torch.exp(self.weight_rho))
             bias_sigma = torch.log1p(torch.exp(self.bias_rho))
             
@@ -570,15 +570,15 @@ class BayesianLinear(nn.Module):
             
             output = F.linear(x, weight, bias)
             
-            \# Estimate uncertainty (simplified)
+            # Estimate uncertainty (simplified)
             uncertainty = torch.mean(weight_sigma) + torch.mean(bias_sigma)
             
             return output, uncertainty
         else:
-            \# Use mean weights for inference
+            # Use mean weights for inference
             output = F.linear(x, self.weight_mu, self.bias_mu)
             
-            \# Monte Carlo sampling for uncertainty
+            # Monte Carlo sampling for uncertainty
             outputs = []
             for _ in range(self.num_samples):
                 weight_sigma = torch.log1p(torch.exp(self.weight_rho))
@@ -608,16 +608,16 @@ class Medical3DCNN(nn.Module):
         """Initialize 3D CNN."""
         super().__init__()
         
-        \# Encoder
+        # Encoder
         self.conv1 = self._conv_block(in_channels, base_filters)
         self.conv2 = self._conv_block(base_filters, base_filters * 2)
         self.conv3 = self._conv_block(base_filters * 2, base_filters * 4)
         self.conv4 = self._conv_block(base_filters * 4, base_filters * 8)
         
-        \# Global average pooling
+        # Global average pooling
         self.global_pool = nn.AdaptiveAvgPool3d(1)
         
-        \# Classifier
+        # Classifier
         self.dropout = nn.Dropout3d(dropout_rate)
         self.classifier = nn.Linear(base_filters * 8, num_classes)
     
@@ -673,11 +673,11 @@ class MedicalImagingDataset(Dataset):
         """Get dataset item."""
         row = self.data_df.iloc[idx]
         
-        \# Load image
+        # Load image
         image_path = row['image_path']
         image = self._load_image(image_path)
         
-        \# Apply transforms
+        # Apply transforms
         if self.transform:
             if isinstance(self.transform, A.Compose):
                 transformed = self.transform(image=image)
@@ -685,7 +685,7 @@ class MedicalImagingDataset(Dataset):
             else:
                 image = self.transform(image)
         
-        \# Get label
+        # Get label
         if self.task_type == TaskType.CLASSIFICATION:
             label = torch.tensor(row['label'], dtype=torch.long)
         elif self.task_type == TaskType.REGRESSION:
@@ -693,7 +693,7 @@ class MedicalImagingDataset(Dataset):
         else:
             label = torch.tensor(row['label'], dtype=torch.float32)
         
-        \# Get clinical features if available
+        # Get clinical features if available
         clinical_data = None
         if self.clinical_features:
             clinical_data = torch.tensor(
@@ -716,7 +716,7 @@ class MedicalImagingDataset(Dataset):
     def _load_image(self, image_path: str):
         """Load image based on modality."""
         if self.modality in [ImagingModality.CT, ImagingModality.MRI]:
-            \# Load DICOM or NIfTI
+            # Load DICOM or NIfTI
             if image_path.endswith('.dcm'):
                 ds = pydicom.dcmread(image_path)
                 image = ds.pixel_array.astype(np.float32)
@@ -726,11 +726,11 @@ class MedicalImagingDataset(Dataset):
             else:
                 image = np.load(image_path).astype(np.float32)
             
-            \# Normalize
+            # Normalize
             image = (image - image.mean()) / (image.std() + 1e-8)
             
         else:
-            \# Load 2D image
+            # Load 2D image
             if image_path.endswith('.dcm'):
                 ds = pydicom.dcmread(image_path)
                 image = ds.pixel_array.astype(np.float32)
@@ -753,13 +753,13 @@ class MedicalImagingTrainer:
         self.criterion = None
         self.scaler = torch.cuda.amp.GradScaler() if config.mixed_precision else None
         
-        \# Metrics tracking
+        # Metrics tracking
         self.train_losses = []
         self.val_losses = []
         self.train_metrics = []
         self.val_metrics = []
         
-        \# Best model tracking
+        # Best model tracking
         self.best_val_metric = 0.0
         self.best_model_state = None
         
@@ -791,21 +791,21 @@ class MedicalImagingTrainer:
         
         self.model = self.model.to(self.device)
         
-        \# Setup optimizer
+        # Setup optimizer
         self.optimizer = optim.AdamW(
             self.model.parameters(),
             lr=self.config.learning_rate,
             weight_decay=0.01
         )
         
-        \# Setup scheduler
+        # Setup scheduler
         self.scheduler = CosineAnnealingLR(
             self.optimizer,
             T_max=self.config.num_epochs,
             eta_min=1e-6
         )
         
-        \# Setup loss function
+        # Setup loss function
         if self.config.task_type == TaskType.CLASSIFICATION:
             self.criterion = nn.CrossEntropyLoss()
         elif self.config.task_type == TaskType.REGRESSION:
@@ -839,7 +839,7 @@ class MedicalImagingTrainer:
                     if self.config.uncertainty_estimation:
                         outputs, uncertainty = self.model(images, clinical_features)
                         loss = self.criterion(outputs, labels)
-                        \# Add uncertainty regularization
+                        # Add uncertainty regularization
                         loss += 0.01 * uncertainty.mean()
                     else:
                         outputs = self.model(images, clinical_features)
@@ -863,7 +863,7 @@ class MedicalImagingTrainer:
             total_loss += loss.item()
             num_batches += 1
             
-            \# Collect predictions for metrics
+            # Collect predictions for metrics
             if self.config.task_type == TaskType.CLASSIFICATION:
                 predictions = torch.softmax(outputs, dim=1)
                 all_predictions.extend(predictions.cpu().numpy())
@@ -871,7 +871,7 @@ class MedicalImagingTrainer:
         
         avg_loss = total_loss / num_batches
         
-        \# Calculate metrics
+        # Calculate metrics
         metrics = {}
         if self.config.task_type == TaskType.CLASSIFICATION and len(all_predictions) > 0:
             all_predictions = np.array(all_predictions)
@@ -916,7 +916,7 @@ class MedicalImagingTrainer:
                 total_loss += loss.item()
                 num_batches += 1
                 
-                \# Collect predictions for metrics
+                # Collect predictions for metrics
                 if self.config.task_type == TaskType.CLASSIFICATION:
                     predictions = torch.softmax(outputs, dim=1)
                     all_predictions.extend(predictions.cpu().numpy())
@@ -924,7 +924,7 @@ class MedicalImagingTrainer:
         
         avg_loss = total_loss / num_batches
         
-        \# Calculate metrics
+        # Calculate metrics
         metrics = {}
         if self.config.task_type == TaskType.CLASSIFICATION and len(all_predictions) > 0:
             all_predictions = np.array(all_predictions)
@@ -948,26 +948,26 @@ class MedicalImagingTrainer:
         logger.info("Starting training...")
         
         for epoch in range(self.config.num_epochs):
-            \# Train
+            # Train
             train_metrics = self.train_epoch(train_loader)
             self.train_losses.append(train_metrics['loss'])
             self.train_metrics.append(train_metrics)
             
-            \# Validate
+            # Validate
             val_metrics = self.validate_epoch(val_loader)
             self.val_losses.append(val_metrics['loss'])
             self.val_metrics.append(val_metrics)
             
-            \# Update scheduler
+            # Update scheduler
             self.scheduler.step()
             
-            \# Check for best model
+            # Check for best model
             current_metric = val_metrics.get('auc', val_metrics.get('accuracy', -val_metrics['loss']))
             if current_metric > self.best_val_metric:
                 self.best_val_metric = current_metric
                 self.best_model_state = self.model.state_dict().copy()
             
-            \# Log progress
+            # Log progress
             if epoch % 10 == 0:
                 logger.info(
                     f"Epoch {epoch}/{self.config.num_epochs}: "
@@ -976,7 +976,7 @@ class MedicalImagingTrainer:
                     f"Val Metric: {current_metric:.4f}"
                 )
         
-        \# Load best model
+        # Load best model
         if self.best_model_state:
             self.model.load_state_dict(self.best_model_state)
         
@@ -998,7 +998,7 @@ class MedicalImagingTrainer:
         """Load trained model."""
         checkpoint = torch.load(path, map_location=self.device)
         
-        \# Build model if not already built
+        # Build model if not already built
         if self.model is None:
             self.build_model()
         
@@ -1059,7 +1059,7 @@ class MedicalImagingPipeline:
             ])
         
         else:
-            \# Default transforms
+            # Default transforms
             train_transform = A.Compose([
                 A.Resize(self.config.input_size<sup>0</sup>, self.config.input_size<sup>1</sup>),
                 A.HorizontalFlip(p=0.5),
@@ -1078,13 +1078,13 @@ class MedicalImagingPipeline:
     
     def prepare_data(self, data_df: pd.DataFrame, clinical_features: Optional[List[str]] = None):
         """Prepare data for training."""
-        \# Split data
+        # Split data
         train_df, val_df = train_test_split(
             data_df, test_size=0.2, random_state=42, 
             stratify=data_df['label'] if self.config.task_type == TaskType.CLASSIFICATION else None
         )
         
-        \# Create datasets
+        # Create datasets
         train_dataset = MedicalImagingDataset(
             train_df, 
             transform=self.data_transforms['train'],
@@ -1101,7 +1101,7 @@ class MedicalImagingPipeline:
             clinical_features=clinical_features
         )
         
-        \# Create data loaders
+        # Create data loaders
         train_loader = DataLoader(
             train_dataset,
             batch_size=self.config.batch_size,
@@ -1124,13 +1124,13 @@ class MedicalImagingPipeline:
     
     def run_training(self, data_df: pd.DataFrame, clinical_features: Optional[List[str]] = None):
         """Run complete training pipeline."""
-        \# Prepare data
+        # Prepare data
         train_loader, val_loader = self.prepare_data(data_df, clinical_features)
         
-        \# Build model
+        # Build model
         self.trainer.build_model()
         
-        \# Train model
+        # Train model
         self.trainer.train(train_loader, val_loader)
         
         return self.trainer
@@ -1152,19 +1152,19 @@ class MedicalImagingPipeline:
             num_workers=4
         )
         
-        \# Evaluate
+        # Evaluate
         test_metrics = self.trainer.validate_epoch(test_loader)
         
         logger.info(f"Test metrics: {test_metrics}")
         
         return test_metrics
 
-\# Example usage and demonstration
+# Example usage and demonstration
 def create_sample_medical_imaging_data():
     """Create sample medical imaging data for demonstration."""
     np.random.seed(42)
     
-    \# Create sample data
+    # Create sample data
     n_samples = 1000
     data = {
         'patient_id': [f'patient_{i:04d}' for i in range(n_samples)],
@@ -1182,7 +1182,7 @@ def demonstrate_medical_imaging_ai():
     print("Medical Imaging AI System Demonstration")
     print("=" * 50)
     
-    \# Create configuration
+    # Create configuration
     config = ImagingConfig(
         modality=ImagingModality.XRAY,
         task_type=TaskType.CLASSIFICATION,
@@ -1191,7 +1191,7 @@ def demonstrate_medical_imaging_ai():
         num_classes=2,
         batch_size=8,
         learning_rate=1e-4,
-        num_epochs=5,  \# Reduced for demo
+        num_epochs=5,  # Reduced for demo
         uncertainty_estimation=True,
         clinical_integration=True
     )
@@ -1200,14 +1200,14 @@ def demonstrate_medical_imaging_ai():
     print(f"Architecture: {config.architecture.value}")
     print(f"Input size: {config.input_size}")
     
-    \# Create sample data
+    # Create sample data
     data_df = create_sample_medical_imaging_data()
     clinical_features = ['age', 'sex', 'bmi']
     
     print(f"Dataset: {len(data_df)} samples")
     print(f"Clinical features: {clinical_features}")
     
-    \# Initialize pipeline
+    # Initialize pipeline
     pipeline = MedicalImagingPipeline(config)
     
     print("\nPipeline initialized successfully")
@@ -1223,9 +1223,9 @@ if __name__ == "__main__":
     demonstrate_medical_imaging_ai()
 ```
 
-\#\# 16.3 3D Convolutional Networks for Volumetric Data
+## 16.3 3D Convolutional Networks for Volumetric Data
 
-\#\#\# 16.3.1 Architectural Considerations for 3D Medical Data
+### 16.3.1 Architectural Considerations for 3D Medical Data
 
 Medical imaging frequently involves volumetric data such as CT scans, MRI sequences, and 3D ultrasound that require specialized architectures capable of capturing spatial relationships across all three dimensions while managing the significant computational complexity inherent in volumetric processing. **3D Convolutional Neural Networks (3D CNNs)** extend traditional 2D convolutions to operate on volumetric data, enabling the extraction of features that capture both spatial and temporal relationships in medical imaging sequences.
 
@@ -1243,7 +1243,7 @@ However, **3D CNNs face significant computational challenges** that must be care
 
 **Architectural innovations** for medical 3D CNNs include **U-Net-based architectures** for segmentation tasks that combine encoder-decoder structures with skip connections, **attention mechanisms** that focus on relevant anatomical regions, **multi-scale processing** that captures features at different spatial scales, and **temporal modeling** for dynamic imaging sequences such as cardiac cine MRI or perfusion studies.
 
-\#\#\# 16.3.2 Specialized 3D Architectures for Medical Applications
+### 16.3.2 Specialized 3D Architectures for Medical Applications
 
 **3D U-Net architectures** have become the gold standard for medical image segmentation tasks, extending the successful 2D U-Net design to volumetric data. The architecture consists of a **contracting path** that captures context through successive convolutions and pooling operations, and an **expansive path** that enables precise localization through upsampling and concatenation with high-resolution features from the contracting path.
 
@@ -1253,9 +1253,9 @@ However, **3D CNNs face significant computational challenges** that must be care
 
 **Temporal modeling architectures** for dynamic medical imaging sequences incorporate **recurrent neural networks** for modeling temporal dependencies, **3D+time convolutions** that extend spatial 3D convolutions to include temporal dimensions, and **transformer-based temporal modeling** that uses self-attention to capture long-range temporal relationships in imaging sequences.
 
-\#\# 16.4 Foundation Models and Transfer Learning
+## 16.4 Foundation Models and Transfer Learning
 
-\#\#\# 16.4.1 Medical Imaging Foundation Models
+### 16.4.1 Medical Imaging Foundation Models
 
 Foundation models represent a paradigm shift in medical imaging AI, providing large-scale models pre-trained on diverse datasets that can be fine-tuned for specific clinical tasks with relatively small amounts of labeled data. This approach is particularly valuable in medical imaging where labeled datasets are often limited, expensive to create, and require expert annotation from trained radiologists or pathologists.
 
@@ -1273,7 +1273,7 @@ where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$
 
 **Self-supervised learning approaches** for medical imaging foundation models include **contrastive learning** that learns representations by contrasting similar and dissimilar image pairs, **masked image modeling** that predicts masked regions of medical images, **rotation prediction** that learns anatomical orientation, and **multi-modal learning** that aligns medical images with corresponding text reports or clinical data.
 
-\#\#\# 16.4.2 Clinical Validation and Regulatory Compliance
+### 16.4.2 Clinical Validation and Regulatory Compliance
 
 **Clinical validation** of medical imaging AI systems requires rigorous evaluation protocols that demonstrate safety, efficacy, and clinical utility in real-world healthcare settings. **Analytical validation** assesses the technical performance of the AI system using metrics such as sensitivity, specificity, positive predictive value, and negative predictive value on well-characterized datasets with ground truth annotations.
 
@@ -1283,9 +1283,9 @@ where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$
 
 **Post-market surveillance** requirements include ongoing monitoring of AI system performance in clinical practice, collection and analysis of real-world evidence, reporting of adverse events or performance degradation, and implementation of corrective actions when necessary. **Algorithm change protocols** must be established for updating AI models while maintaining regulatory compliance and clinical safety.
 
-\#\# Bibliography and References
+## Bibliography and References
 
-\#\#\# Vision Transformers and Medical Imaging
+### Vision Transformers and Medical Imaging
 
 1. **Dosovitskiy, A., Beyer, L., Kolesnikov, A., et al.** (2020). An image is worth 16x16 words: Transformers for image recognition at scale. *arXiv preprint arXiv:2010.11929*. [Vision Transformer foundation]
 
@@ -1295,7 +1295,7 @@ where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$
 
 4. **Valanarasu, J. M. J., Oza, P., Hacihaliloglu, I., & Patel, V. M.** (2021). Medical transformer: Gated axial-attention for medical image segmentation. *International Conference on Medical Image Computing and Computer-Assisted Intervention*, 36-46. [Medical-specific transformer design]
 
-\#\#\# 3D CNNs and Volumetric Analysis
+### 3D CNNs and Volumetric Analysis
 
 5. **Çiçek, Ö., Abdulkadir, A., Lienkamp, S. S., Brox, T., & Ronneberger, O.** (2016). 3D U-Net: learning dense volumetric segmentation from sparse annotation. *International Conference on Medical Image Computing and Computer-Assisted Intervention*, 424-432. [3D U-Net architecture]
 
@@ -1305,7 +1305,7 @@ where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$
 
 8. **Zhou, Z., Rahman Siddiquee, M. M., Tajbakhsh, N., & Liang, J.** (2018). UNet++: A nested U-Net architecture for medical image segmentation. *Deep Learning in Medical Image Analysis and Multimodal Learning for Clinical Decision Support*, 3-11. [Advanced U-Net variants]
 
-\#\#\# Foundation Models and Transfer Learning
+### Foundation Models and Transfer Learning
 
 9. **Ma, J., He, Y., Li, F., et al.** (2024). Segment anything in medical images. *Nature Communications*, 15(1), 654. [MedSAM foundation model]
 
@@ -1315,7 +1315,7 @@ where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$
 
 12. **Azizi, S., Mustafa, B., Ryan, F., et al.** (2021). Big self-supervised models advance medical image classification. *Proceedings of the IEEE/CVF International Conference on Computer Vision*, 3478-3488. [Self-supervised medical imaging]
 
-\#\#\# Clinical Applications and Validation
+### Clinical Applications and Validation
 
 13. **Gulshan, V., Peng, L., Coram, M., et al.** (2016). Development and validation of a deep learning algorithm for detection of diabetic retinopathy in retinal fundus photographs. *JAMA*, 316(22), 2402-2410. [Clinical validation example]
 
@@ -1325,7 +1325,7 @@ where $\mathcal{L}_{target}$ is the loss function for the target task, $\lambda$
 
 16. **Liu, X., Faes, L., Kale, A. U., et al.** (2019). A comparison of deep learning performance against health-care professionals in detecting diseases from medical imaging: a systematic review and meta-analysis. *The Lancet Digital Health*, 1(6), e271-e297. [Systematic review of medical imaging AI]
 
-\#\#\# Regulatory and Ethical Considerations
+### Regulatory and Ethical Considerations
 
 17. **FDA.** (2021). Artificial Intelligence/Machine Learning (AI/ML)-Based Software as a Medical Device (SaMD) Action Plan. *U.S. Food and Drug Administration*. [FDA AI/ML guidance]
 

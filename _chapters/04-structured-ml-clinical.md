@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/04-structured-ml-clinical/
 ---
 
-\# Chapter 4: Structured Machine Learning for Clinical Applications - Advanced Predictive Analytics for Clinical Decision Support
+# Chapter 4: Structured Machine Learning for Clinical Applications - Advanced Predictive Analytics for Clinical Decision Support
 
 *By Sanjay Basu MD PhD*
 
-\#\# Learning Objectives
+## Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -21,7 +21,7 @@ By the end of this chapter, physician data scientists will be able to:
 - Integrate structured ML systems with existing clinical workflows, EHR systems, and clinical decision support platforms while maintaining regulatory compliance and clinical usability
 - Implement advanced techniques for handling clinical data challenges including temporal dependencies, missing data patterns, and clinical outcome prediction with appropriate risk stratification
 
-\#\# 4.1 Introduction to Structured Clinical Machine Learning
+## 4.1 Introduction to Structured Clinical Machine Learning
 
 Structured machine learning in healthcare represents the cornerstone of modern predictive analytics in clinical settings, enabling physicians to leverage the vast amounts of structured data generated in electronic health records, laboratory systems, and clinical monitoring devices. Unlike unstructured data such as clinical notes or medical images, structured clinical data includes laboratory values, vital signs, medication records, demographic information, and procedural codes that can be directly processed by traditional machine learning algorithms without complex preprocessing steps.
 
@@ -29,7 +29,7 @@ The clinical application of structured machine learning differs fundamentally fr
 
 Third, the stakes of prediction errors are extraordinarily high in healthcare settings, requiring robust uncertainty quantification frameworks, comprehensive validation methodologies, and interpretability features that enable clinicians to understand and trust model predictions. Clinical prediction models must not only achieve high statistical performance but also integrate seamlessly with clinical workflows, provide actionable insights at the point of care, and maintain performance across diverse patient populations and clinical settings.
 
-\#\#\# 4.1.1 The Clinical Context of Structured Machine Learning
+### 4.1.1 The Clinical Context of Structured Machine Learning
 
 The evolution of structured clinical machine learning has been driven by the widespread adoption of electronic health records and the increasing availability of large-scale clinical datasets. The seminal work of Rajkomar et al. (2018) demonstrated that deep learning models applied to structured EHR data could predict in-hospital mortality, readmission risk, and length of stay with remarkable accuracy across multiple hospitals, establishing the foundation for modern clinical prediction systems. This breakthrough highlighted both the potential and the challenges of applying machine learning to clinical data at scale.
 
@@ -37,7 +37,7 @@ Clinical structured data encompasses a wide range of data types, each with uniqu
 
 Demographic and social determinants data provide crucial context for clinical predictions, as factors such as age, gender, race, ethnicity, socioeconomic status, and geographic location significantly influence health outcomes and treatment responses. Procedural and diagnostic codes capture clinical decision-making and care processes, providing insights into disease progression, treatment patterns, and healthcare utilization that are essential for comprehensive clinical prediction models.
 
-\#\#\# 4.1.2 Unique Challenges in Clinical Machine Learning
+### 4.1.2 Unique Challenges in Clinical Machine Learning
 
 The application of machine learning to structured clinical data presents several unique challenges that distinguish it from other domains. Temporal complexity is perhaps the most significant challenge, as clinical data exists in multiple time scales simultaneously. Laboratory values may be measured daily or weekly, vital signs may be recorded hourly or continuously, medications may be administered multiple times per day with varying schedules, and clinical events may occur irregularly over months or years. Effective clinical machine learning systems must capture these multi-scale temporal patterns while maintaining computational efficiency and clinical interpretability.
 
@@ -47,11 +47,11 @@ Clinical data quality presents additional challenges, as data may be entered by 
 
 The regulatory environment for clinical machine learning adds another layer of complexity, as models used for clinical decision support may be subject to FDA oversight as software as medical devices (SaMD). This requires comprehensive validation frameworks, risk management systems, and post-market surveillance capabilities that go far beyond traditional machine learning validation approaches.
 
-\#\# 4.2 Advanced Clinical Data Preprocessing and Feature Engineering
+## 4.2 Advanced Clinical Data Preprocessing and Feature Engineering
 
 Clinical data preprocessing and feature engineering represent critical steps in developing effective machine learning systems for healthcare applications. The unique characteristics of clinical data—including temporal dependencies, missing data patterns, measurement variability, and clinical context—require specialized preprocessing techniques that go beyond standard machine learning approaches.
 
-\#\#\# 4.2.1 Comprehensive Temporal Feature Engineering
+### 4.2.1 Comprehensive Temporal Feature Engineering
 
 Clinical data is inherently temporal, requiring sophisticated preprocessing techniques to capture the dynamic nature of patient states and the complex relationships between measurements, interventions, and outcomes over time. The following implementation demonstrates a comprehensive temporal feature engineering pipeline designed specifically for clinical applications:
 
@@ -80,7 +80,7 @@ from sklearn.impute import KNNImputer
 from sklearn.cluster import KMeans
 import logging
 
-\# Configure logging
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -88,30 +88,30 @@ logger = logging.getLogger(__name__)
 class ClinicalNormalRanges:
     """Clinical normal ranges for common laboratory and vital sign values"""
     
-    \# Laboratory values (standard units)
-    hemoglobin: Tuple[float, float] = (12.0, 16.0)  \# g/dL
-    hematocrit: Tuple[float, float] = (36.0, 48.0)  \# %
-    white_blood_cell_count: Tuple[float, float] = (4.0, 11.0)  \# K/uL
-    platelet_count: Tuple[float, float] = (150, 450)  \# K/uL
-    sodium: Tuple[float, float] = (136, 145)  \# mEq/L
-    potassium: Tuple[float, float] = (3.5, 5.0)  \# mEq/L
-    chloride: Tuple[float, float] = (98, 107)  \# mEq/L
-    co2: Tuple[float, float] = (22, 28)  \# mEq/L
-    bun: Tuple[float, float] = (7, 20)  \# mg/dL
-    creatinine: Tuple[float, float] = (0.6, 1.2)  \# mg/dL
-    glucose: Tuple[float, float] = (70, 100)  \# mg/dL
-    albumin: Tuple[float, float] = (3.5, 5.0)  \# g/dL
-    total_bilirubin: Tuple[float, float] = (0.2, 1.2)  \# mg/dL
-    alt: Tuple[float, float] = (7, 56)  \# U/L
-    ast: Tuple[float, float] = (10, 40)  \# U/L
+    # Laboratory values (standard units)
+    hemoglobin: Tuple[float, float] = (12.0, 16.0)  # g/dL
+    hematocrit: Tuple[float, float] = (36.0, 48.0)  # %
+    white_blood_cell_count: Tuple[float, float] = (4.0, 11.0)  # K/uL
+    platelet_count: Tuple[float, float] = (150, 450)  # K/uL
+    sodium: Tuple[float, float] = (136, 145)  # mEq/L
+    potassium: Tuple[float, float] = (3.5, 5.0)  # mEq/L
+    chloride: Tuple[float, float] = (98, 107)  # mEq/L
+    co2: Tuple[float, float] = (22, 28)  # mEq/L
+    bun: Tuple[float, float] = (7, 20)  # mg/dL
+    creatinine: Tuple[float, float] = (0.6, 1.2)  # mg/dL
+    glucose: Tuple[float, float] = (70, 100)  # mg/dL
+    albumin: Tuple[float, float] = (3.5, 5.0)  # g/dL
+    total_bilirubin: Tuple[float, float] = (0.2, 1.2)  # mg/dL
+    alt: Tuple[float, float] = (7, 56)  # U/L
+    ast: Tuple[float, float] = (10, 40)  # U/L
     
-    \# Vital signs
-    systolic_bp: Tuple[float, float] = (90, 140)  \# mmHg
-    diastolic_bp: Tuple[float, float] = (60, 90)  \# mmHg
-    heart_rate: Tuple[float, float] = (60, 100)  \# bpm
-    temperature: Tuple[float, float] = (97.0, 99.5)  \# F
-    respiratory_rate: Tuple[float, float] = (12, 20)  \# breaths/min
-    oxygen_saturation: Tuple[float, float] = (95, 100)  \# %
+    # Vital signs
+    systolic_bp: Tuple[float, float] = (90, 140)  # mmHg
+    diastolic_bp: Tuple[float, float] = (60, 90)  # mmHg
+    heart_rate: Tuple[float, float] = (60, 100)  # bpm
+    temperature: Tuple[float, float] = (97.0, 99.5)  # F
+    respiratory_rate: Tuple[float, float] = (12, 20)  # breaths/min
+    oxygen_saturation: Tuple[float, float] = (95, 100)  # %
     
     def get_normal_range(self, variable_name: str) -> Optional[Tuple[float, float]]:
         """Get normal range for a clinical variable"""
@@ -187,16 +187,16 @@ class ClinicalTemporalFeatureEngineer:
             DataFrame with engineered temporal features for each patient
         """
         
-        \# Validate input data
+        # Validate input data
         required_cols = [patient_id_col, timestamp_col, value_col, variable_col]
         missing_cols = [col for col in required_cols if col not in df.columns]
         if missing_cols:
             raise ValueError(f"Missing required columns: {missing_cols}")
         
-        \# Ensure timestamp is datetime
+        # Ensure timestamp is datetime
         df[timestamp_col] = pd.to_datetime(df[timestamp_col])
         
-        \# Sort by patient and timestamp
+        # Sort by patient and timestamp
         df = df.sort_values([patient_id_col, timestamp_col])
         
         logger.info(f"Processing {len(df)} measurements for {df[patient_id_col].nunique()} patients")
@@ -231,22 +231,22 @@ class ClinicalTemporalFeatureEngineer:
         
         features = {}
         
-        \# Group by variable type
+        # Group by variable type
         for variable in patient_data[variable_col].unique():
             var_data = patient_data[patient_data[variable_col] == variable].copy()
             
             if len(var_data) < self.min_measurements:
                 continue
             
-            \# Extract values and timestamps
+            # Extract values and timestamps
             values = var_data[value_col].values
             timestamps = var_data[timestamp_col].values
             
-            \# Skip if all values are NaN
+            # Skip if all values are NaN
             if np.all(np.isnan(values)):
                 continue
             
-            \# Remove NaN values for calculations
+            # Remove NaN values for calculations
             valid_mask = ~np.isnan(values)
             valid_values = values[valid_mask]
             valid_timestamps = timestamps[valid_mask]
@@ -254,25 +254,25 @@ class ClinicalTemporalFeatureEngineer:
             if len(valid_values) < self.min_measurements:
                 continue
             
-            \# Extract comprehensive feature set
+            # Extract comprehensive feature set
             var_features = {}
             
-            \# Basic statistical features
+            # Basic statistical features
             var_features.update(self._extract_statistical_features(variable, valid_values))
             
-            \# Temporal trend features
+            # Temporal trend features
             var_features.update(self._extract_trend_features(variable, valid_values, valid_timestamps))
             
-            \# Clinical knowledge-based features
+            # Clinical knowledge-based features
             var_features.update(self._extract_clinical_features(variable, valid_values))
             
-            \# Pattern recognition features
+            # Pattern recognition features
             var_features.update(self._extract_pattern_features(variable, valid_values, valid_timestamps))
             
-            \# Time-based features
+            # Time-based features
             var_features.update(self._extract_time_features(variable, valid_timestamps))
             
-            \# Add to overall features
+            # Add to overall features
             features.update(var_features)
         
         return features
@@ -282,19 +282,19 @@ class ClinicalTemporalFeatureEngineer:
         
         features = {}
         
-        \# Central tendency
+        # Central tendency
         features[f'{variable}_mean'] = np.mean(values)
         features[f'{variable}_median'] = np.median(values)
         features[f'{variable}_mode'] = stats.mode(values, keepdims=True)<sup>0</sup><sup>0</sup> if len(values) > 1 else values<sup>0</sup>
         
-        \# Dispersion
+        # Dispersion
         features[f'{variable}_std'] = np.std(values)
         features[f'{variable}_var'] = np.var(values)
         features[f'{variable}_range'] = np.max(values) - np.min(values)
         features[f'{variable}_iqr'] = np.percentile(values, 75) - np.percentile(values, 25)
         features[f'{variable}_cv'] = np.std(values) / np.mean(values) if np.mean(values) != 0 else 0
         
-        \# Extremes
+        # Extremes
         features[f'{variable}_min'] = np.min(values)
         features[f'{variable}_max'] = np.max(values)
         features[f'{variable}_q25'] = np.percentile(values, 25)
@@ -302,11 +302,11 @@ class ClinicalTemporalFeatureEngineer:
         features[f'{variable}_q10'] = np.percentile(values, 10)
         features[f'{variable}_q90'] = np.percentile(values, 90)
         
-        \# Distribution shape
+        # Distribution shape
         features[f'{variable}_skewness'] = stats.skew(values)
         features[f'{variable}_kurtosis'] = stats.kurtosis(values)
         
-        \# Count features
+        # Count features
         features[f'{variable}_count'] = len(values)
         features[f'{variable}_unique_count'] = len(np.unique(values))
         
@@ -320,10 +320,10 @@ class ClinicalTemporalFeatureEngineer:
         if len(values) < 3:
             return features
         
-        \# Convert timestamps to numeric (hours from first measurement)
+        # Convert timestamps to numeric (hours from first measurement)
         time_numeric = np.array([(t - timestamps<sup>0</sup>).total_seconds() / 3600 for t in timestamps])
         
-        \# Linear trend analysis
+        # Linear trend analysis
         try:
             slope, intercept, r_value, p_value, std_err = stats.linregress(time_numeric, values)
             features[f'{variable}_trend_slope'] = slope
@@ -332,14 +332,14 @@ class ClinicalTemporalFeatureEngineer:
             features[f'{variable}_trend_p_value'] = p_value
             features[f'{variable}_trend_std_err'] = std_err
             
-            \# Trend direction and significance
+            # Trend direction and significance
             features[f'{variable}_trend_direction'] = 1 if slope > 0 else -1 if slope < 0 else 0
             features[f'{variable}_trend_significant'] = 1 if p_value < 0.05 else 0
             
         except Exception as e:
             logger.warning(f"Error calculating trend for {variable}: {e}")
         
-        \# Rate of change features
+        # Rate of change features
         if len(values) >= 2:
             changes = np.diff(values)
             time_diffs = np.diff(time_numeric)
@@ -354,11 +354,11 @@ class ClinicalTemporalFeatureEngineer:
             features[f'{variable}_max_rate_increase'] = np.max(rates)
             features[f'{variable}_max_rate_decrease'] = np.min(rates)
             
-            \# Volatility measures
+            # Volatility measures
             features[f'{variable}_volatility'] = np.std(changes) / np.mean(np.abs(values)) if np.mean(np.abs(values)) > 0 else 0
             features[f'{variable}_rate_volatility'] = np.std(rates) / np.mean(np.abs(rates)) if np.mean(np.abs(rates)) > 0 else 0
         
-        \# Polynomial trend features (quadratic)
+        # Polynomial trend features (quadratic)
         if len(values) >= 4:
             try:
                 poly_coeffs = np.polyfit(time_numeric, values, 2)
@@ -366,7 +366,7 @@ class ClinicalTemporalFeatureEngineer:
                 features[f'{variable}_quadratic_b'] = poly_coeffs<sup>1</sup>
                 features[f'{variable}_quadratic_c'] = poly_coeffs<sup>2</sup>
                 
-                \# Curvature indicator
+                # Curvature indicator
                 features[f'{variable}_curvature'] = 2 * poly_coeffs<sup>0</sup>
                 
             except Exception as e:
@@ -379,12 +379,12 @@ class ClinicalTemporalFeatureEngineer:
         
         features = {}
         
-        \# Clinical abnormality features
+        # Clinical abnormality features
         normal_range = self.clinical_ranges.get_normal_range(variable)
         if normal_range:
             low_threshold, high_threshold = normal_range
             
-            \# Abnormality counts and proportions
+            # Abnormality counts and proportions
             low_count = np.sum(values < low_threshold)
             high_count = np.sum(values > high_threshold)
             normal_count = len(values) - low_count - high_count
@@ -396,7 +396,7 @@ class ClinicalTemporalFeatureEngineer:
             features[f'{variable}_high_proportion'] = high_count / len(values)
             features[f'{variable}_normal_proportion'] = normal_count / len(values)
             
-            \# Severity of abnormality
+            # Severity of abnormality
             if low_count > 0:
                 low_values = values[values < low_threshold]
                 features[f'{variable}_low_severity_mean'] = np.mean(low_threshold - low_values)
@@ -407,16 +407,16 @@ class ClinicalTemporalFeatureEngineer:
                 features[f'{variable}_high_severity_mean'] = np.mean(high_values - high_threshold)
                 features[f'{variable}_high_severity_max'] = np.max(high_values - high_threshold)
             
-            \# Distance from normal range
+            # Distance from normal range
             distances = np.minimum(np.abs(values - low_threshold), np.abs(values - high_threshold))
             features[f'{variable}_mean_distance_from_normal'] = np.mean
 
 (distances)
             features[f'{variable}_max_distance_from_normal'] = np.max(distances)
         
-        \# Clinical stability features
+        # Clinical stability features
         if len(values) >= 3:
-            \# Consecutive abnormal values
+            # Consecutive abnormal values
             if normal_range:
                 abnormal_mask = (values < normal_range<sup>0</sup>) | (values > normal_range<sup>1</sup>)
                 consecutive_abnormal = self._find_consecutive_runs(abnormal_mask)
@@ -433,7 +433,7 @@ class ClinicalTemporalFeatureEngineer:
         if len(values) < 4:
             return features
         
-        \# Peak and valley detection
+        # Peak and valley detection
         try:
             peaks, peak_properties = find_peaks(values, height=np.mean(values))
             valleys, valley_properties = find_peaks(-values, height=-np.mean(values))
@@ -452,16 +452,16 @@ class ClinicalTemporalFeatureEngineer:
         except Exception as e:
             logger.warning(f"Error in peak detection for {variable}: {e}")
         
-        \# Oscillation patterns
+        # Oscillation patterns
         if len(values) >= 6:
-            \# Simple oscillation detection using zero crossings of detrended signal
+            # Simple oscillation detection using zero crossings of detrended signal
             detrended = values - np.mean(values)
             zero_crossings = np.where(np.diff(np.signbit(detrended)))<sup>0</sup>
             features[f'{variable}_oscillation_frequency'] = len(zero_crossings) / len(values)
         
-        \# Stability patterns
+        # Stability patterns
         if len(values) >= 5:
-            \# Rolling stability (coefficient of variation in windows)
+            # Rolling stability (coefficient of variation in windows)
             window_size = min(5, len(values) // 2)
             rolling_cv = []
             for i in range(len(values) - window_size + 1):
@@ -484,7 +484,7 @@ class ClinicalTemporalFeatureEngineer:
         if len(timestamps) < 2:
             return features
         
-        \# Time interval analysis
+        # Time interval analysis
         time_diffs = np.diff(timestamps)
         time_diffs_hours = np.array([td.total_seconds() / 3600 for td in time_diffs])
         
@@ -494,10 +494,10 @@ class ClinicalTemporalFeatureEngineer:
         features[f'{variable}_max_interval'] = np.max(time_diffs_hours)
         features[f'{variable}_median_interval'] = np.median(time_diffs_hours)
         
-        \# Regularity of measurements
+        # Regularity of measurements
         features[f'{variable}_interval_cv'] = np.std(time_diffs_hours) / np.mean(time_diffs_hours) if np.mean(time_diffs_hours) > 0 else 0
         
-        \# Time span features
+        # Time span features
         total_time_hours = (timestamps[-1] - timestamps<sup>0</sup>).total_seconds() / 3600
         features[f'{variable}_total_time_span'] = total_time_hours
         features[f'{variable}_measurement_density'] = len(timestamps) / total_time_hours if total_time_hours > 0 else 0
@@ -518,7 +518,7 @@ class ClinicalTemporalFeatureEngineer:
                     runs.append(current_run)
                     current_run = 0
         
-        \# Don't forget the last run
+        # Don't forget the last run
         if current_run > 0:
             runs.append(current_run)
         
@@ -567,21 +567,21 @@ class ClinicalMissingDataHandler:
         X_imputed = X.copy()
         missing_mask = X.isnull()
         
-        \# Analyze missing data patterns
+        # Analyze missing data patterns
         missing_patterns = self._analyze_missing_patterns(X)
         logger.info(f"Identified {len(missing_patterns)} missing data patterns")
         
-        \# Create missing indicators for features with missing data
+        # Create missing indicators for features with missing data
         for col in X.columns:
             if missing_mask[col].any():
                 X_imputed[f'{col}_missing'] = missing_mask[col].astype(int)
                 self.missing_indicators[col] = f'{col}_missing'
                 
-                \# Calculate missing data statistics
+                # Calculate missing data statistics
                 missing_rate = missing_mask[col].mean()
                 X_imputed[f'{col}_missing_rate'] = missing_rate
         
-        \# Apply imputation strategy
+        # Apply imputation strategy
         if self.strategy == 'clinical_aware':
             X_imputed = self._clinical_aware_imputation(X_imputed, clinical_ranges)
         elif self.strategy == 'knn':
@@ -593,7 +593,7 @@ class ClinicalMissingDataHandler:
         else:
             raise ValueError(f"Unknown imputation strategy: {self.strategy}")
         
-        \# Add uncertainty quantification if requested
+        # Add uncertainty quantification if requested
         if self.uncertainty_quantification:
             X_imputed = self._add_uncertainty_features(X_imputed, missing_mask)
         
@@ -605,20 +605,20 @@ class ClinicalMissingDataHandler:
         missing_mask = X.isnull()
         patterns = {}
         
-        \# Overall missing statistics
+        # Overall missing statistics
         patterns['overall_missing_rate'] = missing_mask.sum().sum() / (len(X) * len(X.columns))
         patterns['features_with_missing'] = missing_mask.any().sum()
         patterns['complete_cases'] = (~missing_mask.any(axis=1)).sum()
         
-        \# Per-feature missing rates
+        # Per-feature missing rates
         patterns['feature_missing_rates'] = missing_mask.mean().to_dict()
         
-        \# Missing data correlations
+        # Missing data correlations
         if len(X.columns) > 1:
             missing_corr = missing_mask.astype(int).corr()
             patterns['missing_correlations'] = missing_corr.to_dict()
         
-        \# Identify common missing patterns
+        # Identify common missing patterns
         pattern_counts = missing_mask.value_counts()
         patterns['common_patterns'] = pattern_counts.head(10).to_dict()
         
@@ -637,27 +637,27 @@ class ClinicalMissingDataHandler:
             missing_mask = X[col].isnull()
             
             if missing_mask.any():
-                \# Determine imputation value based on clinical knowledge
+                # Determine imputation value based on clinical knowledge
                 if clinical_ranges and col in clinical_ranges:
-                    \# Use clinical normal range midpoint
+                    # Use clinical normal range midpoint
                     normal_range = clinical_ranges[col]
                     impute_value = (normal_range<sup>0</sup> + normal_range<sup>1</sup>) / 2
                     
                 elif hasattr(self.clinical_ranges, col.lower().replace(' ', '_')):
-                    \# Use built-in clinical ranges
+                    # Use built-in clinical ranges
                     normal_range = self.clinical_ranges.get_normal_range(col)
                     if normal_range:
                         impute_value = (normal_range<sup>0</sup> + normal_range<sup>1</sup>) / 2
                     else:
                         impute_value = X[col].median()
                 else:
-                    \# Use median of observed values
+                    # Use median of observed values
                     impute_value = X[col].median()
                 
-                \# Apply imputation
+                # Apply imputation
                 X_imputed.loc[missing_mask, col] = impute_value
                 
-                \# Store imputation information
+                # Store imputation information
                 self.imputers[col] = {
                     'method': 'clinical_aware',
                     'value': impute_value,
@@ -675,7 +675,7 @@ class ClinicalMissingDataHandler:
                          if not col.endswith('_missing') and not col.endswith('_missing_rate')]
         
         if len(numerical_cols) > 0:
-            \# Use KNN imputation with clinical-appropriate number of neighbors
+            # Use KNN imputation with clinical-appropriate number of neighbors
             imputer = KNNImputer(n_neighbors=min(5, len(X) // 10), weights='distance')
             X_imputed[numerical_cols] = imputer.fit_transform(X[numerical_cols])
             self.imputers['knn'] = imputer
@@ -688,8 +688,8 @@ class ClinicalMissingDataHandler:
                            clinical_ranges: Optional[Dict[str, Tuple[float, float]]] = None) -> pd.DataFrame:
         """Multiple imputation with uncertainty quantification."""
         
-        \# For demonstration, implement a simplified version
-        \# In production, would use more sophisticated multiple imputation
+        # For demonstration, implement a simplified version
+        # In production, would use more sophisticated multiple imputation
         
         X_imputed = X.copy()
         n_imputations = 5
@@ -701,27 +701,27 @@ class ClinicalMissingDataHandler:
             missing_mask = X[col].isnull()
             
             if missing_mask.any():
-                \# Generate multiple imputations
+                # Generate multiple imputations
                 imputations = []
                 
                 for i in range(n_imputations):
-                    \# Add noise to clinical-aware imputation
+                    # Add noise to clinical-aware imputation
                     if clinical_ranges and col in clinical_ranges:
                         normal_range = clinical_ranges[col]
                         base_value = (normal_range<sup>0</sup> + normal_range<sup>1</sup>) / 2
-                        noise_std = (normal_range<sup>1</sup> - normal_range<sup>0</sup>) / 6  \# Assume 99.7% within range
+                        noise_std = (normal_range<sup>1</sup> - normal_range<sup>0</sup>) / 6  # Assume 99.7% within range
                     else:
                         base_value = X[col].median()
-                        noise_std = X[col].std() * 0.1  \# 10% of standard deviation
+                        noise_std = X[col].std() * 0.1  # 10% of standard deviation
                     
                     imputed_values = np.random.normal(base_value, noise_std, missing_mask.sum())
                     imputations.append(imputed_values)
                 
-                \# Use mean of imputations
+                # Use mean of imputations
                 final_imputation = np.mean(imputations, axis=0)
                 X_imputed.loc[missing_mask, col] = final_imputation
                 
-                \# Store uncertainty information
+                # Store uncertainty information
                 imputation_std = np.std(imputations, axis=0)
                 self.imputation_uncertainty[col] = {
                     'mean_uncertainty': np.mean(imputation_std),
@@ -735,7 +735,7 @@ class ClinicalMissingDataHandler:
         
         X_with_uncertainty = X.copy()
         
-        \# Add overall uncertainty score for each row
+        # Add overall uncertainty score for each row
         uncertainty_scores = []
         
         for idx in X.index:
@@ -748,7 +748,7 @@ class ClinicalMissingDataHandler:
                     if col in self.imputation_uncertainty:
                         row_uncertainty += self.imputation_uncertainty[col]['mean_uncertainty']
             
-            \# Normalize by number of missing values
+            # Normalize by number of missing values
             if missing_count > 0:
                 uncertainty_scores.append(row_uncertainty / missing_count)
             else:
@@ -825,29 +825,29 @@ class ClinicalFeatureSelector:
         from sklearn.linear_model import LassoCV
         from sklearn.model_selection import cross_val_score, StratifiedKFold
         
-        \# Step 1: Statistical feature selection
+        # Step 1: Statistical feature selection
         statistical_features, statistical_scores = self._statistical_selection(X, y, cv_folds)
         
-        \# Step 2: Clinical priority features
+        # Step 2: Clinical priority features
         clinical_features = [f for f in self.clinical_priority_features if f in X.columns]
         
-        \# Step 3: Combine and rank features
+        # Step 3: Combine and rank features
         all_candidate_features = list(set(statistical_features + clinical_features))
         
-        \# Step 4: Stability-based selection
+        # Step 4: Stability-based selection
         stable_features = self._assess_feature_stability(X[all_candidate_features], y, cv_folds)
         
-        \# Step 5: Final selection with clinical prioritization
+        # Step 5: Final selection with clinical prioritization
         final_features = []
         final_scores = {}
         
-        \# Always include stable clinical priority features
+        # Always include stable clinical priority features
         for feature in clinical_features:
             if feature in stable_features and len(final_features) < self.max_features:
                 final_features.append(feature)
-                final_scores[feature] = statistical_scores.get(feature, 1.0) * 1.5  \# Boost clinical features
+                final_scores[feature] = statistical_scores.get(feature, 1.0) * 1.5  # Boost clinical features
         
-        \# Add remaining stable statistical features
+        # Add remaining stable statistical features
         remaining_statistical = [f for f in stable_features if f not in final_features]
         remaining_statistical.sort(key=lambda x: statistical_scores.get(x, 0), reverse=True)
         
@@ -874,7 +874,7 @@ class ClinicalFeatureSelector:
         
         feature_scores = {}
         
-        \# Univariate statistical tests (F-test)
+        # Univariate statistical tests (F-test)
         try:
             f_selector = SelectKBest(f_classif, k=min(self.max_features * 2, X.shape<sup>1</sup>))
             f_selector.fit(X, y)
@@ -888,7 +888,7 @@ class ClinicalFeatureSelector:
         except Exception as e:
             logger.warning(f"F-test selection failed: {e}")
         
-        \# Mutual information
+        # Mutual information
         try:
             mi_scores = mutual_info_classif(X, y, random_state=42)
             mi_ranking = np.argsort(mi_scores)[::-1]
@@ -901,7 +901,7 @@ class ClinicalFeatureSelector:
         except Exception as e:
             logger.warning(f"Mutual information selection failed: {e}")
         
-        \# L1 regularization (Lasso)
+        # L1 regularization (Lasso)
         try:
             lasso = LassoCV(cv=cv_folds, random_state=42, max_iter=1000)
             lasso.fit(X, y)
@@ -914,7 +914,7 @@ class ClinicalFeatureSelector:
         except Exception as e:
             logger.warning(f"Lasso selection failed: {e}")
         
-        \# Random Forest feature importance
+        # Random Forest feature importance
         try:
             rf = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)
             rf.fit(X, y)
@@ -929,7 +929,7 @@ class ClinicalFeatureSelector:
         except Exception as e:
             logger.warning(f"Random Forest selection failed: {e}")
         
-        \# Rank features by combined scores
+        # Rank features by combined scores
         sorted_features = sorted(feature_scores.items(), key=lambda x: x<sup>1</sup>, reverse=True)
         selected_features = [f<sup>0</sup> for f in sorted_features[:self.max_features]]
         
@@ -940,12 +940,12 @@ class ClinicalFeatureSelector:
         
         clinical_scores = {}
         
-        \# Prioritize clinical priority features
+        # Prioritize clinical priority features
         for feature in self.clinical_priority_features:
             if feature in X.columns:
                 clinical_scores[feature] = 1.0
         
-        \# Add features based on clinical naming patterns
+        # Add features based on clinical naming patterns
         clinical_patterns = [
             'hemoglobin', 'hematocrit', 'white_blood_cell', 'platelet',
             'sodium', 'potassium', 'chloride', 'co2', 'bun', 'creatinine',
@@ -960,7 +960,7 @@ class ClinicalFeatureSelector:
                 if pattern in feature_lower:
                     clinical_scores[feature] = clinical_scores.get(feature, 0) + 0.8
         
-        \# Sort by clinical relevance
+        # Sort by clinical relevance
         sorted_features = sorted(clinical_scores.items(), key=lambda x: x<sup>1</sup>, reverse=True)
         selected_features = [f<sup>0</sup> for f in sorted_features[:self.max_features]]
         
@@ -979,7 +979,7 @@ class ClinicalFeatureSelector:
         for train_idx, val_idx in skf.split(X, y):
             X_train, y_train = X.iloc[train_idx], y.iloc[train_idx]
             
-            \# Perform feature selection on this fold
+            # Perform feature selection on this fold
             try:
                 selector = SelectKBest(f_classif, k=min(self.max_features, X_train.shape<sup>1</sup>))
                 selector.fit(X_train, y_train)
@@ -992,7 +992,7 @@ class ClinicalFeatureSelector:
                 logger.warning(f"Feature stability assessment failed for fold: {e}")
                 continue
         
-        \# Select features that appear in at least stability_threshold of folds
+        # Select features that appear in at least stability_threshold of folds
         min_appearances = int(cv_folds * self.stability_threshold)
         stable_features = [
             feature for feature, count in feature_selection_counts.items()
@@ -1003,9 +1003,9 @@ class ClinicalFeatureSelector:
         
         return stable_features
 
-\#\# 4.3 Advanced Clinical Machine Learning Models
+## 4.3 Advanced Clinical Machine Learning Models
 
-\#\#\# 4.3.1 Ensemble Methods for Clinical Prediction
+### 4.3.1 Ensemble Methods for Clinical Prediction
 
 Clinical prediction tasks benefit significantly from ensemble methods that combine multiple models to improve prediction accuracy, robustness, and uncertainty quantification. The following implementation demonstrates a comprehensive ensemble framework designed specifically for clinical applications:
 
@@ -1101,13 +1101,13 @@ class ClinicalEnsembleFramework:
         self.calibration = calibration
         self.uncertainty_quantification = uncertainty_quantification
         
-        \# Initialize base models
+        # Initialize base models
         if base_models is None:
             self.base_models = self._get_default_clinical_models()
         else:
             self.base_models = base_models
         
-        \# Initialize ensemble components
+        # Initialize ensemble components
         self.fitted_models = {}
         self.ensemble_model = None
         self.feature_importance = {}
@@ -1197,14 +1197,14 @@ class ClinicalEnsembleFramework:
         
         from sklearn.model_selection import train_test_split
         
-        \# Split data for ensemble training
+        # Split data for ensemble training
         X_train, X_val, y_train, y_val = train_test_split(
             X, y, test_size=validation_split, stratify=y, random_state=42
         )
         
         logger.info(f"Training ensemble on {len(X_train)} samples, validating on {len(X_val)} samples")
         
-        \# Train base models
+        # Train base models
         base_model_results = {}
         base_predictions = {}
         
@@ -1212,15 +1212,15 @@ class ClinicalEnsembleFramework:
             model_name = f"{model_config.model_type}_{i}"
             
             try:
-                \# Create and train model
+                # Create and train model
                 model = self._create_model(model_config)
                 model.fit(X_train, y_train)
                 
-                \# Validate model
+                # Validate model
                 val_predictions = model.predict_proba(X_val)[:, 1]
                 val_auc = roc_auc_score(y_val, val_predictions)
                 
-                \# Store model and results
+                # Store model and results
                 self.fitted_models[model_name] = model
                 base_model_results[model_name] = {
                     'validation_auc': val_auc,
@@ -1234,7 +1234,7 @@ class ClinicalEnsembleFramework:
                 logger.error(f"Failed to train {model_name}: {e}")
                 continue
         
-        \# Create ensemble model
+        # Create ensemble model
         if self.ensemble_method == 'voting':
             self.ensemble_model = self._create_voting_ensemble()
         elif self.ensemble_method == 'stacking':
@@ -1242,24 +1242,24 @@ class ClinicalEnsembleFramework:
         elif self.ensemble_method == 'weighted':
             self.ensemble_model = self._create_weighted_ensemble(base_model_results)
         
-        \# Train final ensemble
+        # Train final ensemble
         if self.ensemble_model:
             self.ensemble_model.fit(X_train, y_train)
             
-            \# Validate ensemble
+            # Validate ensemble
             ensemble_predictions = self.ensemble_model.predict_proba(X_val)[:, 1]
             ensemble_auc = roc_auc_score(y_val, ensemble_predictions)
             
             logger.info(f"Ensemble AUC: {ensemble_auc:.4f}")
         
-        \# Calibrate models if requested
+        # Calibrate models if requested
         if self.calibration:
             self._calibrate_models(X_val, y_val)
         
-        \# Calculate feature importance
+        # Calculate feature importance
         self._calculate_ensemble_feature_importance(X.columns)
         
-        \# Prepare training results
+        # Prepare training results
         training_results = {
             'base_model_results': base_model_results,
             'ensemble_auc': ensemble_auc if self.ensemble_model else None,
@@ -1289,24 +1289,24 @@ class ClinicalEnsembleFramework:
         if self.ensemble_model is None:
             raise ValueError("Ensemble model not fitted. Call fit() first.")
         
-        \# Get ensemble predictions
+        # Get ensemble predictions
         predictions = self.ensemble_model.predict(X)
         probabilities = self.ensemble_model.predict_proba(X)[:, 1]
         
-        \# Calculate uncertainty scores
+        # Calculate uncertainty scores
         uncertainty_scores = np.zeros(len(X))
         if return_uncertainty and self.uncertainty_quantification:
             uncertainty_scores = self._calculate_prediction_uncertainty(X)
         
-        \# Generate clinical alerts
+        # Generate clinical alerts
         clinical_alerts = self._generate_clinical_alerts(probabilities, uncertainty_scores)
         
-        \# Generate explanations
+        # Generate explanations
         explanation = {}
         if return_explanation:
             explanation = self._generate_prediction_explanation(X, probabilities)
         
-        \# Calculate model confidence
+        # Calculate model confidence
         model_confidence = self._calculate_model_confidence(probabilities, uncertainty_scores)
         
         return ClinicalPredictionResult(
@@ -1345,10 +1345,10 @@ class ClinicalEnsembleFramework:
         
         from sklearn.ensemble import StackingClassifier
         
-        \# Prepare base estimators
+        # Prepare base estimators
         estimators = [(name, model) for name, model in self.fitted_models.items()]
         
-        \# Create stacking classifier with logistic regression meta-learner
+        # Create stacking classifier with logistic regression meta-learner
         stacking_classifier = StackingClassifier(
             estimators=estimators,
             final_estimator=LogisticRegression(random_state=42),
@@ -1365,21 +1365,21 @@ class ClinicalEnsembleFramework:
         
         return VotingClassifier(
             estimators=estimators,
-            voting='soft'  \# Use probability voting
+            voting='soft'  # Use probability voting
         )
     
     def _create_weighted_ensemble(self, base_model_results: Dict[str, Any]):
         """Create weighted ensemble based on validation performance."""
         
-        \# Calculate weights based on validation AUC
+        # Calculate weights based on validation AUC
         aucs = [results['validation_auc'] for results in base_model_results.values()]
         weights = np.array(aucs) / np.sum(aucs)
         
-        \# Store weights
+        # Store weights
         for i, (model_name, weight) in enumerate(zip(base_model_results.keys(), weights)):
             self.model_weights[model_name] = weight
         
-        \# Create weighted voting classifier
+        # Create weighted voting classifier
         estimators = [(name, model) for name, model in self.fitted_models.items()]
         
         return VotingClassifier(
@@ -1411,7 +1411,7 @@ class ClinicalEnsembleFramework:
         for model_name, model in self.fitted_models.items():
             model_weight = self.model_weights.get(model_name, 1.0)
             
-            \# Get feature importance based on model type
+            # Get feature importance based on model type
             if hasattr(model, 'feature_importances_'):
                 importances = model.feature_importances_
             elif hasattr(model, 'coef_'):
@@ -1419,14 +1419,14 @@ class ClinicalEnsembleFramework:
             else:
                 continue
             
-            \# Add weighted importance
+            # Add weighted importance
             for i, feature in enumerate(feature_names):
                 if i < len(importances):
                     importance_dict[feature] += importances[i] * model_weight
             
             total_weight += model_weight
         
-        \# Normalize importance scores
+        # Normalize importance scores
         if total_weight > 0:
             for feature in importance_dict:
                 importance_dict[feature] /= total_weight
@@ -1436,7 +1436,7 @@ class ClinicalEnsembleFramework:
     def _calculate_prediction_uncertainty(self, X: pd.DataFrame) -> np.ndarray:
         """Calculate prediction uncertainty using ensemble disagreement."""
         
-        \# Get predictions from all base models
+        # Get predictions from all base models
         all_predictions = []
         
         for model_name, model in self.fitted_models.items():
@@ -1450,7 +1450,7 @@ class ClinicalEnsembleFramework:
         if not all_predictions:
             return np.zeros(len(X))
         
-        \# Calculate uncertainty as standard deviation of predictions
+        # Calculate uncertainty as standard deviation of predictions
         predictions_array = np.array(all_predictions)
         uncertainty_scores = np.std(predictions_array, axis=0)
         
@@ -1462,19 +1462,19 @@ class ClinicalEnsembleFramework:
         
         alerts = []
         
-        \# High-risk alerts
+        # High-risk alerts
         high_risk_threshold = 0.8
         high_risk_indices = np.where(probabilities > high_risk_threshold)<sup>0</sup>
         if len(high_risk_indices) > 0:
             alerts.append(f"HIGH RISK: {len(high_risk_indices)} patients with >80% risk probability")
         
-        \# High uncertainty alerts
+        # High uncertainty alerts
         high_uncertainty_threshold = 0.2
         high_uncertainty_indices = np.where(uncertainty_scores > high_uncertainty_threshold)<sup>0</sup>
         if len(high_uncertainty_indices) > 0:
             alerts.append(f"HIGH UNCERTAINTY: {len(high_uncertainty_indices)} predictions with high uncertainty")
         
-        \# Combined high risk and high uncertainty
+        # Combined high risk and high uncertainty
         combined_indices = np.intersect1d(high_risk_indices, high_uncertainty_indices)
         if len(combined_indices) > 0:
             alerts.append(f"CRITICAL REVIEW: {len(combined_indices)} high-risk predictions with high uncertainty")
@@ -1491,7 +1491,7 @@ class ClinicalEnsembleFramework:
             'model_confidence_factors': []
         }
         
-        \# Get top contributing features
+        # Get top contributing features
         sorted_features = sorted(
             self.feature_importance.items(), 
             key=lambda x: x<sup>1</sup>, 
@@ -1499,7 +1499,7 @@ class ClinicalEnsembleFramework:
         )
         explanation['top_features'] = sorted_features[:10]
         
-        \# Calculate feature contributions for high-risk predictions
+        # Calculate feature contributions for high-risk predictions
         high_risk_mask = probabilities > 0.5
         if np.any(high_risk_mask):
             high_risk_data = X[high_risk_mask]
@@ -1519,17 +1519,17 @@ class ClinicalEnsembleFramework:
                                   uncertainty_scores: np.ndarray) -> float:
         """Calculate overall model confidence score."""
         
-        \# Base confidence on prediction certainty and low uncertainty
-        prediction_certainty = np.mean(np.abs(probabilities - 0.5) * 2)  \# 0 to 1 scale
+        # Base confidence on prediction certainty and low uncertainty
+        prediction_certainty = np.mean(np.abs(probabilities - 0.5) * 2)  # 0 to 1 scale
         uncertainty_penalty = np.mean(uncertainty_scores)
         
         confidence = prediction_certainty * (1 - uncertainty_penalty)
         
         return np.clip(confidence, 0, 1)
 
-\#\# 4.4 Clinical Model Validation and Performance Assessment
+## 4.4 Clinical Model Validation and Performance Assessment
 
-\#\#\# 4.4.1 Comprehensive Clinical Validation Framework
+### 4.4.1 Comprehensive Clinical Validation Framework
 
 Clinical model validation requires specialized metrics and methodologies that account for the unique characteristics of healthcare data and the clinical context in which models will be deployed. The following implementation provides a comprehensive validation framework:
 
@@ -1569,7 +1569,7 @@ warnings.filterwarnings('ignore')
 class ClinicalValidationConfig:
     """Configuration for clinical model validation"""
     
-    validation_type: str = 'comprehensive'  \# 'basic', 'comprehensive', 'regulatory'
+    validation_type: str = 'comprehensive'  # 'basic', 'comprehensive', 'regulatory'
     temporal_validation: bool = True
     fairness_assessment: bool = True
     calibration_assessment: bool = True
@@ -1581,7 +1581,7 @@ class ClinicalValidationConfig:
 class ClinicalValidationResults:
     """Results from clinical model validation"""
     
-    \# Performance metrics
+    # Performance metrics
     auc_roc: float
     auc_pr: float
     sensitivity: float
@@ -1592,29 +1592,29 @@ class ClinicalValidationResults:
     accuracy: float
     balanced_accuracy: float
     
-    \# Confidence intervals
+    # Confidence intervals
     auc_roc_ci: Tuple[float, float]
     sensitivity_ci: Tuple[float, float]
     specificity_ci: Tuple[float, float]
     
-    \# Clinical metrics
-    nnt: Optional[float] = None  \# Number needed to treat
-    nnh: Optional[float] = None  \# Number needed to harm
+    # Clinical metrics
+    nnt: Optional[float] = None  # Number needed to treat
+    nnh: Optional[float] = None  # Number needed to harm
     clinical_utility_score: Optional[float] = None
     
-    \# Calibration metrics
+    # Calibration metrics
     calibration_slope: Optional[float] = None
     calibration_intercept: Optional[float] = None
     brier_score: Optional[float] = None
     
-    \# Fairness metrics
+    # Fairness metrics
     fairness_metrics: Dict[str, Any] = field(default_factory=dict)
     
-    \# Temporal validation
+    # Temporal validation
     temporal_stability: Optional[float] = None
     temporal_degradation: Optional[float] = None
     
-    \# Additional metadata
+    # Additional metadata
     validation_date: str = field(default_factory=lambda: datetime.now().isoformat())
     sample_size: int = 0
     prevalence: float = 0.0
@@ -1666,45 +1666,45 @@ class ClinicalModelValidator:
         
         logger.info(f"Starting {self.config.validation_type} clinical validation")
         
-        \# Get model predictions
+        # Get model predictions
         y_pred = model.predict(X_test)
         y_pred_proba = model.predict_proba(X_test)[:, 1]
         
-        \# Basic performance metrics
+        # Basic performance metrics
         basic_metrics = self._calculate_basic_metrics(y_test, y_pred, y_pred_proba)
         
-        \# Confidence intervals
+        # Confidence intervals
         confidence_intervals = self._calculate_confidence_intervals(
             y_test, y_pred, y_pred_proba
         )
         
-        \# Clinical utility metrics
+        # Clinical utility metrics
         clinical_metrics = {}
         if self.config.clinical_utility_assessment:
             clinical_metrics = self._assess_clinical_utility(y_test, y_pred_proba)
         
-        \# Calibration assessment
+        # Calibration assessment
         calibration_metrics = {}
         if self.config.calibration_assessment:
             calibration_metrics = self._assess_calibration(y_test, y_pred_proba)
         
-        \# Fairness assessment
+        # Fairness assessment
         fairness_metrics = {}
         if self.config.fairness_assessment and sensitive_attributes is not None:
             fairness_metrics = self._assess_fairness(
                 y_test, y_pred, y_pred_proba, sensitive_attributes
             )
         
-        \# Temporal validation
+        # Temporal validation
         temporal_metrics = {}
         if self.config.temporal_validation and temporal_column is not None:
             temporal_metrics = self._assess_temporal_stability(
                 model, X_test, y_test, temporal_column
             )
         
-        \# Compile results
+        # Compile results
         results = ClinicalValidationResults(
-            \# Basic metrics
+            # Basic metrics
             auc_roc=basic_metrics['auc_roc'],
             auc_pr=basic_metrics['auc_pr'],
             sensitivity=basic_metrics['sensitivity'],
@@ -1715,34 +1715,34 @@ class ClinicalModelValidator:
             accuracy=basic_metrics['accuracy'],
             balanced_accuracy=basic_metrics['balanced_accuracy'],
             
-            \# Confidence intervals
+            # Confidence intervals
             auc_roc_ci=confidence_intervals['auc_roc_ci'],
             sensitivity_ci=confidence_intervals['sensitivity_ci'],
             specificity_ci=confidence_intervals['specificity_ci'],
             
-            \# Clinical metrics
+            # Clinical metrics
             nnt=clinical_metrics.get('nnt'),
             nnh=clinical_metrics.get('nnh'),
             clinical_utility_score=clinical_metrics.get('clinical_utility_score'),
             
-            \# Calibration metrics
+            # Calibration metrics
             calibration_slope=calibration_metrics.get('calibration_slope'),
             calibration_intercept=calibration_metrics.get('calibration_intercept'),
             brier_score=calibration_metrics.get('brier_score'),
             
-            \# Fairness metrics
+            # Fairness metrics
             fairness_metrics=fairness_metrics,
             
-            \# Temporal metrics
+            # Temporal metrics
             temporal_stability=temporal_metrics.get('temporal_stability'),
             temporal_degradation=temporal_metrics.get('temporal_degradation'),
             
-            \# Metadata
+            # Metadata
             sample_size=len(y_test),
             prevalence=y_test.mean()
         )
         
-        \# Store validation history
+        # Store validation history
         self.validation_history.append(results)
         
         logger.info(f"Validation completed: AUC-ROC = {results.auc_roc:.4f}")
@@ -1753,21 +1753,21 @@ class ClinicalModelValidator:
                                y_pred_proba: np.ndarray) -> Dict[str, float]:
         """Calculate basic performance metrics."""
         
-        \# ROC AUC
+        # ROC AUC
         auc_roc = roc_auc_score(y_true, y_pred_proba)
         
-        \# Precision-Recall AUC
+        # Precision-Recall AUC
         auc_pr = average_precision_score(y_true, y_pred_proba)
         
-        \# Confusion matrix metrics
+        # Confusion matrix metrics
         tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
         
         sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
         specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
-        ppv = tp / (tp + fp) if (tp + fp) > 0 else 0  \# Positive predictive value
-        npv = tn / (tn + fn) if (tn + fn) > 0 else 0  \# Negative predictive value
+        ppv = tp / (tp + fp) if (tp + fp) > 0 else 0  # Positive predictive value
+        npv = tn / (tn + fn) if (tn + fn) > 0 else 0  # Negative predictive value
         
-        \# Other metrics
+        # Other metrics
         f1 = f1_score(y_true, y_pred)
         accuracy = accuracy_score(y_true, y_pred)
         balanced_accuracy = balanced_accuracy_score(y_true, y_pred)
@@ -1791,7 +1791,7 @@ class ClinicalModelValidator:
         n_bootstrap = self.config.bootstrap_iterations
         alpha = 1 - self.config.confidence_level
         
-        \# Bootstrap samples
+        # Bootstrap samples
         bootstrap_metrics = {
             'auc_roc': [],
             'sensitivity': [],
@@ -1801,13 +1801,13 @@ class ClinicalModelValidator:
         n_samples = len(y_true)
         
         for _ in range(n_bootstrap):
-            \# Bootstrap sample
+            # Bootstrap sample
             indices = np.random.choice(n_samples, n_samples, replace=True)
             y_true_boot = y_true.iloc[indices]
             y_pred_boot = y_pred[indices]
             y_pred_proba_boot = y_pred_proba[indices]
             
-            \# Calculate metrics
+            # Calculate metrics
             try:
                 auc_roc_boot = roc_auc_score(y_true_boot, y_pred_proba_boot)
                 bootstrap_metrics['auc_roc'].append(auc_roc_boot)
@@ -1822,7 +1822,7 @@ class ClinicalModelValidator:
             except Exception:
                 continue
         
-        \# Calculate confidence intervals
+        # Calculate confidence intervals
         confidence_intervals = {}
         for metric, values in bootstrap_metrics.items():
             if values:
@@ -1838,31 +1838,31 @@ class ClinicalModelValidator:
                                y_pred_proba: np.ndarray) -> Dict[str, float]:
         """Assess clinical utility of the model."""
         
-        \# Calculate number needed to treat (NNT) and number needed to harm (NNH)
-        \# These require clinical context and treatment effectiveness data
-        \# For demonstration, we'll calculate simplified versions
+        # Calculate number needed to treat (NNT) and number needed to harm (NNH)
+        # These require clinical context and treatment effectiveness data
+        # For demonstration, we'll calculate simplified versions
         
         prevalence = y_true.mean()
         
-        \# Simplified NNT calculation (would need treatment effectiveness in practice)
-        \# Assuming a treatment reduces risk by 20% (relative risk reduction = 0.2)
+        # Simplified NNT calculation (would need treatment effectiveness in practice)
+        # Assuming a treatment reduces risk by 20% (relative risk reduction = 0.2)
         relative_risk_reduction = 0.2
         absolute_risk_reduction = prevalence * relative_risk_reduction
         nnt = 1 / absolute_risk_reduction if absolute_risk_reduction > 0 else None
         
-        \# Clinical utility score based on decision curve analysis principles
-        \# Simplified version - would need full decision curve analysis in practice
+        # Clinical utility score based on decision curve analysis principles
+        # Simplified version - would need full decision curve analysis in practice
         thresholds = np.linspace(0, 1, 101)
         net_benefits = []
         
         for threshold in thresholds:
-            \# Calculate net benefit at this threshold
+            # Calculate net benefit at this threshold
             y_pred_binary = (y_pred_proba >= threshold).astype(int)
             
             tp = np.sum((y_true == 1) & (y_pred_binary == 1))
             fp = np.sum((y_true == 0) & (y_pred_binary == 1))
             
-            \# Net benefit = (TP/N) - (FP/N) * (threshold/(1-threshold))
+            # Net benefit = (TP/N) - (FP/N) * (threshold/(1-threshold))
             n = len(y_true)
             if threshold < 1:
                 net_benefit = (tp / n) - (fp / n) * (threshold / (1 - threshold))
@@ -1871,12 +1871,12 @@ class ClinicalModelValidator:
             
             net_benefits.append(net_benefit)
         
-        \# Clinical utility score as maximum net benefit
+        # Clinical utility score as maximum net benefit
         clinical_utility_score = max(net_benefits) if net_benefits else 0
         
         return {
             'nnt': nnt,
-            'nnh': None,  \# Would calculate based on treatment harms
+            'nnh': None,  # Would calculate based on treatment harms
             'clinical_utility_score': clinical_utility_score
         }
     
@@ -1884,12 +1884,12 @@ class ClinicalModelValidator:
                           y_pred_proba: np.ndarray) -> Dict[str, float]:
         """Assess model calibration."""
         
-        \# Calibration curve
+        # Calibration curve
         fraction_of_positives, mean_predicted_value = calibration_curve(
             y_true, y_pred_proba, n_bins=10
         )
         
-        \# Calibration slope and intercept
+        # Calibration slope and intercept
         try:
             slope, intercept, r_value, p_value, std_err = stats.linregress(
                 mean_predicted_value, fraction_of_positives
@@ -1900,7 +1900,7 @@ class ClinicalModelValidator:
             calibration_slope = None
             calibration_intercept = None
         
-        \# Brier score
+        # Brier score
         brier_score = np.mean((y_pred_proba - y_true) ** 2)
         
         return {
@@ -1927,14 +1927,14 @@ class ClinicalModelValidator:
             for value in attr_values:
                 mask = sensitive_attributes[attr] == value
                 
-                if mask.sum() < 10:  \# Skip small groups
+                if mask.sum() < 10:  # Skip small groups
                     continue
                 
                 y_true_group = y_true[mask]
                 y_pred_group = y_pred[mask]
                 y_pred_proba_group = y_pred_proba[mask]
                 
-                \# Calculate metrics for this group
+                # Calculate metrics for this group
                 try:
                     auc_roc_group = roc_auc_score(y_true_group, y_pred_proba_group)
                     
@@ -1953,7 +1953,7 @@ class ClinicalModelValidator:
                     logger.warning(f"Failed to calculate fairness metrics for {attr}={value}: {e}")
                     continue
             
-            \# Calculate fairness disparities
+            # Calculate fairness disparities
             if len(group_metrics) >= 2:
                 aucs = [metrics['auc_roc'] for metrics in group_metrics.values()]
                 sensitivities = [metrics['sensitivity'] for metrics in group_metrics.values()]
@@ -1976,10 +1976,10 @@ class ClinicalModelValidator:
             logger.warning(f"Temporal column {temporal_column} not found")
             return {}
         
-        \# Convert temporal column to datetime if needed
+        # Convert temporal column to datetime if needed
         temporal_values = pd.to_datetime(X_test[temporal_column])
         
-        \# Split data into time periods
+        # Split data into time periods
         time_periods = pd.qcut(temporal_values, q=4, labels=['Q1', 'Q2', 'Q3', 'Q4'])
         
         period_aucs = []
@@ -1987,7 +1987,7 @@ class ClinicalModelValidator:
         for period in ['Q1', 'Q2', 'Q3', 'Q4']:
             mask = time_periods == period
             
-            if mask.sum() < 10:  \# Skip small periods
+            if mask.sum() < 10:  # Skip small periods
                 continue
             
             X_period = X_test[mask]
@@ -2002,7 +2002,7 @@ class ClinicalModelValidator:
                 logger.warning(f"Failed to calculate temporal metrics for {period}: {e}")
                 continue
         
-        \# Calculate temporal stability metrics
+        # Calculate temporal stability metrics
         if len(period_aucs) >= 2:
             temporal_stability = 1 - (np.std(period_aucs) / np.mean(period_aucs))
             temporal_degradation = period_aucs<sup>0</sup> - period_aucs[-1] if len(period_aucs) >= 2 else 0
@@ -2077,61 +2077,61 @@ Temporal Degradation: {results.temporal_degradation:.4f}
         
         return report
 
-\#\# Bibliography and References
+## Bibliography and References
 
-\#\#\# Foundational Machine Learning in Healthcare
+### Foundational Machine Learning in Healthcare
 
-1. **Rajkomar, A., Oren, E., Chen, K., Dai, A. M., Hajaj, N., Hardt, M., ... & Dean, J.** (2018). Scalable and accurate deep learning with electronic health records. *NPJ Digital Medicine*, 1(1), 18. [Seminal work demonstrating deep learning applications to structured EHR data]
+. **Rajkomar, A., Oren, E., Chen, K., Dai, A. M., Hajaj, N., Hardt, M., ... & Dean, J.** (2018). Scalable and accurate deep learning with electronic health records. *NPJ Digital Medicine*, 1(1), 18. [Seminal work demonstrating deep learning applications to structured EHR data]
 
-2. **Che, Z., Purushotham, S., Cho, K., Sontag, D., & Liu, Y.** (2018). Recurrent neural networks for multivariate time series with missing values. *Scientific Reports*, 8(1), 6085. [Advanced methods for handling missing data in clinical time series]
+. **Che, Z., Purushotham, S., Cho, K., Sontag, D., & Liu, Y.** (2018). Recurrent neural networks for multivariate time series with missing values. *Scientific Reports*, 8(1), 6085. [Advanced methods for handling missing data in clinical time series]
 
-3. **Shickel, B., Tighe, P. J., Bihorac, A., & Rashidi, P.** (2017). Deep EHR: a survey of recent advances in deep learning techniques for electronic health record (EHR) analysis. *IEEE Journal of Biomedical and Health Informatics*, 22(5), 1589-1604. [Comprehensive survey of deep learning methods for EHR analysis]
+. **Shickel, B., Tighe, P. J., Bihorac, A., & Rashidi, P.** (2017). Deep EHR: a survey of recent advances in deep learning techniques for electronic health record (EHR) analysis. *IEEE Journal of Biomedical and Health Informatics*, 22(5), 1589-1604. [Comprehensive survey of deep learning methods for EHR analysis]
 
-\#\#\# Clinical Feature Engineering and Preprocessing
+### Clinical Feature Engineering and Preprocessing
 
-4. **Harutyunyan, H., Khachatrian, H., Kale, D. C., Ver Steeg, G., & Galstyan, A.** (2019). Multitask learning and benchmarking with clinical time series data. *Scientific Data*, 6(1), 96. [Benchmark datasets and methods for clinical time series analysis]
+. **Harutyunyan, H., Khachatrian, H., Kale, D. C., Ver Steeg, G., & Galstyan, A.** (2019). Multitask learning and benchmarking with clinical time series data. *Scientific Data*, 6(1), 96. [Benchmark datasets and methods for clinical time series analysis]
 
-5. **Purushotham, S., Meng, C., Che, Z., & Liu, Y.** (2018). Benchmarking deep learning models on large healthcare datasets. *Journal of Biomedical Informatics*, 83, 112-134. [Comprehensive benchmarking of deep learning approaches for healthcare data]
+. **Purushotham, S., Meng, C., Che, Z., & Liu, Y.** (2018). Benchmarking deep learning models on large healthcare datasets. *Journal of Biomedical Informatics*, 83, 112-134. [Comprehensive benchmarking of deep learning approaches for healthcare data]
 
-6. **Lipton, Z. C., Kale, D. C., Elkan, C., & Wetzel, R.** (2016). Learning to diagnose with LSTM recurrent neural networks. *arXiv preprint arXiv:1511.03677*. [LSTM applications for clinical diagnosis from time series data]
+. **Lipton, Z. C., Kale, D. C., Elkan, C., & Wetzel, R.** (2016). Learning to diagnose with LSTM recurrent neural networks. *arXiv preprint arXiv:1511.03677*. [LSTM applications for clinical diagnosis from time series data]
 
-\#\#\# Missing Data and Clinical Data Quality
+### Missing Data and Clinical Data Quality
 
-7. **Wells, B. J., Chagin, K. M., Nowacki, A. S., & Kattan, M. W.** (2013). Strategies for handling missing data in electronic health record derived data. *eGEMs*, 1(3), 7. [Comprehensive strategies for handling missing data in EHR-derived datasets]
+. **Wells, B. J., Chagin, K. M., Nowacki, A. S., & Kattan, M. W.** (2013). Strategies for handling missing data in electronic health record derived data. *eGEMs*, 1(3), 7. [Comprehensive strategies for handling missing data in EHR-derived datasets]
 
-8. **Sterne, J. A., White, I. R., Carlin, J. B., Spratt, M., Royston, P., Kenward, M. G., ... & Carpenter, J. R.** (2009). Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls. *BMJ*, 338, b2393. [Guidelines for multiple imputation in clinical research]
+. **Sterne, J. A., White, I. R., Carlin, J. B., Spratt, M., Royston, P., Kenward, M. G., ... & Carpenter, J. R.** (2009). Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls. *BMJ*, 338, b2393. [Guidelines for multiple imputation in clinical research]
 
-9. **Marlin, B. M., Kale, D. C., Khemani, R. G., & Wetzel, R. C.** (2012). Unsupervised pattern discovery in electronic health care data using probabilistic clustering models. *Proceedings of the 2nd ACM SIGHIT International Health Informatics Symposium*, 389-398. [Probabilistic approaches to clinical data analysis]
+. **Marlin, B. M., Kale, D. C., Khemani, R. G., & Wetzel, R. C.** (2012). Unsupervised pattern discovery in electronic health care data using probabilistic clustering models. *Proceedings of the 2nd ACM SIGHIT International Health Informatics Symposium*, 389-398. [Probabilistic approaches to clinical data analysis]
 
-\#\#\# Ensemble Methods and Advanced ML Techniques
+### Ensemble Methods and Advanced ML Techniques
 
-10. **Caruana, R., Lou, Y., Gehrke, J., Koch, P., Sturm, M., & Elhadad, N.** (2015). Intelligible models for healthcare: Predicting pneumonia risk and hospital 30-day readmission. *Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 1721-1730. [Interpretable ensemble methods for clinical prediction]
+. **Caruana, R., Lou, Y., Gehrke, J., Koch, P., Sturm, M., & Elhadad, N.** (2015). Intelligible models for healthcare: Predicting pneumonia risk and hospital 30-day readmission. *Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 1721-1730. [Interpretable ensemble methods for clinical prediction]
 
-11. **Chen, T., & Guestrin, C.** (2016). XGBoost: A scalable tree boosting system. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 785-794. [XGBoost methodology with applications to healthcare]
+. **Chen, T., & Guestrin, C.** (2016). XGBoost: A scalable tree boosting system. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 785-794. [XGBoost methodology with applications to healthcare]
 
-12. **Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., ... & Liu, T. Y.** (2017). LightGBM: A highly efficient gradient boosting decision tree. *Advances in Neural Information Processing Systems*, 30, 3146-3154. [LightGBM methodology for large-scale clinical datasets]
+. **Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., ... & Liu, T. Y.** (2017). LightGBM: A highly efficient gradient boosting decision tree. *Advances in Neural Information Processing Systems*, 30, 3146-3154. [LightGBM methodology for large-scale clinical datasets]
 
-\#\#\# Clinical Model Validation and Performance Assessment
+### Clinical Model Validation and Performance Assessment
 
-13. **Steyerberg, E. W., Vickers, A. J., Cook, N. R., Gerds, T., Gonen, M., Obuchowski, N., ... & Kattan, M. W.** (2010). Assessing the performance of prediction models: a framework for traditional and novel measures. *Epidemiology*, 21(1), 128-138. [Comprehensive framework for clinical prediction model assessment]
+. **Steyerberg, E. W., Vickers, A. J., Cook, N. R., Gerds, T., Gonen, M., Obuchowski, N., ... & Kattan, M. W.** (2010). Assessing the performance of prediction models: a framework for traditional and novel measures. *Epidemiology*, 21(1), 128-138. [Comprehensive framework for clinical prediction model assessment]
 
-14. **Van Calster, B., McLernon, D. J., Van Smeden, M., Wynants, L., & Steyerberg, E. W.** (2019). Calibration: the Achilles heel of predictive analytics. *BMC Medicine*, 17(1), 230. [Critical importance of calibration in clinical prediction models]
+. **Van Calster, B., McLernon, D. J., Van Smeden, M., Wynants, L., & Steyerberg, E. W.** (2019). Calibration: the Achilles heel of predictive analytics. *BMC Medicine*, 17(1), 230. [Critical importance of calibration in clinical prediction models]
 
-15. **Vickers, A. J., & Elkin, E. B.** (2006). Decision curve analysis: a novel method for evaluating prediction models. *Medical Decision Making*, 26(6), 565-574. [Decision curve analysis for clinical utility assessment]
+. **Vickers, A. J., & Elkin, E. B.** (2006). Decision curve analysis: a novel method for evaluating prediction models. *Medical Decision Making*, 26(6), 565-574. [Decision curve analysis for clinical utility assessment]
 
-\#\#\# Fairness and Bias in Clinical ML
+### Fairness and Bias in Clinical ML
 
-16. **Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S.** (2019). Dissecting racial bias in an algorithm used to manage the health of populations. *Science*, 366(6464), 447-453. [Landmark study on algorithmic bias in healthcare]
+. **Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S.** (2019). Dissecting racial bias in an algorithm used to manage the health of populations. *Science*, 366(6464), 447-453. [Landmark study on algorithmic bias in healthcare]
 
-17. **Rajkomar, A., Hardt, M., Howell, M. D., Corrado, G., & Chin, M. H.** (2018). Ensuring fairness in machine learning to advance health equity. *Annals of Internal Medicine*, 169(12), 866-872. [Framework for ensuring fairness in healthcare ML]
+. **Rajkomar, A., Hardt, M., Howell, M. D., Corrado, G., & Chin, M. H.** (2018). Ensuring fairness in machine learning to advance health equity. *Annals of Internal Medicine*, 169(12), 866-872. [Framework for ensuring fairness in healthcare ML]
 
-18. **Chen, I. Y., Pierson, E., Rose, S., Joshi, S., Ferryman, K., & Ghassemi, M.** (2021). Ethical machine learning in healthcare. *Annual Review of Biomedical Data Science*, 4, 123-144. [Comprehensive review of ethical considerations in healthcare ML]
+. **Chen, I. Y., Pierson, E., Rose, S., Joshi, S., Ferryman, K., & Ghassemi, M.** (2021). Ethical machine learning in healthcare. *Annual Review of Biomedical Data Science*, 4, 123-144. [Comprehensive review of ethical considerations in healthcare ML]
 
-\#\#\# Temporal Validation and Model Stability
+### Temporal Validation and Model Stability
 
-19. **Davis, S. E., Lasko, T. A., Chen, G., Siew, E. D., & Matheny, M. E.** (2017). Calibration drift in regression and machine learning models for acute kidney injury. *Journal of the American Medical Informatics Association*, 24(6), 1052-1061. [Temporal validation and calibration drift in clinical models]
+. **Davis, S. E., Lasko, T. A., Chen, G., Siew, E. D., & Matheny, M. E.** (2017). Calibration drift in regression and machine learning models for acute kidney injury. *Journal of the American Medical Informatics Association*, 24(6), 1052-1061. [Temporal validation and calibration drift in clinical models]
 
-20. **Nestor, B., McDermott, M. B., Chauhan, G., Naumann, T., Hughes, M. C., Goldenberg, A., & Ghassemi, M.** (2019). Rethinking clinical prediction: why machine learning must consider year of care and feature aggregation. *arXiv preprint arXiv:1811.12583*. [Temporal considerations in clinical prediction modeling]
+. **Nestor, B., McDermott, M. B., Chauhan, G., Naumann, T., Hughes, M. C., Goldenberg, A., & Ghassemi, M.** (2019). Rethinking clinical prediction: why machine learning must consider year of care and feature aggregation. *arXiv preprint arXiv:1811.12583*. [Temporal considerations in clinical prediction modeling]
 
 This chapter provides a comprehensive foundation for implementing structured machine learning systems in clinical settings. The implementations presented are production-ready and address the unique challenges of clinical data, including temporal dependencies, missing data patterns, and regulatory requirements. The next chapter will explore reinforcement learning applications in healthcare, building upon these foundational concepts to address dynamic treatment optimization and clinical decision support.
 

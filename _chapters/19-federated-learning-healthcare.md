@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/19-federated-learning-healthcare/
 ---
 
-\# Chapter 19: Federated Learning in Healthcare - Collaborative AI Across Institutions
+# Chapter 19: Federated Learning in Healthcare - Collaborative AI Across Institutions
 
 *By Sanjay Basu MD PhD*
 
-\#\# Learning Objectives
+## Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,7 +22,7 @@ By the end of this chapter, physician data scientists will be able to:
 - Address comprehensive regulatory compliance requirements for federated healthcare AI systems including HIPAA, GDPR, FDA guidance, and institutional review board considerations while implementing proper governance frameworks, audit trails, and risk management strategies for multi-institutional AI collaborations
 - Develop advanced federated learning applications including collaborative clinical decision support systems, multi-site clinical trial optimization, population health analytics, and precision medicine initiatives that leverage the collective intelligence of multiple healthcare institutions while preserving patient privacy and institutional autonomy
 
-\#\# 19.1 Introduction to Federated Learning in Healthcare
+## 19.1 Introduction to Federated Learning in Healthcare
 
 Federated learning represents a paradigm shift in healthcare artificial intelligence, enabling collaborative model training across multiple institutions while keeping sensitive patient data localized and maintaining strict privacy and regulatory compliance requirements. **This approach addresses one of the most significant challenges in healthcare AI**: the need for large, diverse datasets to train robust and generalizable models while respecting patient privacy, institutional policies, and regulatory constraints that govern healthcare data sharing.
 
@@ -30,7 +30,7 @@ Federated learning represents a paradigm shift in healthcare artificial intellig
 
 **Federated learning solves these challenges** by bringing the computation to the data rather than bringing the data to the computation, fundamentally changing how collaborative AI development occurs in healthcare. In this paradigm, each participating institution trains a local model on their own data using standardized algorithms and protocols, and only model parameters, gradients, or aggregated statistics are shared with a central coordinator or through peer-to-peer networks.
 
-\#\#\# 19.1.1 Benefits of Federated Learning in Healthcare
+### 19.1.1 Benefits of Federated Learning in Healthcare
 
 **Enhanced dataset diversity and size** represents one of the most significant advantages of federated learning in healthcare, enabling training on much larger and more diverse datasets than any single institution could provide. This leads to more robust and generalizable models that can perform well across different patient populations, clinical settings, and geographic regions, addressing the generalizability challenges that plague many single-institution AI systems.
 
@@ -42,7 +42,7 @@ Federated learning represents a paradigm shift in healthcare artificial intellig
 
 **Regulatory compliance facilitation** is achieved through federated learning's inherent privacy-preserving design, which aligns with healthcare data protection regulations and reduces the regulatory burden associated with data sharing agreements and cross-institutional data transfers.
 
-\#\#\# 19.1.2 Challenges in Healthcare Federated Learning
+### 19.1.2 Challenges in Healthcare Federated Learning
 
 **Data heterogeneity across institutions** represents one of the most significant technical challenges in federated healthcare AI, as different institutions may have varying data collection protocols, electronic health record systems, patient populations, and clinical practices that lead to non-identically and independently distributed (non-IID) data that can negatively impact model convergence and performance.
 
@@ -54,7 +54,7 @@ Federated learning represents a paradigm shift in healthcare artificial intellig
 
 **Regulatory and governance challenges** include establishing clear data governance frameworks, ensuring compliance across multiple jurisdictions, managing institutional review board requirements, and establishing liability and responsibility frameworks for collaborative AI development.
 
-\#\#\# 19.1.3 Healthcare-Specific Federated Learning Requirements
+### 19.1.3 Healthcare-Specific Federated Learning Requirements
 
 **HIPAA compliance and privacy protection** require specialized federated learning implementations that provide formal privacy guarantees, implement proper access controls, and maintain comprehensive audit trails while ensuring that model training and inference processes do not inadvertently reveal protected health information.
 
@@ -64,9 +64,9 @@ Federated learning represents a paradigm shift in healthcare artificial intellig
 
 **Real-time clinical integration** demands federated learning systems that can operate within existing clinical workflows, provide timely model updates, and maintain high availability and reliability standards required for clinical decision support applications.
 
-\#\# 19.2 Federated Learning Algorithms and Architectures
+## 19.2 Federated Learning Algorithms and Architectures
 
-\#\#\# 19.2.1 Mathematical Foundations of Federated Learning
+### 19.2.1 Mathematical Foundations of Federated Learning
 
 Federated learning can be mathematically formulated as a distributed optimization problem where the goal is to minimize a global objective function while keeping data distributed across multiple participants. **Let $\mathcal{P} = \{P_1, P_2, \ldots, P_K\}$ be a set of $K$ participating healthcare institutions**, each with local dataset $\mathcal{D}_k$ of size $n_k$ containing patient records, clinical measurements, and associated outcomes.
 
@@ -108,7 +108,7 @@ $$
    - **Privacy protection**: Apply differential privacy mechanisms if required
    - **Convergence check**: Evaluate global model performance and convergence criteria
 
-\#\#\# 19.2.2 Advanced Federated Learning Algorithms
+### 19.2.2 Advanced Federated Learning Algorithms
 
 **FedProx (Federated Proximal)** addresses the challenges of data heterogeneity by adding a proximal term to the local objective function that prevents local models from deviating too far from the global model:
 
@@ -140,7 +140,7 @@ $$
 
 where $c_k$ is the local control variate, $c$ is the global control variate, and $g_k$ is the local gradient.
 
-\#\#\# 19.2.3 Production-Ready Federated Learning Implementation
+### 19.2.3 Production-Ready Federated Learning Implementation
 
 ```python
 """
@@ -199,7 +199,7 @@ from pathlib import Path
 
 warnings.filterwarnings('ignore')
 
-\# Configure logging
+# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -237,12 +237,12 @@ class PrivacyMechanism(Enum):
 @dataclass
 class FederatedConfig:
     """Configuration for federated learning system."""
-    \# Algorithm settings
+    # Algorithm settings
     algorithm: FederatedAlgorithm = FederatedAlgorithm.FEDAVG
     aggregation_strategy: AggregationStrategy = AggregationStrategy.WEIGHTED_AVERAGE
     privacy_mechanism: PrivacyMechanism = PrivacyMechanism.DIFFERENTIAL_PRIVACY
     
-    \# Training parameters
+    # Training parameters
     num_rounds: int = 100
     clients_per_round: int = 10
     local_epochs: int = 5
@@ -250,35 +250,35 @@ class FederatedConfig:
     local_learning_rate: float = 0.01
     global_learning_rate: float = 1.0
     
-    \# Algorithm-specific parameters
-    fedprox_mu: float = 0.01  \# Proximal term coefficient
-    scaffold_lr: float = 1.0  \# SCAFFOLD learning rate
-    fednova_momentum: float = 0.0  \# FedNova momentum
+    # Algorithm-specific parameters
+    fedprox_mu: float = 0.01  # Proximal term coefficient
+    scaffold_lr: float = 1.0  # SCAFFOLD learning rate
+    fednova_momentum: float = 0.0  # FedNova momentum
     
-    \# Privacy parameters
-    dp_epsilon: float = 1.0  \# Differential privacy epsilon
-    dp_delta: float = 1e-5   \# Differential privacy delta
-    dp_clip_norm: float = 1.0  \# Gradient clipping norm
+    # Privacy parameters
+    dp_epsilon: float = 1.0  # Differential privacy epsilon
+    dp_delta: float = 1e-5   # Differential privacy delta
+    dp_clip_norm: float = 1.0  # Gradient clipping norm
     
-    \# Communication and security
+    # Communication and security
     max_communication_rounds: int = 1000
-    communication_timeout: int = 300  \# seconds
+    communication_timeout: int = 300  # seconds
     use_secure_communication: bool = True
     use_model_compression: bool = True
     compression_ratio: float = 0.1
     
-    \# Robustness and fault tolerance
+    # Robustness and fault tolerance
     byzantine_tolerance: bool = True
     max_byzantine_clients: int = 2
     client_dropout_rate: float = 0.1
     
-    \# Clinical validation
+    # Clinical validation
     enable_clinical_validation: bool = True
-    validation_frequency: int = 10  \# rounds
+    validation_frequency: int = 10  # rounds
     early_stopping_patience: int = 20
     min_improvement: float = 0.001
     
-    \# Compliance and auditing
+    # Compliance and auditing
     enable_audit_logging: bool = True
     require_client_authentication: bool = True
     data_governance_compliance: bool = True
@@ -326,14 +326,14 @@ class SecureCommunication:
         self.use_encryption = use_encryption
         
         if use_encryption:
-            \# Generate RSA key pair for asymmetric encryption
+            # Generate RSA key pair for asymmetric encryption
             self.private_key = rsa.generate_private_key(
                 public_exponent=65537,
                 key_size=2048
             )
             self.public_key = self.private_key.public_key()
             
-            \# Generate symmetric key for data encryption
+            # Generate symmetric key for data encryption
             self.symmetric_key = Fernet.generate_key()
             self.cipher = Fernet(self.symmetric_key)
         
@@ -344,10 +344,10 @@ class SecureCommunication:
         if not self.use_encryption:
             return pickle.dumps(model_update)
         
-        \# Serialize model update
+        # Serialize model update
         serialized_update = pickle.dumps(model_update)
         
-        \# Encrypt with symmetric key
+        # Encrypt with symmetric key
         encrypted_update = self.cipher.encrypt(serialized_update)
         
         return encrypted_update
@@ -357,10 +357,10 @@ class SecureCommunication:
         if not self.use_encryption:
             return pickle.loads(encrypted_update)
         
-        \# Decrypt with symmetric key
+        # Decrypt with symmetric key
         decrypted_update = self.cipher.decrypt(encrypted_update)
         
-        \# Deserialize model update
+        # Deserialize model update
         model_update = pickle.loads(decrypted_update)
         
         return model_update
@@ -370,7 +370,7 @@ class SecureCommunication:
         timestamp = str(int(time.time()))
         message = f"{client_id}:{timestamp}"
         
-        \# Create HMAC signature
+        # Create HMAC signature
         signature = hmac.new(
             self.symmetric_key,
             message.encode(),
@@ -391,17 +391,17 @@ class SecureCommunication:
             
             received_client_id, timestamp, signature = parts
             
-            \# Verify client ID
+            # Verify client ID
             if received_client_id != client_id:
                 return False
             
-            \# Verify timestamp (token valid for 1 hour)
+            # Verify timestamp (token valid for 1 hour)
             current_time = int(time.time())
             token_time = int(timestamp)
             if current_time - token_time > 3600:
                 return False
             
-            \# Verify signature
+            # Verify signature
             message = f"{received_client_id}:{timestamp}"
             expected_signature = hmac.new(
                 self.symmetric_key,
@@ -430,13 +430,13 @@ class DifferentialPrivacy:
         """Clip gradients to bound sensitivity."""
         clipped_gradients = {}
         
-        \# Calculate total gradient norm
+        # Calculate total gradient norm
         total_norm = 0.0
         for grad in gradients.values():
             total_norm += grad.norm().item() ** 2
         total_norm = total_norm ** 0.5
         
-        \# Clip if necessary
+        # Clip if necessary
         clip_coef = min(1.0, self.clip_norm / (total_norm + 1e-6))
         
         for name, grad in gradients.items():
@@ -448,7 +448,7 @@ class DifferentialPrivacy:
         """Add Gaussian noise for differential privacy."""
         noisy_gradients = {}
         
-        \# Calculate noise scale
+        # Calculate noise scale
         noise_scale = self.clip_norm * np.sqrt(2 * np.log(1.25 / self.delta)) / self.epsilon
         
         for name, grad in gradients.items():
@@ -459,10 +459,10 @@ class DifferentialPrivacy:
     
     def privatize_gradients(self, gradients: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         """Apply differential privacy to gradients."""
-        \# Clip gradients
+        # Clip gradients
         clipped_gradients = self.clip_gradients(gradients)
         
-        \# Add noise
+        # Add noise
         private_gradients = self.add_noise(clipped_gradients)
         
         return private_gradients
@@ -481,20 +481,20 @@ class ModelCompression:
         compressed_update = {}
         
         for name, tensor in model_update.items():
-            \# Flatten tensor
+            # Flatten tensor
             flat_tensor = tensor.flatten()
             
-            \# Calculate number of elements to keep
+            # Calculate number of elements to keep
             num_elements = len(flat_tensor)
             num_keep = max(1, int(num_elements * self.compression_ratio))
             
-            \# Get top-k elements by magnitude
+            # Get top-k elements by magnitude
             _, top_indices = torch.topk(torch.abs(flat_tensor), num_keep)
             
-            \# Create sparse representation
+            # Create sparse representation
             sparse_values = flat_tensor[top_indices]
             
-            \# Store compressed representation
+            # Store compressed representation
             compressed_update[name] = {
                 'values': sparse_values,
                 'indices': top_indices,
@@ -509,17 +509,17 @@ class ModelCompression:
         decompressed_update = {}
         
         for name, compressed_data in compressed_update.items():
-            \# Extract compressed data
+            # Extract compressed data
             values = compressed_data['values']
             indices = compressed_data['indices']
             shape = compressed_data['shape']
             original_size = compressed_data['original_size']
             
-            \# Reconstruct sparse tensor
+            # Reconstruct sparse tensor
             flat_tensor = torch.zeros(original_size, device=values.device)
             flat_tensor[indices] = values
             
-            \# Reshape to original shape
+            # Reshape to original shape
             decompressed_update[name] = flat_tensor.reshape(shape)
         
         return decompressed_update
@@ -545,13 +545,13 @@ class ByzantineRobustness:
             logger.warning("Not enough clients for Byzantine robustness")
             return self._simple_average(client_updates)
         
-        \# Flatten all updates
+        # Flatten all updates
         flattened_updates = []
         for update in client_updates:
             flattened = torch.cat([tensor.flatten() for tensor in update.values()])
             flattened_updates.append(flattened)
         
-        \# Calculate pairwise distances
+        # Calculate pairwise distances
         distances = torch.zeros(num_clients, num_clients)
         for i in range(num_clients):
             for j in range(i + 1, num_clients):
@@ -559,10 +559,10 @@ class ByzantineRobustness:
                 distances[i, j] = dist
                 distances[j, i] = dist
         
-        \# Calculate Krum scores
+        # Calculate Krum scores
         scores = torch.zeros(num_clients)
         for i in range(num_clients):
-            \# Sum of distances to closest n - f - 2 clients
+            # Sum of distances to closest n - f - 2 clients
             closest_distances, _ = torch.topk(
                 distances[i], 
                 num_clients - num_byzantine - 2, 
@@ -570,7 +570,7 @@ class ByzantineRobustness:
             )
             scores[i] = closest_distances.sum()
         
-        \# Select client with minimum score
+        # Select client with minimum score
         selected_client = torch.argmin(scores).item()
         
         return client_updates[selected_client]
@@ -584,29 +584,29 @@ class ByzantineRobustness:
         if not client_updates:
             return {}
         
-        \# Number of clients to trim from each end
+        # Number of clients to trim from each end
         num_trim = int(len(client_updates) * trim_ratio / 2)
         
         aggregated_update = {}
         
-        \# Get parameter names from first update
+        # Get parameter names from first update
         param_names = list(client_updates<sup>0</sup>.keys())
         
         for param_name in param_names:
-            \# Collect parameter values from all clients
+            # Collect parameter values from all clients
             param_values = [update[param_name] for update in client_updates]
             param_tensor = torch.stack(param_values)
             
-            \# Sort along client dimension
+            # Sort along client dimension
             sorted_tensor, _ = torch.sort(param_tensor, dim=0)
             
-            \# Trim extreme values
+            # Trim extreme values
             if num_trim > 0:
                 trimmed_tensor = sorted_tensor[num_trim:-num_trim]
             else:
                 trimmed_tensor = sorted_tensor
             
-            \# Calculate mean
+            # Calculate mean
             aggregated_update[param_name] = trimmed_tensor.mean(dim=0)
         
         return aggregated_update
@@ -645,7 +645,7 @@ class FederatedClient:
         self.config = config
         self.device = torch.device(device)
         
-        \# Optimizer
+        # Optimizer
         self.optimizer = optim.SGD(
             self.model.parameters(),
             lr=config.local_learning_rate,
@@ -653,10 +653,10 @@ class FederatedClient:
             weight_decay=1e-4
         )
         
-        \# Loss function
+        # Loss function
         self.criterion = nn.CrossEntropyLoss()
         
-        \# Privacy mechanisms
+        # Privacy mechanisms
         if config.privacy_mechanism == PrivacyMechanism.DIFFERENTIAL_PRIVACY:
             self.dp = DifferentialPrivacy(
                 epsilon=config.dp_epsilon,
@@ -666,23 +666,23 @@ class FederatedClient:
         else:
             self.dp = None
         
-        \# Communication
+        # Communication
         self.secure_comm = SecureCommunication(config.use_secure_communication)
         
-        \# Compression
+        # Compression
         if config.use_model_compression:
             self.compressor = ModelCompression(config.compression_ratio)
         else:
             self.compressor = None
         
-        \# SCAFFOLD control variates
+        # SCAFFOLD control variates
         if config.algorithm == FederatedAlgorithm.SCAFFOLD:
             self.control_variate = {
                 name: torch.zeros_like(param)
                 for name, param in self.model.named_parameters()
             }
         
-        \# Training history
+        # Training history
         self.training_history = {
             'rounds': [],
             'train_loss': [],
@@ -699,41 +699,41 @@ class FederatedClient:
         round_num: int
     ) -> Dict[str, Any]:
         """Perform local training."""
-        \# Load global model
+        # Load global model
         self.model.load_state_dict(global_model_state)
         self.model.train()
         
-        \# Store initial model for FedProx
+        # Store initial model for FedProx
         if self.config.algorithm == FederatedAlgorithm.FEDPROX:
             initial_model_state = copy.deepcopy(global_model_state)
         
-        \# Training metrics
+        # Training metrics
         total_loss = 0.0
         correct_predictions = 0
         total_samples = 0
         
-        \# Local training loop
+        # Local training loop
         for epoch in range(self.config.local_epochs):
             for batch_idx, (data, target) in enumerate(self.train_loader):
                 data, target = data.to(self.device), target.to(self.device)
                 
                 self.optimizer.zero_grad()
                 
-                \# Forward pass
+                # Forward pass
                 output = self.model(data)
                 loss = self.criterion(output, target)
                 
-                \# Add FedProx regularization
+                # Add FedProx regularization
                 if self.config.algorithm == FederatedAlgorithm.FEDPROX:
                     proximal_term = 0.0
                     for name, param in self.model.named_parameters():
                         proximal_term += torch.norm(param - initial_model_state[name]) ** 2
                     loss += (self.config.fedprox_mu / 2) * proximal_term
                 
-                \# Backward pass
+                # Backward pass
                 loss.backward()
                 
-                \# SCAFFOLD correction
+                # SCAFFOLD correction
                 if self.config.algorithm == FederatedAlgorithm.SCAFFOLD:
                     for name, param in self.model.named_parameters():
                         if param.grad is not None:
@@ -741,43 +741,43 @@ class FederatedClient:
                 
                 self.optimizer.step()
                 
-                \# Update metrics
+                # Update metrics
                 total_loss += loss.item()
                 pred = output.argmax(dim=1, keepdim=True)
                 correct_predictions += pred.eq(target.view_as(pred)).sum().item()
                 total_samples += len(data)
         
-        \# Calculate training metrics
+        # Calculate training metrics
         avg_loss = total_loss / (self.config.local_epochs * len(self.train_loader))
         accuracy = correct_predictions / total_samples
         
-        \# Validation
+        # Validation
         val_loss, val_accuracy = self._validate()
         
-        \# Update training history
+        # Update training history
         self.training_history['rounds'].append(round_num)
         self.training_history['train_loss'].append(avg_loss)
         self.training_history['train_accuracy'].append(accuracy)
         self.training_history['val_loss'].append(val_loss)
         self.training_history['val_accuracy'].append(val_accuracy)
         
-        \# Prepare model update
+        # Prepare model update
         model_update = {}
         for name, param in self.model.named_parameters():
             model_update[name] = param.data - global_model_state[name]
         
-        \# Apply differential privacy
+        # Apply differential privacy
         if self.dp:
             model_update = self.dp.privatize_gradients(model_update)
         
-        \# Compress model update
+        # Compress model update
         if self.compressor:
             model_update = self.compressor.compress_model_update(model_update)
         
-        \# Encrypt model update
+        # Encrypt model update
         encrypted_update = self.secure_comm.encrypt_model_update(model_update)
         
-        \# Update SCAFFOLD control variate
+        # Update SCAFFOLD control variate
         if self.config.algorithm == FederatedAlgorithm.SCAFFOLD:
             self._update_control_variate(global_model_state)
         
@@ -838,33 +838,33 @@ class FederatedServer:
         self.config = config
         self.device = torch.device(device)
         
-        \# Client management
+        # Client management
         self.registered_clients = {}
         self.client_states = {}
         
-        \# Communication
+        # Communication
         self.secure_comm = SecureCommunication(config.use_secure_communication)
         
-        \# Compression
+        # Compression
         if config.use_model_compression:
             self.compressor = ModelCompression(config.compression_ratio)
         else:
             self.compressor = None
         
-        \# Byzantine robustness
+        # Byzantine robustness
         if config.byzantine_tolerance:
             self.byzantine_defense = ByzantineRobustness(config.max_byzantine_clients)
         else:
             self.byzantine_defense = None
         
-        \# Global control variate for SCAFFOLD
+        # Global control variate for SCAFFOLD
         if config.algorithm == FederatedAlgorithm.SCAFFOLD:
             self.global_control_variate = {
                 name: torch.zeros_like(param)
                 for name, param in self.model.named_parameters()
             }
         
-        \# Training history
+        # Training history
         self.training_history = {
             'rounds': [],
             'participating_clients': [],
@@ -874,7 +874,7 @@ class FederatedServer:
             'convergence_metrics': []
         }
         
-        \# Early stopping
+        # Early stopping
         self.best_global_metric = 0.0
         self.patience_counter = 0
         
@@ -905,13 +905,13 @@ class FederatedServer:
         """Select clients for current round."""
         available_clients = list(self.registered_clients.keys())
         
-        \# Apply dropout
+        # Apply dropout
         if self.config.client_dropout_rate > 0:
             num_dropout = int(len(available_clients) * self.config.client_dropout_rate)
             dropout_clients = random.sample(available_clients, min(num_dropout, len(available_clients)))
             available_clients = [c for c in available_clients if c not in dropout_clients]
         
-        \# Select subset for this round
+        # Select subset for this round
         num_select = min(self.config.clients_per_round, len(available_clients))
         selected_clients = random.sample(available_clients, num_select)
         
@@ -924,22 +924,22 @@ class FederatedServer:
         round_num: int
     ) -> Dict[str, torch.Tensor]:
         """Aggregate client updates."""
-        \# Decrypt and decompress updates
+        # Decrypt and decompress updates
         processed_updates = []
         client_weights = []
         
         for update in client_updates:
-            \# Decrypt
+            # Decrypt
             decrypted_update = self.secure_comm.decrypt_model_update(update['model_update'])
             
-            \# Decompress if needed
+            # Decompress if needed
             if self.compressor:
                 decrypted_update = self.compressor.decompress_model_update(decrypted_update)
             
             processed_updates.append(decrypted_update)
             client_weights.append(update['num_samples'])
         
-        \# Apply Byzantine robustness
+        # Apply Byzantine robustness
         if self.byzantine_defense and len(processed_updates) > 2 * self.config.max_byzantine_clients:
             if self.config.aggregation_strategy == AggregationStrategy.KRUM:
                 aggregated_update = self.byzantine_defense.krum_aggregation(
@@ -954,7 +954,7 @@ class FederatedServer:
                     processed_updates, client_weights
                 )
         else:
-            \# Standard aggregation
+            # Standard aggregation
             if self.config.aggregation_strategy == AggregationStrategy.WEIGHTED_AVERAGE:
                 aggregated_update = self._weighted_average_aggregation(
                     processed_updates, client_weights
@@ -1023,10 +1023,10 @@ class FederatedServer:
             for name, param in self.model.named_parameters():
                 if name in aggregated_update:
                     if self.config.algorithm == FederatedAlgorithm.FEDNOVA:
-                        \# FedNova uses normalized updates
+                        # FedNova uses normalized updates
                         param.data += self.config.global_learning_rate * aggregated_update[name]
                     else:
-                        \# Standard update
+                        # Standard update
                         param.data += aggregated_update[name]
         
         logger.info(f"Updated global model for round {round_num}")
@@ -1105,11 +1105,11 @@ class FederatedLearningSystem:
         self.config = config
         self.device = device
         
-        \# Initialize server
+        # Initialize server
         server_model = model_class(**model_args)
         self.server = FederatedServer(server_model, config, device)
         
-        \# Client registry
+        # Client registry
         self.clients = {}
         
         logger.info("Initialized federated learning system")
@@ -1122,10 +1122,10 @@ class FederatedLearningSystem:
         client_info: Optional[Dict[str, Any]] = None
     ) -> str:
         """Add a client to the federation."""
-        \# Create client model
+        # Create client model
         client_model = self.model_class(**self.model_args)
         
-        \# Create client
+        # Create client
         client = FederatedClient(
             client_id=client_id,
             model=client_model,
@@ -1137,7 +1137,7 @@ class FederatedLearningSystem:
         
         self.clients[client_id] = client
         
-        \# Register with server
+        # Register with server
         if client_info is None:
             client_info = {
                 'num_samples': len(train_loader.dataset),
@@ -1156,23 +1156,23 @@ class FederatedLearningSystem:
         for round_num in range(1, self.config.num_rounds + 1):
             logger.info(f"Starting round {round_num}/{self.config.num_rounds}")
             
-            \# Select clients for this round
+            # Select clients for this round
             selected_client_ids = self.server.select_clients(round_num)
             
             if not selected_client_ids:
                 logger.warning(f"No clients selected for round {round_num}")
                 continue
             
-            \# Get current global model state
+            # Get current global model state
             global_model_state = self.server.model.state_dict()
             
-            \# Collect client updates
+            # Collect client updates
             client_updates = []
             
             for client_id in selected_client_ids:
                 if client_id in self.clients:
                     try:
-                        \# Perform local training
+                        # Perform local training
                         update = self.clients[client_id].local_train(
                             global_model_state, round_num
                         )
@@ -1194,13 +1194,13 @@ class FederatedLearningSystem:
                 logger.warning(f"No successful client updates in round {round_num}")
                 continue
             
-            \# Aggregate updates
+            # Aggregate updates
             aggregated_update = self.server.aggregate_updates(client_updates, round_num)
             
-            \# Update global model
+            # Update global model
             self.server.update_global_model(aggregated_update, round_num)
             
-            \# Evaluate global model
+            # Evaluate global model
             if test_loader and round_num % self.config.validation_frequency == 0:
                 global_metrics = self.server.evaluate_global_model(test_loader)
                 
@@ -1210,13 +1210,13 @@ class FederatedLearningSystem:
                     f"Accuracy: {global_metrics['accuracy']:.4f}"
                 )
                 
-                \# Update training history
+                # Update training history
                 self.server.training_history['rounds'].append(round_num)
                 self.server.training_history['participating_clients'].append(len(client_updates))
                 self.server.training_history['global_loss'].append(global_metrics['loss'])
                 self.server.training_history['global_accuracy'].append(global_metrics['accuracy'])
                 
-                \# Check convergence
+                # Check convergence
                 if self.server.check_convergence(global_metrics['accuracy'], round_num):
                     break
         
@@ -1230,12 +1230,12 @@ class FederatedLearningSystem:
         """Save the entire federated learning system."""
         self.server.save_model(path, len(self.server.training_history['rounds']))
 
-\# Example usage and demonstration
+# Example usage and demonstration
 def create_sample_federated_data():
     """Create sample federated data for demonstration."""
     from torch.utils.data import TensorDataset
     
-    \# Create synthetic data for multiple clients
+    # Create synthetic data for multiple clients
     np.random.seed(42)
     torch.manual_seed(42)
     
@@ -1247,28 +1247,28 @@ def create_sample_federated_data():
     client_datasets = {}
     
     for client_id in range(num_clients):
-        \# Create non-IID data by varying class distributions
+        # Create non-IID data by varying class distributions
         if client_id < 2:
-            \# Clients 0-1: More class 0
+            # Clients 0-1: More class 0
             class_0_samples = int(samples_per_client * 0.8)
             class_1_samples = samples_per_client - class_0_samples
         else:
-            \# Clients 2-4: More class 1
+            # Clients 2-4: More class 1
             class_0_samples = int(samples_per_client * 0.3)
             class_1_samples = samples_per_client - class_0_samples
         
-        \# Generate features
+        # Generate features
         X_0 = torch.randn(class_0_samples, num_features) + torch.tensor([1.0] * num_features)
         X_1 = torch.randn(class_1_samples, num_features) + torch.tensor([-1.0] * num_features)
         
         X = torch.cat([X_0, X_1], dim=0)
         y = torch.cat([torch.zeros(class_0_samples), torch.ones(class_1_samples)], dim=0).long()
         
-        \# Shuffle
+        # Shuffle
         indices = torch.randperm(len(X))
         X, y = X[indices], y[indices]
         
-        \# Split into train/val
+        # Split into train/val
         split_idx = int(0.8 * len(X))
         X_train, X_val = X[:split_idx], X[split_idx:]
         y_train, y_val = y[:split_idx], y[split_idx:]
@@ -1281,7 +1281,7 @@ def create_sample_federated_data():
             'val': val_dataset
         }
     
-    \# Create test dataset
+    # Create test dataset
     X_test = torch.randn(500, num_features)
     y_test = (X_test.sum(dim=1) > 0).long()
     test_dataset = TensorDataset(X_test, y_test)
@@ -1311,12 +1311,12 @@ def demonstrate_federated_learning():
     print("Federated Learning System Demonstration")
     print("=" * 50)
     
-    \# Create configuration
+    # Create configuration
     config = FederatedConfig(
         algorithm=FederatedAlgorithm.FEDAVG,
         aggregation_strategy=AggregationStrategy.WEIGHTED_AVERAGE,
         privacy_mechanism=PrivacyMechanism.DIFFERENTIAL_PRIVACY,
-        num_rounds=20,  \# Reduced for demo
+        num_rounds=20,  # Reduced for demo
         clients_per_round=3,
         local_epochs=3,
         local_batch_size=32,
@@ -1332,14 +1332,14 @@ def demonstrate_federated_learning():
     print(f"  Rounds: {config.num_rounds}")
     print(f"  Clients per round: {config.clients_per_round}")
     
-    \# Create sample data
+    # Create sample data
     client_datasets, test_dataset = create_sample_federated_data()
     
     print(f"\nDataset: {len(client_datasets)} clients")
     for client_id, datasets in client_datasets.items():
         print(f"  {client_id}: {len(datasets['train'])} train, {len(datasets['val'])} val samples")
     
-    \# Initialize federated learning system
+    # Initialize federated learning system
     model_args = {'input_dim': 20, 'hidden_dim': 64, 'num_classes': 2}
     fl_system = FederatedLearningSystem(
         model_class=SimpleModel,
@@ -1348,7 +1348,7 @@ def demonstrate_federated_learning():
         device="cpu"
     )
     
-    \# Add clients
+    # Add clients
     for client_id, datasets in client_datasets.items():
         train_loader = DataLoader(datasets['train'], batch_size=32, shuffle=True)
         val_loader = DataLoader(datasets['val'], batch_size=32, shuffle=False)
@@ -1356,7 +1356,7 @@ def demonstrate_federated_learning():
         token = fl_system.add_client(client_id, train_loader, val_loader)
         print(f"Added {client_id} to federation")
     
-    \# Create test loader
+    # Create test loader
     test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
     
     print(f"\nFederated learning system initialized")
@@ -1374,9 +1374,9 @@ if __name__ == "__main__":
     demonstrate_federated_learning()
 ```
 
-\#\# 19.3 Privacy Preservation and Security
+## 19.3 Privacy Preservation and Security
 
-\#\#\# 19.3.1 Differential Privacy in Federated Learning
+### 19.3.1 Differential Privacy in Federated Learning
 
 Differential privacy provides formal privacy guarantees for federated learning systems by adding carefully calibrated noise to model updates, ensuring that the participation of any individual patient cannot be inferred from the shared information. **The differential privacy guarantee** states that for any two datasets $D$ and $D'$ differing by at most one record, and for any subset $S$ of possible outputs:
 
@@ -1408,7 +1408,7 @@ $$
 
 where $\sigma = \frac{C \sqrt{2 \ln(1.25/\delta)}}{\epsilon}$ is the noise scale.
 
-\#\#\# 19.3.2 Secure Aggregation Protocols
+### 19.3.2 Secure Aggregation Protocols
 
 Secure aggregation enables the server to compute the sum of client updates without learning individual contributions, providing cryptographic privacy guarantees beyond differential privacy. **The secure aggregation protocol** uses secret sharing and cryptographic techniques to ensure that individual client updates remain private while still enabling global model aggregation.
 
@@ -1416,7 +1416,7 @@ Secure aggregation enables the server to compute the sum of client updates witho
 
 **Homomorphic encryption** enables computation on encrypted data, allowing the server to aggregate encrypted model updates without decrypting them. The aggregated result can then be decrypted to obtain the final global update while preserving the privacy of individual contributions.
 
-\#\#\# 19.3.3 Byzantine Robustness and Attack Mitigation
+### 19.3.3 Byzantine Robustness and Attack Mitigation
 
 Byzantine robustness addresses the challenge of malicious or compromised clients that may send incorrect or adversarial updates to disrupt the federated learning process. **Byzantine-robust aggregation algorithms** can tolerate a certain number of malicious clients while still producing accurate global models.
 
@@ -1432,9 +1432,9 @@ where $\mathcal{N}_i$ is the set of $n - f - 2$ nearest neighbors to client $i$,
 
 **Trimmed mean aggregation** removes extreme values from each parameter dimension before computing the mean, providing robustness against outliers and adversarial updates while maintaining computational efficiency.
 
-\#\# 19.4 Clinical Applications and Deployment
+## 19.4 Clinical Applications and Deployment
 
-\#\#\# 19.4.1 Multi-Institutional Clinical Decision Support
+### 19.4.1 Multi-Institutional Clinical Decision Support
 
 Federated learning enables the development of clinical decision support systems that leverage data from multiple healthcare institutions while preserving patient privacy and institutional autonomy. **Collaborative diagnostic models** can be trained across hospitals, clinics, and health systems to improve diagnostic accuracy and reduce healthcare disparities.
 
@@ -1442,7 +1442,7 @@ Federated learning enables the development of clinical decision support systems 
 
 **Real-time model updates** enable federated clinical decision support systems to continuously improve as new data becomes available across the federation, ensuring that models remain current with evolving clinical practices and emerging medical knowledge.
 
-\#\#\# 19.4.2 Regulatory Compliance and Governance
+### 19.4.2 Regulatory Compliance and Governance
 
 **HIPAA compliance** in federated learning requires careful attention to data handling, access controls, and audit trails throughout the federated training process. Business Associate Agreements (BAAs) may be required between participating institutions, and comprehensive risk assessments must address the unique challenges of distributed AI training.
 
@@ -1450,7 +1450,7 @@ Federated learning enables the development of clinical decision support systems 
 
 **International regulatory harmonization** becomes critical when federated learning involves institutions across different countries with varying privacy laws and healthcare regulations, requiring careful navigation of GDPR, PIPEDA, and other international privacy frameworks.
 
-\#\#\# 19.4.3 Performance Evaluation and Validation
+### 19.4.3 Performance Evaluation and Validation
 
 **Federated evaluation frameworks** must account for the distributed nature of training and the potential for data heterogeneity across institutions. Standard evaluation metrics may not adequately capture the performance of federated models across different institutional settings and patient populations.
 
@@ -1458,9 +1458,9 @@ Federated learning enables the development of clinical decision support systems 
 
 **Fairness assessment** in federated learning requires specialized metrics and evaluation frameworks that can detect and quantify disparities in model performance across different demographic groups, geographic regions, and institutional settings.
 
-\#\# Bibliography and References
+## Bibliography and References
 
-\#\#\# Federated Learning Foundations
+### Federated Learning Foundations
 
 1. **McMahan, B., Moore, E., Ramage, D., et al.** (2017). Communication-efficient learning of deep networks from decentralized data. *Artificial Intelligence and Statistics*, 1273-1282. [Original FedAvg paper]
 
@@ -1470,7 +1470,7 @@ Federated learning enables the development of clinical decision support systems 
 
 4. **Karimireddy, S. P., Kale, S., Mohri, M., et al.** (2020). SCAFFOLD: Stochastic controlled averaging for federated learning. *International Conference on Machine Learning*, 5132-5143. [SCAFFOLD algorithm]
 
-\#\#\# Privacy and Security in Federated Learning
+### Privacy and Security in Federated Learning
 
 5. **Abadi, M., Chu, A., Goodfellow, I., et al.** (2016). Deep learning with differential privacy. *ACM SIGSAC Conference on Computer and Communications Security*, 308-318. [Differential privacy in deep learning]
 
@@ -1480,7 +1480,7 @@ Federated learning enables the development of clinical decision support systems 
 
 8. **Wei, K., Li, J., Ding, M., et al.** (2020). Federated learning with differential privacy: Algorithms and performance analysis. *IEEE Transactions on Information Forensics and Security*, 15, 3454-3469. [DP-FL analysis]
 
-\#\#\# Byzantine Robustness
+### Byzantine Robustness
 
 9. **Blanchard, P., El Mhamdi, E. M., Guerraoui, R., & Stainer, J.** (2017). Machine learning with adversaries: Byzantine tolerant gradient descent. *Advances in Neural Information Processing Systems*, 30. [Byzantine-tolerant gradient descent]
 
@@ -1490,7 +1490,7 @@ Federated learning enables the development of clinical decision support systems 
 
 12. **Fang, M., Cao, X., Jia, J., & Gong, N.** (2020). Local model poisoning attacks to Byzantine-robust federated learning. *USENIX Security Symposium*, 1605-1622. [Poisoning attacks]
 
-\#\#\# Healthcare Federated Learning
+### Healthcare Federated Learning
 
 13. **Li, W., Milletarì, F., Xu, D., et al.** (2019). Privacy-preserving federated brain tumour segmentation. *International Workshop on Machine Learning in Medical Imaging*, 133-141. [Medical imaging FL]
 
@@ -1500,7 +1500,7 @@ Federated learning enables the development of clinical decision support systems 
 
 16. **Xu, A., Li, W., Guo, V., et al.** (2021). Federated learning for computational pathology on gigapixel whole slide images. *Medical Image Analysis*, 76, 102298. [Pathology FL]
 
-\#\#\# Regulatory and Compliance
+### Regulatory and Compliance
 
 17. **Kaissis, G. A., Makowski, M. R., Rückert, D., & Braren, R. F.** (2020). Secure, privacy-preserving and federated machine learning in medical imaging. *Nature Machine Intelligence*, 2(6), 305-311. [Privacy in medical imaging]
 

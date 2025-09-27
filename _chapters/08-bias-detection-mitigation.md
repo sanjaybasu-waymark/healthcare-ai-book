@@ -6,11 +6,11 @@ parent: Chapters
 permalink: /chapters/08-bias-detection-mitigation/
 ---
 
-\# Chapter 8: Bias Detection and Mitigation in Healthcare AI - Ensuring Fairness and Equity in Clinical Decision Support
+# Chapter 8: Bias Detection and Mitigation in Healthcare AI - Ensuring Fairness and Equity in Clinical Decision Support
 
 *By Sanjay Basu MD PhD*
 
-\#\# Learning Objectives
+## Learning Objectives
 
 By the end of this chapter, physician data scientists will be able to:
 
@@ -22,13 +22,13 @@ By the end of this chapter, physician data scientists will be able to:
 - Implement continuous monitoring systems for bias detection in production healthcare AI environments, including real-time alerting and automated bias assessment workflows
 - Navigate regulatory requirements and ethical frameworks for bias assessment in medical AI, including FDA guidance and institutional review board considerations
 
-\#\# 8.1 Introduction to Bias in Healthcare AI
+## 8.1 Introduction to Bias in Healthcare AI
 
 Bias in healthcare artificial intelligence represents one of the most critical challenges facing the deployment of AI systems in clinical practice. Healthcare AI bias can perpetuate and amplify existing health disparities, leading to inequitable care delivery and potentially harmful outcomes for vulnerable populations. Understanding, detecting, and mitigating bias is not merely a technical challenge but a moral imperative that requires sophisticated approaches grounded in both computer science and health equity principles.
 
 The manifestation of bias in healthcare AI systems is particularly concerning because healthcare decisions directly impact patient outcomes, quality of life, and survival. Unlike bias in other domains such as advertising or recommendation systems, healthcare AI bias can have life-or-death consequences, making the development of robust bias detection and mitigation frameworks essential for responsible AI deployment. The complexity of healthcare bias is compounded by the intersection of multiple protected characteristics, the temporal nature of health conditions, and the need to balance individual fairness with population-level health outcomes.
 
-\#\#\# 8.1.1 Theoretical Foundations of Healthcare AI Bias
+### 8.1.1 Theoretical Foundations of Healthcare AI Bias
 
 Healthcare AI bias emerges from multiple sources throughout the AI development lifecycle, from data collection and annotation to model training and deployment. Understanding these sources requires a comprehensive framework that addresses both technical and socio-technical factors that contribute to systematic unfairness in clinical AI systems.
 
@@ -81,7 +81,7 @@ $$
 
 where $d$ represents appropriate distance metrics and $L$ is a Lipschitz constant.
 
-\#\#\# 8.1.2 Clinical Implications of AI Bias
+### 8.1.2 Clinical Implications of AI Bias
 
 The clinical implications of AI bias extend beyond statistical measures to real-world patient outcomes and health equity. Understanding these implications is crucial for physician data scientists who must balance technical performance with clinical effectiveness and ethical considerations.
 
@@ -95,7 +95,7 @@ The clinical implications of AI bias extend beyond statistical measures to real-
 
 **Resource Allocation Consequences**: Healthcare AI systems are increasingly used for resource allocation decisions, including bed assignment, staffing, and treatment prioritization. Bias in these systems can lead to systematic under-allocation of resources to certain populations, exacerbating existing healthcare access issues.
 
-\#\#\# 8.1.3 Regulatory and Ethical Framework
+### 8.1.3 Regulatory and Ethical Framework
 
 The detection and mitigation of bias in healthcare AI is increasingly recognized by regulatory bodies, professional organizations, and healthcare institutions as a critical component of responsible AI deployment. Understanding this framework is essential for implementing compliant and ethical AI systems.
 
@@ -107,9 +107,9 @@ The detection and mitigation of bias in healthcare AI is increasingly recognized
 
 **International Standards and Frameworks**: International organizations such as the World Health Organization and the International Organization for Standardization are developing standards for AI bias assessment and mitigation in healthcare contexts.
 
-\#\# 8.2 Comprehensive Bias Detection Framework
+## 8.2 Comprehensive Bias Detection Framework
 
-\#\#\# 8.2.1 Multi-Stage Bias Detection Pipeline
+### 8.2.1 Multi-Stage Bias Detection Pipeline
 
 Effective bias detection in healthcare AI requires a comprehensive pipeline that addresses bias at multiple stages of the AI development lifecycle. This pipeline must be tailored to the specific characteristics of healthcare data and clinical applications, incorporating domain knowledge about health disparities and clinical workflows.
 
@@ -146,7 +146,7 @@ from typing import Dict, List, Tuple, Any, Optional, Union, Callable
 import warnings
 warnings.filterwarnings('ignore')
 
-\# Fairness-specific libraries
+# Fairness-specific libraries
 try:
     from aif360.datasets import BinaryLabelDataset
     from aif360.metrics import BinaryLabelDatasetMetric, ClassificationMetric
@@ -169,7 +169,7 @@ import joblib
 import pickle
 from pathlib import Path
 
-\# Configure logging
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -266,7 +266,7 @@ class HealthcareAIBiasDetector:
         self.clinical_context = clinical_context or {}
         self.significance_level = significance_level
         
-        \# Default fairness thresholds based on healthcare AI literature
+        # Default fairness thresholds based on healthcare AI literature
         self.fairness_thresholds = fairness_thresholds or {
             'statistical_parity_difference': 0.1,
             'equalized_odds_difference': 0.1,
@@ -276,7 +276,7 @@ class HealthcareAIBiasDetector:
             'conditional_use_accuracy_difference': 0.1
         }
         
-        \# Clinical severity thresholds
+        # Clinical severity thresholds
         self.severity_thresholds = {
             SeverityLevel.LOW: 0.05,
             SeverityLevel.MEDIUM: 0.1,
@@ -284,7 +284,7 @@ class HealthcareAIBiasDetector:
             SeverityLevel.CRITICAL: 0.3
         }
         
-        \# Results storage
+        # Results storage
         self.detection_results: List[BiasDetectionResult] = []
         self.bias_history: Dict[str, List[float]] = defaultdict(list)
         
@@ -313,34 +313,34 @@ class HealthcareAIBiasDetector:
         """
         results = []
         
-        \# Data validation
+        # Data validation
         self._validate_inputs(X, y, y_pred, y_prob)
         
-        \# Detect representation bias
+        # Detect representation bias
         representation_results = self._detect_representation_bias(X, y)
         results.extend(representation_results)
         
-        \# Detect algorithmic bias
+        # Detect algorithmic bias
         algorithmic_results = self._detect_algorithmic_bias(X, y, y_pred, y_prob)
         results.extend(algorithmic_results)
         
-        \# Detect intersectional bias
+        # Detect intersectional bias
         intersectional_results = self._detect_intersectional_bias(X, y, y_pred)
         results.extend(intersectional_results)
         
-        \# Detect calibration bias
+        # Detect calibration bias
         if y_prob is not None:
             calibration_results = self._detect_calibration_bias(X, y, y_prob)
             results.extend(calibration_results)
         
-        \# Clinical impact assessment
+        # Clinical impact assessment
         clinical_results = self._assess_clinical_impact(X, y, y_pred, results)
         results.extend(clinical_results)
         
-        \# Store results
+        # Store results
         self.detection_results.extend(results)
         
-        \# Update bias history
+        # Update bias history
         self._update_bias_history(results)
         
         return results
@@ -354,22 +354,22 @@ class HealthcareAIBiasDetector:
     ):
         """Validate input data for bias detection."""
         
-        \# Check dimensions
+        # Check dimensions
         if len(X) != len(y) or len(y) != len(y_pred):
             raise ValueError("Input arrays must have the same length")
         
-        \# Check protected attributes
+        # Check protected attributes
         missing_attrs = [attr for attr in self.protected_attributes if attr not in X.columns]
         if missing_attrs:
             raise ValueError(f"Missing protected attributes: {missing_attrs}")
         
-        \# Check for sufficient data in each group
+        # Check for sufficient data in each group
         for attr in self.protected_attributes:
             group_counts = X[attr].value_counts()
             if group_counts.min() < 30:
                 logger.warning(f"Small sample size for attribute {attr}: {group_counts.to_dict()}")
         
-        \# Check prediction validity
+        # Check prediction validity
         if not np.all(np.isin(y_pred, [0, 1])):
             raise ValueError("Predictions must be binary (0 or 1)")
         
@@ -387,29 +387,29 @@ class HealthcareAIBiasDetector:
         results = []
         
         for attr in self.protected_attributes:
-            \# Check group representation
+            # Check group representation
             group_counts = X[attr].value_counts()
             total_samples = len(X)
             
-            \# Calculate representation ratios
+            # Calculate representation ratios
             group_ratios = group_counts / total_samples
             min_ratio = group_ratios.min()
             max_ratio = group_ratios.max()
             
-            \# Statistical test for representation bias
+            # Statistical test for representation bias
             expected_equal = total_samples / len(group_counts)
             chi2_stat, p_value = stats.chisquare(group_counts.values)
             
-            \# Determine if bias exists
+            # Determine if bias exists
             representation_ratio = min_ratio / max_ratio if max_ratio > 0 else 0
-            threshold = 0.8  \# Minimum acceptable representation ratio
+            threshold = 0.8  # Minimum acceptable representation ratio
             
             is_biased = representation_ratio < threshold or p_value < self.significance_level
             
-            \# Determine severity
+            # Determine severity
             severity = self._determine_severity(1 - representation_ratio)
             
-            \# Generate recommendations
+            # Generate recommendations
             recommendations = []
             if is_biased:
                 underrepresented_groups = group_counts[group_counts < expected_equal * 0.8].index.tolist()
@@ -449,29 +449,29 @@ class HealthcareAIBiasDetector:
         results = []
         
         for attr in self.protected_attributes:
-            \# Get unique groups
+            # Get unique groups
             groups = X[attr].unique()
             
             if len(groups) < 2:
                 continue
             
-            \# Statistical parity
+            # Statistical parity
             stat_parity_result = self._calculate_statistical_parity(X, y_pred, attr)
             results.append(stat_parity_result)
             
-            \# Equalized odds
+            # Equalized odds
             eq_odds_result = self._calculate_equalized_odds(X, y, y_pred, attr)
             results.append(eq_odds_result)
             
-            \# Equal opportunity
+            # Equal opportunity
             eq_opp_result = self._calculate_equal_opportunity(X, y, y_pred, attr)
             results.append(eq_opp_result)
             
-            \# Treatment equality
+            # Treatment equality
             treatment_eq_result = self._calculate_treatment_equality(X, y, y_pred, attr)
             results.append(treatment_eq_result)
             
-            \# Conditional use accuracy
+            # Conditional use accuracy
             cond_acc_result = self._calculate_conditional_use_accuracy(X, y, y_pred, attr)
             results.append(cond_acc_result)
         
@@ -493,11 +493,11 @@ class HealthcareAIBiasDetector:
             group_predictions = y_pred[group_mask]
             positive_rates[group] = np.mean(group_predictions)
         
-        \# Calculate maximum difference
+        # Calculate maximum difference
         rates = list(positive_rates.values())
         max_diff = max(rates) - min(rates)
         
-        \# Statistical significance test
+        # Statistical significance test
         group_data = [y_pred[X[attr] == group] for group in groups]
         if len(groups) == 2:
             stat, p_value = stats.chi2_contingency([
@@ -505,7 +505,7 @@ class HealthcareAIBiasDetector:
                 [np.sum(group_data<sup>1</sup>), len(group_data<sup>1</sup>) - np.sum(group_data<sup>1</sup>)]
             ])[:2]
         else:
-            \# Use chi-square test for multiple groups
+            # Use chi-square test for multiple groups
             contingency_table = []
             for group_preds in group_data:
                 contingency_table.append([np.sum(group_preds), len(group_preds) - np.sum(group_preds)])
@@ -557,15 +557,15 @@ class HealthcareAIBiasDetector:
             group_y = y[group_mask]
             group_pred = y_pred[group_mask]
             
-            \# True positive rate
+            # True positive rate
             tpr = np.sum((group_y == 1) & (group_pred == 1)) / np.sum(group_y == 1) if np.sum(group_y == 1) > 0 else 0
             
-            \# False positive rate
+            # False positive rate
             fpr = np.sum((group_y == 0) & (group_pred == 1)) / np.sum(group_y == 0) if np.sum(group_y == 0) > 0 else 0
             
             tpr_fpr_by_group[group] = {'tpr': tpr, 'fpr': fpr}
         
-        \# Calculate maximum differences
+        # Calculate maximum differences
         tprs = [metrics['tpr'] for metrics in tpr_fpr_by_group.values()]
         fprs = [metrics['fpr'] for metrics in tpr_fpr_by_group.values()]
         
@@ -573,8 +573,8 @@ class HealthcareAIBiasDetector:
         fpr_diff = max(fprs) - min(fprs)
         max_diff = max(tpr_diff, fpr_diff)
         
-        \# Statistical significance (simplified)
-        p_value = 0.05  \# Would implement proper statistical test
+        # Statistical significance (simplified)
+        p_value = 0.05  # Would implement proper statistical test
         
         threshold = self.fairness_thresholds['equalized_odds_difference']
         is_biased = max_diff > threshold
@@ -597,7 +597,7 @@ class HealthcareAIBiasDetector:
             is_biased=is_biased,
             affected_groups=list(groups),
             severity=severity,
-            confidence=0.8,  \# Simplified confidence
+            confidence=0.8,  # Simplified confidence
             recommendations=recommendations,
             statistical_significance=p_value,
             effect_size=max_diff
@@ -620,11 +620,11 @@ class HealthcareAIBiasDetector:
             group_y = y[group_mask]
             group_pred = y_pred[group_mask]
             
-            \# True positive rate
+            # True positive rate
             tpr = np.sum((group_y == 1) & (group_pred == 1)) / np.sum(group_y == 1) if np.sum(group_y == 1) > 0 else 0
             tprs[group] = tpr
         
-        \# Calculate maximum difference
+        # Calculate maximum difference
         tpr_values = list(tprs.values())
         max_diff = max(tpr_values) - min(tpr_values)
         
@@ -679,7 +679,7 @@ class HealthcareAIBiasDetector:
             ratio = fn / fp if fp > 0 else float('inf') if fn > 0 else 0
             ratios[group] = ratio
         
-        \# Calculate maximum difference (excluding infinite values)
+        # Calculate maximum difference (excluding infinite values)
         finite_ratios = [r for r in ratios.values() if np.isfinite(r)]
         if len(finite_ratios) < 2:
             max_diff = 0
@@ -729,15 +729,15 @@ class HealthcareAIBiasDetector:
             group_y = y[group_mask]
             group_pred = y_pred[group_mask]
             
-            \# Positive predictive value (precision)
+            # Positive predictive value (precision)
             ppv = np.sum((group_y == 1) & (group_pred == 1)) / np.sum(group_pred == 1) if np.sum(group_pred == 1) > 0 else 0
             
-            \# Negative predictive value
+            # Negative predictive value
             npv = np.sum((group_y == 0) & (group_pred == 0)) / np.sum(group_pred == 0) if np.sum(group_pred == 0) > 0 else 0
             
             ppv_npv_by_group[group] = {'ppv': ppv, 'npv': npv}
         
-        \# Calculate maximum differences
+        # Calculate maximum differences
         ppvs = [metrics['ppv'] for metrics in ppv_npv_by_group.values()]
         npvs = [metrics['npv'] for metrics in ppv_npv_by_group.values()]
         
@@ -781,19 +781,19 @@ class HealthcareAIBiasDetector:
         
         results = []
         
-        \# Consider pairs of protected attributes
+        # Consider pairs of protected attributes
         for i, attr1 in enumerate(self.protected_attributes):
             for attr2 in self.protected_attributes[i+1:]:
-                \# Create intersectional groups
+                # Create intersectional groups
                 X['intersectional'] = X[attr1].astype(str) + '_' + X[attr2].astype(str)
                 
-                \# Calculate performance metrics for each intersectional group
+                # Calculate performance metrics for each intersectional group
                 groups = X['intersectional'].unique()
                 group_metrics = {}
                 
                 for group in groups:
                     group_mask = X['intersectional'] == group
-                    if np.sum(group_mask) < 10:  \# Skip small groups
+                    if np.sum(group_mask) < 10:  # Skip small groups
                         continue
                     
                     group_y = y[group_mask]
@@ -813,11 +813,11 @@ class HealthcareAIBiasDetector:
                 if len(group_metrics) < 2:
                     continue
                 
-                \# Calculate intersectional bias
+                # Calculate intersectional bias
                 accuracies = [m['accuracy'] for m in group_metrics.values()]
                 accuracy_diff = max(accuracies) - min(accuracies)
                 
-                threshold = 0.1  \# Threshold for intersectional bias
+                threshold = 0.1  # Threshold for intersectional bias
                 is_biased = accuracy_diff > threshold
                 
                 severity = self._determine_severity(accuracy_diff)
@@ -847,7 +847,7 @@ class HealthcareAIBiasDetector:
                 
                 results.append(result)
                 
-                \# Clean up temporary column
+                # Clean up temporary column
                 X.drop('intersectional', axis=1, inplace=True)
         
         return results
@@ -871,10 +871,10 @@ class HealthcareAIBiasDetector:
                 group_y = y[group_mask]
                 group_prob = y_prob[group_mask]
                 
-                if len(group_y) < 10:  \# Skip small groups
+                if len(group_y) < 10:  # Skip small groups
                     continue
                 
-                \# Calculate calibration error
+                # Calculate calibration error
                 fraction_of_positives, mean_predicted_value = calibration_curve(
                     group_y, group_prob, n_bins=10, strategy='uniform'
                 )
@@ -885,7 +885,7 @@ class HealthcareAIBiasDetector:
             if len(calibration_errors) < 2:
                 continue
             
-            \# Calculate maximum calibration difference
+            # Calculate maximum calibration difference
             cal_errors = list(calibration_errors.values())
             max_diff = max(cal_errors) - min(cal_errors)
             
@@ -931,7 +931,7 @@ class HealthcareAIBiasDetector:
         
         clinical_results = []
         
-        \# Define clinical impact categories
+        # Define clinical impact categories
         clinical_contexts = self.clinical_context.get('impact_categories', {
             'diagnostic': {'weight': 1.0, 'description': 'Diagnostic accuracy impact'},
             'treatment': {'weight': 1.2, 'description': 'Treatment recommendation impact'},
@@ -941,10 +941,10 @@ class HealthcareAIBiasDetector:
         
         for result in bias_results:
             if result.is_biased and result.severity in [SeverityLevel.HIGH, SeverityLevel.CRITICAL]:
-                \# Calculate clinical impact score
+                # Calculate clinical impact score
                 base_impact = result.metric_value
                 
-                \# Adjust for clinical context
+                # Adjust for clinical context
                 context_weight = 1.0
                 if 'application_type' in self.clinical_context:
                     app_type = self.clinical_context['application_type']
@@ -952,7 +952,7 @@ class HealthcareAIBiasDetector:
                 
                 clinical_impact_score = base_impact * context_weight
                 
-                \# Determine clinical impact level
+                # Determine clinical impact level
                 if clinical_impact_score > 0.3:
                     impact_level = "severe"
                 elif clinical_impact_score > 0.2:
@@ -962,7 +962,7 @@ class HealthcareAIBiasDetector:
                 else:
                     impact_level = "minimal"
                 
-                \# Generate clinical recommendations
+                # Generate clinical recommendations
                 clinical_recommendations = [
                     f"Clinical impact assessment: {impact_level}",
                     "Conduct clinical validation study for affected populations",
@@ -1006,7 +1006,7 @@ class HealthcareAIBiasDetector:
             metric_key = f"{result.bias_type.value}_{result.metric_name}"
             self.bias_history[metric_key].append(result.metric_value)
             
-            \# Keep only recent history (last 100 measurements)
+            # Keep only recent history (last 100 measurements)
             if len(self.bias_history[metric_key]) > 100:
                 self.bias_history[metric_key] = self.bias_history[metric_key][-100:]
     
@@ -1019,33 +1019,33 @@ class HealthcareAIBiasDetector:
         if results is None:
             results = self.detection_results
         
-        \# Summary statistics
+        # Summary statistics
         total_tests = len(results)
         biased_tests = sum(1 for r in results if r.is_biased)
         bias_rate = biased_tests / total_tests if total_tests > 0 else 0
         
-        \# Severity breakdown
+        # Severity breakdown
         severity_counts = defaultdict(int)
         for result in results:
             if result.is_biased:
                 severity_counts[result.severity.value] += 1
         
-        \# Bias type breakdown
+        # Bias type breakdown
         bias_type_counts = defaultdict(int)
         for result in results:
             if result.is_biased:
                 bias_type_counts[result.bias_type.value] += 1
         
-        \# Affected groups analysis
+        # Affected groups analysis
         affected_groups = set()
         for result in results:
             if result.is_biased:
                 affected_groups.update(result.affected_groups)
         
-        \# Priority recommendations
+        # Priority recommendations
         priority_recommendations = []
         critical_results = [r for r in results if r.is_biased and r.severity == SeverityLevel.CRITICAL]
-        for result in critical_results[:5]:  \# Top 5 critical issues
+        for result in critical_results[:5]:  # Top 5 critical issues
             priority_recommendations.extend(result.recommendations)
         
         report = {
@@ -1071,7 +1071,7 @@ class HealthcareAIBiasDetector:
         critical_bias_count = sum(1 for r in results if r.is_biased and r.severity == SeverityLevel.CRITICAL)
         high_bias_count = sum(1 for r in results if r.is_biased and r.severity == SeverityLevel.HIGH)
         
-        \# Determine overall compliance status
+        # Determine overall compliance status
         if critical_bias_count > 0:
             status = "non_compliant"
             risk_level = "high"
@@ -1104,11 +1104,11 @@ class HealthcareAIBiasDetector:
         if results is None:
             results = self.detection_results
         
-        \# Create subplots
+        # Create subplots
         fig, axes = plt.subplots(2, 2, figsize=(15, 12))
         fig.suptitle('Healthcare AI Bias Detection Results', fontsize=16)
         
-        \# 1. Bias severity distribution
+        # 1. Bias severity distribution
         severity_counts = defaultdict(int)
         for result in results:
             if result.is_biased:
@@ -1119,7 +1119,7 @@ class HealthcareAIBiasDetector:
             axes[0, 0].set_title('Bias Severity Distribution')
             axes[0, 0].set_ylabel('Number of Biased Tests')
         
-        \# 2. Bias type distribution
+        # 2. Bias type distribution
         bias_type_counts = defaultdict(int)
         for result in results:
             if result.is_biased:
@@ -1129,7 +1129,7 @@ class HealthcareAIBiasDetector:
             axes[0, 1].pie(bias_type_counts.values(), labels=bias_type_counts.keys(), autopct='%1.1f%%')
             axes[0, 1].set_title('Bias Type Distribution')
         
-        \# 3. Metric values distribution
+        # 3. Metric values distribution
         metric_values = [r.metric_value for r in results if r.is_biased]
         if metric_values:
             axes[1, 0].hist(metric_values, bins=20, alpha=0.7)
@@ -1137,9 +1137,9 @@ class HealthcareAIBiasDetector:
             axes[1, 0].set_xlabel('Metric Value')
             axes[1, 0].set_ylabel('Frequency')
         
-        \# 4. Bias trends over time (if history available)
+        # 4. Bias trends over time (if history available)
         if self.bias_history:
-            for metric_name, values in list(self.bias_history.items())[:5]:  \# Show top 5 metrics
+            for metric_name, values in list(self.bias_history.items())[:5]:  # Show top 5 metrics
                 axes[1, 1].plot(values, label=metric_name[:20], alpha=0.7)
             axes[1, 1].set_title('Bias Trends Over Time')
             axes[1, 1].set_xlabel('Measurement')
@@ -1179,7 +1179,7 @@ class HealthcareAIBiasMitigator:
         self.mitigation_strategy = mitigation_strategy
         self.clinical_constraints = clinical_constraints or {}
         
-        \# Available mitigation methods
+        # Available mitigation methods
         self.preprocessing_methods = {
             'reweighing': self._apply_reweighing,
             'disparate_impact_remover': self._apply_disparate_impact_remover,
@@ -1231,23 +1231,23 @@ class HealthcareAIBiasMitigator:
             'bias_reduction': {}
         }
         
-        \# Determine mitigation strategy based on bias results
+        # Determine mitigation strategy based on bias results
         critical_bias = [r for r in bias_results if r.is_biased and r.severity == SeverityLevel.CRITICAL]
         high_bias = [r for r in bias_results if r.is_biased and r.severity == SeverityLevel.HIGH]
         
-        \# Apply preprocessing methods
+        # Apply preprocessing methods
         if any('representation' in r.bias_type.value for r in critical_bias + high_bias):
             X_train_reweighed, y_train_reweighed = self._apply_reweighing(X_train, y_train)
             mitigation_results['mitigated_data'] = (X_train_reweighed, y_train_reweighed)
             mitigation_results['mitigation_methods_applied'].append('reweighing')
         
-        \# Apply in-processing methods
+        # Apply in-processing methods
         if any('algorithmic' in r.bias_type.value for r in critical_bias):
             fair_model = self._apply_fairness_constraints(X_train, y_train, model)
             mitigation_results['mitigated_models']['fairness_constrained'] = fair_model
             mitigation_results['mitigation_methods_applied'].append('fairness_constraints')
         
-        \# Apply post-processing methods
+        # Apply post-processing methods
         if any('equalized_odds' in r.metric_name for r in high_bias + critical_bias):
             postprocessed_model = self._apply_equalized_odds_postprocessing(
                 X_test, y_test, model
@@ -1255,7 +1255,7 @@ class HealthcareAIBiasMitigator:
             mitigation_results['mitigated_models']['equalized_odds'] = postprocessed_model
             mitigation_results['mitigation_methods_applied'].append('equalized_odds_postprocessing')
         
-        \# Evaluate mitigation effectiveness
+        # Evaluate mitigation effectiveness
         mitigation_results['effectiveness_evaluation'] = self._evaluate_mitigation_effectiveness(
             X_test, y_test, model, mitigation_results['mitigated_models'], bias_results
         )
@@ -1269,18 +1269,18 @@ class HealthcareAIBiasMitigator:
     ) -> Tuple[pd.DataFrame, np.ndarray]:
         """Apply reweighing to balance representation."""
         
-        \# Calculate sample weights to balance protected groups
+        # Calculate sample weights to balance protected groups
         sample_weights = np.ones(len(X))
         
         for attr in self.protected_attributes:
             if attr not in X.columns:
                 continue
             
-            \# Calculate group sizes
+            # Calculate group sizes
             group_counts = X[attr].value_counts()
             total_samples = len(X)
             
-            \# Calculate weights to balance groups
+            # Calculate weights to balance groups
             for group in group_counts.index:
                 group_mask = X[attr] == group
                 group_size = group_counts[group]
@@ -1288,10 +1288,10 @@ class HealthcareAIBiasMitigator:
                 weight = target_size / group_size
                 sample_weights[group_mask] *= weight
         
-        \# Normalize weights
+        # Normalize weights
         sample_weights = sample_weights / np.mean(sample_weights)
         
-        \# Create reweighed dataset
+        # Create reweighed dataset
         X_reweighed = X.copy()
         X_reweighed['sample_weight'] = sample_weights
         
@@ -1304,19 +1304,19 @@ class HealthcareAIBiasMitigator:
     ) -> Tuple[pd.DataFrame, np.ndarray]:
         """Apply disparate impact remover preprocessing."""
         
-        \# This is a simplified implementation
-        \# In practice, would use more sophisticated methods
+        # This is a simplified implementation
+        # In practice, would use more sophisticated methods
         
         X_processed = X.copy()
         
-        \# Remove direct correlation with protected attributes
+        # Remove direct correlation with protected attributes
         for attr in self.protected_attributes:
             if attr in X_processed.columns:
-                \# Calculate correlation with other features
+                # Calculate correlation with other features
                 correlations = X_processed.corr()[attr].abs()
                 highly_correlated = correlations[correlations > 0.7].index.tolist()
                 
-                \# Remove highly correlated features (except the protected attribute itself)
+                # Remove highly correlated features (except the protected attribute itself)
                 features_to_remove = [f for f in highly_correlated if f != attr]
                 X_processed = X_processed.drop(columns=features_to_remove)
         
@@ -1329,15 +1329,15 @@ class HealthcareAIBiasMitigator:
     ) -> Tuple[pd.DataFrame, np.ndarray]:
         """Generate synthetic data to balance representation."""
         
-        \# Simplified synthetic data generation
-        \# In practice, would use more sophisticated methods like SMOTE or GANs
+        # Simplified synthetic data generation
+        # In practice, would use more sophisticated methods like SMOTE or GANs
         
         from sklearn.utils import resample
         
         X_synthetic = X.copy()
         y_synthetic = y.copy()
         
-        \# Balance each protected group
+        # Balance each protected group
         for attr in self.protected_attributes:
             if attr not in X.columns:
                 continue
@@ -1351,7 +1351,7 @@ class HealthcareAIBiasMitigator:
                 group_labels = y[group_mask]
                 
                 if len(group_data) < max_count:
-                    \# Oversample minority group
+                    # Oversample minority group
                     n_samples_needed = max_count - len(group_data)
                     
                     resampled_data = resample(
@@ -1378,18 +1378,18 @@ class HealthcareAIBiasMitigator:
     ) -> Any:
         """Apply fairness constraints during training."""
         
-        \# Simplified fairness-constrained training
-        \# In practice, would implement more sophisticated methods
+        # Simplified fairness-constrained training
+        # In practice, would implement more sophisticated methods
         
         from sklearn.ensemble import RandomForestClassifier
         from sklearn.linear_model import LogisticRegression
         
-        \# Create a fairness-aware model
+        # Create a fairness-aware model
         if isinstance(base_model, RandomForestClassifier):
             fair_model = RandomForestClassifier(
                 n_estimators=base_model.n_estimators,
                 max_depth=base_model.max_depth,
-                class_weight='balanced',  \# Simple fairness constraint
+                class_weight='balanced',  # Simple fairness constraint
                 random_state=42
             )
         else:
@@ -1398,7 +1398,7 @@ class HealthcareAIBiasMitigator:
                 random_state=42
             )
         
-        \# Train with balanced class weights
+        # Train with balanced class weights
         fair_model.fit(X, y)
         
         return fair_model
@@ -1410,12 +1410,12 @@ class HealthcareAIBiasMitigator:
     ) -> Any:
         """Apply adversarial debiasing during training."""
         
-        \# Simplified adversarial debiasing implementation
-        \# In practice, would use more sophisticated adversarial networks
+        # Simplified adversarial debiasing implementation
+        # In practice, would use more sophisticated adversarial networks
         
         from sklearn.ensemble import RandomForestClassifier
         
-        \# Create adversarial model (simplified)
+        # Create adversarial model (simplified)
         adversarial_model = RandomForestClassifier(
             n_estimators=100,
             max_depth=10,
@@ -1434,10 +1434,10 @@ class HealthcareAIBiasMitigator:
     ) -> Any:
         """Apply multi-task learning for fairness."""
         
-        \# Simplified multi-task learning implementation
+        # Simplified multi-task learning implementation
         from sklearn.ensemble import RandomForestClassifier
         
-        \# Train separate models for each protected group
+        # Train separate models for each protected group
         group_models = {}
         
         for attr in self.protected_attributes:
@@ -1446,7 +1446,7 @@ class HealthcareAIBiasMitigator:
             
             for group in X[attr].unique():
                 group_mask = X[attr] == group
-                if np.sum(group_mask) < 10:  \# Skip small groups
+                if np.sum(group_mask) < 10:  # Skip small groups
                     continue
                 
                 group_X = X[group_mask]
@@ -1470,11 +1470,11 @@ class HealthcareAIBiasMitigator:
     ) -> Any:
         """Apply equalized odds post-processing."""
         
-        \# Get model predictions
+        # Get model predictions
         y_pred = model.predict(X)
         y_prob = model.predict_proba(X)[:, 1] if hasattr(model, 'predict_proba') else y_pred
         
-        \# Calculate optimal thresholds for each group
+        # Calculate optimal thresholds for each group
         optimal_thresholds = {}
         
         for attr in self.protected_attributes:
@@ -1486,10 +1486,10 @@ class HealthcareAIBiasMitigator:
                 group_y = y[group_mask]
                 group_prob = y_prob[group_mask]
                 
-                if len(group_y) < 10:  \# Skip small groups
+                if len(group_y) < 10:  # Skip small groups
                     continue
                 
-                \# Find threshold that maximizes balanced accuracy
+                # Find threshold that maximizes balanced accuracy
                 best_threshold = 0.5
                 best_score = 0
                 
@@ -1504,7 +1504,7 @@ class HealthcareAIBiasMitigator:
                 
                 optimal_thresholds[f"{attr}_{group}"] = best_threshold
         
-        \# Create post-processed model
+        # Create post-processed model
         class PostProcessedModel:
             def __init__(self, base_model, thresholds, protected_attrs):
                 self.base_model = base_model
@@ -1548,8 +1548,8 @@ class HealthcareAIBiasMitigator:
     ) -> Any:
         """Apply calibrated equalized odds post-processing."""
         
-        \# This would implement the calibrated equalized odds algorithm
-        \# For now, return the original model
+        # This would implement the calibrated equalized odds algorithm
+        # For now, return the original model
         return model
     
     def _apply_threshold_optimization(
@@ -1560,7 +1560,7 @@ class HealthcareAIBiasMitigator:
     ) -> Any:
         """Apply threshold optimization for fairness."""
         
-        \# Similar to equalized odds but optimizes for different fairness metrics
+        # Similar to equalized odds but optimizes for different fairness metrics
         return self._apply_equalized_odds_postprocessing(X, y, model)
     
     def _evaluate_mitigation_effectiveness(
@@ -1575,10 +1575,10 @@ class HealthcareAIBiasMitigator:
         
         evaluation_results = {}
         
-        \# Initialize bias detector for evaluation
+        # Initialize bias detector for evaluation
         bias_detector = HealthcareAIBiasDetector(self.protected_attributes)
         
-        \# Evaluate original model
+        # Evaluate original model
         y_pred_original = original_model.predict(X_test)
         original_performance = {
             'accuracy': accuracy_score(y_test, y_pred_original),
@@ -1592,11 +1592,11 @@ class HealthcareAIBiasMitigator:
             'bias_results': original_bias_results
         }
         
-        \# Evaluate mitigated models
+        # Evaluate mitigated models
         for method_name, mitigated_model in mitigated_models.items():
             y_pred_mitigated = mitigated_model.predict(X_test)
             
-            \# Performance metrics
+            # Performance metrics
             mitigated_performance = {
                 'accuracy': accuracy_score(y_test, y_pred_mitigated),
                 'precision': precision_score(y_test, y_pred_mitigated, average='weighted'),
@@ -1604,7 +1604,7 @@ class HealthcareAIBiasMitigator:
                 'f1': f1_score(y_test, y_pred_mitigated, average='weighted')
             }
             
-            \# Bias detection on mitigated model
+            # Bias detection on mitigated model
             y_prob_mitigated = None
             if hasattr(mitigated_model, 'predict_proba'):
                 y_prob_mitigated = mitigated_model.predict_proba(X_test)[:, 1]
@@ -1613,7 +1613,7 @@ class HealthcareAIBiasMitigator:
                 X_test, y_test, y_pred_mitigated, y_prob_mitigated
             )
             
-            \# Calculate bias reduction
+            # Calculate bias reduction
             bias_reduction = self._calculate_bias_reduction(
                 original_bias_results, mitigated_bias_results
             )
@@ -1641,17 +1641,17 @@ class HealthcareAIBiasMitigator:
         
         bias_reduction = {}
         
-        \# Create mapping of metric names to results
+        # Create mapping of metric names to results
         original_metrics = {r.metric_name: r.metric_value for r in original_results if r.is_biased}
         mitigated_metrics = {r.metric_name: r.metric_value for r in mitigated_results}
         
-        \# Calculate reduction for each metric
+        # Calculate reduction for each metric
         for metric_name, original_value in original_metrics.items():
             mitigated_value = mitigated_metrics.get(metric_name, original_value)
             reduction = (original_value - mitigated_value) / original_value if original_value > 0 else 0
             bias_reduction[metric_name] = reduction
         
-        \# Calculate overall bias reduction
+        # Calculate overall bias reduction
         if bias_reduction:
             bias_reduction['overall'] = np.mean(list(bias_reduction.values()))
         else:
@@ -1659,59 +1659,59 @@ class HealthcareAIBiasMitigator:
         
         return bias_reduction
 
-\#\# Bibliography and References
+## Bibliography and References
 
-\#\#\# Foundational Bias and Fairness Literature
+### Foundational Bias and Fairness Literature
 
-1. **Barocas, S., Hardt, M., & Narayanan, A.** (2019). Fairness and machine learning. *fairmlbook.org*. [Comprehensive textbook on algorithmic fairness]
+. **Barocas, S., Hardt, M., & Narayanan, A.** (2019). Fairness and machine learning. *fairmlbook.org*. [Comprehensive textbook on algorithmic fairness]
 
-2. **Dwork, C., Hardt, M., Pitassi, T., Reingold, O., & Zemel, R.** (2012). Fairness through awareness. *Proceedings of the 3rd innovations in theoretical computer science conference*, 214-226. [Foundational work on individual fairness]
+. **Dwork, C., Hardt, M., Pitassi, T., Reingold, O., & Zemel, R.** (2012). Fairness through awareness. *Proceedings of the 3rd innovations in theoretical computer science conference*, 214-226. [Foundational work on individual fairness]
 
-3. **Hardt, M., Price, E., & Srebro, N.** (2016). Equality of opportunity in supervised learning. *Advances in neural information processing systems*, 29, 3315-3323. [Seminal paper on equalized odds and equal opportunity]
+. **Hardt, M., Price, E., & Srebro, N.** (2016). Equality of opportunity in supervised learning. *Advances in neural information processing systems*, 29, 3315-3323. [Seminal paper on equalized odds and equal opportunity]
 
-4. **Verma, S., & Rubin, J.** (2018). Fairness definitions explained. *Proceedings of the international workshop on software fairness*, 1-7. DOI: 10.1145/3194770.3194776. [Comprehensive survey of fairness definitions]
+. **Verma, S., & Rubin, J.** (2018). Fairness definitions explained. *Proceedings of the international workshop on software fairness*, 1-7. DOI: 10.1145/3194770.3194776. [Comprehensive survey of fairness definitions]
 
-\#\#\# Healthcare AI Bias and Fairness
+### Healthcare AI Bias and Fairness
 
-5. **Rajkomar, A., Hardt, M., Howell, M. D., Corrado, G., & Chin, M. H.** (2018). Ensuring fairness in machine learning to advance health equity. *Annals of Internal Medicine*, 169(12), 866-872. DOI: 10.7326/M18-1990. [Foundational paper on healthcare AI fairness]
+. **Rajkomar, A., Hardt, M., Howell, M. D., Corrado, G., & Chin, M. H.** (2018). Ensuring fairness in machine learning to advance health equity. *Annals of Internal Medicine*, 169(12), 866-872. DOI: 10.7326/M18-1990. [Foundational paper on healthcare AI fairness]
 
-6. **Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S.** (2019). Dissecting racial bias in an algorithm used to manage the health of populations. *Science*, 366(6464), 447-453. DOI: 10.1126/science.aax2342. [Landmark study revealing bias in healthcare algorithms]
+. **Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S.** (2019). Dissecting racial bias in an algorithm used to manage the health of populations. *Science*, 366(6464), 447-453. DOI: 10.1126/science.aax2342. [Landmark study revealing bias in healthcare algorithms]
 
-7. **Chen, I. Y., Pierson, E., Rose, S., Joshi, S., Ferryman, K., & Ghassemi, M.** (2021). Ethical machine learning in healthcare. *Annual Review of Biomedical Data Science*, 4, 123-144. DOI: 10.1146/annurev-biodatasci-092820-114757. [Comprehensive review of ethical considerations in healthcare ML]
+. **Chen, I. Y., Pierson, E., Rose, S., Joshi, S., Ferryman, K., & Ghassemi, M.** (2021). Ethical machine learning in healthcare. *Annual Review of Biomedical Data Science*, 4, 123-144. DOI: 10.1146/annurev-biodatasci-092820-114757. [Comprehensive review of ethical considerations in healthcare ML]
 
-8. **Larrazabal, A. J., Nieto, N., Peterson, V., Milone, D. H., & Ferrante, E.** (2020). Gender imbalance in medical imaging datasets produces biased classifiers for computer-aided diagnosis. *Proceedings of the National Academy of Sciences*, 117(23), 12592-12594. [Study on gender bias in medical imaging]
+. **Larrazabal, A. J., Nieto, N., Peterson, V., Milone, D. H., & Ferrante, E.** (2020). Gender imbalance in medical imaging datasets produces biased classifiers for computer-aided diagnosis. *Proceedings of the National Academy of Sciences*, 117(23), 12592-12594. [Study on gender bias in medical imaging]
 
-\#\#\# Bias Detection Methodologies
+### Bias Detection Methodologies
 
-9. **Bellamy, R. K., Dey, K., Hind, M., Hoffman, S. C., Houde, S., Kannan, K., ... & Zhang, Y.** (2018). AI Fairness 360: An extensible toolkit for detecting, understanding, and mitigating unwanted algorithmic bias. *arXiv preprint arXiv:1810.01943*. [Comprehensive bias detection toolkit]
+. **Bellamy, R. K., Dey, K., Hind, M., Hoffman, S. C., Houde, S., Kannan, K., ... & Zhang, Y.** (2018). AI Fairness 360: An extensible toolkit for detecting, understanding, and mitigating unwanted algorithmic bias. *arXiv preprint arXiv:1810.01943*. [Comprehensive bias detection toolkit]
 
-10. **Friedler, S. A., Scheidegger, C., Venkatasubramanian, S., Choudhary, S., Hamilton, E. P., & Roth, D.** (2019). A comparative study of fairness-enhancing interventions in machine learning. *Proceedings of the conference on fairness, accountability, and transparency*, 329-338. [Comparative study of bias mitigation methods]
+. **Friedler, S. A., Scheidegger, C., Venkatasubramanian, S., Choudhary, S., Hamilton, E. P., & Roth, D.** (2019). A comparative study of fairness-enhancing interventions in machine learning. *Proceedings of the conference on fairness, accountability, and transparency*, 329-338. [Comparative study of bias mitigation methods]
 
-11. **Mehrabi, N., Morstatter, F., Saxena, N., Lerman, K., & Galstyan, A.** (2021). A survey on bias and fairness in machine learning. *ACM Computing Surveys*, 54(6), 1-35. DOI: 10.1145/3457607. [Comprehensive survey of bias types and mitigation strategies]
+. **Mehrabi, N., Morstatter, F., Saxena, N., Lerman, K., & Galstyan, A.** (2021). A survey on bias and fairness in machine learning. *ACM Computing Surveys*, 54(6), 1-35. DOI: 10.1145/3457607. [Comprehensive survey of bias types and mitigation strategies]
 
-\#\#\# Bias Mitigation Techniques
+### Bias Mitigation Techniques
 
-12. **Kamiran, F., & Calders, T.** (2012). Data preprocessing techniques for classification without discrimination. *Knowledge and Information Systems*, 33(1), 1-33. [Preprocessing methods for bias mitigation]
+. **Kamiran, F., & Calders, T.** (2012). Data preprocessing techniques for classification without discrimination. *Knowledge and Information Systems*, 33(1), 1-33. [Preprocessing methods for bias mitigation]
 
-13. **Zhang, B. H., Lemoine, B., & Mitchell, M.** (2018). Mitigating unwanted biases with adversarial learning. *Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society*, 335-340. [Adversarial debiasing methods]
+. **Zhang, B. H., Lemoine, B., & Mitchell, M.** (2018). Mitigating unwanted biases with adversarial learning. *Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society*, 335-340. [Adversarial debiasing methods]
 
-14. **Pleiss, G., Raghavan, M., Wu, F., Kleinberg, J., & Weinberger, K. Q.** (2017). On fairness and calibration. *Advances in neural information processing systems*, 30, 5680-5689. [Calibration and fairness trade-offs]
+. **Pleiss, G., Raghavan, M., Wu, F., Kleinberg, J., & Weinberger, K. Q.** (2017). On fairness and calibration. *Advances in neural information processing systems*, 30, 5680-5689. [Calibration and fairness trade-offs]
 
-\#\#\# Regulatory and Ethical Frameworks
+### Regulatory and Ethical Frameworks
 
-15. **U.S. Food and Drug Administration.** (2021). Artificial intelligence/machine learning (AI/ML)-based software as a medical device (SaMD) action plan. *FDA Guidance Document*. [Regulatory framework for AI/ML medical devices]
+. **U.S. Food and Drug Administration.** (2021). Artificial intelligence/machine learning (AI/ML)-based software as a medical device (SaMD) action plan. *FDA Guidance Document*. [Regulatory framework for AI/ML medical devices]
 
-16. **World Health Organization.** (2021). Ethics and governance of artificial intelligence for health. *WHO Technical Report*. [International ethical guidelines for healthcare AI]
+. **World Health Organization.** (2021). Ethics and governance of artificial intelligence for health. *WHO Technical Report*. [International ethical guidelines for healthcare AI]
 
-17. **Institute of Electrical and Electronics Engineers.** (2017). IEEE standard for ethical design process. *IEEE Std 2857-2021*. [Technical standards for ethical AI design]
+. **Institute of Electrical and Electronics Engineers.** (2017). IEEE standard for ethical design process. *IEEE Std 2857-2021*. [Technical standards for ethical AI design]
 
-\#\#\# Clinical Applications and Case Studies
+### Clinical Applications and Case Studies
 
-18. **Gianfrancesco, M. A., Tamang, S., Yazdany, J., & Schmajuk, G.** (2018). Potential biases in machine learning algorithms using electronic health record data. *JAMA Internal Medicine*, 178(11), 1544-1547. [Bias in EHR-based algorithms]
+. **Gianfrancesco, M. A., Tamang, S., Yazdany, J., & Schmajuk, G.** (2018). Potential biases in machine learning algorithms using electronic health record data. *JAMA Internal Medicine*, 178(11), 1544-1547. [Bias in EHR-based algorithms]
 
-19. **Vyas, D. A., Eisenstein, L. G., & Jones, D. S.** (2020). Hidden in plain sight—reconsidering the use of race correction in clinical algorithms. *New England Journal of Medicine*, 383(9), 874-882. [Race correction in clinical algorithms]
+. **Vyas, D. A., Eisenstein, L. G., & Jones, D. S.** (2020). Hidden in plain sight—reconsidering the use of race correction in clinical algorithms. *New England Journal of Medicine*, 383(9), 874-882. [Race correction in clinical algorithms]
 
-20. **Adamson, A. S., & Smith, A.** (2018). Machine learning and health care disparities in dermatology. *JAMA Dermatology*, 154(11), 1247-1248. [Bias in dermatology AI applications]
+. **Adamson, A. S., & Smith, A.** (2018). Machine learning and health care disparities in dermatology. *JAMA Dermatology*, 154(11), 1247-1248. [Bias in dermatology AI applications]
 
 This chapter provides a comprehensive framework for detecting and mitigating bias in healthcare AI systems. The implementations presented address the unique challenges of clinical environments including regulatory compliance, clinical validity, and health equity considerations. The next chapter will explore interpretability and explainability in healthcare AI, building upon these fairness concepts to address the need for transparent and accountable clinical AI systems.
 
